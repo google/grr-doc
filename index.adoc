@@ -26,7 +26,7 @@ Search Wiki and Documentation
     s.parentNode.insertBefore(gcse, s);
   })();
 </script>
-<gcse:searchbox></gcse:searchbox>
+<gcse:searchbox gname="docs"></gcse:searchbox>
 ++++
 
 
@@ -45,5 +45,13 @@ Search Code
     s.parentNode.insertBefore(gcse, s);
   })();
 </script>
-<gcse:searchbox></gcse:searchbox>
+<gcse:searchbox gname="code"></gcse:searchbox>
+++++
+
+Results
+-------
+++++
+<gcse:searchresults gname="docs"></gcse:searchresults>
+<gcse:searchresults gname="code"></gcse:searchresults>
+
 ++++
