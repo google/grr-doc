@@ -1,6 +1,7 @@
 GRR Developer documentation
 ===========================
-:toc2:
+:toc:
+:toc-placement: preamble
 :icons:
 
 GRR is forensic framework focused on scalability enabling powerful analysis. To

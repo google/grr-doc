@@ -1,6 +1,7 @@
 GRR Administrator Documentation
 ===============================
-:toc2:
+:toc:
+:toc-placement: preamble
 :icons:
 
 This document is intended for administrators who wish to deploy and manage GRR

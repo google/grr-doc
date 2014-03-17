@@ -1,6 +1,7 @@
 GRR User manual
 ===============
-:toc2:
+:toc:
+:toc-placement: preamble
 :icons:
 
 High-level overview
