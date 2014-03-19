@@ -141,7 +141,7 @@ your clients. Additionally, if you lose these keys, you lose the ability to
 communicate with your clients.
 
 Full details of this protocol and the security properties can be found in the
-link:implementation.html[Implementation document].
+link:implementation.adoc[Implementation document].
 
 
 Driver, Code Signing and CA Keys.
