@@ -26,7 +26,7 @@ GRR requires multiple key pairs. These are used to:
 These keys can be generated using the config_updater script normally installed
 in the path as grr_config_updater using the generate_keys command.
 
-[source, shell]
+[source,shell]
 --------------------------------------------------------------------
 db@host:$ sudo grr_config_updater generate_keys
 Generating executable signing key
@@ -424,7 +424,7 @@ the client reports back to.
 Once the config has been edited, you can repack all clients with the new config
 and upload them to the datastore using `grr_config_updater repack_clients`
 
-[source, shell]
+[source,shell]
 --------------------------------------------------------------------
 db@host:$ sudo grr_config_updater repack_clients
 Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
@@ -433,8 +433,7 @@ Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
 Packed to /usr/share/grr/executables/windows/installers/GRR_2.5.0.4_amd64.exe
 
 ## Uploading
-Uploading Windows amd64 binary from /usr/share/grr/executables/windows/installer
-s/GRR_2.5.0.4_amd64.exe
+Uploading Windows amd64 binary from /usr/share/grr/executables/windows/installers/GRR_2.5.0.4_amd64.exe
 Uploaded to aff4:/config/executables/windows/installers/GRR_2.5.0.4_amd64.exe
 db@host:$
 --------------------------------------------------------------------
@@ -501,7 +500,7 @@ In practice, you should nearly always do 3 or 4.
 As an example, to reduce how often the client polls the server to every 300
 seconds, you can update the registry as per below, and then restart the service:
 
-[source, shell]
+[source,shell]
 -------------------------------------------------------------
 C:\Windows\System32\>reg add HKLM\Software\GRR /v Client.poll_max /d 300
 
@@ -599,7 +598,7 @@ This file then needs to be signed and converted into the protobuf format
 required, and then needs to be uploaded to the data store. You can do this using
 the following command line.
 
-[source, shell]
+[source,shell]
 ------------------------------------------------------------------------
 grr_config_updater upload_python --file=myfile.py --platform=windows
 ------------------------------------------------------------------------
