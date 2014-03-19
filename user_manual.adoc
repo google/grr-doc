@@ -9,8 +9,8 @@ High-level overview
 
 To function, an <<agent,_agent_>> is deployed on systems that one might want to
 investigate. Once deployed, each system becomes a GRR <<client,_client_>> and
-they can start receiving <<message,messages>> from the frontend servers. Each
-message tells the client to run a specific <<client_action,_client action_>> and
+they can start receiving <<_message_,messages>> from the frontend servers. Each
+message tells the client to run a specific <<client-action,_client action_>> and
 return the results. A client action is simply some well known code the agent
 knows how to execute (such as obtaining the list of files in a directory or
 reading a buffer from a file).
@@ -23,7 +23,7 @@ to do based on the call results.
 This <<flow,_flow_>> is running on a client because a user initiated it. To do
 so, he probably used the web-based Graphical User Interface (GUI), which allows
 a GRR user to start flows for clients and review the results. Or he could also
-have used the text-based <<_the_console,_console_>> to do the same.
+have used the text-based <<the-console,_console_>> to do the same.
 
 Any flow that can be run on a single machine can also be run as a Hunt. A hunt
 allows running a flow on all, or any subset of machines talking to the GRR
@@ -33,7 +33,7 @@ server.
 Getting started
 ---------------
 
-Once we've got link:admin.html[the GRR server installed and running] we'll want
+Once we've got link:admin.adoc[the GRR server installed and running] we'll want
 to start deploying some agents.
 
 To do so we'll need to:
@@ -63,7 +63,7 @@ wget --user=admin --password=setecastronomy http://example.com:8080/download/win
 
 If your server configuration has changed your agents will need to be repacked
 with an updated config. For details see:
-link:admin.html#_repacking_the_client_with_a_new_configuration[the GRR server
+link:admin.adoc#repacking-the-client-with-a-new-configuration[the GRR server
 installed and running]
 
 Installing the Agent
@@ -80,7 +80,7 @@ The Windows agents are special self extracting zipfiles. Just double click or
 otherwise execute the binary. If you are not an administrator it will prompt
 you for credentials.
 It should then install silently in the background, unless you enabled the
- link:user_manual.html#_debugging_the_agent_install[verbose build]
+ link:user_manual.doc#debugging-the-agent-install[verbose build]
 
 
 Deployment methods
@@ -745,7 +745,7 @@ of the most primitive client actions, because all of the logic is encapsulated
 on the server side and the client doesn't have any state at all, they naturally
 survive reboots while processing is taking place.
 
-Now, whether you've been following the <<_getting_started,'Getting started'>>
+Now, whether you've been following the <<_getting-started,'Getting started'>>
 chapter or not, as long as you have a client communicating with the server you
 can already check some flows in the GUI. While having selected a client in the
 GUI, click on the 'Manage launched flows' link on the left panel.  This will
@@ -810,7 +810,7 @@ Launching flows manually
 
 We've seen how Flows were created through the UI. Now, we are gonna issue our
 own 'ListDirectory' flow, giving it parameters and then you can check the
-<<_available_flows,available flows>> list to decide what else you might want to
+<<_available-flows,available flows>> list to decide what else you might want to
 run on your client.
 
 To start a new Flow simply click on the 'Start new flows' option on the left
@@ -1096,37 +1096,44 @@ event.subject matches ini$
 Glossary
 --------
 
-[[aff4]] AFF4::
+AFF4
+++++
 AFF4 is the data model used for storage in GRR, with some minor extensions. You
 can read about the usage in the GRR paper linked above and there is additional
 detail linked at http://www.forensicswiki.org/wiki/AFF4
 
-[[agent]] Agent::
+Agent
++++++
 A platform-specific program that is installed on machines that one might want to
 investigate. It communicates with the GRR server and can perform client actions
 at the server's request.
 
-[[client]] Client::
+Client
+++++++
 A system that has an agent installed. Also used to refer to the specific
 instance of an agent running in that system.
 
-[[client_action]] Client Action::
+Client Action
++++++++++++++
 A client action is an action that a client can perform on behalf of the server.
 It is the base unit of work on the client. Client actions are initiated by the
 server through Flows.  Example client actions are ListDirectory,
 EnumerateFilesystems, Uninstall.
 
-[[collection]] Collection::
+Collection
+++++++++++
 A Collection is a logical set of objects stored in the AFF4 database. Generally
 these are a list of URNs containing a grouping of data such as Artifacts or
 Events from a client.
 
-[[datastore]] DataStore::
+DataStore
++++++++++
 The backend is where all AFF4 and Scheduler data is stored. It is provided as an
 abstraction to allow for replacement of the datastore without significant
 rewrite. The datastore supports read, write, querying and filtering.
 
-[[flow]] Flow::
+Flow
+++++
 A logical collection of server or client actions which achieve a given
 objective. A flow is the core unit of work in the GRR server. For example a
 BrowserHistory flow contains all the logic to download, extract and display
@@ -1134,21 +1141,25 @@ browser history from a client. Flows can call other flows to get their job
 done. E.g. A CollectBrowserHistory flow might call ListDirectory and GetFile to
 do it's work. A flow is implemented as a class that inherits from GRRFlow.
 
-Frontend server::
+Frontend server
++++++++++++++++
 Server-side component that sends and receives messages back and forth from
 clients.
 
-[[hunt]] Hunt::
+Hunt
+++++
 A Hunt is a mechanism for managing the execution of a flow on a large number of
 machines. A hunt is normally used when you are searching for a specific piece of
 data across a fleet of machines. Hunts allow for monitoring and reporting of
 status.
 
-[[message]] Message::
+Message
++++++++
 Transfer unit in GRR that transports information from a Flow to a client and
 viceversa.
 
-[[worker]] Worker::
+Worker
+++++++
 Once receiving a message from a client a worker will wake up the Flow that
 requested its results and execute it.
 
