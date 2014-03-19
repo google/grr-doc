@@ -4,6 +4,9 @@ GRR User manual
 :toc-placement: preamble
 :icons:
 
+GRR is forensic framework focused on scalability enabling powerful analysis.
+
+
 High-level overview
 -------------------
 
