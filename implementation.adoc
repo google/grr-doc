@@ -43,7 +43,7 @@ client.
 Datastore::
 The data store acts both as a central storage component for data, and as a
 communication mechanism for all the components. The data is modeled after an RDF
-datastore using the AFF4 data model (See <<datamodel,AFF4 Data Model>>).
+datastore using the AFF4 data model (See <<aff4-data-model,AFF4 Data Model>>).
 
 Console::
 The console is the central application which enables the incident responder or
@@ -56,7 +56,7 @@ In order to remain scalable, the front end does not do any processing of data,
 preferring to offload processing to special worker components. The number of
 workers can be tuned in response to increased workload. Workers typically check
 queues in the data stores for responses from the client, process those and
-re-queue new requests for the clients (See <<Flows>> and <<Queues>>).
+re-queue new requests for the clients (See <<flows>> and <<queues>>).
 
 
 GRR Messages
@@ -109,9 +109,9 @@ Client Communication and Encryption
 TBD
 
 
-[[Flows]]
-Flows.
-------
+[[flows]]
+Flows
+-----
 
 Typically when we want to run an analysis on the client, we need to go through a
 process where a number of requests are issued, their responses are examined, and
@@ -398,7 +398,7 @@ common pitfalls.
  keep your local code separate from the main codebase.
 
 
-[[Hunts]]
+[[hunts]]
 Hunts
 -----
 
@@ -495,7 +495,7 @@ If you want to stop a running hunt and remove the foreman rules again, use
 hunt.Stop()
 ------------------------------------------------------------------------
 
-[[Queues]]
+[[queues]]
 Queues
 -------
 
@@ -533,7 +533,7 @@ a NetStat request. There is also a special request directed at the queue DEBUG
 for ExecuteBinaryRequest.
 
 
-[[datamodel]]
+[[aff4-data-model]]
 AFF4 Data Model
 ---------------
 
