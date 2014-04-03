@@ -890,11 +890,7 @@ Hunt:
 
 . Click the + button
 . Fill out the details of the flow you want to run
-. Set Hunt parameters
-.. Client Limit - The maximum number of clients to run on (note this number
-   is considered a soft limit for technical reasons, we may slightly overshoot)
-.. Expiry Time - Stop queuing flows for new clients that appear after this
-   amount of time.
+. Set link:#hunt-parameters[Hunt Parameters]
 . Select rules.
 .. By default you'll want to choose a specific platform, e.g. Windows
 .. You can however make arbitrary rules based on attributes of the client. E.g.
@@ -903,6 +899,20 @@ Hunt:
 . Click Run
 
 Unless approvals are required, the hunt should begin running immediately.
+
+Hunt Parameters
+^^^^^^^^^^^^^^^
+
+. Description - Description of the hunt
+. Client Limit - The maximum number of clients to run on (note this number
+  is considered a soft limit for technical reasons, we may slightly overshoot)
+. Expiry Time - Stop queuing flows for new clients that appear after this
+  amount of time.
+. Client rate - Number of clients to schedule the hunt on per minute. The default
+  of 20 we have found to be safe, avoiding overloading the server for intensive
+  hunts with lots of message passing (e.g. multiple flows, lots of results).  A
+  value of 0 disables rate limiting and clients will be scheduled as fast as
+  possible.  Use this with care: light hunts you need to run quickly.
 
 
 Why Is My Hunt Doing Nothing?
