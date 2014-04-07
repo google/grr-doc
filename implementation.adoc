@@ -567,7 +567,7 @@ class VFSGRRClient(aff4.AFF4Object):                                   # <1>
     HOSTNAME = aff4.Attribute("metadata:hostname", aff4.RDFString,     # <4>
                               "Hostname of the host.", "Host",
                               index=client_index)
-------------------------------------------------------------------
+------------------------------------------------------------------------
 
 <1> An AFF4 object is simply a class which extends the AFF4Object base class.
 
