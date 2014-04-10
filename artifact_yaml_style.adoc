@@ -63,8 +63,8 @@ doc: |
 Collectors
 ----------
 
-The available collector actions are defined in
-lib.flows.general.collectors.ArtifactCollectorFlow and correspond to GRR flows.
+The available collector actions are defined in lib.artifact_lib.ACTIONS_MAP and
+correspond to GRR flows.
 
 Where collectors take a single argument with a single value, the {} form should
 be used to save on line breaks:
