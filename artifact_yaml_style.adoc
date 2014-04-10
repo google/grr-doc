@@ -5,8 +5,9 @@ Artifact YAML Style Guide
 :icons:
 
 This style guide aims to ensure consistency and readbility for forensics
-artifacts defined in link:http://www.yaml.org/spec/1.2/spec.html[YAML].
-Eventually this style should be enforced in code.
+artifacts defined in link:http://www.yaml.org/spec/1.2/spec.html[YAML].  
+The format is currently under development and likely to undergo significant
+change. Eventually this style should be enforced in code.
 
 The Basics
 ----------
