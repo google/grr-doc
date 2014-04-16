@@ -355,7 +355,7 @@ ID.
 
 
 .GRR search bar
-image::images/grr-gui-searchbar.png[width=850,align="center"]
+image::images/grr-gui-searchbar.png[width=850,height=76,align="center"]
 
 
 [TIP]
@@ -371,7 +371,7 @@ show.
 
 
 .Search results
-image::images/grr-gui-searchbar-results.png[width=850,align="center"]
+image::images/grr-gui-searchbar-results.png[width=850,height=349,align="center"]
 
 
 As you can see, the main panel gets populated with table-based results. Let's go
@@ -411,7 +411,7 @@ attribute of it.
 
 
 .Client view
-image::images/grr-gui-client-mainview.png[width=850,align="center"]
+image::images/grr-gui-client-mainview.png[width=850,height=434,align="center"]
 
 
 GRR supports versioning of attributes. This means we store historical data of
@@ -425,7 +425,7 @@ will show you the different versions of the file that have been collected.
 
 
 .Versioned MAC address
-image::images/grr-gui-client-versionedmac.png[width=850,align="center"]
+image::images/grr-gui-client-versionedmac.png[width=850,height=466,align="center"]
 
 
 Listing the Virtual FileSystem
@@ -455,7 +455,7 @@ As you can see, the main pane contains now 3 different subpanels:
 
 
 .GRR VFS Pane
-image::images/grr-gui-vfs-panels.png[width=850,align="center"]
+image::images/grr-gui-vfs-panels.png[width=850,height=476,align="center"]
 
 
 In order to check contents of the remote filesystem you first need to request a
@@ -472,7 +472,7 @@ on the remote system.
 
 
 .GRR VFS fs node
-image::images/grr-gui-vfs-fs.png[width=850,align="center"]
+image::images/grr-gui-vfs-fs.png[width=850,height=200,align="center"]
 
 
 If you try to expand (just click) any of these volumes on a fresh system you
@@ -486,7 +486,7 @@ current directory in a non-recursive manner.
 
 
 .GRR VFS Directory listing done
-image::images/grr-gui-vfs-table-refresh.png[width=850,align="center"]
+image::images/grr-gui-vfs-table-refresh.png[width=850,height=474,align="center"]
 
 
 [NOTE]
@@ -542,7 +542,7 @@ the file contents and it will be stored in the GRR datastore.
 
 
 .Download tab
-image::images/grr-gui-vfs-download.png[align="center"]
+image::images/grr-gui-vfs-download.png[width=750,height=212,align="center"]
 
 
 Once the file is downloaded, a new button will appear in this view above the
@@ -551,7 +551,7 @@ download the file from the GRR datastore to your computer.
 
 
 .Downloaded file
-image::images/grr-gui-vfs-downloaded.png[align="center"]
+image::images/grr-gui-vfs-downloaded.png[width=755,height=235,align="center"]
 
 File Versions
 ~~~~~~~~~~~~~
@@ -757,7 +757,7 @@ client.
 
 
 .Launched flows view
-image::images/grr-gui-flows-main.png[width=850,align="center"]
+image::images/grr-gui-flows-main.png[width=850,height=252,align="center"]
 
 
 The flows view resembles very much the VFS view. Indeed, the GUI reuses
@@ -798,7 +798,7 @@ detailed information.
 
 
 .ListDirectory flow details
-image::images/grr-gui-flows-listdirectory.png[align="center"]
+image::images/grr-gui-flows-listdirectory.png[width=842,height=519,align="center"]
 
 
 There's a lot of information here. Again, all these values are attributes. The
