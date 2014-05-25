@@ -919,14 +919,19 @@ Why Is My Hunt Doing Nothing?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - There are caches involved in the frontend server, you may need to wait a
 couple of minutes before the first client picks up the flow.
-- Clients only check if there is hunt work to do according to the
-`Client.foreman_check_frequency` parameter. This should default to every 10
-minutes as of version 0.2-9. Note that when a client issues a foreman check,
-flows are not directly queued on the client. Instead, the process is
-asynchronous, so the check tells the server to check its hunt rules to see if
-there are things for the client to do, if there are, it schedules them. However,
-if the client is in slow poll mode, it may not poll and pick up that work for
-another `Client.poll_max period` (10 minutes by default).
+- Clients only check if there is hunt work to do when doing a foreman check. 
+The frequency of these checks are specified in the `Client.foreman_check_frequency`
+parameter. This should default to every 10 minutes as of version 0.2-9. 
+- Even when a client issues a foreman check, the flows may not immediately start. 
+Instead, the process is asynchronous, so the check tells the server to check its
+hunt rules to see if there are things for the client to do. If there are, it
+schedules them, but the client may not do its regular poll and pick up that flow
+until `Client.poll_max period` (10 minutes by default).
+- Additionally, when you run a hunt you can specify a "Client Rate". This number  
+sets the maximum number of clients to engage per minute. A rate of 0 means to
+schedule clients as fast as possible. This can be used as a way of limiting how
+fast load on the system ramps up. If this is set low, you can expect a very 
+slow hunt. 
 
 
 Exporting Data From GRR
