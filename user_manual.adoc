@@ -1052,11 +1052,10 @@ message Process {
  user_cpu_time : 2.36999988556
  username : u'root'
 }
-
-
+--------------------------------------------------------------------------
 
 GRR's FUSE layer
------------
+----------------
 
 GRR's FUSE layer allows you to mount remote filesystems at directories in your
 machine. Run it by running `grr_fuse`. For configuration options, see
@@ -1077,8 +1076,6 @@ older than the expiry time will be refreshed from the client. The default cache
 time is 5 minutes, and can be set with the --max_age_before_refresh flag in
 grr/tools/fuse_mount.py
 
-
---------------------------------------------------------------------------
 
 Timeline
 --------
