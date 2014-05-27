@@ -346,7 +346,7 @@ to the config. If that exists, the client successfully made a connection.
 The GRR GUI
 -----------
 
-Searching for a client
+Searching For A Client
 ~~~~~~~~~~~~~~~~~~~~~~
 In order to start interfacing with a client, we first need to search for it in
 the GUI. The GRR search bar is located at the top of the GUI and allows you to
@@ -364,30 +364,32 @@ If a search attribute isn't specified, we search all attributes so a search for 
 - "." will show you all clients
 - "test1[2-5].*\.example.com$"
 
+Interpreting Client Search Results
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Searching returns a list of clients with the following information about each one:
 
-- 'Online': An icon indicating whether the host is online or not. Green means
+- *Online*: An icon indicating whether the host is online or not. Green means
   online; yellow, offline for some time; red, offline for a long time.
 
-- 'subject': The client IDentifier. This is how GRR refers internally to the
+- *Subject*: The client IDentifier. This is how GRR refers internally to the
   system.
 
-- 'Host': The name of the host as the operating system sees it.
+- *Host*: The name of the host as the operating system sees it.
 
-- 'Version': The operating system version.
+- *Version*: The operating system version.
 
-- 'MAC': A list of MAC addresses of the system.
+- *MAC*: A list of MAC addresses of the system.
 
-- 'Usernames': A list of user accounts the operating system knows about (usually
+- *Usernames*: A list of user accounts the operating system knows about (usually
   users local to the system or that have logged in).
 
-- 'First Seen': The time when the client first talked to the server.
+- *First Seen*: The time when the client first talked to the server.
 
-- 'OS install time': The timestamp for the operating system install.
+- *OS install time*: The timestamp for the operating system install.
 
-- 'Labels': Any labels applied to this client.
+- *Labels*: Any labels applied to this client.
 
-- 'Last Checkin': The last time the client communicated with the server.
+- *Last Checkin*: The last time the client communicated with the server.
 
 Once you've found the client you were looking for, click on it and both the left
 panel and main panel will change to reflect you're now working with a client.
