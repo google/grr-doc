@@ -350,32 +350,21 @@ Searching for a client
 ~~~~~~~~~~~~~~~~~~~~~~
 In order to start interfacing with a client, we first need to search for it in
 the GUI. The GRR search bar is located at the top of the GUI and allows you to
-search clients based on their hostname, users available on the system or client
-ID.
+search clients based on:
 
+- *Hostname:* "host: myhost-name"
+- *Fully Qualified Domain Name (FQDN):* "fqdn: myhost-name.organization.com"
+- *MAC address:* "mac: ee:ff:aa:bb:cc:dd".  Colons and case are not important, e.g. "mac: EEFFAABBCCDD" is equivalent.
+- *IP address:* "ip: 10.10.10.10".  Note that IP address is only collected during interrogate, which by default is run once per week. So searching by IP is useful for machines with static IPs, but searching for DHCP addresses that switch around between hosts is unlikely to give you useful results.
+- *User:* "user: john"
+- *Label:* "label: testmachines". Finds hosts with a particular GRR label.
 
-.GRR search bar
-image::images/grr-gui-searchbar.png[width=850,height=76,align="center"]
+If a search attribute isn't specified, we search all attributes so a search for "something" could match a hostname, part of a FQDN, or a user.  Regex is also supported, for example:
 
+- "." will show you all clients
+- "test1[2-5].*\.example.com$"
 
-[TIP]
-=============================================================================
-One can also specify a specific attribute to search for by using the convention
-"attribute_name:search_value". So to search for usernames matching john we would
-use: user:john.
-=============================================================================
-
-We'll use "domU" in our case, as we've installed the agent in a hostname
-matching this name. A list of available clients matching your criteria will
-show.
-
-
-.Search results
-image::images/grr-gui-searchbar-results.png[width=850,height=349,align="center"]
-
-
-As you can see, the main panel gets populated with table-based results. Let's go
-through each of the columns shown:
+Searching returns a list of clients with the following information about each one:
 
 - 'Online': An icon indicating whether the host is online or not. Green means
   online; yellow, offline for some time; red, offline for a long time.
@@ -392,9 +381,13 @@ through each of the columns shown:
 - 'Usernames': A list of user accounts the operating system knows about (usually
   users local to the system or that have logged in).
 
-- 'Install': The time when the agent was installed on the system.
+- 'First Seen': The time when the client first talked to the server.
 
-- 'Clock': The last time the client communicated with a worker.
+- 'OS install time': The timestamp for the operating system install.
+
+- 'Labels': Any labels applied to this client.
+
+- 'Last Checkin': The last time the client communicated with the server.
 
 Once you've found the client you were looking for, click on it and both the left
 panel and main panel will change to reflect you're now working with a client.
