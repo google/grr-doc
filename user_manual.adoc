@@ -885,12 +885,9 @@ Hunt:
 
 . Click the + button
 . Fill out the details of the flow you want to run
+. Set any output plugins, such as receiving an email for each result.
 . Set link:#hunt-parameters[Hunt Parameters]
-. Select rules.
-.. By default you'll want to choose a specific platform, e.g. Windows
-.. You can however make arbitrary rules based on attributes of the client. E.g.
-   a regex match to ensure to check the that the Version attribute at / matches
-   2.5.2.*
+. Set link:#hunt-rules[Hunt Rules]. Most commonly this is used to select a specific platform target, e.g. Windows.
 . Click Run
 
 Unless approvals are required, the hunt should begin running immediately.
@@ -909,6 +906,14 @@ Hunt Parameters
   value of 0 disables rate limiting and clients will be scheduled as fast as
   possible.  Use this with care: light hunts you need to run quickly.
 
+Hunt Rules
+^^^^^^^^^^
+
+Hunt rules are most commonly used to target a particular platform simply by selecting the appropriate platform from the dropdown list.  Note that these rules are a logical AND, so specifying more than one OS condition is incorrect, since no machine will match the criteria for Windows AND Linux.  If you have a hunt that you want to target to some, but not all, OSes you currently need to create a hunt for each (or perhaps create an artifact with the appropriate OS criteria).
+
+Hunt rules can also be more complex, e.g. a regex match to ensure to check the that the Version attribute at / matches 2.5.2.*
+
+Regex rules are particularly useful when labels are built into deployed clients via the Client.labels config option, so that you can have different deployments that share a server but can be targeted separately in a hunt.  To hunt clients with a particular label use a Regular Expression rule for the Label attribute at path "/" with a regex matching the client label text.
 
 Why Is My Hunt Doing Nothing?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
