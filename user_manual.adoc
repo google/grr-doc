@@ -581,7 +581,7 @@ consolidated into the File Finder flow, which uses a glob+interpolation syntax.
 
 File Path Examples
 ~~~~~~~~~~~~~~~~~~
-All executables or dlls in the user's download directory:
+All executables or dlls in each user's download directory:
 ---------------------------------------
 %%users.homedir%%\Downloads\*.{exe,dll}
 ---------------------------------------
@@ -618,7 +618,7 @@ C:\Users\alice\blah.txt, C:\Users\bob\blah.txt, C:\Users\eve\blah.txt
 ---------------------------------------------------------------------
 
 A full list of possible interpolation values can be found by typing %% in the
-gui.
+gui or in the link:https://code.google.com/p/grr/source/browse/proto/knowledge_base.proto[proto/knowledge_base.proto] file.
 
 Path Globbing
 ~~~~~~~~~~~~~
