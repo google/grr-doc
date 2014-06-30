@@ -612,13 +612,23 @@ e.g.
 %%users.homedir%%\blah.txt
 --------------------------
 
-Might expand to the following paths:
+Might expand to the following paths on Windows:
 ---------------------------------------------------------------------
 C:\Users\alice\blah.txt, C:\Users\bob\blah.txt, C:\Users\eve\blah.txt
 ---------------------------------------------------------------------
 
+and on OS X:
+---------------------------------------------------------------------
+/Users/alice/blah.txt, /Users/bob/blah.txt, /Users/eve/blah.txt
+---------------------------------------------------------------------
+
+and on Linux:
+---------------------------------------------------------------------
+/home/alice/blah.txt, /usr/local/home/bob/blah.txt, /home/local/eve/blah.txt
+---------------------------------------------------------------------
+
 A full list of possible interpolation values can be found by typing %% in the
-gui or in the link:https://code.google.com/p/grr/source/browse/proto/knowledge_base.proto[proto/knowledge_base.proto] file.
+gui.  The canonical reference is the link:https://code.google.com/p/grr/source/browse/proto/knowledge_base.proto[proto/knowledge_base.proto] file, which also contains docstrings for each type.
 
 Path Globbing
 ~~~~~~~~~~~~~
