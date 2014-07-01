@@ -18,7 +18,7 @@ Here's a typical artifact definition:
 name: ApplicationEventLogEvtx
 doc: Windows Application Event Log for Vista or newer systems.
 collectors:
-- action: GetFiles
+- collector_type: FILE
   args:
     path_list:
       - '%%environ_systemroot%%\System32\winevt\Logs\Application.evtx'
@@ -32,8 +32,8 @@ urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
 - *doc*: First line is a short description of the artifact, mentioning
   important caveats.  If more description is necessary, use the
   link:#long-docs[long form].
-- *collectors*: List of collectors and necessary arguments.  This describes
-  how GRR should collect the artifact from the client. See link:#collectors[the
+- *collectors*: List of collectors and necessary arguments.  This is the key part of the artifact that describes
+  the data on the client. See link:#collectors[the
   Collectors section] for more details.
 - *conditions*: Conditions that will apply to this artifact.
 - *labels*: List of labels.  Labels are used to logically group artifacts into
@@ -63,15 +63,14 @@ doc: |
 Collectors
 ----------
 
-The available collector actions are defined in lib.artifact_lib.ACTIONS_MAP and
-correspond to GRR flows.
+The available collector types are defined in the Collector message in the link:https://code.google.com/p/grr/source/browse/proto/artifact.proto#10[artifact.proto].
 
 Where collectors take a single argument with a single value, the {} form should
 be used to save on line breaks:
 
 --------------------------------------------------------------------------------
 collectors:
-- action: GetFiles
+- collector_type: FILE
   args: {path_list: [/var/log/wtmp]}
 --------------------------------------------------------------------------------
 
@@ -80,14 +79,14 @@ longer form should be used:
 
 --------------------------------------------------------------------------------
 collectors:
-- action: RunCommand
+- collector_type: COMMAND
   args:
     args: [-qa]
     cmd: /bin/rpm
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 collectors:
-- action: GetFiles
+- collector_type: FILE
   args:
     path_list:
       - /root/.bashrc
@@ -151,8 +150,8 @@ Conditions
 Artifact conditions are implemented using the
 link:https://code.google.com/p/objectfilter/[objectfilter] system that allows
 you to apply complex conditions to the attributes of an object. Artifacts can
-apply conditions to any of the knowledgebase object attributes as defined in
-knowledge_base.proto.
+apply conditions to any of the Knowledge Base object attributes as defined in
+link:https://code.google.com/p/grr/source/browse/proto/knowledge_base.proto[knowledge_base.proto].
 
 Since OS conditions are a very common constraint, this has been provided as a
 separate option "supported_os" to simplify syntax.  Under the hood, this:
@@ -185,17 +184,17 @@ having FirefoxHistoryWindows, FirefoxHistoryLinux, FirefoxHistoryDarwin, do:
 name: FirefoxHistory
 doc: Firefox places.sqlite files.
 collectors:
-- action: GetFiles
+- collector_type: FILE
   args:
     path_list:
       - %%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite
       - %%users.appdata%%\Mozilla\Firefox\Profiles\*\places.sqlite
   supported_os: [Windows]
-- action: GetFiles
+- collector_type: FILE
   args:
     path_list: [%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/places.sqlite]
   supported_os: [Darwin]
-- action: GetFiles
+- collector_type: FILE
   args:
     path_list: ['%%users.homedir%%/.mozilla/firefox/*/places.sqlite']
   supported_os: [Linux]
