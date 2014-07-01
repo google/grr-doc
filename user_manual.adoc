@@ -1069,6 +1069,68 @@ message Process {
 }
 --------------------------------------------------------------------------
 
+Artifacts
+---------
+
+During a security investigation responders need to quickly retrieve common
+pieces of information that include items such as logs, configured services, cron
+jobs, patch state, user accounts, and much more.  These pieces of information
+are known as forensic artifacts, and their location and format vary drastically
+across systems.  We have built a framework to describe forensic artifacts that
+allows them to be collected and customised quickly using GRR.
+link:https://code.google.com/p/grr/source/browse/artifacts[The collection of
+artifacts] is intended to be a centralized, free, community sourced, knowledge
+base of forensic artifacts that the world can use both as an information source
+and within other tools.
+
+The goals of the GRR artifacts implementation are:
+
+  - Describe artifacts with enough precision that they can be collected
+    automatically without user input.
+  - Cover modern versions of Mac, Windows, and Linux and common software
+    products of interest for forensics.
+  - Provide a standard variable interpolation scheme that allows artifacts to
+    simply specify concepts like "all user home directories", %TEMP%,
+    %SYSTEMROOT% etc.
+  - Allow grouping across operating systems and products e.g. "Chrome
+    Webhistory" artifact knows where the web history is for Chrome on
+    Mac/Win/Linux.
+  - Allow grouping of artifacts into high level concepts like "Persistence
+    Mechanisms", and investigation specific meta-artifacts.
+  - To create simple, shareable, non-grr-specific human-readable definitions
+    that allow people unfamiliar with the system to create new artifacts. i.e.
+    not XML or a domain specific language.
+  - The ability to write new artifacts, upload them to GRR and be able to
+    collect them immediately.
+
+GRR artifacts are defined in YAML, with a style guide
+link:artifact_yaml_style.adoc[available here].  We use a standard set of machine
+information collected from the host for variable interpolation.  This collection
+of data is called the Knowledge Base (see
+link:https://code.google.com/p/grr/source/browse/proto/knowledge_base.proto[proto/knowledge_base.proto])
+and is referenced with a %%variable%% syntax.
+
+The artifact defines where the data lives.  Once it is retrieved by GRR a
+link:https://code.google.com/p/grr/source/browse/parsers[parser] can optionally
+be applied to turn the collected information into a more useful format, such as
+parsing a browser history file to produce URLs.
+
+Collecting Artifacts
+~~~~~~~~~~~~~~~~~~~~
+
+Artifacts can be collected using the artifact collector flow.  Multiple
+artifacts can be collected at once.  Using artifacts in hunts is particularly
+powerful as an artifact like JavaCacheFiles can be scheduled in a single hunt
+across all three operating systems, and the artifact itself determines the
+correct paths to be downloaded for each OS.
+
+Defining New Artifacts
+~~~~~~~~~~~~~~~~~~~~~~
+
+New artifacts can be added to the link:https://code.google.com/p/grr/source/browse/artifacts[grr/artifacts] directory, which will be
+imported on server restart.  Artifacts can also be uploaded via the Artifact
+Manager gui and used immediately without the need for a restart.
+
 GRR's FUSE layer
 ----------------
 
