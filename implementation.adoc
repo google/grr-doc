@@ -1156,8 +1156,8 @@ A few points about the above code:
 
 
 
-Key Libraries.
---------------
+Key Libraries
+-------------
 GRR makes use of a number of key open source projects in its implementation.
 These include:
 
