@@ -212,18 +212,20 @@ knowledge. This means that anyone who has a copy of the GRR agent, and knows
 the address of your GRR server can register their client to your deployment.
 This significantly eases deployment, and is generally considered low risk as
 the client has no control or trust on the server.
+
 However, it does introduce some risk, in particular:
+
 - If there are flows or hunts you deploy to the entire fleet, a malicious
-client may receive them. These could give away information about what you are
-searching for.
+  client may receive them. These could give away information about what you are
+  searching for.
 - Clients are allowed to send some limited messages to the server without
-prompting, these are called Well Known flows. By default these can be used
-to send log messages, or errors. A malicious client using these could fill up
-logs and disk space.
+  prompting, these are called Well Known flows. By default these can be used
+  to send log messages, or errors. A malicious client using these could fill up
+  logs and disk space.
 - If you have custom Well Known Flows that perform interesting actions. You need
- to be aware that untrusted clients can call them. Most often this could result
- in a DoS condition, e.g. through a client sending multiple install failure or
- client crash messages.
+  to be aware that untrusted clients can call them. Most often this could result
+  in a DoS condition, e.g. through a client sending multiple install failure or
+  client crash messages.
 
 In many environments this risk is unwarranted, so we suggest implementing
 further authorization in the Enrollment Flow using some information that only
