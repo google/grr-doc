@@ -1,6 +1,7 @@
 GRR Developer documentation
 ===========================
-:toc2:
+:toc:
+:toc-placement: preamble
 :icons:
 
 GRR is forensic framework focused on scalability enabling powerful analysis. To
@@ -42,7 +43,7 @@ client.
 Datastore::
 The data store acts both as a central storage component for data, and as a
 communication mechanism for all the components. The data is modeled after an RDF
-datastore using the AFF4 data model (See <<datamodel,AFF4 Data Model>>).
+datastore using the AFF4 data model (See <<aff4-data-model,AFF4 Data Model>>).
 
 Console::
 The console is the central application which enables the incident responder or
@@ -55,7 +56,7 @@ In order to remain scalable, the front end does not do any processing of data,
 preferring to offload processing to special worker components. The number of
 workers can be tuned in response to increased workload. Workers typically check
 queues in the data stores for responses from the client, process those and
-re-queue new requests for the clients (See <<Flows>> and <<Queues>>).
+re-queue new requests for the clients (See <<flows>> and <<queues>>).
 
 
 GRR Messages
@@ -108,9 +109,9 @@ Client Communication and Encryption
 TBD
 
 
-[[Flows]]
-Flows.
-------
+[[flows]]
+Flows
+-----
 
 Typically when we want to run an analysis on the client, we need to go through a
 process where a number of requests are issued, their responses are examined, and
@@ -397,7 +398,7 @@ common pitfalls.
  keep your local code separate from the main codebase.
 
 
-[[Hunts]]
+[[hunts]]
 Hunts
 -----
 
@@ -406,63 +407,57 @@ amongst the entire fleet of clients, GRR has implemented the concept
 of hunts. Hunts are essentially flows that run on multiple clients at
 the same time.
 
-At the moment hunts are regarded as rather high impact since they can
-affect many clients at once, so scheduling new hunts is restricted to
-console users. In order to schedule a hunt, this is the process:
+Hunts can be run from the UI as per the user manual. The following describes
+manually starting a hunt from the console.
 
-Import the hunts file and create a new hunt (This example uses the
-SampleHunt, replace with a hunt of your choice):
+Import the hunts file and create the args for your new hunt (This example uses the 
+GenericHunt with a FileFinder flow, replace with a hunt of your choice):
 
 [source,python]
 ------------------------------------------------------------------------
-hunt = hunts.SampleHunt(client_limit=100, expiry_time=36000)
+from grr.lib.hunts import implementation
+
+reg_path = r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs"
+hunt_flow = rdfvalue.FlowRunnerArgs(flow_name="FileFinder")
+hunt_flow_args = rdfvalue.FileFinderArgs(paths=[reg_path],
+    pathtype=rdfvalue.PathSpec.PathType.REGISTRY)
+token = access_control.ACLToken()
+
 ------------------------------------------------------------------------
 
-This creates the SampleHunt, possible parameters:
-
-- client_limit to limit the number of clients this hunt will be
-  scheduled on for experiments.
-- expiry_time gives the time this hunt will be active (in seconds).
+This specifies the flow we will call, and the arguments we will call it with. 
 
 Next you have to create rules to indicate which clients the hunt will
-be run on. Rules either compare fields stored in the client
-description to integer values or match regular expressions against
-them:
+be run on. Rules either compare fields stored in the client description to integer
+values or match regular expressions against them:
 
 [source,python]
 ------------------------------------------------------------------------
-int_rule = jobs_pb2.ForemanAttributeInteger(
-                   attribute_name=client.Schema.OS_RELEASE.name,
-                   operator=jobs_pb2.ForemanAttributeInteger.EQUAL,
-                   value=7)
-regex_rule = flow.GRRHunt.MATCH_WINDOWS
+int_rule = rdfvalue.ForemanAttributeInteger(
+   attribute_name="Release", operator="EQUAL", value=7)
+regex_rule = implementation.GRRHunt.MATCH_WINDOWS
 ------------------------------------------------------------------------
 
 The two rules above will match clients that run Windows and have an
 OS_RELEASE of 7.
 
-Next, you add the rules to the hunt:
+Next we create the actual Hunt.
 
 [source,python]
 ------------------------------------------------------------------------
-hunt.AddRule([int_rule, regex_rule])
+hunt = hunts.GRRHunt.StartHunt(hunt_name="GenericHunt",
+  flow_runner_args=hunt_flow, flow_args=hunt_flow_args,
+  regex_rules=[regex_rule], integer_rules=[int_rule],
+  token=token, client_limit=100)
+
 ------------------------------------------------------------------------
 
-You can call AddRule more than once. The hunt will be triggered if all
-the rules of one AddRule call match at the same time. So you can do:
+Some possible parameters:
 
-[source,python]
-------------------------------------------------------------------------
-hunt.AddRule([ flow.GRRHunt.MATCH_WINDOWS,
-  jobs_pb2.ForemanAttributeInteger(attribute_name=client.Schema.OS_RELEASE.name,
-  operator=jobs_pb2.ForemanAttributeInteger.EQUAL, value=7)])
+- client_limit to limit the number of clients this hunt will be
+  scheduled on for experiments.
+- expiry_time gives the time this hunt will be active (in seconds).
 
-hunt.AddRule([ flow.GRRHunt.MATCH_WINDOWS,
-  jobs_pb2.ForemanAttributeInteger(attribute_name=client.Schema.OS_RELEASE.name,
-  operator=jobs_pb2.ForemanAttributeInteger.EQUAL, value=8)])
-------------------------------------------------------------------------
-
-to start a hunt on windows clients that have either OS_VERSION 7 or 8.
 
 If you are unsure about your rules, you can call
 
@@ -476,8 +471,8 @@ give you some matching sample clients. Note that this will open all
 the clients and will therefore take a while if you have a lot of
 clients in the database.
 
-Once you are happy with your rules, you upload the hunt to the
-foreman:
+Once you are happy with your rules, we Run the hunt by uploading our rules
+to the Foreman so they start being processed. 
 
 [source,python]
 ------------------------------------------------------------------------
@@ -487,14 +482,22 @@ hunt.Run()
 At this point, matching clients will pick up and run the hunt and you
 can see the progress in the UI.
 
-If you want to stop a running hunt and remove the foreman rules again, use
+If you want to stop a running hunt and remove the foreman rules again, use:
 
 [source,python]
 ------------------------------------------------------------------------
 hunt.Stop()
 ------------------------------------------------------------------------
 
-[[Queues]]
+To add clients to a hunt manually (without the Foreman) use:
+
+[source,python]
+------------------------------------------------------------------------
+hunt.StartClients(hunt.urn, ['C.1234567891122334'], token=hunt.token)
+------------------------------------------------------------------------
+
+
+[[queues]]
 Queues
 -------
 
@@ -532,7 +535,7 @@ a NetStat request. There is also a special request directed at the queue DEBUG
 for ExecuteBinaryRequest.
 
 
-[[datamodel]]
+[[aff4-data-model]]
 AFF4 Data Model
 ---------------
 
@@ -566,7 +569,7 @@ class VFSGRRClient(aff4.AFF4Object):                                   # <1>
     HOSTNAME = aff4.Attribute("metadata:hostname", aff4.RDFString,     # <4>
                               "Hostname of the host.", "Host",
                               index=client_index)
-------------------------------------------------------------------
+------------------------------------------------------------------------
 
 <1> An AFF4 object is simply a class which extends the AFF4Object base class.
 
@@ -1205,8 +1208,8 @@ A few points about the above code:
 
 
 
-Key Libraries.
---------------
+Key Libraries
+-------------
 GRR makes use of a number of key open source projects in its implementation.
 These include:
 

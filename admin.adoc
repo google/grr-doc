@@ -1,6 +1,7 @@
 GRR Administrator Documentation
 ===============================
-:toc2:
+:toc:
+:toc-placement: preamble
 :icons:
 
 This document is intended for administrators who wish to deploy and manage GRR
@@ -25,7 +26,7 @@ GRR requires multiple key pairs. These are used to:
 These keys can be generated using the config_updater script normally installed
 in the path as grr_config_updater using the generate_keys command.
 
-[source, shell]
+[source,shell]
 --------------------------------------------------------------------
 db@host:$ sudo grr_config_updater generate_keys
 Generating executable signing key
@@ -140,7 +141,7 @@ your clients. Additionally, if you lose these keys, you lose the ability to
 communicate with your clients.
 
 Full details of this protocol and the security properties can be found in the
-link:implementation.html[Implementation document].
+link:implementation.adoc[Implementation document].
 
 
 Driver, Code Signing and CA Keys.
@@ -211,18 +212,20 @@ knowledge. This means that anyone who has a copy of the GRR agent, and knows
 the address of your GRR server can register their client to your deployment.
 This significantly eases deployment, and is generally considered low risk as
 the client has no control or trust on the server.
+
 However, it does introduce some risk, in particular:
+
 - If there are flows or hunts you deploy to the entire fleet, a malicious
-client may receive them. These could give away information about what you are
-searching for.
+  client may receive them. These could give away information about what you are
+  searching for.
 - Clients are allowed to send some limited messages to the server without
-prompting, these are called Well Known flows. By default these can be used
-to send log messages, or errors. A malicious client using these could fill up
-logs and disk space.
+  prompting, these are called Well Known flows. By default these can be used
+  to send log messages, or errors. A malicious client using these could fill up
+  logs and disk space.
 - If you have custom Well Known Flows that perform interesting actions. You need
- to be aware that untrusted clients can call them. Most often this could result
- in a DoS condition, e.g. through a client sending multiple install failure or
- client crash messages.
+  to be aware that untrusted clients can call them. Most often this could result
+  in a DoS condition, e.g. through a client sending multiple install failure or
+  client crash messages.
 
 In many environments this risk is unwarranted, so we suggest implementing
 further authorization in the Enrollment Flow using some information that only
@@ -263,6 +266,23 @@ they are not currently released  (Mar 2013). If you are interested in this
 functionality please just email the devs and we can release it.
 
 
+Enabling SSL on the AdminUI.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The AdminUI supports SSL if it is configured. We don't currently generate
+certs to enable this by default as certificate management is messy, but you
+can enable by adding to your config something like:
+
+--------------------------------------------------------------------------------
+AdminUI.enable_ssl: True
+AdminUI.ssl_cert_file: "/etc/ssl/certs/grr.crt"
+AdminUI.ssl_key_file: "/etc/ssl/private/grr.plain.key"
+--------------------------------------------------------------------------------
+
+Note that SSL performance using this method may be average. If you have a lot
+of users and a single AdminUI, you may get better performance putting GRR behind
+an SSL reverse proxy such as Apache and letting it handle the SSL.
+
+
 GRR Security Checklist.
 ~~~~~~~~~~~~~~~~~~~~~~~
 .For all deployments
@@ -279,7 +299,7 @@ clients.
 - Run the http server serving clients on a separate machine to the workers.
 - Introduce a stronger AdminUI sign in mechanism and use the
 FullAccessControlManager.
-- Ensure the Administrative UI and it is SSL protected.
+- Ensure the Administrative UI is SSL protected
 - Ensure the database server is using strong passwords and is well protected.
 
 
@@ -328,8 +348,9 @@ The key issue with performance generally relates to how the server is deployed.
 - Additionally, you will probably want to run more than one worker. In a large
   deployment where you are running numerous hunts it makes sense to run 20+
   workers. As long as the datastore scales, the more workers you have the faster
-  things get done. Each worker will use 1 core maximum, so running up multiple
-  on the same box can make sense.
+  things get done. Each worker process will use 1 core maximum, so on multicore
+  boxes you will want to set the config setting Worker.worker_process_count to
+  something > 1.
 - Also, the frontend http server can be a significant bottleneck. By default we
   ship with a simple http server, but this is single process, written in python
   which means it may have thread lock issues. To get better performance you will
@@ -405,7 +426,7 @@ the client reports back to.
 Once the config has been edited, you can repack all clients with the new config
 and upload them to the datastore using `grr_config_updater repack_clients`
 
-[source, shell]
+[source,shell]
 --------------------------------------------------------------------
 db@host:$ sudo grr_config_updater repack_clients
 Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
@@ -414,8 +435,7 @@ Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
 Packed to /usr/share/grr/executables/windows/installers/GRR_2.5.0.4_amd64.exe
 
 ## Uploading
-Uploading Windows amd64 binary from /usr/share/grr/executables/windows/installer
-s/GRR_2.5.0.4_amd64.exe
+Uploading Windows amd64 binary from /usr/share/grr/executables/windows/installers/GRR_2.5.0.4_amd64.exe
 Uploaded to aff4:/config/executables/windows/installers/GRR_2.5.0.4_amd64.exe
 db@host:$
 --------------------------------------------------------------------
@@ -482,7 +502,7 @@ In practice, you should nearly always do 3 or 4.
 As an example, to reduce how often the client polls the server to every 300
 seconds, you can update the registry as per below, and then restart the service:
 
-[source, shell]
+[source,shell]
 -------------------------------------------------------------
 C:\Windows\System32\>reg add HKLM\Software\GRR /v Client.poll_max /d 300
 
@@ -580,7 +600,7 @@ This file then needs to be signed and converted into the protobuf format
 required, and then needs to be uploaded to the data store. You can do this using
 the following command line.
 
-[source, shell]
+[source,shell]
 ------------------------------------------------------------------------
 grr_config_updater upload_python --file=myfile.py --platform=windows
 ------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 The GRR Configuration system
 ============================
-:toc2:
+:toc:
+:toc-placement: preamble
 :icons:
 
 The GRR configuration system is the main way users can control and customize the
