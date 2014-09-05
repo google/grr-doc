@@ -996,7 +996,9 @@ have already fixed the bug.
 
 Code needs to conform to the
 link:http://google-styleguide.googlecode.com/svn/trunk/pyguide.html[Google
-Python Style Guide].
+Python Style Guide]. Note that despite what the guide says, we use two-space
+indentation, and MixedCase instead of lower_underscore for function names since
+this is the internal standard.
 
 We use the github
 link:https://help.github.com/articles/using-pull-requests[fork and pull review
@@ -1022,7 +1024,7 @@ upstream]:
 
   # Fix any conflicts and commit your changes
   $ git commit -a
-  $ git push
+  $ git push origin HEAD
 
 Use the GitHub Web UI to
 link:https://help.github.com/articles/using-pull-requests[create and send the
@@ -1030,7 +1032,7 @@ pull request].  We'll review the change.
 
   # Make review changes
   $ git commit -a
-  $ git push
+  $ git push origin HEAD
 
 Once we're done with review we'll commit the pull request.
 
