@@ -925,6 +925,58 @@ token = access_control.ACLToken()
 fd = aff4.FACTORY.Open("aff4:/C.12345/", token=token)
 ------------------------------------------------------------------
 
+Contributing Code
+-----------------
+
+We love getting code contributions, here's a quick guide to make the process go
+smoothly.
+
+The link:http://www.chromium.org/developers/contributing-code[Chromium] and
+link:http://plaso.kiddaland.net/developer/style-guide[Plaso] projects have some
+good general advice about code contributions that is worth reading.  In
+particular, make sure you're communicating via the dev list before you get too
+far into a feature or bug, it's possible we're writing something similar or
+have already fixed the bug.
+
+Code needs to conform to the
+link:http://google-styleguide.googlecode.com/svn/trunk/pyguide.html[Google
+Python Style Guide].
+
+We use the github
+link:https://help.github.com/articles/using-pull-requests[fork and pull review
+process] to review all contributions.
+
+First, fork the link:https://github.com/google/grr[GRR repository] by following
+link:https://help.github.com/articles/fork-a-repo[the github instructions].
+
+Now that you have a github.com/your-username/grr repository:
+  
+  # Make a new branch for the bug/feature
+  $ git checkout -b my_shiny_feature
+  
+  # Make your changes, add any new files
+  $ git add newmodule.py newmodule_test.py
+  
+When you're ready for review,
+link:https://help.github.com/articles/syncing-a-fork[sync your branch with
+upstream]:
+
+  $ git fetch upstream
+  $ git merge upstream/master
+  
+  # Fix any conflicts and commit your changes
+  $ git commit -a
+  $ git push
+
+Use the GitHub Web UI to
+link:https://help.github.com/articles/using-pull-requests[create and send the
+pull request].  We'll review the change.
+
+  # Make review changes
+  $ git commit -a
+  $ git push
+
+Once we're done with review we'll commit the pull request.
 
 Developer Information
 ---------------------
