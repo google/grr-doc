@@ -660,6 +660,26 @@ the same search 10 levels deep:
 /root/**10.doc
 --------------
 
+Specifying Windows Registry Paths
+---------------------------------
+
+When specifying registry paths, GRR uses the following hive names (these can also be found by looking at the registry folder under "Browse Virtual Filesystem"):
+
+  HKEY_CLASSES_ROOT
+  HKEY_CURRENT_CONFIG
+  HKEY_CURRENT_USER
+  HKEY_DYN_DATA
+  HKEY_LOCAL_MACHINE
+  HKEY_PERFORMANCE_DATA
+  HKEY_USERS
+
+The Registry Finder flow uses the same link:#path-globbing[path globbing] and link:#file-path-interpolation[interpolation system] as described above.  Examples:
+
+  HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*
+  HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*
+
+RegistryFinder will retrieve the values of any keys specified.
+
 Grep Syntax
 -----------
 A number of GRR flows (such as File Finder and Memory Collector) accept Grep
