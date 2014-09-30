@@ -931,8 +931,13 @@ fd = aff4.FACTORY.Open("aff4:/C.12345/", token=token)
 Contributing Code
 -----------------
 
-We love getting code contributions, here's a quick guide to make the process go
-smoothly.
+GRR is a somewhat complex piece of code. While this complexity is necessary to provide the scale and performance characteristics we need, it makes it more difficult to get involved and understand the code base. So just be aware that making significant changes in the core will be difficult if you don't have a software engineering background, or solid experience with python that includes use of things like pdb and profiling.
+
+That said, we want your contribution! You don't need to be a veteran pythonista to contribute artifacts or parsers. But whatever your experience, we strongly recommend starting somewhere simple before embarking on core changes and reading our documentation. In particular we recommend these as good starting points:
+
+ - Build a standalone console script to perform the actions you want. A standalone console script won't benefit from being able to be run as a Collector or a Hunt, but it will get you familiar with the API, and an experienced developer can convert it into a fully fledged flow afterwards.
+ - Add to Artifacts or an existing flow. Many flows could do with work to detect more things or support additional platforms.
+ - Add a new parser to parse a new filetype, e.g. if you have a different Anti-virus or HIDS log you want to parse.
 
 The link:http://www.chromium.org/developers/contributing-code[Chromium] and
 link:http://plaso.kiddaland.net/developer/style-guide[Plaso] projects have some
