@@ -447,6 +447,13 @@ then turned into something that can be deployed on the system by using the
 debian package builder on linux, creating a self extracting zip on Windows, or
 creating a DMG on OSX.
 
+After running the repack you should have binaries available in the UI under manage binaries -> installers and also on the filesystem under:
+
+--------------------------------------------------------------------
+/usr/share/grr/executables/windows/installers/
+/usr/share/grr/executables/osx/installers/
+/usr/share/grr/executables/linux/installers/
+--------------------------------------------------------------------
 
 Building the Client.
 ~~~~~~~~~~~~~~~~~~~~
