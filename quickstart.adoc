@@ -1,0 +1,72 @@
+= Getting Started =
+
+This document describes getting a server and clients up and running for the first time.
+
+== Requirements ==
+
+ * A linux box. At the moment the full install is thoroughly tested end to end
+   on Ubuntu Server 12.04, 12.10, 13.10, 14.04 64 bit. It probably works on
+   other things fine, but that is what is tested on.
+ * Recommend > 1GB Ram and a modern CPU if you want to run everything on one box
+   (note that free Amazon EC2 instances don't have enough RAM).
+ * Some clients to talk to the server. OSX, Windows and Linux agents are
+   supported.
+
+== Making it Go ==
+
+Download the installation script e.g. using wget:
+
+---------------------------------------------------------------------------------------
+wget https://googledrive.com/host/0B1wsLqFoT7i2c3F0ZmI1RDJlUEU/install_script_ubuntu.sh
+---------------------------------------------------------------------------------------
+
+If you don't have wget you can install it by running:
+
+-------------------------------------------------------
+sudo apt-get install wget
+-------------------------------------------------------
+
+Run the installation script:
+
+-------------------------------------------------------
+bash install_script_ubuntu.sh
+-------------------------------------------------------
+
+*Note that the installation script requires bash to run and does not work with
+plain sh.*
+
+ - Run through all the prompts you get given. By default it asks you before
+   every command it runs. Hitting A (Always) for an answer will run through the
+   whole script. If it encounters an error it should tell you where it failed.
+ - This will:
+  * Download and install all the dependencies via apt-get
+  * Install prebuilt dependencies that require customization or fixes due to
+    versions or patches required (pytsk, m2crypto, django)
+  * Download the latest deb for your distribution and install it
+  * Run grr_config_updater initialize to ask you some questions then generate
+    the keys, users, binaries, drivers and config for your install
+ - Once this completes successfully you should have a working server with an
+   admin interface on port 8000. And you should also have grr_console in your
+   path to interact via console.
+ - The pre-packaged clients should be visible under Manage Binaries ->
+   executables -> Windows -> installers. Download the client you need.
+ - Run the client on the target machine as administrator.
+  * For Windows you will see a 32 and 64 bit installer. Run the installer as
+    admin (it should load the UAC prompt if you are not admin). It should run
+    silently and install the client to  c:\windows\system32\grr\%version%\. It
+    will also install a Windows Service, start it, and configure the registry
+    keys to make it talk to the URL/server you specified during repack of the
+    clients on the server.
+  * For OSX you will see a pkg file, install the pkg. It will add something to
+    launchd to automatically run it and start it.
+  * For Linux you will see a deb file, install it. For testing purposes you can
+    run the client on the same machine as the server if you like.
+
+== Testing Release ==
+
+Follow the same instructions as above, but add the --test flag to force the script to pull the testing release instead.
+
+-------------------------------------------------------
+bash install_script_ubuntu.sh --test
+-------------------------------------------------------
+

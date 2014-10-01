@@ -10,9 +10,9 @@ in an enterprise. It is also applicable for anyone who wants to try it out.
 Deploying the GRR server.
 -------------------------
 
-Documentation on how deploy the GRR server on an Ubuntu system is currently
-covered in the wiki here:
-http://code.google.com/p/grr/wiki/ServerInstallation
+Get a GRR server installed and running in a few minutes with the
+link:quickstart.adoc[quickstart install].  With more effort you can also
+link:installfromsource.adoc[install from source].
 
 Key Management
 --------------
@@ -458,13 +458,11 @@ After running the repack you should have binaries available in the UI under mana
 Building the Client.
 ~~~~~~~~~~~~~~~~~~~~
 Doing this is much harder than it should be due to a lot of dependencies and
-moving parts. It is also a bit of a moving target so we keep the docs for this
-on the wiki. See:
+moving parts. See:
 
-- https://code.google.com/p/grr/wiki/BuildingWindowsClient
-- https://code.google.com/p/grr/wiki/BuildingOSXClient
-- https://code.google.com/p/grr/wiki/BuildingLinuxClient
-
+- link:linuxclient.adoc[Building the Linux client]
+- link:osxclient.adoc[Building the OS X client]
+- link:windowsclient.adoc[Building the Windows client]
 
 Client Configuration.
 ~~~~~~~~~~~~~~~~~~~~~

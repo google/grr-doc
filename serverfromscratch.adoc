@@ -1,0 +1,336 @@
+= Building GRR From Scratch =
+
+:toc:
+:toc-placement: preamble
+:icons:
+
+*Note*: This page contains older information about building the GRR server from
+scratch. You probably want the link:quickstart.adoc[Quickstart Instructions]
+instead of this document.
+
+The following instructions describe how to install the GRR server on Ubuntu
+12.04 semi-manually. For most users, you should be able to use the above script
+and it will be a lot simpler.
+
+This document pretty much just describes the steps that that script takes, and
+so can be useful for updating or generating a script for a different platform.
+
+== Dependencies ==
+
+First of all make sure your Ubuntu installation is up to date:
+-------------------------------------------------------
+sudo apt-get update
+sudo apt-get upgrade
+-------------------------------------------------------
+
+GRR server requires Python 2.7 version to run, the default version that comes with Ubuntu 12.04 is 2.7.
+
+*Note that Python 2.6 is no longer supported*
+
+Make sure to install the following packages on Ubuntu:
+----------------------------------------------------------------------
+sudo apt-get install python-setuptools python-dateutil python-django \
+ipython apache2-utils zip python-ipaddr python-matplotlib
+----------------------------------------------------------------------
+
+=== Patched version of M2Crypto 0.21.1 ===
+
+Remove any exiting M2Crypto packages on the system:
+-------------------------------------------------------
+apt-get remove python-m2crypto
+-------------------------------------------------------
+
+Grab the pre-packaged version of the patched version of M2Crypto 0.21.1 from the link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Current/Dependencies/[Downloads] site.
+
+Extract the files:
+-------------------------------------------------------
+tar xfv ubuntu-12.04-amd64-debs.tar.gz
+-------------------------------------------------------
+
+And install with:
+----------------------------------------------------------------
+sudo dpkg -i ubuntu-12.04-amd64-debs/m2crypto_0.21.1-1_amd64.deb
+----------------------------------------------------------------
+
+Note that the name of the package is deliberately different from the name of the package available on Ubuntu.
+
+To build the patched version of M2Crypto from source see link:m2cryptofromsource.adoc[installing M2Crypto from source]
+
+=== Protobuf 2.5.0 or later ===
+
+Newer Ubuntu versions come with libprotobuf8 (2.5.0) and Python bindings which does not need to be replaced.
+
+Make sure you have them installed:
+-------------------------------------------------------
+apt-get install libprotobuf python-protobuf
+-------------------------------------------------------
+
+Otherwise check which version of libprotobuf is installed:
+-------------------------------------------------------
+apt-cache search libprotobuf
+-------------------------------------------------------
+
+If the system contains libprotobuf5 - 7, a newer version is needed that requires to be installed manually. To build the Protobuf 2.5.0 and Python bindings from source see [ProtobufFromSource].
+
+=== Sleuthkit and Pytsk ===
+
+Grab the pre-packaged version of the Sleuthkit 4.1.2 and Python bindings (pytsk) from the link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Current/Dependencies/[Downloads] site.
+
+*Note: that the 4.1.2 builds are currently in the test sub directory.*
+
+Remove any existing version of the Sleuthkit:
+-------------------------------------------------------
+sudo apt-get remove libtsk3 sleuthkit
+-------------------------------------------------------
+
+Extract the files:
+-------------------------------------------------------
+tar xfv ubuntu-12.04-amd64-debs.tar.gz
+-------------------------------------------------------
+
+And install with:
+-------------------------------------------------------
+sudo dpkg -i ubuntu-12.04-amd64-debs/sleuthkit-lib_4.2.1-1_amd64.deb \
+ubuntu-12.04-amd64-debs/pytsk3_4.2.1-1_amd64.deb
+-------------------------------------------------------
+
+Note that the names of the packages are deliberately different from the names of the packages available on Ubuntu.
+
+To build the Sleuthkit and Pytsk from source see
+link:https://code.google.com/p/pytsk/wiki/BuildingSleuthKit[Building the
+SleuthKit from source] and link:https://code.google.com/p/pytsk/wiki/Building[Building pytsk from source].
+
+=== MongoDB ===
+
+Ubuntu 12.04 comes with mongodb. To install mongodb and Python bindings:
+-------------------------------------------------------
+sudo apt-get install mongodb python-pymongo
+-------------------------------------------------------
+
+Otherwise get mongodb 1.8 or later form
+link:http://www.mongodb.org/display/DOCS/Ubuntu+and+Debian+packages[www.mongodb.org].
+The MongoDB Python bindings be found on link:http://api.mongodb.org/python/[api.mongodb.org].
+
+=== psutil ===
+Check which version of psutil is installed:
+-------------------------------------------------------
+apt-cache search psutil
+-------------------------------------------------------
+
+GRR requires at least version 2.1. So on Ubuntu 12.04 remove any existing version of psutil:
+-------------------------------------------------------
+sudo apt-get remove python-psutil
+-------------------------------------------------------
+
+Make sure the easy_install tool is installed on the system:
+-------------------------------------------------------
+sudo apt-get install python-pip build-essential python-dev
+-------------------------------------------------------
+
+Install psutil using easy_install:
+-------------------------------------------------------
+sudo easy_install -v psutil
+-------------------------------------------------------
+
+or to update an existing installation:
+-------------------------------------------------------
+sudo easy_install -U psutil
+-------------------------------------------------------
+
+Otherwise the psutil source can be found on http://code.google.com/p/psutil/
+
+== GRR ==
+
+Grab the pre-packaged version of the patched version of GRR from the link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Current/Server/[Downloads] site.
+
+Install with:
+-------------------------------------------------------
+sudo dpkg -i grr-server-<version>_amd64.deb
+-------------------------------------------------------
+
+The deb will come with upstart scripts.
+
+To build GRR from source see link:installfromsource.adoc[Installing GRR From Source].
+
+=== Configuration ===
+See: link:admin.adoc[GRR Administrator Documentation]
+
+=== Building Agents For Use ===
+Now you have a server, you probably want some agents to talk to it. Run:
+-------------------------------------------------------
+/usr/share/grr/scripts/build_clients.sh
+-------------------------------------------------------
+See link:admin.adoc#customizing-the-client[Customizing the client] for more
+details.
+
+=== Setting up memory drivers ===
+Memory analysis requires a driver to be loaded on the system. These drivers are distributed by the server and must be signed with the server keys. Run:
+-------------------------------------------------------
+/usr/share/grr/scripts/install_memory_drivers.sh
+-------------------------------------------------------
+
+See link:admin.adoc#deploying-drivers[Deploying Drivers] for more
+details.
+
+=== First run ===
+To run the GRR server.
+
+Make sure mongodb is running:
+-------------------------------------------------------
+sudo service mongodb status
+-------------------------------------------------------
+
+Or:
+-------------------------------------------------------
+sudo /etc/init.d/mongodb status
+-------------------------------------------------------
+
+Note you can run GRR as a single server (only really for testing), or as
+multiple separate services (workers, adminui etc).  Switching between these two
+modes is easy with the initctl_switch.sh script.
+
+==== Single service - upstart ====
+Make sure to enable the service in the corresponding default file first.
+-------------------------------------------------------
+/etc/default/grr-single-server
+-------------------------------------------------------
+
+Start the GRR server with the single server configuration.
+-------------------------------------------------------
+sudo initctl start grr-single-server
+-------------------------------------------------------
+
+To check if the single server is running:
+-------------------------------------------------------
+ps -ef | grep grr
+-------------------------------------------------------
+
+To trouble shoot the single server not starting:
+-------------------------------------------------------
+sudo /usr/sbin/grr_server.py --config /etc/grr/grr-server.yaml
+-------------------------------------------------------
+
+To make sure the GRR services run after reboot or changing run levels make sure to set up the rc.d start and kill files:
+-------------------------------------------------------
+sudo update-rc.d grr-single-server start 80 2 3 4 5 . stop 23 0 1 6 .
+-------------------------------------------------------
+
+==== Multiple services - init.d ====
+To troubleshoot any of the service you can check the logs in /var/log/grr/ and/or run the GRR services in the foreground see the Troubleshooting section for more info.
+
+First start the GRR HTTP server.
+-------------------------------------------------------
+sudo /etc/init.d/grr-http-server start
+-------------------------------------------------------
+
+Make sure to check the status because the start-stop-daemon --background does not check the return code of grr_http_server.py
+-------------------------------------------------------
+sudo /etc/init.d/grr-http-server status
+-------------------------------------------------------
+
+The server listens on 127.0.0.1:8080 by default.
+
+Now start the GRR enroller
+-------------------------------------------------------
+sudo /etc/init.d/grr-enroller start
+-------------------------------------------------------
+
+Again make sure to check the status
+-------------------------------------------------------
+sudo /etc/init.d/grr-enroller status
+-------------------------------------------------------
+
+Now start the GRR worker
+-------------------------------------------------------
+sudo /etc/init.d/grr-worker start
+-------------------------------------------------------
+
+Again make sure to check the status
+-------------------------------------------------------
+sudo /etc/init.d/grr-worker status
+-------------------------------------------------------
+
+Now start the GRR UI
+-------------------------------------------------------
+sudo /etc/init.d/grr-ui start
+-------------------------------------------------------
+Again make sure to check the status
+-------------------------------------------------------
+sudo /etc/init.d/grr-ui status
+-------------------------------------------------------
+
+To make sure the GRR services run after reboot or changing run levels make sure to set up the rc.d start and kill files:
+-------------------------------------------------------
+sudo update-rc.d grr-http-server start 80 2 3 4 5 . stop 23 0 1 6 .
+sudo update-rc.d grr-enroller start 81 2 3 4 5 . stop 22 0 1 6 .
+sudo update-rc.d grr-worker start 82 2 3 4 5 . stop 21 0 1 6 .
+sudo update-rc.d grr-ui start 83 2 3 4 5 . stop 20 0 1 6 .
+-------------------------------------------------------
+
+=== Console ===
+
+To run the console:
+-------------------------------------------------------
+/usr/bin/grr_console.py
+-------------------------------------------------------
+
+=== Test client ===
+
+To run a test client on the GRR server:
+-------------------------------------------------------
+sudo python /usr/lib/pymodules/python2.7/grr/client/client.py --config=/tmp/grr.ini -p Client.location=http://localhost:8080/control --p Client.poll_max=5 --verbose
+-------------------------------------------------------
+
+=== Automatic testing ===
+TODO: Selenium for UI tests
+http://seleniumhq.org/download/
+
+== Troubleshooting ==
+
+The many different steps makes the GRR server installation process susceptible to errors. Here some common issues and solutions are described.
+
+=== The upstart/init.d scripts show no output ===
+
+When I run an init.d script e.g. "/etc/init.d/grr-http-server start" it does not show me any output.
+
+Make sure that the "START" parameter in the corresponding default file, e.g. "/etc/default/grr-http-server", has been changed to "yes".
+
+=== I cannot start any/some of the GRR services using the init.d scripts ===
+
+When it run an init.d script e.g. "/etc/init.d/grr-http-server start" it indicates it started the service although when I check with "/etc/init.d/grr-http-server status" it says it is not running.
+
+You can troubleshoot by running the services in the foreground, e.g. to run the HTTP Front-end server in the foreground:
+-------------------------------------------------------
+sudo /usr/bin/grr_server.py --start_http_server --config=/etc/grr/grr-server.yaml
+-------------------------------------------------------
+
+=== Any/some of the GRR services are not running correctly ===
+
+Check if the logs contain an indication of what is going wrong.
+
+Troubleshoot by running the services in the foreground, e.g. to run the UI in the foreground:
+-------------------------------------------------------
+sudo /usr/sbin/grr_server.py --start_ui --config=/etc/grr/grr-server.yaml
+-------------------------------------------------------
+
+=== Cannot open libtsk3.so.3 ===
+
+error while loading shared libraries: libtsk3.so.3: cannot open shared object file: No such file or directory
+
+The libtsk3 library cannot be found in the ld cache. Check if the path to libtsk3.so.3 is in /etc/ld.so.conf (or equivalent) and update the cache:
+-------------------------------------------------------
+sudo ldconfig
+-------------------------------------------------------
+
+=== libtsk3.so.3: __cxa_pure_virtual ===
+
+I get the following warning (or something similar): undefined symbol: __cxa_pure_virtual in libtsk3.so.3
+
+The build of libtsk3 does not include the C++ standard library, include "LDFLAGS=-lstdc++ " in the build process see section about building the Sleuthkit in this document.
+
+=== MongoDB won't start ===
+
+Check the MongoDB log for any indication why it won't start. Default location:
+-------------------------------------------------------
+/var/log/mongodb/mongodb.log
+-------------------------------------------------------
