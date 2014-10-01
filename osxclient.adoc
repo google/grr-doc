@@ -133,14 +133,17 @@ autogen.sh: line 38: autoreconf: command not found
 -----------------------------------------------------------------------
 
 One way to fix this is to add the /Development directory to your path:
+
 -----------------------------------------------------------------------
 PATH+=:/Developer/usr/bin/
 -----------------------------------------------------------------------
 and then change the references in
+
 -----------------------------------------------------------------------
 /Developer/usr/share/autoconf/autom4te.cfg
 -----------------------------------------------------------------------
-[http://stackoverflow.com/questions/6033989/aclocal-autoconf-reports-missing-m4sugar-m4-on-mac-os-x to point to the /Developer directory.  Or create symlinks as necessary].
+
+link:http://stackoverflow.com/questions/6033989/aclocal-autoconf-reports-missing-m4sugar-m4-on-mac-os-x[to point to the /Developer directory.  Or create symlinks as necessary].
 
 ==== Python bindings ====
 To build and install the Python bindings
