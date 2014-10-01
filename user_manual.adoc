@@ -1168,7 +1168,7 @@ The SearchClients function will return a list of tuples containing:
  - the last check-in date and time.
 
 Retrieving the last known hostnames for a list of client identifiers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 --------------------------------------------------------------------------------
 # A text file containing one client identifier per line.
 filename = "clients.txt"
