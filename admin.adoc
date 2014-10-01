@@ -647,6 +647,17 @@ uploaded aff4:/config/drivers/windows/memory/winpmem.64.sys
 db@host:$
 ------------------------------------------------------------------------
 
+If this worked you should now see them under Manage Binaries in the Admin UI.
+
+If you need to add a new driver or add a custom install you can use the upload memory driver functionality:
+
+[source,shell]
+------------------------------------------------------------------------
+db@host:~$ sudo grr_config_updater upload_memory_driver --file=/usr/share/grr/binaries/winpmem_32.sys --platform=windows
+Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
+Uploaded to aff4:/config/drivers/windows/memory/winpmem_32.sys
+------------------------------------------------------------------------
+
 NOTE: The signing we discuss here is independent of Authenticode driver signing,
 which is also required by modern 64 bit Windows distributions.
 
