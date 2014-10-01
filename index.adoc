@@ -12,5 +12,7 @@ Index
 . link:faq.adoc[Project FAQ]
 . link:publications.adoc[Publications: Papers, Presentations, Workshops etc.]
 . link:releasenotes.adoc[Release Notes: check these when upgrading]
+. link:roadmap.adoc[Project Roadmap]
 . link:licenses.adoc[License Information]
+. link:troubleshooting.adoc[Troubleshooting]
 . link:https://code.google.com/p/grr/w/list[Wiki]

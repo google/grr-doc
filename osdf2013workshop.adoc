@@ -1,0 +1,51 @@
+= Info for the 2013 OSDF Workshop =
+
+These are details for the OSDF 2013 Workshop on the 4th November 2013. 
+http://www.basistechweek.com/osdf.html#tutorials
+
+Details about the workshop and relevant links will be added here. 
+
+== Workshop Info ==
+Workshop will go through a set of exercises using GRR, with short practical discussions and explanations of architecture and design spread through the 3.5 hours. 
+
+Note that we will be using the latest GRR release 0.2-9 for the workshop. This release is still in testing but can be installed with:
+----------------------------------------------------------------------------------------
+wget https://googledrive.com/host/0B1wsLqFoT7i2c3F0ZmI1RDJlUEU/install_script_ubuntu.sh
+./install_script_ubuntu.sh --test
+----------------------------------------------------------------------------------------
+
+== Exercises ==
+https://docs.google.com/document/d/1LsT63iKgjz_3_lj-PTvPLwqkWTXaVXzLmGHx50nQqPk/edit#
+
+Spreadsheet
+https://docs.google.com/spreadsheet/ccc?key=0AkLs4SCRpVkWdF9jQ0VUMDNiVnh2aktXbG9nel9YblE&usp=drive_web#gid=0
+
+== Connectivity ==
+Given we are doing exercises via the internet, access is important. Connectivity will be provided by the hotel wireless. If this fails we will have a 4G modem on standby.
+
+== Requirements ==
+ - A laptop capable of connecting to wifi and running an ssh client and RDP
+ - `*`optional`*` Internet access via 4G etc in case hotel wireless and backups fail or are congested.
+ - `*`optional`*` Additional local virtual machines or clients that you want to use in your GRR instance. 
+
+== Virtual Machines ==
+I've provisioned a set of 20 Windows and 20 [https://aws.amazon.com Linux Amazon EC2] machines for people to use. These are clean machines. Please pick machines off the Google spreadsheet sent to you via email put your name next one of each machine type. I will provision machines before the workshop. 
+
+If you want you are welcome to run with VMs or with your own provisioned EC2 instances so you can wipe/refresh/snapshot as you want. The details of the instances we will be using are:
+
+  * Windows - Windows_Server-2008-SP2-English-64Bit-Base-2013.09.11 (ami-373a735e) - t1.micro - Free Tier instance.
+  * Ubuntu - ubuntu-saucy-13.10-amd64-server-20131015 (ami-ad184ac4) - t1.small
+
+Please note that you will need 1.5G ram, and 20G free disk on the GRR server machine. 
+
+
+== Access ==
+Access to the Windows machines is via RDP with username/password listed in the spreadsheet, these will be updated before the workshop starts.
+
+Access to the Linux boxes is via SSH key `grr-workshop-key.pem`, which will be provided to people directly via email. 
+-------------------------------------------------------
+ssh -i grr-workshop-key.pem ubuntu@host
+-------------------------------------------------------
+
+If you are using putty you will need to convert the key as per instructions here:
+http://www.cnx-software.com/2012/07/20/how-use-putty-with-an-ssh-private-key-generated-by-openssh/

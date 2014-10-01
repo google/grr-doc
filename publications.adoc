@@ -18,7 +18,7 @@ Castle
 Workshops
 ---------
 
-link:https://drive.google.com/?usp=chrome_app#folders/0B1wsLqFoT7i2eU1jU0JldW9JUU0[OSDFC workshop 2013] , by D. Bilby.
+OSDF 2013 link:https://drive.google.com/?usp=chrome_app#folders/0B1wsLqFoT7i2eU1jU0JldW9JUU0[workshop presentation] and link:osdf2013workshop.adoc[materials] by D. Bilby.
 
 Whitepapers
 -----------
