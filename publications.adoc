@@ -1,0 +1,26 @@
+Publications
+------------
+
+link:https://googledrive.com/host/0B9hc84IflFGbN2IwMTUyYTUtMTU0Mi00ZWQ3LWFhNDktM2IyMTg5MmY3OWI0/Hunting%20in%20the%20Enterprise:%20Forensic%20Triage%20and%20Incident%20Response[Hunting in the enterprise: Forensic triage and incident response], by Moser,
+Andreas, and Michael I. Cohen. Digital Investigation, 2013.
+
+link:http://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/37237.pdf[Distributed forensics and incident response in the enterprise], by M.I. Cohen,
+D. Bilby, G. Caronni. Digital Investigation, 2011.
+
+Presentations
+-------------
+
+link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Docs/GRR%20Rapid%20Response%20-%20OSFC%202012.pdf[OSDFC 2012 GRR Overview], by D. Bilby
+
+link:https://drive.google.com/file/d/0B1wsLqFoT7i2Z2pxM0wycS1lcjg/edit?usp=sharing[Blackhat 2014: "GRR: Find all the badness, collect all the things"], by G.
+Castle
+
+Workshops
+---------
+
+link:https://drive.google.com/?usp=chrome_app#folders/0B1wsLqFoT7i2eU1jU0JldW9JUU0[OSDFC workshop 2013] , by D. Bilby.
+
+Whitepapers
+-----------
+
+link:https://drive.google.com/file/d/0B1wsLqFoT7i2U3M1X0k5aVFkXzQ/edit?usp=sharing[GRR Forensic Artifacts White Paper], by G. Castle

@@ -5,9 +5,10 @@ GRR is an Incident Response Framework focused on Remote Live Forensics.
 
 Index
 -----
-1. link:user_manual.adoc[User Manual]
-2. link:admin.adoc[Administration Documentation (Setup and Configuration)]
-3. link:implementation.adoc[Developer and Implementation Documentation]
-4. link:configuration.adoc[The GRR Configuration system]
-5. link:faq.adoc[Project FAQ]
-6. link:https://code.google.com/p/grr/w/list[Wiki]
+. link:user_manual.adoc[User Manual]
+. link:admin.adoc[Administration Documentation (Setup and Configuration)]
+. link:implementation.adoc[Developer and Implementation Documentation]
+. link:configuration.adoc[The GRR Configuration system]
+. link:faq.adoc[Project FAQ]
+. link:publications.adoc[Publications: Papers, Presentations, Workshops etc.]
+. link:https://code.google.com/p/grr/w/list[Wiki]
