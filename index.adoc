@@ -9,4 +9,5 @@ Index
 2. link:admin.adoc[Administration Documentation (Setup and Configuration)]
 3. link:implementation.adoc[Developer and Implementation Documentation]
 4. link:configuration.adoc[The GRR Configuration system]
-5. link:https://code.google.com/p/grr/w/list[Wiki]
+5. link:faq.adoc[Project FAQ]
+6. link:https://code.google.com/p/grr/w/list[Wiki]
