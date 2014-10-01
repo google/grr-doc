@@ -65,7 +65,7 @@ from grr.lib.aff4_objects import cronjobs
 cronjobs.ScheduleSystemCronFlows(token=data_store.default_token)
 -----------------------------------------------------------------------
 
-= Protobuf 2.5.0 =
+== Protobuf 2.5.0 ==
 
 GRR only works with the Protobuf library v2.5.0 or newer. If your distribution
 comes with an older version, follow the instructions below:
