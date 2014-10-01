@@ -1,0 +1,97 @@
+= Overview of the licenses used in GRR =
+
+Although GRR is licensed under the link:http://www.gnu.org/licenses/gpl-2.0.html[Apache License 2.0], binary builds of GRR include third party code that have been made available under various licenses.
+
+== Python ==
+Project site: http://www.python.org/
+
+For more information on licensing see: http://docs.python.org/2/license.html
+
+== pywin32 ==
+Project site: http://pywin32.sourceforge.net/
+
+link:http://opensource.org/licenses/Python-2.0[Python Software Foundation License]
+
+== Python dateutil ==
+Project site: http://labix.org/python-dateutil
+
+link:http://opensource.org/licenses/BSD-3-Clause[BSD 3-clause license]
+
+== Python WMI ==
+Project site: http://timgolden.me.uk/python/wmi/index.html
+
+link:http://opensource.org/licenses/MIT[MIT license]
+
+== psutil ==
+Project site:  http://code.google.com/p/psutil/
+
+link:http://opensource.org/licenses/BSD-3-Clause[BSD 3-clause license]
+
+== Libprotobuf and Python-bindings ==
+Project site: http://code.google.com/p/protobuf/
+
+link:http://opensource.org/licenses/BSD-3-Clause[BSD 3-clause license]
+
+== SleuthKit ==
+Project site: http://www.sleuthkit.org/
+
+The SleuthKit is mutli licensed
+  * Common Public License 1.0; applies to most of the code
+  * IBM Public License 1.0; applies to the file system code (tsk/fs, tools/fstools)
+  * link:http://www.gnu.org/licenses/gpl-2.0.html[GNU General Public License 2]; applies to srch_strings which should not be included in a binary build of GRR.
+
+== Pytsk ==
+Project site: http://code.google.com/p/pytsk/
+
+link:http://www.gnu.org/licenses/gpl-2.0.html[Apache License 2.0]
+
+== M2Crypto ==
+Project site: http://chandlerproject.org/Projects/MeTooCrypto
+
+== OpenSSL ==
+Project site: http://www.openssl.org/
+
+link:http://www.openssl.org/source/license.html[OpenSSL License and original SSLeay license]
+
+== Volatility ==
+*TODO*
+
+== Distorm ==
+*TODO*
+
+== Yara ==
+*TODO*
+
+== pytz ==
+Project site: http://pytz.sourceforge.net/
+
+link:http://opensource.org/licenses/MIT[MIT license]
+
+== PyInstaller ==
+link:http://www.gnu.org/licenses/gpl-2.0.html[GNU General Public License 2] with an exception for the bootloader, which is the part that is used in GRR binaries.
+
+== JavaScript Libraries ==
+
+=== jQuery ===
+
+Project site: http://jquery.com/
+
+link:https://jquery.org/license/[MIT license]
+
+=== jQuery UI ===
+
+Project site: http://jqueryui.com/
+
+link:https://github.com/jquery/jquery-ui/blob/master/MIT-LICENSE.txt[MIT license]
+
+=== select2 ===
+
+Project site: http://ivaynberg.github.io/select2/
+
+link:https://github.com/ivaynberg/select2/blob/master/LICENSE[Apache 2.0 or GPL2]
+
+=== rangyinputs ===
+
+Project site: https://code.google.com/p/rangyinputs/
+
+link:https://github.com/jquery/jquery-ui/blob/master/MIT-LICENSE.txt[MIT license]
