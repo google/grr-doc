@@ -1089,6 +1089,119 @@ message Process {
 }
 --------------------------------------------------------------------------
 
+Access tokens
+~~~~~~~~~~~~~
+If you have configured GRR to only allow access when granted, you'll need an access token for any action on a client.
+
+To create an access (or ACL) token:
+--------------------------------------------------------------------------
+token = access_control.ACLToken(username="Me", reason="Why")
+--------------------------------------------------------------------------
+
+Note the reason must be the same as in the initial approval request, otherwise the access token is not granted.
+
+The access token then must be passed to e.g. client related console actions, like opening a file/directory:
+------------------------------------------------------------------------------------------------------------------
+file_object = aff4.FACTORY.Open("aff4:/" + client_id + "/fs/tsk/c:/MyFile.txt", token=token)
+------------------------------------------------------------------------------------------------------------------
+
+It is also possible to have the console automatically generate the access token on start up. For this the client needs to be specified when starting the console script, e.g.:
+----------------------------------------
+grr_console --client=C.0000000000000000
+----------------------------------------
+
+If a valid access token is available the following variables will be set:
+  * client
+  * token
+
+To check the token:
+----------------------------------------
+print token.reason
+----------------------------------------
+----------------------------------------
+Why
+----------------------------------------
+
+Or to check the client:
+----------------------------------------
+print client.client_id
+----------------------------------------
+----------------------------------------
+aff4:/C.0000000000000000
+----------------------------------------
+
+Requesting approval
+~~~~~~~~~~~~~~~~~~~
+To request an approval via the console run:
+----------------------------------------
+ApprovalRequest(client_id, reason, approvers, token=None)
+----------------------------------------
+
+Granting approval
+~~~~~~~~~~~~~~~~~
+To grant approval via the console run:
+----------------------------------------
+ApprovalGrant(token=None)
+----------------------------------------
+
+Listing and searching clients
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+To list (or search) all clients:
+----------------------------------------
+search_query = ".*"
+list_of_clients = SearchClients(search_query)
+----------------------------------------
+
+To list (or search) a specific client:
+----------------------------------------
+search_query = "host:test"
+list_of_clients = SearchClients(search_query)
+----------------------------------------
+
+You can also use the client identifier e.g. "C.000000000000000"
+
+The SearchClients function will return a list of tuples containing:
+
+ - a VFSGRRClient object;
+ - the last known hostname of the client;
+ - the last known IP address of the client;
+ - the last check-in date and time.
+
+Retrieving the last known hostnames for a list of client identifiers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+# A text file containing one client identifier per line.
+filename = "clients.txt"
+file_object = open(filename, mode="rb")
+for client_id in file_object.readlines():
+    client_id = client_id.strip()
+    client_objects = SearchClients(client_id)
+    for _, hostname, _, _ in client_objects:
+        print "{0:s}\t{1:s}".format(client_id, hostname)
+--------------------------------------------------------------------------------
+
+Delete a client and all of its data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
+aff4.FACTORY.Delete(rdfvalue.ClientURN(client_id))
+----------------------------------------
+
+Rebuilding Indexes
+~~~~~~~~~~~~~~~~~~
+----------------------------------------
+maintenance_utils.RebuildLabelIndexes(token=None)
+maintenance_utils.RebuildClientIndexes(token=None)
+----------------------------------------
+
+Read a specific version of a file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------------------------------------
+fd = aff4.FACTORY.Open(path, token=token, age=aff4.ALL_TIMES)
+# list all the versions of the file
+[(x.value, x.age.value, str(x.age)) for x in fd.GetValuesForAttribute(fd.Schema.TYPE)]
+fd2 = aff4.FACTORY.Open(path, token=token, age=1335957983819287)
+----------------------------------------------------------------------------------------
+
 Artifacts
 ---------
 
