@@ -1,0 +1,29 @@
+= Release Notes =
+
+Each release of GRR brings some significant changes as the project's code is
+moving quickly. This section tries to identify the key changes and issues to
+watch for when upgrading from one version to another.
+
+== 0.2.9 to 3.0.0 ==
+
+ - *WARN* After install of new deb you will need to restart the service
+   manually.
+ - *INFO* To get the new clients you will want to repack the new version with
+   `sudo grr_config_updater repack_clients`. This should give you new Windows,
+   Linux and OSX clients.
+ - *INFO* Client themselves will not automatically be upgraded but should
+   continue to work.
+
+== 0.2-8 to 0.2-9 ==
+
+ - *WARN* After install of new deb you will need to restart the service
+   manually.
+ - *WARN* Users have changed from being managed in the config file to being
+   managed in the datastore. This means your users will not work. We haven't
+   migrated them automatically, please re-add with `sudo grr_config_updater
+   add_user <user>`
+ - *INFO* To get the new clients you will want to repack the new version with
+   `sudo grr_config_updater repack_clients`. This should give you new Windows,
+   Linux and OSX clients.
+ - *INFO* Client themselves will not automatically be upgraded but should
+   continue to work.
