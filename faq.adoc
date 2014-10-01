@@ -1,3 +1,9 @@
+GRR Project FAQ
+===============
+:toc:
+:toc-placement: preamble
+:icons:
+
 Who wrote GRR and Why?
 ----------------------
 
