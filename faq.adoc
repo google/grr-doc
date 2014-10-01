@@ -4,7 +4,7 @@ GRR Project FAQ
 :toc-placement: preamble
 :icons:
 
-*Table of Contents*
+*Frequently Asked Questions*
 
 Who wrote GRR and Why?
 ----------------------
