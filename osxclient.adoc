@@ -56,7 +56,8 @@ Get the M2Crypto source from: http://chandlerproject.org/bin/view/Projects/MeToo
 M2Crypto-0.21.1.tar.gz
 -----------------------------------------------------------------------
 
-Get the patch from: http://code.google.com/p/grr/downloads/detail?name=m2crypto-fixes.patch
+Get the m2crypto-fixes.patch from
+https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
 
 Apply the patch
 -----------------------------------------------------------------------
@@ -277,7 +278,7 @@ git clone -b develop git://github.com/pyinstaller/pyinstaller.git
 Set the path to pyinstaller.py for use in the compile later, e.g. PYINSTALLER="/Users/johnsmith/pyinstaller/pyinstaller.py"
 
 == GRR ==
-Get a copy of the GRR source from the [http://code.google.com/p/grr/downloads/list Downloads] section and extract.
+Get a copy of the GRR source using git.
 
 To build GRR run:
 -----------------------------------------------------------------------------------

@@ -144,8 +144,8 @@ C:\Python27\Scripts\easy_install.exe pyyaml
 
 
 ===== Windows 2000 =====
-For Windows 2000 support get the patch for dynamic late binding of the non-Windows 2000 compatible functions from:
-http://code.google.com/p/grr/downloads/detail?name=psutil-0.7.1-late-binding.patch
+For Windows 2000 support get the patch (psutil-0.7.1-late-binding.patch) for dynamic late binding of the non-Windows 2000 compatible functions from:
+https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
 
 To apply the patch run:
 -------------------------------------------------------
@@ -225,9 +225,13 @@ https://code.google.com/p/pytsk/wiki/BuildingForWindows
 === M2Crypto ===
 In the prebuilt clients M2Crypto is patched to fix memory leaks. Unfortunately M2Crypto currently seems unmaintained (or at least the maintainer is ignoring everyone). If you do not care about this memory leak download and install the Windows binary for the correct Python version from http://chandlerproject.org/Projects/MeTooCrypto. e.g. M2Crypto-0.21.1.win32-py2.7.exe
 
-Otherwise you'll need to build it from source. If you're not that adventurous grab a prebuilt version from the downloads section and continue with the post installation steps:
- * link:http://code.google.com/p/grr/downloads/detail?name=M2Crypto-0.21.1-openssl-1.0.1e-py2.7-win32.zip[32-bit Python 2.7 version of M2Crypto 0.21.1 with openssl 1.0.1e]
- * link:http://code.google.com/p/grr/downloads/detail?name=M2Crypto-0.21.1-openssl-1.0.1c-py2.7-win-amd64.zip[(AMD) 64-bit Python 2.7 version of M2Crypto 0.21.1 with openssl 1.0.1c]
+Otherwise you'll need to build it from source. If you're not that adventurous
+grab a prebuilt version from
+link:https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing[drive]
+and continue with the post installation steps:
+
+ * M2Crypto-0.21.1-openssl-1.0.1e-py2.7-win32.zip: 32-bit Python 2.7 version of M2Crypto 0.21.1 with openssl 1.0.1e
+ * M2Crypto-0.21.1-openssl-1.0.1c-py2.7-win-amd64.zip: (AMD) 64-bit Python 2.7 version of M2Crypto 0.21.1 with openssl 1.0.1c
 
 After installing M2Crypto make sure to do post installation steps.
 
@@ -287,7 +291,8 @@ Download the M2Crypto source from: http://chandlerproject.org/Projects/MeTooCryp
 
 E.g. M2Crypto-0.21.1.tar.gz
 
-Download the patch from: http://code.google.com/p/grr/downloads/detail?name=m2crypto-fixes.patch
+Download the m2crypto-fixes.patch from:
+https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
 
 To apply the patch run the following commands:
 -------------------------------------------------------
@@ -405,7 +410,9 @@ GRR uses unzip 6.0 (http://www.info-zip.org/UnZip.html) to create a self-extract
 
 Download a copy of the 6.0 version of unzip: ftp://ftp.info-zip.org/pub/infozip/src/unzip60.tgz.
 
-Extract the source and apply the link:http://code.google.com/p/grr/downloads/detail?name=unzip60.patch[unzip60.patch]
+Extract the source and apply the unzip60.patch from
+https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
+
 -------------------------------------------------------
 cd unzip60
 patch -p1 < ../unzip60.patch

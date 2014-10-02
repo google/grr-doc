@@ -14,7 +14,9 @@ Get the M2Crypto source from http://chandlerproject.org/bin/view/Projects/MeTooC
 M2Crypto-0.21.1.tar.gz
 -------------------------------------------------------
 
-Get the patch from the link:http://code.google.com/p/grr/downloads/detail?name=m2crypto-fixes.patch[Downloads] section or https://bugzilla.osafoundation.org/show_bug.cgi?id=13005
+Get the m2crypto-fixes.patch from
+https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
+or https://bugzilla.osafoundation.org/show_bug.cgi?id=13005
 
 Apply the patch
 -------------------------------------------------------
