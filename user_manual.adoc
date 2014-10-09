@@ -363,6 +363,7 @@ If a search attribute isn't specified, we search all attributes so a search for 
 
 - "." will show you all clients
 - "test1[2-5].*\.example.com$"
+- "(test1|test2|sqlserver|win2k3-ops).*"
 
 Interpreting Client Search Results
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
