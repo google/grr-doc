@@ -56,7 +56,7 @@ possible to use the config_updater.py script:
 To add the user joe as an admin:
 [source,shell]
 --------------------------------------------------------------------------------
-db@host:~$ sudo grr_config_updater add_user --username joe
+db@host:~$ sudo grr_config_updater add_user joe
 Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
 Please enter password for user 'joe':
 Updating user joe
