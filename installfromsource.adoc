@@ -41,7 +41,7 @@ sudo mkdir /var/log/grr/
 
 Copy the configuration there
 -------------------------------------------------------
-sudo cp grr/config/grr-server.yaml /etc/grr/
+sudo cp config/grr-server.yaml /etc/grr/
 -------------------------------------------------------
 
 === Start-up scripts ===
@@ -90,10 +90,11 @@ By the default the init.d script do not start the services change the following 
 Copy the init.d scripts to the system location:
 -------------------------------------------------------
 sudo cp config/debian/initd/grr-* /etc/init.d/
+sudo chmod +x /etc/init.d/grr-*
 -------------------------------------------------------
 
 ==== Upstart scripts ====
-Copy the upsatrt scripts to the system location:
+Copy the upstart scripts to the system location:
 -------------------------------------------------------
 sudo cp config/debian/upstart/grr-* /etc/init/
 -------------------------------------------------------
