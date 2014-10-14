@@ -553,6 +553,11 @@ these will require a rebuild.
 For a full list of available options you can run `grr_server --config-help` and
 look for `Client`, `Nanny` and `Logging` options.
 
+Deploying The Client
+--------------------
+
+For first-time deployment, GRR Clients need to be installed using existing package management systems for each platform.  For Windows the installer is a self-extracting executable which can be deployed using standard tools, such as SCCM, but some smaller networks use approaches that require an MSI.  In this case we suggest using one of the various third-party tools for creating .msi's from .exe's, such as link:http://wixtoolset.org/[WiX Toolset].
+
 Deploying Custom Drivers and Code.
 ----------------------------------
 
