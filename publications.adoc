@@ -10,13 +10,15 @@ D. Bilby, G. Caronni. Digital Investigation, 2011.
 Presentations
 -------------
 
-link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Docs/GRR%20Rapid%20Response%20-%20OSFC%202012.pdf[OSDFC 2012 GRR Overview], by D. Bilby
-
 link:https://drive.google.com/file/d/0B1wsLqFoT7i2Z2pxM0wycS1lcjg/edit?usp=sharing[Blackhat 2014: "GRR: Find all the badness, collect all the things"], by G.
 Castle
 
+link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Docs/GRR%20Rapid%20Response%20-%20OSFC%202012.pdf[OSDFC 2012 GRR Overview], by D. Bilby
+
 Workshops
 ---------
+
+DFRWS Workshop 2014 link:https://drive.google.com/a/google.com/file/d/0B1wsLqFoT7i2UVZ5S0VCcUVIREU/edit[workshop slides] by A. Moser and M.I. Cohen.
 
 OSDF 2013 link:https://drive.google.com/?usp=chrome_app#folders/0B1wsLqFoT7i2eU1jU0JldW9JUU0[workshop presentation] and link:osdf2013workshop.adoc[materials] by D. Bilby.
 
