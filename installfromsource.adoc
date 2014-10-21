@@ -62,7 +62,7 @@ Both upstart and init.d scripts use a symbolic link to grr_server.py and default
 
 Create the following directories
 ------------------------------------------------------------------------------------------
-PACKAGE="/usr/local/lib/python2.7/dist-packages/grr-0.1-py2.7.egg";
+PACKAGE="/usr/local/lib/python2.7/dist-packages/grr-0.3.0_2-py2.7.egg";
 PREFIX="/usr/local";
 
 sudo mkdir -p ${PREFIX}/bin ${PREFIX}/sbin
