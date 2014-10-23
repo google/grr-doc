@@ -167,7 +167,10 @@ In the default install, the driver and code signing private keys are not
 passphrase protected. In a secure environment we strongly recommended
 generating and storing these keys off the GRR server and doing offline
 signing every time this functionality is required, or at a minimum setting
-passphrases which are required on every use.
+passphrases which are required on every use. We recommend encrypting the
+keys in the config with PEM encryption, config_updater will then ask for
+the passphrase when they are used. An alternative is to keep a separate
+offline config that contains the private keys.
 
 Agent Protection.
 ~~~~~~~~~~~~~~~~~
@@ -590,9 +593,10 @@ Deploying Arbitrary Python Code.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To execute an arbitrary python blob, you need to create a file with python code
 that has the following attributes:
-- Code in the file must work when executed by exec() in the context of GRR.
-- Any return data that you want sent back to the server should be stored string
-encoded in a variable called "magic_return_str".
+
+- Code in the file must work when executed by exec() in the context of a running GRR client.
+- Any return data that you want sent back to the server should be stored encoded as a string 
+ in a variable called "magic_return_str".
 
 E.g. as a simple example. The following code modifies the clients poll_max
 setting and pings test.com.
@@ -626,8 +630,7 @@ viewable in the Manage Binaries section of the Admin UI.
 The ExecutePythonHack Flow is provided for executing the file on a client.
 
 NOTE: Specifying arguments to a PythonHack is possible as well through the
-py_args argument on the commandline, this can be useful for making them more
-useful.
+py_args argument, this can be useful for making the hack more generic.
 
 
 Deploying Drivers
