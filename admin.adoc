@@ -698,6 +698,8 @@ db@host:$
 This uploads to the installers directory by default. But you can override with
 the --dest_path option.
 
+This file can then be executed with the LaunchBinary flow which is in the Administrative flows if Advanced Mode is enabled. 
+
 
 Client Robustness Mechanisms
 ----------------------------
