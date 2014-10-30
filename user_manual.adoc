@@ -629,7 +629,7 @@ and on Linux:
 ---------------------------------------------------------------------
 
 A full list of possible interpolation values can be found by typing %% in the
-gui.  The canonical reference is the link:https://code.google.com/p/grr/source/browse/proto/knowledge_base.proto[proto/knowledge_base.proto] file, which also contains docstrings for each type.
+gui.  The canonical reference is the link:https://github.com/google/grr/blob/master/proto/knowledge_base.proto[proto/knowledge_base.proto] file, which also contains docstrings for each type.
 
 Path Globbing
 ~~~~~~~~~~~~~
