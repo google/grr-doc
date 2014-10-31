@@ -63,7 +63,7 @@ doc: |
 Collectors
 ----------
 
-The available collector types are defined in the Collector message in the link:https://code.google.com/p/grr/source/browse/proto/artifact.proto#10[artifact.proto].
+The available collector types are defined in the Collector message in the link:https://github.com/google/grr/blob/master/proto/artifact.proto#L12[artifact.proto].
 
 Where collectors take a single argument with a single value, the {} form should
 be used to save on line breaks:
