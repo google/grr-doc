@@ -10,7 +10,7 @@ D. Bilby, G. Caronni. Digital Investigation, 2011.
 Presentations
 -------------
 
-link:https://drive.google.com/file/d/0B1wsLqFoT7i2Z2pxM0wycS1lcjg/edit?usp=sharing[Blackhat 2014: "GRR: Find all the badness, collect all the things"], by G.
+Blackhat 2014: "GRR: Find all the badness, collect all the things" link:https://drive.google.com/file/d/0B1wsLqFoT7i2Z2pxM0wycS1lcjg/edit?usp=sharing[slides] and link:http://www.youtube.com/watch?v=DudGrSv26NY[video] by G.
 Castle
 
 link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Docs/GRR%20Rapid%20Response%20-%20OSFC%202012.pdf[OSDFC 2012 GRR Overview], by D. Bilby
