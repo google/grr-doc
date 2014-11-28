@@ -7,6 +7,7 @@ This is the GRR documentation, which is linked to from the tool itself. Please h
  * [User Manual](user_manual.adoc)
  * [Administration Documentation (Setup and Configuration)](admin.adoc)
  * [Developer and Implementation Documentation](implementation.adoc)
+ * [Contributing Code](implementation.adoc#contributing-code)
  * [The GRR Configuration system](configuration.adoc)
  * [Project FAQ](faq.adoc)
  * [Publications: Papers, Presentations, Workshops etc.](publications.adoc)
