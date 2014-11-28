@@ -2,6 +2,14 @@
 
 The many different steps makes the GRR server installation process susceptible to errors. Here some common issues and solutions are described.
 
+== ImportError: cannot import name jobs_pb2 or similar ==
+
+If you see "ImportError: cannot import name jobs_pb2" or a similar error for any other _pb2 file, you need to regenerate the protobuf files.  Just run
+-------------------------------------------------------
+python setup.py build
+sudo python setup.py install
+-------------------------------------------------------
+
 == The upstart/init.d scripts show no output ==
 
 When I run an init.d script e.g. "/etc/init.d/grr-http-server start" it does not show me any output.
