@@ -14,7 +14,7 @@ fully-supported and open sourced. The primary motivation was that we felt the
 state of the art for incident response was going in the wrong direction, and
 wasn't going to meet our cross platform, scalability, obfuscation or flexibility
 goals for an incident response agent. A number of those things still hold true
-in 2013.
+in 2014.
 
 Additionally, we believe that for things to progress in security, everyone has
 to up their game and improve their capabilities. We hope that by open sourcing
@@ -22,8 +22,8 @@ GRR, we can foster development of new ways of doing things and thinking about
 the problem, get it into the hands of real organizations at reasonable cost, and
 generally push the state of the art forward.
 
-As of late 2013, the project has gained some momentum and we are beginning to
-get code contributions from outside of the core dev team.
+As of late 2014, the project has gained momentum and we are beginning to get 
+significant code contributions from outside of the core dev team.
 
 Why is the project called GRR?
 ------------------------------
@@ -94,24 +94,24 @@ I've heard that there are secret internal versions of GRR that aren't open sourc
 
 GRR was always designed to be open sourced, but with any sufficiently complex
 "enterprise" product you expect to integrate it with other systems and
-potentially even with proprietary technology. So its true that a number of the
-core developers work on those types of features that won't be released publicly.
-The goal is to ensure that everything is released, but there are some things
-that don't make sense. Below are listed some of the key differences that may
-matter to you:
+potentially even with proprietary technology. So its true that some of the
+core developers time is spent working on internal features that won't be
+released publicly. The goal is to ensure that everything useful is released, but
+there are some things that don't make sense. Below are listed some of the key
+differences that may matter to you:
 
  - *Datastore/Storage*: The core development team’s datastore isn't Mongo; we
    use a proprietary datastore that has different characteristics to Mongo. So
    we've tested things at real scale, but on a different datastore backend. We
    have abstracted things such that it "should" work, but be aware open source
-   has had a lot less performance testing.
+   has had a less performance testing.
  - *Security and privacy*: The open source version has minimal controls
    immediately available for user authentication, multi-party authorization,
    privacy controls, logging, auditing etc. This is because these things are
    important enough for them to be custom and integrated with internal
    infrastructure in a large deployment. We open source the bits that make
    sense, and provide sensible hooks for others to use, but full implementations
-   of these would likely require some integration work.
+   of these may require some integration work.
  - *Data analysis*: The current functionality of GRR is mostly focused around
    data collection. But collecting data isn't all that useful, you need to be
    able to analyze it. There are a number of public systems for doing this
@@ -123,10 +123,11 @@ matter to you:
    monitoring a scalable service is often built into the platform itself. As
    such GRR hasn't invested a lot in built-in service or performance monitoring
    at the moment. We expose a lot of statistics, but collecting them and
-   displaying them isn't part of things yet.  Differences will be whittled away
-   over time as the core GRR team runs open source GRR deployments themselves.
-   That means you can expect most of these things to become much less of an
-   issue over time.
+   displaying them isn't part of things yet.  
+   
+Differences will be whittled away over time as the core GRR team runs open source
+GRR deployments themselves. That means you can expect most of these things to 
+become much less of an issue over time.
 
 When will feature X be ready?
 -----------------------------
@@ -146,18 +147,16 @@ commitment.
 Why aren't you developing directly on open source? what's up with the big code dumps?
 -------------------------------------------------------------------------------------
 
-Given we have had very limited contribution from outside, it is hard to justify
-the extra effort of jumping out of our internal code review and submission
-processes. We'd like that to change, and we will most likely move to Github at
-some point. Encouragement in the form of code welcome.
+Given we previously had limited code contribution from outside, it was hard to justify
+the extra effort of jumping out of our internal code review and submission processes.
+That has now changed and we are working on moving to do all commits on github (Dec 2014).
 
 Why is GRR so complicated?
 --------------------------
 
 GRR *is* complicated. We are talking about a distributed, asynchronous, cross
 platform, large scale system with a lot of moving parts. Building that is a hard
-and complicated engineering problem. This is not your grandmother’s pet python
-project.
+and complicated engineering problem. This is not your average pet python project.
 
 We built the core GRR engine, and the engineers that work on it know it well,
 but as of Q4 2013, we haven't built the abstractions to make it easy for
@@ -174,7 +173,7 @@ products, but we don't consider GRR to be a direct competitor. GRR is unlikely
 to ever be the product for everyone, as most organizations need consultants,
 support and the whole package that goes with that.
 
-In many ways we have a long way to go to match the capabilities and ease of use
+In many ways we have a way to go to match the capabilities and ease of use
 of some of the commercial products, but we hope we can learn something off each
 other, we can all get better, and together we can all genuinely improve the
 security of the ecosystem we all exist in. We're happy to see others use GRR in
