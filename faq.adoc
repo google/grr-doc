@@ -104,7 +104,7 @@ differences that may matter to you:
    use a proprietary datastore that has different characteristics to Mongo. So
    we've tested things at real scale, but on a different datastore backend. We
    have abstracted things such that it "should" work, but be aware open source
-   has had a less performance testing.
+   has had less performance testing.
  - *Security and privacy*: The open source version has minimal controls
    immediately available for user authentication, multi-party authorization,
    privacy controls, logging, auditing etc. This is because these things are
@@ -115,10 +115,7 @@ differences that may matter to you:
  - *Data analysis*: The current functionality of GRR is mostly focused around
    data collection. But collecting data isn't all that useful, you need to be
    able to analyze it. There are a number of public systems for doing this
-   analysis such as those offering Map Reduce functionality but this analysis at
-   the moment belongs outside of GRR. In Q4 2013 we have added output plugins
-   that allow for easy export to other systems to allow for data mining, and
-   these will get better over time.
+   analysis such as link:https://cloud.google.com/bigquery/what-is-bigquery[BigQuery] and link:http://www.elasticsearch.org/[Elasticsearch]. See the data analysis answer below for more detail.
  - *Machine handling and monitoring*: Much of the infrastructure for running and
    monitoring a scalable service is often built into the platform itself. As
    such GRR hasn't invested a lot in built-in service or performance monitoring
@@ -128,6 +125,11 @@ differences that may matter to you:
 Differences will be whittled away over time as the core GRR team runs open source
 GRR deployments themselves. That means you can expect most of these things to 
 become much less of an issue over time.
+
+Where/how do you do your data analysis?
+---------------------------------------
+
+We mostly do this outside of GRR using an internal system similar to link:https://cloud.google.com/bigquery/what-is-bigquery[BigQuery].  GRR data is formatted for that system by implementing a hunt output plugin.  There’s a cronjob that outputs new results every 5 minutes, so there is very little delay between the server seeing a result and having it available for analysis externally.  We ship with CSV and email output plugins, but implementing plugins for BigQuery or Elasticsearch should be fairly simple.
 
 When will feature X be ready?
 -----------------------------
@@ -144,12 +146,12 @@ As of Q4 2013, GRR now has full time software engineers working on it as their
 day job, plus additional part time code contributors. The project has long term
 commitment.
 
-Why aren't you developing directly on open source? what's up with the big code dumps?
--------------------------------------------------------------------------------------
+Why aren't you developing directly on open source?
+--------------------------------------------------
 
 Given we previously had limited code contribution from outside, it was hard to justify
 the extra effort of jumping out of our internal code review and submission processes.
-That has now changed and we are working on moving to do all commits on github (Dec 2014).
+That has now changed, we are syncing far more regularly (often multiple times per week), and we are working on moving to do all commits on github (Dec 2014).
 
 Why is GRR so complicated?
 --------------------------
