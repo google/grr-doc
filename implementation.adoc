@@ -675,6 +675,222 @@ SIZE attribute was updated was when the object was written to last.
 on this client 3 times at different dates. Each time the data is different.
 
 
+[[data-store-abstraction]]
+The data store abstraction
+--------------------------
+
+To illustrate how AFF4 objects are stored in the data store, I'll show
+how an example object looks like in its serialized form. Here is a
+little code snippet, similar to the client we define in
+
+https://github.com/google/grr/blob/master/lib/aff4_objects/aff4_grr.py
+
+[source,python]
+------------------------------------------------------------------------
+class VFSGRRClient(standard.VFSDirectory):
+  """A Remote client."""
+
+  class SchemaCls(standard.VFSDirectory.SchemaCls):
+    """The schema for the client."""
+    HOSTNAME = aff4.Attribute("metadata:hostname", rdfvalue.RDFString,
+                              "Hostname of the host.", "Host",
+                              index=client_index)
+    INSTALL_DATE = aff4.Attribute("metadata:install_date", rdfvalue.RDFDatetime,
+                                  "Install Date.", "Install")
+    CLIENT_INFO = aff4.Attribute(
+        "metadata:ClientInfo", rdfvalue.ClientInformation,
+        "GRR client information", "GRR client", default="")
+    PING = aff4.Attribute("metadata:ping", rdfvalue.RDFDatetime,
+                          "The last time the server heard from this client.",
+                          "LastCheckin", versioned=False, default=0)
+------------------------------------------------------------------------
+
+This defines a client AFF4 object and some attributes that client
+object can have. Once we have defined this, we can instantiate the
+object:
+
+[source,python]
+------------------------------------------------------------------------
+In : client = aff4.FACTORY.Create("aff4:/C.0000000000000000", "VFSGRRClient")
+
+In : client
+Out: <VFSGRRClient@7FE3A014339 = aff4:/C.0000000000000000>
+------------------------------------------------------------------------
+
+We now can set all attributes as shown in the last section:
+
+[source,python]
+------------------------------------------------------------------------
+client.Set(client.Schema.HOSTNAME("somehostname"))
+
+client.Set(client.Schema.PING(100))
+
+client.Set(client.Schema.INSTALL_DATE(rdfvalue.RDFDatetime().Now()))
+
+client_info = rdfvalue.ClientInformation(client_name="fake client",
+                                         client_version=1234)
+client.Set(client.Schema.CLIENT_INFO, client_info)
+------------------------------------------------------------------------
+
+Once we close the object, all the information we added gets stored in
+the data store:
+
+[source,python]
+------------------------------------------------------------------------
+client.Close()
+------------------------------------------------------------------------
+
+Once this is done, we can now check the raw data written to the data
+store. We use the data_store.DB object for raw data access:
+
+[source,python]
+------------------------------------------------------------------------
+In : data_store.DB.ResolveRow(client.urn)
+Out:
+[(u'aff4:type', u'VFSGRRClient', 1417770114551989),
+ (u'metadata:ClientInfo', '\x10\xd2\t\n\x0bfake client', 1417770114551893),
+ (u'metadata:hostname', u'somehostname', 1417770114551706),
+ (u'metadata:install_date', 1417770114551848, 1417770114551853),
+ (u'metadata:last', 1417770114552026, 1417770114552140),
+ (u'metadata:ping', 100, 0)]
+------------------------------------------------------------------------
+
+
+As you can see, the row in the data store containing the client object
+we created has now a number of tuples (column name, data,
+timestamp). Here is what they mean:
+
+The type attribute
+~~~~~~~~~~~~~~~~~~
+
+[source,python]
+------------------------------------------------------------------------
+(u'aff4:type', u'VFSGRRClient', 1417770114551989)
+------------------------------------------------------------------------
+
+Every AFF4 object has a type attribute that indicates what kind of
+object is stored in that row. This allows us to just open the urn and
+we will get back the same object we stored in the row:
+
+[source,python]
+------------------------------------------------------------------------
+In : aff4.FACTORY.Open(client.urn)
+Out: <VFSGRRClient@7F659C0571D = aff4:/C.0000000000000000>
+------------------------------------------------------------------------
+
+There is also a timestamp showing when this object was created:
+
+[source,python]
+------------------------------------------------------------------------
+In : time.ctime(1417770114551989/1e6)
+Out: 'Fri Dec  5 10:01:54 2014'
+------------------------------------------------------------------------
+
+The last attribute
+~~~~~~~~~~~~~~~~~~
+
+[source,python]
+------------------------------------------------------------------------
+(u'metadata:last', 1417770114552026, 1417770114552140)
+------------------------------------------------------------------------
+
+The last attribute is also stored on every client, it indicates the
+last modification time of any entry in that row.
+
+
+Object specific attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+All other attributes of the object are stored in the columns indicated
+by the Schema class. For example, the HOSTNAME attribute is set to use
+the column name "metadata:hostname" so this is where it's stored:
+
+[source,python]
+------------------------------------------------------------------------
+(u'metadata:hostname', u'somehostname', 1417770114551706)
+------------------------------------------------------------------------
+
+The actual data stored in the data store is obtained by serializing
+the attribute - all attributes are rdfvalue objects that support the
+SerializeToDataStore() method. For example for the client_info object
+from above:
+
+[source,python]
+------------------------------------------------------------------------
+In : print client_info
+message ClientInformation {
+ client_name : u'fake client'
+ client_version : 1234
+}
+
+In : client_info.SerializeToDataStore()
+Out: '\x10\xd2\t\n\x0bfake client'
+------------------------------------------------------------------------
+
+and this serialized data is stored in the data store:
+
+[source,python]
+------------------------------------------------------------------------
+(u'metadata:ClientInfo', '\x10\xd2\t\n\x0bfake client', 1417770114551893)
+------------------------------------------------------------------------
+
+In case you where wondering, deserialization is done by just passing
+serialized data to the rdfvalue constructor:
+
+[source,python]
+------------------------------------------------------------------------
+In: print rdfvalue.ClientInformation('\x10\xd2\t\n\x0bfake client')
+message ClientInformation {
+ client_name : u'fake client'
+ client_version : 1234
+}
+------------------------------------------------------------------------
+
+One last thing to notice about the data here is that the PING
+attribute has a zero timestamp:
+
+[source,python]
+------------------------------------------------------------------------
+(u'metadata:ping', 100, 0)
+------------------------------------------------------------------------
+
+The reason here is that we do not want to store different versions of
+this attribute since the attribute changes too frequently and storing
+old versions would therefore take up a lot of space. We indicate this
+by setting versioned=False in the attribute definition:
+
+[source,python]
+------------------------------------------------------------------------
+    PING = aff4.Attribute("metadata:ping", rdfvalue.RDFDatetime,
+                          "The last time the server heard from this client.",
+                          "LastCheckin", versioned=False, default=0)
+------------------------------------------------------------------------
+
+So if we write a new version of the same client and update some
+attributes, the data store contents look like this:
+
+[source,python]
+------------------------------------------------------------------------
+client = aff4.FACTORY.Create("aff4:/C.0000000000000000", "VFSGRRClient")
+client.Set(client.Schema.HOSTNAME("someotherhostname"))
+client.Set(client.Schema.PING(200))
+client.Close()
+
+In: data_store.DB.ResolveRow(client.urn)
+[(u'aff4:type', u'VFSGRRClient', 1417771071369599),
+ (u'aff4:type', u'VFSGRRClient', 1417770114551989),
+ (u'metadata:ClientInfo', '\x10\xd2\t\n\x0bfake client', 1417770114551893),
+ (u'metadata:hostname', u'someotherhostname', 1417771070885592),
+ (u'metadata:hostname', u'somehostname', 1417770114551706),
+ (u'metadata:install_date', 1417770114551848, 1417770114551853),
+ (u'metadata:last', 1417771071369713, 1417771071369924),
+ (u'metadata:ping', 200, 0)]
+------------------------------------------------------------------------
+
+Note that we now have two versions for the hostname with different
+timestamps but there is still only one for the PING attribute.
+
+
 Client Path Specifications
 --------------------------
 
