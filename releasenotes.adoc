@@ -36,9 +36,16 @@ watch for when upgrading from one version to another.
 
 Sometimes config variables get renamed, sometimes removed. When this happens we'll try to record it here, so users know if local settings should be migrated/ignored etc.
 
+You can verify your config with
+-----
+PYTHONPATH=. python ./run_tests.py --test=BuildConfigTests.testAllConfigs
+-----
+
  * Client.confg: unused.  Now built from Client.config_hive and Client.config_key
  * Client.location: replaced by Client.control_urls
  * Client.config_file_name: unused
  * Client.package_maker_organization: replaced by ClientBuilder.package_maker_organization
  * AdminUI.team_name: replaced by Email.signature
  * Users.authentication: unused, user auth is now based on aff4:/users objects. Use config_updater to modify them.
+ * Nanny.nanny_binary: replaced by Nanny.binary
+ * NannyWindows.* : replaced by Nanny. 
