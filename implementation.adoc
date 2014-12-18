@@ -1405,6 +1405,21 @@ sel.click("css=a:contains(\"View details\")")
 When the test hits this point it will break into a pdb shell for you to step
 through.
 
+=== Running the Datastore Benchmark Tests ===
+
+We have a number of tests that benchmark the performance of each type of datastore. These are useful if you are making modifications to an existing data store, or implementing a new one.  Since they are fairly intensive and some of them need to run in isolation (i.e. not concurrently) to get accurate performance data they don't run by default when you call run_tests.
+
+To run the micro benchmark tests you just need to specify the "benchmark" label, like this for the Sqlite data store:
+
+----
+PYTHONPATH="" python grr/run_tests.py --test=SqliteDataStoreBenchmarks --labels=benchmark
+----
+
+There is a longer-running and more intensive benchmark set that outputs results to CSV, so you can keep a copy and track performance over time.  Run each test individually (see lib.data_store_test.DataStoreCSVBenchmarks for the various tests available):
+
+----
+PYTHONPATH="" python grr/run_tests.py --test=SqliteDataStoreCSVBenchmarks.manySubjectsFewAttrs --labels=benchmark
+----
 
 === Debugging Client Actions ===
 
