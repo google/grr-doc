@@ -1421,6 +1421,13 @@ There is a longer-running and more intensive benchmark set that outputs results 
 PYTHONPATH="" python grr/run_tests.py --test=SqliteDataStoreCSVBenchmarks.manySubjectsFewAttrs --labels=benchmark
 ----
 
+It's also possible to run these tests directly (i.e. not through run_tests.py), which avoids the need to specify the benchmark label, and a small amount of overhead setting up processes.
+
+----
+PYTHONPATH=. grr/lib/data_stores/sqlite_data_store_test.py --test=SqliteDataStoreTest
+PYTHONPATH=. grr/lib/data_stores/sqlite_data_store_test.py --test=SqliteDataStoreCSVBenchmarks.manySubjectsFewAttrs
+----
+
 === Debugging Client Actions ===
 
 Client actions can be run manually without a flow by using the console. The
