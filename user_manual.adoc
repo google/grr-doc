@@ -595,13 +595,13 @@ All .evtx files found up to three directories under C:\Windows\System32\winevt:
 %%users.homedir%%/**10/findme.txt
 ---------------------------------
 
-[NOTE]
-================================================================================
+File Paths: backslash or forward slash?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Either forward "/home/me" or backslash "C:\Users\me" path specifications are
 allowed for any target OS.  They will be converted to a common format
 internally.  We recommend using whatever is normal for the target OS: (backslash
 for Windows, fwdslash for OS X and Linux).
-================================================================================
 
 File Path Interpolation
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -609,24 +609,24 @@ File Path Interpolation
 GRR supports path interpolation from values in the artifact Knowledge Base.
 Interpolated values are enclosed with %%, and may expand to multiple elements.
 e.g.
---------------------------
-%%users.homedir%%\blah.txt
---------------------------
+----
+%%users.homedir%%
+----
 
 Might expand to the following paths on Windows:
----------------------------------------------------------------------
-C:\Users\alice\blah.txt, C:\Users\bob\blah.txt, C:\Users\eve\blah.txt
----------------------------------------------------------------------
+----
+C:\Users\alice, C:\Users\bob, C:\Users\eve
+----
 
 and on OS X:
----------------------------------------------------------------------
-/Users/alice/blah.txt, /Users/bob/blah.txt, /Users/eve/blah.txt
----------------------------------------------------------------------
+----
+/Users/alice, /Users/bob, /Users/eve
+----
 
 and on Linux:
----------------------------------------------------------------------
-/home/alice/blah.txt, /usr/local/home/bob/blah.txt, /home/local/eve/blah.txt
----------------------------------------------------------------------
+----
+/home/alice, /usr/local/home/bob, /home/local/eve
+----
 
 A full list of possible interpolation values can be found by typing %% in the
 gui.  The canonical reference is the link:https://github.com/google/grr/blob/master/proto/knowledge_base.proto[proto/knowledge_base.proto] file, which also contains docstrings for each type.
