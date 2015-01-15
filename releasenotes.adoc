@@ -48,4 +48,5 @@ sudo PYTHONPATH=. python ./run_tests.py --test=BuildConfigTests.testAllConfigs
  * AdminUI.team_name: replaced by Email.signature
  * Users.authentication: unused, user auth is now based on aff4:/users objects. Use config_updater to modify them.
  * Nanny.nanny_binary: replaced by Nanny.binary
- * NannyWindows.* : replaced by Nanny. 
+ * NannyWindows.* : replaced by Nanny.
+ * Email.default_domain: essentially duplicated Logging.domain, use that instead.
