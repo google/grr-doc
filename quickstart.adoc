@@ -20,12 +20,6 @@ Download the installation script e.g. using wget:
 wget https://github.com/google/grr/blob/master/install_script_ubuntu.sh
 ---------------------------------------------------------------------------------------
 
-If you don't have wget you can install it by running:
-
--------------------------------------------------------
-sudo apt-get install wget
--------------------------------------------------------
-
 Run the installation script:
 
 -------------------------------------------------------
