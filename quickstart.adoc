@@ -17,7 +17,7 @@ This document describes getting a server and clients up and running for the firs
 Download the installation script e.g. using wget:
 
 ---------------------------------------------------------------------------------------
-wget https://github.com/google/grr/blob/master/install_script_ubuntu.sh
+wget https://raw.githubusercontent.com/google/grr/master/scripts/install_script_ubuntu.sh
 ---------------------------------------------------------------------------------------
 
 Run the installation script:
