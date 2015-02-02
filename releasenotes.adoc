@@ -4,11 +4,15 @@ Each release of GRR brings some significant changes as the project's code is
 moving quickly. This section tries to identify the key changes and issues to
 watch for when upgrading from one version to another.
 
-== 3.0.0.2 to 3.0.0.3 ==
+== Server
 
- - *WARN* A change to OpenSSL required us to sign our CSRs generated during the enrollment process. This wasn't necessary previously and provided no benefit for GRR so we had gained some speed by not doing it. Since new OpenSSL required it, we started signing the CSRs, but it meant that the 3.0.0.3 server will reject any 3.0.0.2 clients that haven't already enrolled (i.e. they will see a HTTP 406).  Old 3.0.0.2 clients that have already enrolled and new 3.0.0.3 clients will work fine. This basically just means that you need to push out new clients at the same time as you upgrade the server. 
+=== 0.3.0 to 0.3.0-5
 
-== 0.2.9 to 3.0.0 ==
+ - *WARN* Rekall made some fundamental changes that mean rekall in the 0.3.0-5 server won't work with rekall in 3.0.0.3 clients, so a client upgrade to 3.0.0.5 is required. Non-rekall GRR components should continue to work.
+ - *WARN* The enroller component was removed, and is now handled by the worker.  You will need to stop those jobs and delete the relevant upstart/init scripts.
+ - *INFO* We now check that all config options are defined in the code and the server won't start if they aren't.  When you upgrade it's likely there is some old config that will need cleaning up. See the graveyard below for advice.
+
+=== 0.2.9 to 3.0.0
 
  - *WARN* After install of new deb you will need to restart the service
    manually.
@@ -18,7 +22,7 @@ watch for when upgrading from one version to another.
  - *INFO* Client themselves will not automatically be upgraded but should
    continue to work.
 
-== 0.2-8 to 0.2-9 ==
+=== 0.2-8 to 0.2-9
 
  - *WARN* After install of new deb you will need to restart the service
    manually.
@@ -31,6 +35,16 @@ watch for when upgrading from one version to another.
    Linux and OSX clients.
  - *INFO* Client themselves will not automatically be upgraded but should
    continue to work.
+
+== Client
+
+=== 3.0.0.3 to 3.0.0.5
+
+(We skipped a version number, there's no 3.0.0.4)
+
+=== 3.0.0.2 to 3.0.0.3
+
+ - *WARN* A change to OpenSSL required us to sign our CSRs generated during the enrollment process. This wasn't necessary previously and provided no benefit for GRR so we had gained some speed by not doing it. Since new OpenSSL required it, we started signing the CSRs, but it meant that the 3.0.0.3 server will reject any 3.0.0.2 clients that haven't already enrolled (i.e. they will see a HTTP 406).  Old 3.0.0.2 clients that have already enrolled and new 3.0.0.3 clients will work fine. This basically just means that you need to push out new clients at the same time as you upgrade the server. 
 
 = Config Variable Graveyard =
 
