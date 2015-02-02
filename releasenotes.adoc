@@ -12,7 +12,7 @@ watch for when upgrading from one version to another.
  - *WARN* The enroller component was removed, and is now handled by the worker.  You will need to stop those jobs and delete the relevant upstart/init scripts.
  - *INFO* We now check that all config options are defined in the code and the server won't start if they aren't.  When you upgrade it's likely there is some old config that will need cleaning up. See the graveyard below for advice.
 
-=== 0.2.9 to 3.0.0
+=== 0.2.9 to 0.3.0
 
  - *WARN* After install of new deb you will need to restart the service
    manually.
