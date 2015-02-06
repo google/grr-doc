@@ -351,9 +351,7 @@ The key issue with performance generally relates to how the server is deployed.
 - Additionally, you will probably want to run more than one worker. In a large
   deployment where you are running numerous hunts it makes sense to run 20+
   workers. As long as the datastore scales, the more workers you have the faster
-  things get done. Each worker process will use 1 core maximum, so on multicore
-  boxes you will want to set the config setting Worker.worker_process_count to
-  something > 1.
+  things get done. We previously had a config setting that forked worker processes off, but this turned out to play badly with datastore connection pools, the stats store, and monitoring ports so it was removed.  We're planning dockerization to make this easier, but for now you should create multiple workers using different init scripts.
 - Also, the frontend http server can be a significant bottleneck. By default we
   ship with a simple http server, but this is single process, written in python
   which means it may have thread lock issues. To get better performance you will
