@@ -58,9 +58,9 @@ plain sh.*
 
 == Testing Release ==
 
-Follow the same instructions as above, but add the --test flag to force the script to pull the testing release instead.
+Follow the same instructions as above, but add the -t flag to force the script to pull the testing release instead.
 
--------------------------------------------------------
-bash install_script_ubuntu.sh --test
--------------------------------------------------------
+----
+bash install_script_ubuntu.sh -t
+----
 
