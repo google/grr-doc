@@ -65,3 +65,5 @@ sudo PYTHONPATH=. python ./run_tests.py --test=BuildConfigTests.testAllConfigs
  * NannyWindows.* : replaced by Nanny.
  * Email.default_domain: essentially duplicated Logging.domain, use that instead.
  * Worker.task_limit: unused
+ * Worker.worker_process_count: unused
+ * Frontend.processes: unused
