@@ -458,12 +458,14 @@ After running the repack you should have binaries available in the UI under mana
 
 Building the Client.
 ~~~~~~~~~~~~~~~~~~~~
-Doing this is much harder than it should be due to a lot of dependencies and
-moving parts. See:
+There's quite a number of dependencies to be satisfied to build the client but there's no need to do this for testing or small deployments, use link:#repacking-the-client-with-a-new-configuration[repacking] instead.
+
+To create a Windows client build environment you'll need to follow the manual instructions: link:windowsclient.adoc[Building the Windows client].
+
+For linux and OS X we have link:https://www.vagrantup.com/[vagrant] configs and provisioning scripts that install all the dependencies for you in a build VM.  We're working on doing the same for windows.  See here for details:
 
 - link:linuxclient.adoc[Building the Linux client]
 - link:osxclient.adoc[Building the OS X client]
-- link:windowsclient.adoc[Building the Windows client]
 
 Client Configuration.
 ~~~~~~~~~~~~~~~~~~~~~
