@@ -8,266 +8,21 @@
 amount of knowledge about the system, for a basic installation we strongly
 recommend link:admin.adoc#repacking-the-client-with-a-new-configuration[repacking].*
 
-The GRR client is written in Python, but it depends on a number of libraries. To
-make it less dependable on the state of the operating system and thus more
-reliable, it is compiled as a static universal executable using PyInstaller.
+== Client Build VM ==
+Install link:https://www.vagrantup.com/[Vagrant], buy VMware Fusion, and buy the link:https://www.vagrantup.com/vmware[Vagrant VMWare Fusion plugin].  It's possible to get this to work with VirtualBox, which is free, but it's missing some useful features such as shared folders.
 
-It would be nice if this was really straight-forward, and in the future we will
-try to make it so, but for now you need to sacrifice the following goats in the
-correct order.
+Create a new link:http://ilostmynotes.blogspot.com/2015/02/building-os-x-vagrant-vmware-fusion-vm.html[vagrant-ready OS X VM in VMWare Fusion].  The essentials are:
 
-*Note that GRR client itself is platform independent but if you use a 64-bit
-version of Python all of the dependencies should be compiled as 64-bit.*
+  * Commandline Tools for XCode
+  * VMWare Tools
+  * Vagrant ssh and sudo access
 
-== Build environment ==
-Make sure the necessary building tools and development packages are installed on the system:
-  * Python 2.7
-  * Python setup tools (easy_install)
-  * XCode including the command line and auxiliary tools
-
-*Note that Python 2.6 is no longer supported*
-
-At the moment the path ends up in the debug info. To prevent any user related
-data in there create a separate build directory like:
------------------------------------------------------------------------
-/grr-build/
------------------------------------------------------------------------
-
-== Dependencies ==
-=== Python dateutil ===
-==== Using easy install ====
-To install Python dateutil using easy install run:
------------------------------------------------------------------------
-sudo easy_install-2.7 python-dateutil
------------------------------------------------------------------------
-
-=== M2Crypto ===
-There are multiple ways to install M2Crypto:
- * from source
- * from an .egg file
-
-The currently preferred method is from source because a patch is applied that fixes some memory allocation issues in the current version of M2Crypto.
-
-==== M2Crypto from source ====
-To install M2Crypto from source:
-
-Get the M2Crypto source from: http://chandlerproject.org/bin/view/Projects/MeTooCrypto
------------------------------------------------------------------------
-M2Crypto-0.21.1.tar.gz
------------------------------------------------------------------------
-
-Get the m2crypto-fixes.patch from
-https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
-
-Apply the patch
------------------------------------------------------------------------
-patch -u -p0 < m2crypto-fixes.patch
------------------------------------------------------------------------
-
-To help PyInstaller put __m2crypto.so in the right location, change the line 130 in setup.py from:
------------------------------------------------------------------------
-m2crypto === Extension(name === 'M2Crypto.__m2crypto',
------------------------------------------------------------------------
-
-to:
------------------------------------------------------------------------
-m2crypto === Extension(name === '__m2crypto',
------------------------------------------------------------------------
-
-To build m2crypto:
------------------------------------------------------------------------
-ARCHFLAGS='-arch x86_64' python setup.py build
------------------------------------------------------------------------
-
-To install m2crypto:
------------------------------------------------------------------------
-sudo python setup.py install
------------------------------------------------------------------------
-
-If you encounter an error like:
------------------------------------------------------------------------
-lipo: can't open input file: ...
------------------------------------------------------------------------
-
-It probably indicated that you're trying to build an architecture not supported by your build system, try adjusting the ARCHFLAGS.
-
-Extract the installed .egg file
------------------------------------------------------------------------
-cd /Library/Python/2.7/site-packages/
-sudo unzip -x M2Crypto-0.21.1-py2.7-macosx-10.6-universal.egg
-sudo rm M2Crypto-0.21.1-py2.7-macosx-10.6-universal.egg
------------------------------------------------------------------------
-
-==== M2Crypto from .egg file ====
-Because pkg_resources is not supported by pyinstaller there are some workarounds necessary when installing M2Crypto from an .egg file.
-
-To install m2crypto from an .egg file:
-      * Do easy_install -v m2crypto, go to the directory with the egg file, unzip the .egg file, then delete/rename the .egg file so that python will load the extracted version.
------------------------------------------------------------------------
-sudo easy_install-2.7 -v m2crypto
-cd /Library/Python/2.7/site-packages/
-sudo unzip -x M2Crypto-0.21.1-py2.7-macosx-10.6-universal.egg
-sudo mv M2Crypto-0.21.1-py2.7-macosx-10.6-universal.egg M2Crypto-0.21.1-py2.7-macosx-10.6-universal.bck
------------------------------------------------------------------------
-      * The process of unzipping it means that the __m2crypto.py which calls pkg_resources won't be run.
-
-=== Libprotobuf and Python-bindings ===
-After installing libprotobuf Python-bindings make sure to do post installation steps. At the moment you'll need the SVN version.
-
-==== Using the source ====
-Grab a copy of the latest version:
------------------------------------------------------------------------
-svn checkout http://protobuf.googlecode.com/svn/trunk/ protobuf
------------------------------------------------------------------------
-
-To build protoc (there is no need to install it):
------------------------------------------------------------------------
-cd protobuf
-sh autogen.sh
-./configure
-make
------------------------------------------------------------------------
-
-On Mountain Lion Apple no longer ships automake by default, so you need to use the Xcode version.  autogen will fail with something like:
------------------------------------------------------------------------
-autogen.sh: line 38: autoreconf: command not found
------------------------------------------------------------------------
-
-One way to fix this is to add the /Development directory to your path:
-
------------------------------------------------------------------------
-PATH+=:/Developer/usr/bin/
------------------------------------------------------------------------
-and then change the references in
-
------------------------------------------------------------------------
-/Developer/usr/share/autoconf/autom4te.cfg
------------------------------------------------------------------------
-
-link:http://stackoverflow.com/questions/6033989/aclocal-autoconf-reports-missing-m4sugar-m4-on-mac-os-x[to point to the /Developer directory.  Or create symlinks as necessary].
-
-==== Python bindings ====
-To build and install the Python bindings
------------------------------------------------------------------------
-cd python
-python setup.py build
-sudo python setup.py install
------------------------------------------------------------------------
-
-Note if the build fails because of a missing __init__.py you may need to create it
------------------------------------------------------------------------
-touch google/protobuf/compiler/__init__.py
------------------------------------------------------------------------
-
-==== Post installation ====
-E.g. if the Python bindings were installed in /Library/Python/2.7/site-packages/
------------------------------------------------------------------------
-cd /Library/Python/2.7/site-packages/
-mv protobuf-2.5.0_pre-py2.7.egg protobuf-2.5.0_pre-py2.7.egg.bck
-sudo unzip -x protobuf-2.5.0_pre-py2.7.egg.bck
------------------------------------------------------------------------
-
-Because PyInstaller doesn't support pkg_resources you will need to remove the corresponding line referencing pkg_resources from :
------------------------------------------------------------------------
-/Library/Python/2.7/site-packages/google/__init__.py
------------------------------------------------------------------------
-
-=== SleuthKit ===
-Download the SleuthKit 3.2.3 source code from: http://www.sleuthkit.org/sleuthkit/download.php
-
-To compile and install run:
------------------------------------------------------------------------
-tar zxfv sleuthkit-3.2.3.tar.gz
-cd sleuthkit-3.2.3
-CFLAGS="-isysroot /Developer/SDKs/MacOSX10.6.sdk -arch x86_64" \
-LDFLAGS="-Wl,-syslibroot,/Developer/SDKs/MacOSX10.6.sdk -arch x86_64" \
-./configure --disable-dependency-tracking --prefix=/usr
-make
-sudo make install
------------------------------------------------------------------------
-
-==== SleuthKit 4.0.1 ====
-Note that the SleuthKit 4.0.1 is not supported at the moment, but if you want to experiment.
-
-Make sure to remove the installation of the SleuthKit 3.2.3:
------------------------------------------------------------------------
-cd sleuthkit-3.2.3
-sudo make uninstall
------------------------------------------------------------------------
-
-To build the SleuthKit 4.0.1:
------------------------------------------------------------------------
-tar zxfv sleuthkit-4.0.1.tar.gz
-cd sleuthkit-4.0.1
-CFLAGS="-isysroot /Developer/SDKs/MacOSX10.6.sdk -arch x86_64" \
-LDFLAGS="-Wl,-syslibroot,/Developer/SDKs/MacOSX10.6.sdk -arch x86_64" \
-./configure --disable-dependency-tracking
-make
-sudo make install
------------------------------------------------------------------------
-
-Pytsk version 3 currently still works with the SleuthKit 4.0.1. Make sure to update the build after updating the SleuthKit.
-
-=== PyTSK ===
-To download Pytsk you'll need to install the mercurial tools:
------------------------------------------------------------------------
-sudo easy_install-2.7 mercurial.
------------------------------------------------------------------------
-
-Download and build the latest version of Pytsk:
------------------------------------------------------------------------
-hg clone https://code.google.com/p/pytsk/
-cd pytsk
-ARCHFLAGS='-arch x86_64' python setup.py build
-sudo python setup.py install
------------------------------------------------------------------------
-
-=== psutil ===
-The preferred minimum version is currently 0.6.1.
-
-After installing psutil make sure to do post installation steps. 
-
-==== Using easy install ====
-
-To install psutil using easy_install:
------------------------------------------------------------------------
-sudo ARCHFLAGS='-arch x86_64' easy_install-2.7 -v psutil
------------------------------------------------------------------------
-
-==== psutil from source ====
-To install psutil from source:
-
-Download the psutil source from: http://code.google.com/p/psutil/downloads/list
-
-Or get it from SVN:
------------------------------------------------------------------------
-svn checkout http://psutil.googlecode.com/svn/trunk/ psutil
------------------------------------------------------------------------
-
-To build and install psutil:
------------------------------------------------------------------------
-cd psutil
-ARCHFLAGS='-arch x86_64' python setup.py build
-sudo python setup.py install
------------------------------------------------------------------------
-
-If the psutil build fails check if it tries to build support for the ppc architecture. This is no longer supported on recent versions of MacOS-X and must be overwritten with the ARCHFLAGS.
-
-==== Post installation ====
-Because pkg_resources is not supported by pyinstaller there are some workarounds necessary when installing psutil from an .egg file.
-
-Before extracting make sure older versions of psutil are removed from the system including the files:
------------------------------------------------------------------------
-/Library/Python/2.7/site-packages/psutil*
-/Library/Python/2.7/site-packages/_psutil_*
------------------------------------------------------------------------
-
-To extract:
------------------------------------------------------------------------
-cd /Library/Python/2.7/site-packages/
-mv psutil-0.6.1-py2.7-macosx-10.6-universal.egg psutil-0.6.1-py2.7-macosx-10.6-universal.egg.bck
-sudo unzip -x psutil-0.6.1-py2.7-macosx-10.6-universal.egg.bck
------------------------------------------------------------------------
+Bring the vm up and ssh in (this will take a while to install all the dependencies)
+----
+cd vagrant
+vagrant up OS_X_10.8.5
+vagrant ssh OS_X_10.8.5
+----
 
 === PyInstaller ===
 Grab a copy of the latest version of PyInstaller.
@@ -290,7 +45,7 @@ If you see errors about 64-bit support being experimental, you can ignore this.<
 You should now have a dist/grrd binary which you can run stand-alone.
 
 === Creating an installer package ===
-Note that this section is currently under construction and is not yet available.
+Note that this section is currently under construction and is not yet complete.
 
 To build a GRR MacOS-X installer package you'll need hdiutil and PackageMaker.
 hdiutil should be already on MacOS-X and PackageMaker is part of XCode.
