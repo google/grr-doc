@@ -1,9 +1,5 @@
 = Building Mac OS X client =
 
-:toc:
-:toc-placement: preamble
-:icons:
-
 *This guide is for building the client manually. Doing so requires a reasonable
 amount of knowledge about the system, for a basic installation we strongly
 recommend link:admin.adoc#repacking-the-client-with-a-new-configuration[repacking].*
