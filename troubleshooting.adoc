@@ -119,9 +119,10 @@ sudo python setup.py install
 
 == Missing Rekall Profiles ==
 
-If you get an error like: 
+If you get errors like: 
 ----
 Error loading profile: Could not load profile nt/GUID/ABC123...
+Needed profile nt/GUID/ABC123... not found!
 ----
 
 when using rekall, you're missing a profile (see the link:http://www.rekall-forensic.com/faq.html[Rekall FAQ] and link:http://www.rekall-forensic.com/posts/2014-02-20-profile-selection.html[blogpost] for some background about what this means).
