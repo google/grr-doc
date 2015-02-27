@@ -10,6 +10,7 @@ Install link:https://www.vagrantup.com/[Vagrant], buy VMware Fusion, and buy the
 Create a new link:http://ilostmynotes.blogspot.com/2015/02/building-os-x-vagrant-vmware-fusion-vm.html[vagrant-ready OS X VM in VMWare Fusion].  The essentials are:
 
   * Commandline Tools for XCode
+  * PackageMaker.app for building .pkg's
   * VMWare Tools
   * Vagrant ssh and sudo access
 
