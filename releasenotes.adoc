@@ -6,6 +6,10 @@ watch for when upgrading from one version to another.
 
 == Server
 
+=== 0.3.0-5 to 0.3.0-6
+
+This version bump was to keep in step with the client, which got a new version because of a memory collection bug.
+
 === 0.3.0 to 0.3.0-5
 
  - *WARN* Rekall made some fundamental changes that mean rekall in the 0.3.0-5 server won't work with rekall in 3.0.0.3 clients, so a client upgrade to 3.0.0.5 is required. Non-rekall GRR components should continue to work.
@@ -37,6 +41,10 @@ watch for when upgrading from one version to another.
    continue to work.
 
 == Client
+
+=== 3.0.0.5 to 3.0.0.6
+
+ - *INFO* 3.0.0.5 had a bug that broke memory collection, fixed in link:https://github.com/google/grr/commit/0615006a740a2802c4cf6c4b6a17e776e128dc06[this commit].  We also wrote a temporary server-side link:https://github.com/google/grr/commit/0615006a740a2802c4cf6c4b6a17e776e128dc06#diff-3a7572dd4343868d0929cbdca7a1620cR77[workaround], so upgrading isn't mandatory.  3.0.0.5 clients should still work fine.
 
 === 3.0.0.3 to 3.0.0.5
 
