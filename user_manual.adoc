@@ -968,6 +968,43 @@ Hunt rules can also be more complex, e.g. a regex match to ensure to check the t
 
 Regex rules are particularly useful when labels are built into deployed clients via the Client.labels config option, so that you can have different deployments that share a server but can be targeted separately in a hunt.  To hunt clients with a particular label use a Regular Expression rule for the Label attribute at path "/" with a regex matching the client label text.
 
+Controlling Hunts
+~~~~~~~~~~~~~~~~~
+
+Create a new hunt
+^^^^^^^^^^^^^^^^^
+image::images/icons/new.png[align="left"]
+
+Use this button to create a new hunt.
+
+Start a hunt
+^^^^^^^^^^^^
+image::images/icons/play_button.png[align="left"]
+
+Use this button to start a newly created hunt. New hunts are created in the PAUSED state, so you'll need to do this to run them.  Hunts that reach their client limit will also be set to PAUSED, use this button to restart them after you have removed the client limit (see modify below).
+
+Stop a hunt
+^^^^^^^^^^^^
+image::images/icons/stop_button.png[align="left"]
+
+Stopping a hunt will prevent new clients from being scheduled.  If you restart a hunt after stopping it, the hunt will be scheduled on *all* clients again, including those on which it has already run.  There isn't a reliable way to recover from the interrupted processing, so we restart the hunt on all clients as if it were new.  This button replaces the old pause button, and more accurately reflects the action being taken.
+
+Modify a hunt
+^^^^^^^^^^^^^
+image::images/icons/modify.png[align="left"]
+
+The modify button allows you to change the hunt client limit and the hunt expiry time.  Typically you use this to remove a client limit (set it to 0) to let the hunt run on all machines.  Modifying an existing hunt doesn't require re-approval.  Hunts can only be modified in the STOPPED or PAUSED states.
+
+Delete a hunt
+^^^^^^^^^^^^^
+image::images/icons/editdelete.png[align="left"]
+Use this to remove an unwanted hunt.  For accountability reasons hunts can only be deleted if they haven't run on clients.
+
+Show automated hunts
+^^^^^^^^^^^^^^^^^^^^
+image::images/icons/robot.png[align="left"]
+Use this button to display all hunts, including those created by cronjobs.  These are hidden by default to reduce UI clutter.
+
 Why Is My Hunt Doing Nothing?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - There are caches involved in the frontend server, you may need to wait a
