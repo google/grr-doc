@@ -781,14 +781,16 @@ Crash Types
 
 Crashed while executing an action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This means that while handling a specific action, the client died, the nanny
-knows this because the client recorded the action it was about to take in the
-Transaction Log before starting it.
+Often seen with an error "Client killed during transaction". This means that
+while handling a specific action, the client died, the nanny knows this because
+the client recorded the action it was about to take in the Transaction Log
+before starting it. When the client restarts it picks up this log and notifies
+the server of the crash. 
 
 Causes
 
 * Client segfaults, could happen in native code such Sleuth Kit or psutil.
-* Hard reboot while it was running an action.
+* Hard reboot while the machine was running an action where the client service didn't have a chance to exit cleanly.
 
 Unexpected child process exit!
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
