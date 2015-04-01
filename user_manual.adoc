@@ -987,7 +987,7 @@ Stop a hunt
 ^^^^^^^^^^^^
 image::images/icons/stop_button.png[align="left"]
 
-Stopping a hunt will prevent new clients from being scheduled.  If you restart a hunt after stopping it, the hunt will be scheduled on *all* clients again, including those on which it has already run.  There isn't a reliable way to recover from the interrupted processing, so we restart the hunt on all clients as if it were new.  This button replaces the old pause button, and more accurately reflects the action being taken.
+Stopping a hunt will prevent new clients from being scheduled and interrupt in-progress flows the next time they change state.  This is a hard stop, so in-progress results will be lost, but results already reported are unaffected.  If you restart a hunt after stopping it, the hunt will be scheduled on *all* clients again, including those on which it has already run.  There isn't a reliable way to recover from the interrupted processing, so we restart the hunt on all clients as if it were new.  This button replaces the old pause button, and more accurately reflects the action being taken.
 
 Modify a hunt
 ^^^^^^^^^^^^^
