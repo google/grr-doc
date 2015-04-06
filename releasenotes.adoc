@@ -63,15 +63,17 @@ You can verify your config with this (root is required to read the writeback con
 sudo PYTHONPATH=. python ./run_tests.py --test=BuildConfigTests.testAllConfigs
 -----
 
- * Client.confg: unused.  Now built from Client.config_hive and Client.config_key
- * Client.location: replaced by Client.control_urls
- * Client.config_file_name: unused
- * Client.package_maker_organization: replaced by ClientBuilder.package_maker_organization
  * AdminUI.team_name: replaced by Email.signature
- * Users.authentication: unused, user auth is now based on aff4:/users objects. Use config_updater to modify them.
+ * ClientBuilder.build_src_dir: unused, effectively duplicated ClientBuilder.source
+ * Client.confg: unused.  Now built from Client.config_hive and Client.config_key
+ * Client.config_file_name: unused
+ * Client.location: replaced by Client.control_urls
+ * Client.package_maker_organization: replaced by ClientBuilder.package_maker_organization
+ * Email.default_domain: essentially duplicated Logging.domain, use that instead.
+ * Frontend.processes: unused
  * Nanny.nanny_binary: replaced by Nanny.binary
  * NannyWindows.* : replaced by Nanny.
- * Email.default_domain: essentially duplicated Logging.domain, use that instead.
+ * PyInstaller.build_root_dir: unused, effectively duplicated ClientBuilder.build_root_dir.
+ * Users.authentication: unused, user auth is now based on aff4:/users objects. Use config_updater to modify them.
  * Worker.task_limit: unused
  * Worker.worker_process_count: unused
- * Frontend.processes: unused
