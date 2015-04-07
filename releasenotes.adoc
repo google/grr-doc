@@ -6,6 +6,10 @@ watch for when upgrading from one version to another.
 
 == Server
 
+=== 0.3.0-6 to 0.3.0-7 (future, not yet released)
+
+ - *WARN* Keyword search is now based on an index that is built at weekly interrogate time, which means decomissioned clients won't appear in search results.  To populate all of your historical clients into the search index, use the code snippet on link:https://github.com/google/grr/commit/faa1622942e765447b6a908d8baf321e7bd288b9#commitcomment-10597659[this commit].
+
 === 0.3.0-5 to 0.3.0-6
 
 This version bump was to keep in step with the client, which got a new version because of a memory collection bug.
