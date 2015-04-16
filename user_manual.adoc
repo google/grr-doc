@@ -352,18 +352,17 @@ In order to start interfacing with a client, we first need to search for it in
 the GUI. The GRR search bar is located at the top of the GUI and allows you to
 search clients based on:
 
-- *Hostname:* "host: myhost-name"
-- *Fully Qualified Domain Name (FQDN):* "fqdn: myhost-name.organization.com"
-- *MAC address:* "mac: ee:ff:aa:bb:cc:dd".  Colons and case are not important, e.g. "mac: EEFFAABBCCDD" is equivalent.
-- *IP address:* "ip: 10.10.10.10".  Note that IP address is only collected during interrogate, which by default is run once per week. So searching by IP is useful for machines with static IPs, but searching for DHCP addresses that switch around between hosts is unlikely to give you useful results.
-- *User:* "user: john"
-- *Label:* "label: testmachines". Finds hosts with a particular GRR label.
+- *Hostname:* "host:myhost-name"
+- *Fully Qualified Domain Name (FQDN):* "fqdn:myhost-name.organization.com", also prefixes of components, e.g. "fqdn:myhost-name.organization"
+- *MAC address:* "mac:eeffaabbccdd".
+- *IP address:* "ip:10.10.10.10", also prefixes of bytes "ip:10.10". Note that IP address is only collected during interrogate, which by default is run once per week.
+- *User:* "user:john"
+- *Label:* "label:testmachines". Finds hosts with a particular GRR label.
 
-If a search attribute isn't specified, we search all attributes so a search for "something" could match a hostname, part of a FQDN, or a user.  Regex is also supported, for example:
+All of these keywords also work without the type specifier, though with less precision. For example "johnsmith" is both a user name and a hostname name, it will match both.
 
-- "." will show you all clients
-- "test1[2-5].*\.example.com$"
-- "(test1|test2|sqlserver|win2k3-ops).*"
+Furthermore there are additional keywords such as OS and OS version. So "Windows" will find all windows machines and "6.1.7601SP1" will match Windows 7 machines with SP1 installed, "6.1.7601" will match those without a service pack.
+
 
 Interpreting Client Search Results
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
