@@ -23,7 +23,7 @@ wget https://raw.githubusercontent.com/google/grr/master/scripts/install_script_
 Run the installation script:
 
 -------------------------------------------------------
-bash install_script_ubuntu.sh
+sudo bash install_script_ubuntu.sh
 -------------------------------------------------------
 
 *Note that the installation script requires bash to run and does not work with
