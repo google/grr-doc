@@ -28,3 +28,10 @@ Whitepapers
 -----------
 
 link:https://drive.google.com/file/d/0B1wsLqFoT7i2U3M1X0k5aVFkXzQ/edit?usp=sharing[GRR Forensic Artifacts White Paper], by G. Castle
+
+External Presentations
+----------------------
+
+Presentations about GRR by people outside the core GRR team.
+
+BSidesSF 2015: "Human Hunting" by Sean Gillespie.  Covers how Yahoo is using GRR.  link:https://github.com/pidydx/slides/blob/master/HumanHunting.pdf[Slides] and link:https://www.youtube.com/watch?v=4qCvx3SnAm4[video].
