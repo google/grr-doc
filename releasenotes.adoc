@@ -6,6 +6,9 @@ watch for when upgrading from one version to another.
 
 == Server
 
+=== 0.3.0-6 to 0.3.0-7 (unreleased)
+ - *INFO* We moved to using the open source binplist, rather than bundling it with GRR.  If you are getting "ImportError: cannot import name binplist", make sure you have installed the binplist package and deleted grr/parsers/binplist* to clean up any .pyc files that might have been created.
+
 === 0.3.0-5 to 0.3.0-6
 
 This version bump was to keep in step with the client, which got a new version because of a memory collection bug.
