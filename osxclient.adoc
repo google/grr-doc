@@ -1,57 +1,20 @@
 = Building Mac OS X client =
 
-*This guide is for building the client manually. Doing so requires a reasonable
-amount of knowledge about the system, for a basic installation we strongly
-recommend link:admin.adoc#repacking-the-client-with-a-new-configuration[repacking].*
+OS X licensing means we can't just simply provide a build vm via vagrant as
+we've done for linux.  Creating a vagrant-ready VM is fairly simple though.
 
 == Client Build VM ==
-Install link:https://www.vagrantup.com/[Vagrant], buy VMware Fusion, and buy the link:https://www.vagrantup.com/vmware[Vagrant VMWare Fusion plugin].  It's possible to get this to work with VirtualBox, which is free, but it's missing some useful features such as shared folders.
 
-Create a new link:http://ilostmynotes.blogspot.com/2015/02/building-os-x-vagrant-vmware-fusion-vm.html[vagrant-ready OS X VM in VMWare Fusion].  The essentials are:
+Install link:https://www.vagrantup.com/[Vagrant], buy VMware Fusion, and buy the
+link:https://www.vagrantup.com/vmware[Vagrant VMWare Fusion plugin].  It's
+possible to get this to work with VirtualBox, which is free, but it's missing
+some useful features such as shared folders.
+
+Create a new
+link:http://ilostmynotes.blogspot.com/2015/02/building-os-x-vagrant-vmware-fusion-vm.html[vagrant-ready
+OS X VM in VMWare Fusion].  The essentials are:
 
   * Commandline Tools for XCode
   * PackageMaker.app for building .pkg's
   * VMWare Tools
   * Vagrant ssh and sudo access
-
-Bring the vm up and ssh in (this will take a while to install all the dependencies)
-----
-cd vagrant
-vagrant up OS_X_10.8.5
-vagrant ssh OS_X_10.8.5
-----
-
-=== PyInstaller ===
-Grab a copy of the latest version of PyInstaller.
------------------------------------------------------------------------
-git clone -b develop git://github.com/pyinstaller/pyinstaller.git
------------------------------------------------------------------------
-
-Set the path to pyinstaller.py for use in the compile later, e.g. PYINSTALLER="/Users/johnsmith/pyinstaller/pyinstaller.py"
-
-== GRR ==
-Get a copy of the GRR source using git.
-
-To build GRR run:
------------------------------------------------------------------------------------
-python2.7 $PYINSTALLER --onefile --console --strip --name=grrd grr/client/client.py
------------------------------------------------------------------------------------
-
-If you see errors about 64-bit support being experimental, you can ignore this.<br>
-
-You should now have a dist/grrd binary which you can run stand-alone.
-
-=== Creating an installer package ===
-Note that this section is currently under construction and is not yet complete.
-
-To build a GRR MacOS-X installer package you'll need hdiutil and PackageMaker.
-hdiutil should be already on MacOS-X and PackageMaker is part of XCode.
-
-From the grr directory run:
-
------------------------------------------------------------------------
-sh config/macosx/build.sh
------------------------------------------------------------------------
-
-This will create GRR.pkg and GRR.dmg in the parent directory.
-

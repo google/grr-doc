@@ -1,515 +1,84 @@
 = Building The Windows Client =
 
-:toc:
-:toc-placement: preamble
-:icons:
+Windows licensing means we can't just simply provide a build vm via vagrant as
+we've done for linux.  So there's more hoops to jump through here, but it's as
+automated as possible.
+
+== Client Build VM ==
+
+First, install link:https://www.vagrantup.com/[Vagrant],
+link:https://packer.io/[Packer], and VirtualBox.  See
+link:http://ilostmynotes.blogspot.com/2015/04/vagrant-packer-and-boxcutter-ftw-create.html[here]
+for some background on these technologies. Then checkout boxcutter:
+
+---
+git clone https://github.com/boxcutter/windows.git boxcutter-windows
+---
+
+and make a base windows VM. If you have access to corporate ISOs, follow the
+boxcutter instructions (by creating Makefile.local) to point to these and save
+yourself Windows activation hassles later on.
+
+---
+cd boxcutter-windows
+make virtualbox/eval-win7x64-enterprise
+---
+
+Then tell vagrant it's there:
+---
+cd ~/grr/vagrant
+vagrant box add ~/boxcutter-windows/box/virtualbox/eval-win7x64-enterprise-nocm-1.0.4.box --name windows_7_64_vanilla
+---
+
+Bring it up with:
+
+---
+vagrant up windows_7_64_vanilla
+---
+
+and get it started on all the windows updates. You need to at least get it past
+SP1 to be able to install Visual Studio.  It will probably take about 25 min and
+require a reboot or three (which is why we can't script this effectively).
+
+Once windows update is happy, run this to get all the big, slow stuff installed
+(40min):
+
+---
+C:\grr\vagrant\windows\install_visual_studio.bat
+---
+
+Once that finishes you have a base VM that won't need updating, and can be used
+to build from if dependencies change. You'll want to do your windows activation
+now if you haven't already, and running a disk cleanup will save you some
+copying time later, the service pack install alone creates 500MB of backup
+files. Shut it down then save it as it's own vagrant vm (45 min, it's now a 12G
+VM):
+
+---
+VBoxManage list vms
+vagrant package --base "<Windows vm name>" --output windows_7_64_base
+vagrant box add windows_7_64_base --name windows_7_64_base
+vagrant destroy windows_7_64_vanilla
+---
+
+Bring up the new one. Note that when dependencies change you'll only need to do
+these final steps again to get an updated environment:
+
+---
+vagrant up windows_7_64_base
+---
+
+Finish installing dependencies with (30 min):
+
+---
+C:\grr\vagrant\install_windows.bat
+---
+
+And save your final build VM with:
+---
+VBoxManage list vms
+vagrant package --base "<Windows vm name>" --output windows_7_64
+vagrant box add windows_7_64 --name windows_7_64
+vagrant destroy windows_7_64_base
+---
 
-*This guide is for building the client manually. Doing so requires a reasonable
-amount of knowledge about the system, for a basic installation we strongly
-recommend link:admin.adoc#repacking-the-client-with-a-new-configuration[repacking].*
-
-The GRR client is written in Python, but it depends on a number of libraries. To
-make it less dependable on the state of the operating system and thus more
-reliable, it is compiled as a static universal executable using PyInstaller.
-
-*Note that GRR client itself is platform independent but if you use a 64-bit
-version of Python all of the dependencies should be compiled as 64-bit.*
-
-If you just want to test GRR you can use the client binaries released in the
-open source project. To deploy in a production environment securely you will
-need to compile the client binary yourself with your certificates.
-
-Unfortunately, building the client from scratch is messy and requires the
-sacrifice of various horned animals. We promise to make it easier for you, but
-for now, the process is documented below.
-
-== Build environment ==
-Building on a native Windows installation is recommended due to some of the
-PyInstaller dependencies, to allow for code signing and adding executable
-version information, however building on Wine has been tested successfully.
-
-Make sure the necessary building tools and development packages are installed on the system:
- * Python 2.7 Windows installation (http://python.org/download/)
- * Python setup tools (easy_install) (http://pypi.python.org/pypi/setuptools/)
- * Microsoft Visual Studio 2008 or later
-
-*Note that Python 2.6 is no longer supported*
-
-To build GRR client with Microsoft Visual Studio you'll need to install
-Microsoft Visual Studio 2008 (or later). The express version is sufficient. Note
-that if you want to build a 64-bit version  with the express version you'll need
-at least 2010.
-
-First create a build root directory:
--------------------------------------------------------
-C:\grr-build\
--------------------------------------------------------
-
-== Dependencies ==
- - pywin32 version 218
- - dateutil
- - Python WMI 1.4.9
- - psutil 0.7.1
- - pyyaml
- - protobuf 2.5.0
- - sleuthkit 3.2.3
- - pytsk (May 14, 2013 or later)
- - M2Crypto 0.21.1
-  * openssl 1.0.1e
- - DEPRECATED (needs rekall instructions): Volatility (scudette branch) (May 1, 2013 or later)
-  * pytz 2013b
-  * Distorm 3.3
-  * yara 1.7
- - PyInstaller
- - unzip 6.0
-
-=== PyWin32 ===
-==== Using easy install ====
-To install the pywin32 module:
--------------------------------------------------------
-C:\Python27\Scripts\easy_install.exe pywin32
--------------------------------------------------------
-
-Note that if you have Microsoft Visual Studio 2008 installed it comes without mc.exe and pywin32 will not build. Use the installer instead.
-
-==== Using the pywin32 installer ====
-On Windows PyInstaller needs pywin32 to run.
-
-Download the latest version from: http://sourceforge.net/projects/pywin32/files/pywin32/.
-
-E.g. pywin32-218.win32-py2.7.exe which is the 218 version of pywin32 for 32-bit Python 2.7.
-
-And install in C:\Python27\lib\site-packages.
-
-Test with:
--------------------------------------------------------
-C:\Python27\python.exe -c "import win32api"
--------------------------------------------------------
-
-=== Python dateutil ===
-==== Using easy install ====
-To install the Python dateutil module:
--------------------------------------------------------
-C:\Python27\Scripts\easy_install.exe python-dateutil
--------------------------------------------------------
-
-=== Python WMI ===
-==== Using easy install ====
-To install the Python WMI module:
--------------------------------------------------------
-C:\Python27\Scripts\easy_install.exe WMI
--------------------------------------------------------
-
-==== Using the Python WMI installer ====
-Download the latest version from: http://pypi.python.org/pypi/WMI/#downloads
-
-E.g. WMI-1.4.9.win32.exe which is the 1.4.9 version of Python WMI for 32-bit Python versions.
-
-And install in C:\Python27\lib\site-packages.
-
-=== psutil ===
-After installing psutil make sure to do post installation steps.
-
-==== Using easy install ====
-To install the psutil module:
--------------------------------------------------------
-C:\Python27\Scripts\easy_install.exe psutil
--------------------------------------------------------
-
-==== Using the psutil installer ====
-Download the latest version from: http://code.google.com/p/psutil/downloads/list.
-
-E.g. psutil-0.7.1.win32-py2.7.exe which is the 0.7.1 version of psutil for 32-bit Python 2.7.
-
-And install in C:\Python27\lib\site-packages.
-
-==== From source ====
-Download the latest version from: http://code.google.com/p/psutil/downloads/list.
-
-E.g. psutil-0.7.1.tar.gz
-
-To build and install psutil run:
--------------------------------------------------------
-cd C:\grr-build\pstutil-0.7.1
-C:\Python27\python.exe setup.py build
-C:\Python27\python.exe setup.py install
--------------------------------------------------------
-
-=== pyyaml ===
-==== Using easy install ====
-To install the pyyaml module:
--------------------------------------------------------
-C:\Python27\Scripts\easy_install.exe pyyaml
--------------------------------------------------------
-
-
-===== Windows 2000 =====
-For Windows 2000 support get the patch (psutil-0.7.1-late-binding.patch) for dynamic late binding of the non-Windows 2000 compatible functions from:
-https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
-
-To apply the patch run:
--------------------------------------------------------
-cd C:\grr-build\pstutil-0.7.1
-patch -p1 < ../psutil-0.7.1-late-binding.patch
--------------------------------------------------------
-
-Edit setup.py replace
- * ('_WIN32_WINNT', get_winver()) by ('_WIN32_WINNT', '0x500')
- * ('_AVAIL_WINVER_', get_winver()) by ('AVAIL_WINVER_', '0x500')
-
-To build and install psutil run:
--------------------------------------------------------
-C:\Python27\python.exe setup.py build
-C:\Python27\python.exe setup.py install
--------------------------------------------------------
-
-==== Post installation ====
-
-Check you can import it:
--------------------------------------------------------
-C:\Python27\python.exe -c "import psutil"
--------------------------------------------------------
-
-=== Libprotobuf and Python-bindings ===
-After installing libprotobuf Python-bindings make sure to do post installation steps.
-
-==== Using the source ====
-Download the latest version from: http://code.google.com/p/protobuf/downloads/list.
-
-E.g. protobuf-0.2.5.zip
-
-===== Microsoft Visual Studio build =====
-Open the Microsoft Visual Studio solution file:
-C:\grr-build\protobuf\vsprojects\protobuf.sln
-
-Change the solution configuration to "Release".
-
-Build the solution (or the individually the protoc project)
-
-===== Visual Studio 2010 64-bit build =====
-
-See the pytsk "Microsoft Visual Studio 2010 express and 64-bit compilation" for general instructions on how to build a 64-bit library.
-https://code.google.com/p/pytsk/wiki/BuildingForWindows
-
-==== Python-bindings ====
-Build and install the protobuf Python-bindings:
--------------------------------------------------------
-cd C:\grr-build\protobuf\python\
-C:\Python27\python.exe setup.py build
-C:\Python27\python.exe setup.py install
--------------------------------------------------------
-
-Test with:
--------------------------------------------------------
-C:\Python27\python.exe -c "import google.protobuf"
--------------------------------------------------------
-
-==== Post installation ====
-*TODO check if still necessary*
-
-E.g. if the Python bindings were installed in C:\Python27\lib\site-packages\
- * Rename C:\Python27\lib\site-packages\protobuf-2.5.0-py2.7.egg C:\Python27\lib\site-packages\protobuf-2.5.0-py2.7.egg.zip
- * Extract C:\Python27\lib\site-packages\protobuf-2.5.0-py2.7.egg.zip into C:\Python27\lib\site-packages\ without a protobuf-2.5.0-py2.7.egg sub directory
- * Remove C:\Python27\lib\site-packages\protobuf-2.5.0-py2.7.egg.zip
-
-Because PyInstaller doesn't support pkg_resources you will need to remove the corresponding line referencing pkg_resources from:
--------------------------------------------------------
-C:\Python27\lib\site-packages\google\__init__.py
--------------------------------------------------------
-
-=== Sleuthkit and Pytsk (Python-bindings) ===
-
-Follow the pytsk "Using Microsoft Visual Studio" instructions to get sleuthkit and pytsk  installed:
-https://code.google.com/p/pytsk/wiki/BuildingForWindows
-
-=== M2Crypto ===
-In the prebuilt clients M2Crypto is patched to fix memory leaks. Unfortunately M2Crypto currently seems unmaintained (or at least the maintainer is ignoring everyone). If you do not care about this memory leak download and install the Windows binary for the correct Python version from http://chandlerproject.org/Projects/MeTooCrypto. e.g. M2Crypto-0.21.1.win32-py2.7.exe
-
-Otherwise you'll need to build it from source. If you're not that adventurous
-grab a prebuilt version from
-link:https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing[drive]
-and continue with the post installation steps:
-
- * M2Crypto-0.21.1-openssl-1.0.1e-py2.7-win32.zip: 32-bit Python 2.7 version of M2Crypto 0.21.1 with openssl 1.0.1e
- * M2Crypto-0.21.1-openssl-1.0.1c-py2.7-win-amd64.zip: (AMD) 64-bit Python 2.7 version of M2Crypto 0.21.1 with openssl 1.0.1c
-
-After installing M2Crypto make sure to do post installation steps.
-
-==== Building from source ====
-===== ActiveState Perl =====
-Download and install ActiveState Perl from: http://www.activestate.com/activeperl
-
-E.g. ActivePerl-5.16.1.1601-MSWin32-x86-296175.msi
-
-===== NASM =====
-Download and install NASM from: http://www.nasm.us/
-
-E.g. nasm-2.10.06-installer.exe
-
-===== Swig =====
-Download and install siwg from: http://www.swig.org/
-
-E.g. swigwin-2.0.9.zip
-
-Extract in C:\grr-build
-
-===== OpenSSL =====
-Grab a copy of the latest version of OpenSSL from: http://www.openssl.org/source/  and extract it in the build directory.
-
-E.g. openssl-1.0.1e.tar.gz
-
-For more info see: openssl-1.0.1e\INSTALL.W32 or openssl-1.0.1e\INSTALL.W64
-
-To create a 32-bit build run the following commands from the Visual Studio command prompt:
--------------------------------------------------------
-set PATH=%PATH%;C:\Program Files\nasm
-cd C:\grr-build\openssl-1.0.1e
-perl Configure VC-WIN32 --prefix=C:\grr-build\openssl
-ms\do_nsam.bat
-nmake -f ms\ntdll.mak
-nmake -f ms\ntdll.mak install
--------------------------------------------------------
-
-To create a 64-bit build run the following commands from the Visual Studio command prompt:
--------------------------------------------------------
-set PATH=%PATH%;C:\Program Files\nasm
-cd C:\grr-build\openssl-1.0.1e
-perl Configure VC-WIN64A --prefix=C:\grr-build\openssl
-ms\do_win64a.bat
-nmake -f ms\ntdll.mak
-nmake -f ms\ntdll.mak install
--------------------------------------------------------
-
-Note that a \ at the end of the prefix path "--prefix=C:\grr-build\openssl" can cause "nmake -f ms\ntdll.mak install" to fail.
-
-This will install openssl in C:\grr-build\openssl
-
-Copy C:\grr-build\openssl\bin\libeay32.dll and C:\grr-build\openssl\bin\ssleay32.dll to C:\Python27\lib\site-packages\.
-
-===== M2Crypto =====
-Download the M2Crypto source from: http://chandlerproject.org/Projects/MeTooCrypto
-
-E.g. M2Crypto-0.21.1.tar.gz
-
-Download the m2crypto-fixes.patch from:
-https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
-
-To apply the patch run the following commands:
--------------------------------------------------------
-cd C:\grr-build\M2Crypto-0.21.1
-patch -u -p0 < m2crypto-fixes.patch
--------------------------------------------------------
-
-In setup.py:
- * replace self.openssl = 'C:\\pkg' with self.openssl = 'C:\\grr-build\openssl'
- * replace name = 'M2Crypto.__m2crypto' with name = '__m2crypto'
-
--------------------------------------------------------
-set PATH=%PATH%;C:\grr-build\swigwin-2.0.9
-C:\Python27\python.exe setup.py build
-C:\Python27\python.exe setup.py install
--------------------------------------------------------
-
-===== Post installation =====
-To get M2Crypto to work for PyInstaller:
- * Rename C:\Python27\lib\site-packages\M2Crypto-0.21.1-py2.7-win32.egg to C:\Python27\lib\site-packages\M2Crypto-0.21.1-py2.7-win32.egg.zip
- * extract M2Crypto-0.21.1-py2.7-win32.egg.zip into C:\Python27\lib\site-packages\ without a M2Crypto-0.21.1-py2.7-win32.egg sub directory
- * remove M2Crypto-0.21.1-py2.7-win32.egg.zip
-
-===== Testing =====
-You may have issues with getting M2Crypto to run. Test by running:
--------------------------------------------------------
-C:\python27\python.exe -c "import M2Crypto"
--------------------------------------------------------
-
-I get the error:
--------------------------------------------------------
-ImportError: DLL load failed: The specified module could not be found.
--------------------------------------------------------
-
-The import cannot find: libeay32.dll and/or ssleay32.dll make sure they are in C:\Python27\lib\site-packages\
-
-=== Volatility ===
-
-*Deprecated* needs to be replaced with rekall instructions.
-
-Volatility has several dependencies, although it can run without these, for GRR it is useful to install the following:
- * pytz
- * Distorm
- * yara
-
-==== pytz ====
-To install pytz:
--------------------------------------------------------
-C:\Python27\scripts\easy_install.exe pytz
--------------------------------------------------------
-
-==== Distorm ====
-===== Using the Distorm installer =====
-Download the latest version from: http://code.google.com/p/distorm/downloads/list
-
-E.g. distorm3-3.win32.exe, which is the 3.3 version for 32-bit Python.
-
-==== Yara ====
-===== Using the Yara installer =====
-Download the latest version from: http://code.google.com/p/yara-project/downloads/list
-
-E.g. yara-python-1.7.win32-py2.7.exe, which is the 1.7 version for 32-bit Python 2.7
-
-==== Rekall ====
-You'll need have a SVN client installed on your Windows build system, for this you can use:
- * WinSVN (http://www.winsvn.org/)
- * CollabNet Subversion Command-Line Client (http://www.collab.net/downloads/subversion)
-
-Volatility support is added when volatility is available on the build system, otherwise no-support is build into the client.
-
-Grab a copy of the latest version of the scudette branch:
-
---------------------------------------------------------------------------------
-svn checkout http://volatility.googlecode.com/svn/branches/scudette/ volatility
---------------------------------------------------------------------------------
-
-To build and install volatility:
--------------------------------------------------------
-cd volatility
-C:\Python27\python.exe setup.py build
-C:\Python27\python.exe setup.py install
--------------------------------------------------------
-
-=== PyInstaller ===
-To download the latest version of PyInstaller you'll need to install the git tools: http://git-scm.com/downloads
-
-Grab a copy of the latest development version of PyInstaller.
--------------------------------------------------------
-git clone -b develop git://github.com/pyinstaller/pyinstaller.git
--------------------------------------------------------
-
-Note that setup.py build and install is currently disabled, so we need to run PyInstaller from its download directory.
-
-By default PyInstaller is code compatible with Windows XP SP2 (5.1).
-If you need to support a Windows version earlier you'll need to recompile the PyInstaller "loader" with Visual Studio 2008.
-Note that Visual Studio 2010 is not compatible with Windows 2000.
-
--------------------------------------------------------
-cd source\
-C:\Python27\python.exe waf configure build install
--------------------------------------------------------
-
-== GRR ==
-To download the latest version of GRR you'll need to install the git tools: http://git-scm.com/downloads
-
-Download a copy of the latest version of GRR
--------------------------------------------------------
-git clone https://code.google.com/p/grr/
--------------------------------------------------------
-
-If you need to run GRR on a version of Windows that predates XP SP2 make sure to rebuild unzipsfx.exe, see the unzip 6.0 section below. Otherwise continue with the section about the build configuration.
-
-=== Unzip 6.0 ===
-GRR uses unzip 6.0 (http://www.info-zip.org/UnZip.html) to create a self-extracting install binary. The 32-bit version that comes with GRR is code compatible with Windows XP SP2 (5.1). If you need to support a version of Windows before that you'll need to rebuild it from source.
-
-Download a copy of the 6.0 version of unzip: ftp://ftp.info-zip.org/pub/infozip/src/unzip60.tgz.
-
-Extract the source and apply the unzip60.patch from
-https://drive.google.com/folderview?id=0B1wsLqFoT7i2aW5mWXNDX1NtTnc&usp=sharing
-
--------------------------------------------------------
-cd unzip60
-patch -p1 < ../unzip60.patch
--------------------------------------------------------
-
-Open and convert the Visual Studio solution/project files:
--------------------------------------------------------
-unzip60\win32\vc8\unzip.sln
--------------------------------------------------------
-
-Change the solution configuration to "Release".
-
-Edit the unzipsfx project properties.
-"Configuration Properties -> C/C++ -> Preprocessor -> Preprocessor Definitions"
-
-Add: CHEAP_SFX_AUTORUN, SFX_TEMP_DIR and WINVER=0x0500
-
-"Configuration Properties -> Linker -> "Manifest File" -> "UAC Execution Level"
-
-Set to: requireAdministrator
-
-Build unzipsfx projects.
-
-Copy the newly build unzipsfx.exe to the right location:
-
-------------------------------------------------------------------
-copy unzip60\win32\vc8\unzipsfx___Win32_Release\unzipsfx.exe to
-grr\executables\windows\templates\unzipsfx\unzipsfx-i386.exe
-------------------------------------------------------------------
-
-=== Build configuration ===
-To build the client the following script is used:
--------------------------------------------------------
-grr\client\client_build.py
--------------------------------------------------------
-
-This script uses a build configuration file and will replace the template place holders by the configure values.
-
-=== Building the client ===
-
-TODO:
-
- * pending source push
- * missing grr.ico
-
-For a Windows 2000 build:
-
- - replace the Visual Studio 2010 project files with 2008 versions.
-  * Remove C:\grr-build\grr\client\nanny\GRRNanny.sln and C:\grr-build\grr\client\nanny\GRRNanny.vcxproj.
-  * Copy C:\grr-build\grr\config\windows\vs2008\GRRNanny.sln and C:\grr-build\grr\config\windows\vs2008\GRRNanny.vcproj to C:\grr-build\grr\client\nanny\
-
-Ensure the config file points to the correct directories for the various dependencies (e.g. pyinstaller, MSVC etc).
-
-To build the client run:
--------------------------------------------------------
-C:\Python27\python.exe grr\client\client_build.py \
-  --config=grr\config\grr-server.yaml \
-  build
--------------------------------------------------------
-
-To prepare the binary for deployment:
--------------------------------------------------------
-C:\Python27\python.exe grr\client\client_build.py \
-  --config=grr\config\grr-server.yaml \
-  deploy
--------------------------------------------------------
-
-=== Post build ===
-For a Windows 2000 build check that every executable is compatible with WINAPI 5.0, e.g. using Cygwin and objdump.
-
--------------------------------------------------------
-cd build\GRR_w.x.y.z_i386\
-for FILE in *.exe *.dll *.pyd; do echo ${FILE}; objdump -x ${FILE} | grep OSystemVersion; done
--------------------------------------------------------
-
-For every .exe, .dll and .pyd the OS version information should be:
--------------------------------------------------------
-MajorOSystemVersion      5
-MinorOSystemVersion      0
--------------------------------------------------------
-
-Make sure to also check the self-extractor installer.
-
-== Signing the binary ==
-It is normal best practice to sign any binaries you are going to deploy. This isn't required but we document it here as it is commonly done.
- * Install the Windows SDK
- * Get a code signing certificate, and put it on a secure offline machine along with the exe you want to sign.
- * Create an admin command prompt from the SDK so signtool is in the path, then run:
-
------------------------------------------------------------------------------------------
-signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll /a c:\temp\grrsvc.exe
------------------------------------------------------------------------------------------
-
- * It should now be signed, check with right click -> properties
-
-== Common Issues / FAQ ==
- * Things build, but my binary is too small, like 3MB.
-   * This normally means your imports are failing. Make sure you are building from the correct directory. Test by seeing if you can run client.py directly from the directory you are building from, if you can't, pyinstaller probably can't see everything either.
- * My version information isn't being embedded in the exe.
-   * This can happen silently
