@@ -477,13 +477,25 @@ OS X and windows require some extra work, see here for instructions:
 - link:osxclient.adoc[Building the OS X client]
 - link:windowsclient.adoc[Building the Windows client]
 
-Once you have your vagrant VMs setup, build installers for all OSes just by
-running make. Note that if you're building for OS X, you'll probably run this
-once on linux and once on apple hardware.
+Once you have your vagrant VMs setup, you can build installers for all OSes just
+by running make. Note that this assumes you have your linux host
+link:windowsclient.adoc[setup to do windows signing]. If you're building for OS
+X, you'll probably run this once on linux and once on apple hardware.
 
 ---
 cd vagrant
 make
+---
+
+If you only want to make client templates (not installers) you can run:
+---
+make templates
+---
+
+To get clean VMs and re-run the provisioning for all linux and OS X VMs you can
+use:
+---
+make vmclean
 ---
 
 Client Configuration.

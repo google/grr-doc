@@ -78,3 +78,36 @@ vagrant package --base "<Windows vm name>" --output windows_7_64.box
 vagrant box add windows_7_64.box --name windows_7_64
 vagrant destroy windows_7_64_base
 ---
+
+= Setting Up For Windows EXE Signing =
+
+To make automation easier we now sign the windows installer executable on linux
+using osslsigncode.  To set up for signing, install osslsigncode:
+
+---
+sudo apt-get install libcurl4-openssl-dev
+wget http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
+tar zxvf osslsigncode-1.7.1.tar.gz
+cd osslsigncode-1.7.1/
+./configure
+make
+sudo make install
+---
+
+Get your signing key into the .pvk and .spc format, example commands below (will
+vary based on who you buy the signing cert from):
+---
+openssl pkcs12 -in authenticode.pfx -nocerts -nodes -out key.pem
+openssl rsa -in key.pem -outform PVK -pvk-strong -out authenticode.pvk
+openssl pkcs12 -in authenticode.pfx -nokeys -nodes -out cert.pem
+cat Thawte_Primary_Root_CA_Cross.cer >> cert.pem
+openssl crl2pkcs7 -nocrl -certfile cert.pem -outform DER -out authenticode.spc
+shred -u key.pem
+---
+
+Link to wherever your key lives. This allows you to keep it on removable media
+and have different people use different keys with the same grr config.
+---
+sudo ln -s /path/to/authenticode.pvk /etc/alternatives/grr_windows_signing_key
+sudo ln -s /path/to/authenticode.spc /etc/alternatives/grr_windows_signing_cert
+---
