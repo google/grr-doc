@@ -15,49 +15,46 @@ for some background on these technologies. Then checkout boxcutter:
 git clone https://github.com/boxcutter/windows.git boxcutter-windows
 ---
 
-and make a base windows VM. If you have access to corporate ISOs, follow the
-boxcutter instructions (by creating Makefile.local) to point to these and save
-yourself Windows activation hassles later on.
+and make a base windows VM (30 min). For these instructions we assume that you
+have access to the Windows 7 enterprise ISO (e.g. via MSDN subscription). If you
+don't, you can use 'virtualbox/eval-win7x64-enterprise' but you'll have to wait
+on SP1 to be installed, which will cost you a fair amount of time, and you'll
+need to go through windows activation.
 
 ---
 cd boxcutter-windows
+mkdir iso; mv ../Downloads/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso iso/
 make virtualbox/eval-win7x64-enterprise
 ---
 
-Then tell vagrant it's there:
+Then tell vagrant it's there (1 min):
 ---
 cd ~/grr/vagrant
-vagrant box add ~/boxcutter-windows/box/virtualbox/eval-win7x64-enterprise-nocm-1.0.4.box --name windows_7_64_vanilla
+vagrant box add ~/boxcutter-windows/box/virtualbox/win7x64-enterprise-nocm-1.0.4.box --name windows_7_64_vanilla
 ---
 
-Bring it up with:
-
+Bring it up with (5 min, including chkdisk):
 ---
 vagrant up windows_7_64_vanilla
 ---
 
-and get it started on all the windows updates. You need to at least get it past
-SP1 to be able to install Visual Studio.  It will probably take about 25 min and
-require a reboot or three (which is why we can't script this effectively).
-
-Once windows update is happy, run this to get all the big, slow stuff installed
-(40min):
+You'll probably need to immediately reboot for updates.  You can decide whether
+you want to run windows update and get things up to date (it's going to download
+1GB+ of updates and take a few hours!). Either way, install all the big grr
+dependencies with this (30min):
 
 ---
 C:\grr\vagrant\windows\install_visual_studio.bat
 ---
 
 Once that finishes you have a base VM that won't need updating, and can be used
-to build from if dependencies change. You'll want to do your windows activation
-now if you haven't already, and running a disk cleanup will save you some
-copying time later, the service pack install alone creates 500MB of backup
-files. Shut it down then save it as it's own vagrant vm (45 min, it's now a 12G
-VM):
+to build from if dependencies change.  Run disk cleanup then shut it down and
+save it as it's own vagrant vm (45 min, it's now a 13G VM):
 
 ---
 VBoxManage list vms
-vagrant package --base "<Windows vm name>" --output windows_7_64_base
-vagrant box add windows_7_64_base --name windows_7_64_base
+vagrant package --base "<Windows vm name>" --output windows_7_64_base.box
+vagrant box add windows_7_64_base.box --name windows_7_64_base
 vagrant destroy windows_7_64_vanilla
 ---
 
@@ -68,17 +65,16 @@ these final steps again to get an updated environment:
 vagrant up windows_7_64_base
 ---
 
-Finish installing dependencies with (30 min):
+Finish installing dependencies with (15 min):
 
 ---
 C:\grr\vagrant\install_windows.bat
 ---
 
-And save your final build VM with:
+And save your final build VM with (45 min):
 ---
 VBoxManage list vms
-vagrant package --base "<Windows vm name>" --output windows_7_64
-vagrant box add windows_7_64 --name windows_7_64
+vagrant package --base "<Windows vm name>" --output windows_7_64.box
+vagrant box add windows_7_64.box --name windows_7_64
 vagrant destroy windows_7_64_base
 ---
-
