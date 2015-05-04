@@ -1059,10 +1059,10 @@ Exporting a Collection
 An RDFValueCollection is a collection of objects, often URNs or StatEntry
 objects which reference files that have been downloaded. These are often created
 as the output of hunts and it is common to want to download all these files to
-disk so you can work with them easily. 
+disk so you can work with them easily.
 
 You need to pass in a URN, and we will download files from the collection to the
-directory you specify under the full aff4 path.
+directory you specify with --output.
 
 In addition, for collections, you can requests a dump a yaml file of the client data to
 the root of the client directory, e.g. C.123456890abcdef/client_info.yaml.
@@ -1073,13 +1073,13 @@ the filesystem.
 db@grrhost: ~$ grr_export collection_files --path=aff4:/hunts/W:123456/Results --output=/tmp --dump_client_info
 --------------------------------------------------------------------------
 
-There are additional plugins for export that handle different output types see:
+There are also additional plugins for export that handle different output types. E.g. 
+using "collection" you dump data to a flattened csv format, see:
 
 --------------------------------------------------------------------------
 grr_export --help
 grr_export collection --help    # Help on the specific command
 --------------------------------------------------------------------------
-
 
 
 The Console
