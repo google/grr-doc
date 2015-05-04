@@ -9,6 +9,7 @@ D. Bilby, G. Caronni. Digital Investigation, 2011.
 
 Presentations
 -------------
+link:https://drive.google.com/open?id=0B1wsLqFoT7i2RTVaR1o1eHJYcjA&authuser=0[Tactical use of GRR Fuse, Plaso and Timesketch] by D. Bilby link:https://www.youtube.com/watch?v=JciAp0uB7AY[Demo Video (youtube)]
 
 Open Source Network Security Monitoring Group @ UIUC Feb 2015: "Intro to GRR" link:https://www.youtube.com/watch?v=ZAXtCMspgY0[video] by G. Castle
 
