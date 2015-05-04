@@ -1465,13 +1465,12 @@ These include:
 * M2Crypto http://chandlerproject.org/Projects/MeTooCrypto/  (provides python
  encryption libraries for comms and signing)
 * Mongo http://www.mongodb.org/  (datastore runs on mongo)
-* Protobuf http://code.google.com/p/protobuf/  (messages and interfaces are
+* Protobuf https://github.com/google/protobuf  (messages and interfaces are
 defined as protobufs)
-* psutil http://code.google.com/p/psutil/  (used for native process and network
+* psutil https://github.com/giampaolo/psutil  (used for native process and network
  data)
-* PyTSK http://code.google.com/p/pytsk/  (client uses pytsk to talk to tsk)
+* PyTSK https://github.com/py4n6/pytsk  (client uses pytsk to talk to tsk)
+* Rekall http://www.rekall-forensic.com/  (client uses rekall for memory analysis)
 * Sleuthkit http://www.sleuthkit.org/  (client uses tsk for raw access)
 * VerifySigs http://code.google.com/p/verify-sigs/ (used for authenticode
 signature handling and verification)
-* Volatility http://code.google.com/p/volatility/ (used for memory forensics
-capabilities)
