@@ -1034,7 +1034,7 @@ Exporting a Single File
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 --------------------------------------------------------------------------
-db@grrhost: ~$ grr_file_exporter --file=aff4:/C.123456890ABCDEF/fs/os/boot.ini --output=/tmp
+db@grrhost: ~$ grr_export file --path=aff4:/C.123456890ABCDEF/fs/os/boot.ini --output=/tmp
 Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
 Downloading: aff4:/C.123456890abcdef/fs/os/boot.ini to: /tmp/C.123456890abcdef/fs/os/boot.ini
 
@@ -1044,8 +1044,9 @@ db@grrhost: ~$
 Exporting a Directory
 ~~~~~~~~~~~~~~~~~~~~~
 Directories can be exported recursively
+
 --------------------------------------------------------------------------
-db@grrhost: ~$ grr_file_exporter --directory=aff4:/C.123456890ABCDEF/fs/os/ --output=/tmp --overwrite --depth=4
+db@grrhost: ~$ grr_export file --path=aff4:/C.123456890ABCDEF/fs/os/ --output=/tmp --overwrite --depth=4
 Downloading: aff4:/C.123456890abcdef/fs/os/boot.ini to: /tmp/C.123456890abcdef/fs/os/boot.ini
 Downloading: aff4:/C.123456890abcdef/fs/os/tmp1 to: /tmp/C.123456890abcdef/fs/os/tmp1
 
@@ -1060,18 +1061,24 @@ objects which reference files that have been downloaded. These are often created
 as the output of hunts and it is common to want to download all these files to
 disk so you can work with them easily.
 
-You need to pass in a URN, and by default we will download files from the
-collection to the directory you specify under the full aff4 path.
+You need to pass in a URN, and we will download files from the collection to the
+directory you specify with --output.
 
-For collections we support downloading multithreaded, which speeds things up
-significantly.
-In addition, for collections, by default dump a yaml file of the client data to
+In addition, for collections, you can requests a dump a yaml file of the client data to
 the root of the client directory, e.g. C.123456890abcdef/client_info.yaml.
 This is useful for identifying which machine the files came from when working on
 the filesystem.
 
 --------------------------------------------------------------------------
-db@grrhost: ~$ grr_file_exporter --collection=aff4:/hunts/W:123456/Results --output=/tmp
+db@grrhost: ~$ grr_export collection_files --path=aff4:/hunts/W:123456/Results --output=/tmp --dump_client_info
+--------------------------------------------------------------------------
+
+There are also additional plugins for export that handle different output types. E.g. 
+using "collection" you dump data to a flattened csv format, see:
+
+--------------------------------------------------------------------------
+grr_export --help
+grr_export collection --help    # Help on the specific command
 --------------------------------------------------------------------------
 
 
