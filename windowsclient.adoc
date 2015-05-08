@@ -11,9 +11,9 @@ link:https://packer.io/[Packer], and VirtualBox.  See
 link:http://ilostmynotes.blogspot.com/2015/04/vagrant-packer-and-boxcutter-ftw-create.html[here]
 for some background on these technologies. Then checkout boxcutter:
 
----
+----
 git clone https://github.com/boxcutter/windows.git boxcutter-windows
----
+----
 
 and make a base windows VM (30 min). For these instructions we assume that you
 have access to the Windows 7 enterprise ISO (e.g. via MSDN subscription). If you
@@ -21,70 +21,70 @@ don't, you can use 'virtualbox/eval-win7x64-enterprise' but you'll have to wait
 on SP1 to be installed, which will cost you a fair amount of time, and you'll
 need to go through windows activation.
 
----
+----
 cd boxcutter-windows
 mkdir iso; mv ../Downloads/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso iso/
 make virtualbox/eval-win7x64-enterprise
----
+----
 
 Then tell vagrant it's there (1 min):
----
+----
 cd ~/grr/vagrant
 vagrant box add ~/boxcutter-windows/box/virtualbox/win7x64-enterprise-nocm-1.0.4.box --name windows_7_64_vanilla
----
+----
 
 Bring it up with (5 min, including chkdisk):
----
+----
 vagrant up windows_7_64_vanilla
----
+----
 
 You'll probably need to immediately reboot for updates.  You can decide whether
 you want to run windows update and get things up to date (it's going to download
 1GB+ of updates and take a few hours!). Either way, install all the big grr
 dependencies with this (30min):
 
----
+----
 C:\grr\vagrant\windows\install_visual_studio.bat
----
+----
 
 Once that finishes you have a base VM that won't need updating, and can be used
 to build from if dependencies change.  Run disk cleanup then shut it down and
 save it as it's own vagrant vm (45 min, it's now a 13G VM):
 
----
+----
 VBoxManage list vms
 vagrant package --base "<Windows vm name>" --output windows_7_64_base.box
 vagrant box add windows_7_64_base.box --name windows_7_64_base
 vagrant destroy windows_7_64_vanilla
----
+----
 
 Bring up the new one. Note that when dependencies change you'll only need to do
 these final steps again to get an updated environment:
 
----
+----
 vagrant up windows_7_64_base
----
+----
 
 Finish installing dependencies with (15 min):
 
----
+----
 C:\grr\vagrant\install_windows.bat
----
+----
 
 And save your final build VM with (45 min):
----
+----
 VBoxManage list vms
 vagrant package --base "<Windows vm name>" --output windows_7_64.box
 vagrant box add windows_7_64.box --name windows_7_64
 vagrant destroy windows_7_64_base
----
+----
 
 = Setting Up For Windows EXE Signing =
 
 To make automation easier we now sign the windows installer executable on linux
 using osslsigncode.  To set up for signing, install osslsigncode:
 
----
+----
 sudo apt-get install libcurl4-openssl-dev
 wget http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
 tar zxvf osslsigncode-1.7.1.tar.gz
@@ -92,22 +92,22 @@ cd osslsigncode-1.7.1/
 ./configure
 make
 sudo make install
----
+----
 
 Get your signing key into the .pvk and .spc format, example commands below (will
 vary based on who you buy the signing cert from):
----
+----
 openssl pkcs12 -in authenticode.pfx -nocerts -nodes -out key.pem
 openssl rsa -in key.pem -outform PVK -pvk-strong -out authenticode.pvk
 openssl pkcs12 -in authenticode.pfx -nokeys -nodes -out cert.pem
 cat Thawte_Primary_Root_CA_Cross.cer >> cert.pem
 openssl crl2pkcs7 -nocrl -certfile cert.pem -outform DER -out authenticode.spc
 shred -u key.pem
----
+----
 
 Link to wherever your key lives. This allows you to keep it on removable media
 and have different people use different keys with the same grr config.
----
+----
 sudo ln -s /path/to/authenticode.pvk /etc/alternatives/grr_windows_signing_key
 sudo ln -s /path/to/authenticode.spc /etc/alternatives/grr_windows_signing_cert
----
+----
