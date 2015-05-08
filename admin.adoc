@@ -458,14 +458,45 @@ After running the repack you should have binaries available in the UI under mana
 
 Building the Client.
 ~~~~~~~~~~~~~~~~~~~~
-There's quite a number of dependencies to be satisfied to build the client but there's no need to do this for testing or small deployments, use link:#repacking-the-client-with-a-new-configuration[repacking] instead.
+There's quite a number of dependencies to be satisfied to build the client but
+there's no need to do this for testing or small deployments, use
+link:#repacking-the-client-with-a-new-configuration[repacking] instead.
 
-To create a Windows client build environment you'll need to follow the manual instructions: link:windowsclient.adoc[Building the Windows client].
+We have link:https://www.vagrantup.com/[vagrant] configs and provisioning
+scripts that install all the dependencies for you in a build VM for each OS.
+You'll need a copy of the GRR source:
 
-For linux and OS X we have link:https://www.vagrantup.com/[vagrant] configs and provisioning scripts that install all the dependencies for you in a build VM.  We're working on doing the same for windows.  See here for details:
+--------------------------------------------------------------------------------
+> git clone https://github.com/google/grr.git
+--------------------------------------------------------------------------------
 
-- link:linuxclient.adoc[Building the Linux client]
+and link:https://www.vagrantup.com/[Vagrant] and VirtualBox installed.
+
+OS X and windows require some extra work, see here for instructions:
+
 - link:osxclient.adoc[Building the OS X client]
+- link:windowsclient.adoc[Building the Windows client]
+
+Once you have your vagrant VMs setup, you can build installers for all OSes just
+by running make. Note that this assumes you have your linux host
+link:windowsclient.adoc[setup to do windows signing]. If you're building for OS
+X, you'll probably run this once on linux and once on apple hardware.
+
+---
+cd vagrant
+make
+---
+
+If you only want to make client templates (not installers) you can run:
+---
+make templates
+---
+
+To get clean VMs and re-run the provisioning for all linux and OS X VMs you can
+use:
+---
+make vmclean
+---
 
 Client Configuration.
 ~~~~~~~~~~~~~~~~~~~~~
