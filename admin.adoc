@@ -154,14 +154,25 @@ systems running the agent footnote:[Read only access many not give direct code
 exec, but may well provide it indirectly via read access to important keys and
 passwords on disk or in memory.].
 However, there are a number of use cases where it makes sense to have GRR
-execute arbitrary code as explained in the section Deploying custom drivers
-and code.
+execute arbitrary code as explained in the section 
+link:#deploying-custom-drivers-and-code[Deploying Custom Drivers and Code].
 
-However, as part of the GRR design, we decided that administrative control of
+As part of the GRR design, we decided that administrative control of
 the GRR server shouldn't trivially lead to code execution on the clients. As
-such, we have a separate set of keys for driver signing and code signing.
-For a driver to be loaded, or binary to be run the code has to be signed by
-the specific key, the client will confirm this signature before execution.
+such we embed a strict 
+link:https://github.com/google/grr/search?q=IsExecutionWhitelisted[whitelist of commands] 
+that can be executed on the client and we have a separate set of keys for
+driver signing and code signing. For a driver to be loaded, or binary to be
+run the code has to be signed by the specific key, the client will confirm
+this signature before execution.
+
+This mechanism helps give the separation of control required in some deployments. 
+For example, the Incident Response team need to analyze hosts to get their job
+done, but deployment of new code to the platfrom is only done when blessed by
+the administrators and rolled out as part of standard change control. 
+The signing mechanism allows Incident Response to react fast with new code if
+necessary, but only with the blessing of the Signing Key held by the platform
+administrator. 
 
 In the default install, the driver and code signing private keys are not
 passphrase protected. In a secure environment we strongly recommended
@@ -170,7 +181,8 @@ signing every time this functionality is required, or at a minimum setting
 passphrases which are required on every use. We recommend encrypting the
 keys in the config with PEM encryption, config_updater will then ask for
 the passphrase when they are used. An alternative is to keep a separate
-offline config that contains the private keys.
+offline config that contains the private keys. 
+
 
 Agent Protection.
 ~~~~~~~~~~~~~~~~~
@@ -594,7 +606,6 @@ For first-time deployment, GRR Clients need to be installed using existing packa
 
 Deploying Custom Drivers and Code.
 ----------------------------------
-
 Drivers, binaries or python code can be pushed from the server to the clients
 to enable new functionality. This has a number of use cases, such as:
 
