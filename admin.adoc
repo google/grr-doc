@@ -492,7 +492,9 @@ OS X and windows require some extra work, see here for instructions:
 Once you have your vagrant VMs setup, you can build installers for all OSes just
 by running make. Note that this assumes you have your linux host
 link:windowsclient.adoc#setting-up-for-windows-exe-signing[setup to do windows signing]. If you're building for OS
-X, you'll probably run this once on linux and once on apple hardware.
+X as well, you'll run this once on linux and once on apple hardware.
+
+Note that if you've customized grr-server.yaml or buildconfig.yaml outside this repo you'll need to copy your customized files into the config/ directory.
 
 ----
 cd vagrant
