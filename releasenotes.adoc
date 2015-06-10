@@ -13,7 +13,7 @@ watch for when upgrading from one version to another.
 
 This version bump was to keep in step with the client, which got a new version because of a memory collection bug.
 
- - *WARN* The artifact format link:https://github.com/ForensicArtifacts/artifacts/pull/11[changed in a way] that is not backwards compatible.  You'll need to delete any artifacts you have in the artifact manager (which are stored under aff4:/artifact_store), either through the GUI or on the console before you upgrade.  If you forget you can roll back to link:https://github.com/google/grr/commit/0ac377613af92f23948b829d7cf86b9b947b1e44[this commit] before the artifact change.
+ - *WARN* The artifact format link:https://github.com/ForensicArtifacts/artifacts/pull/11[changed in a way] that is not backwards compatible.  You'll need to delete any artifacts you have in the artifact manager, either through the GUI or on the console with `aff4.FACTORY.Delete("aff4:/artifact_store")` before you upgrade.  If you forget you should be able to use the console or you can roll back to link:https://github.com/google/grr/commit/0ac377613af92f23948b829d7cf86b9b947b1e44[this commit] before the artifact change.
  - *WARN* Keyword search is now based on an index that is built at weekly interrogate time, which means decomissioned clients won't appear in search results.  To populate all of your historical clients into the search index, use the code snippet on link:https://github.com/google/grr/commit/faa1622942e765447b6a908d8baf321e7bd288b9#commitcomment-10597659[this commit].
 
 === 0.3.0 to 0.3.0-5
