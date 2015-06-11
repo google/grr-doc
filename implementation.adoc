@@ -1166,7 +1166,7 @@ Code needs to conform to the
 link:http://google-styleguide.googlecode.com/svn/trunk/pyguide.html[Google
 Python Style Guide]. Note that despite what the guide says, we use two-space
 indentation, and MixedCase instead of lower_underscore for function names since
-this is the internal standard.
+this is the internal standard. Two-space indentation also applies to CSS.
 
 We use the github
 link:https://help.github.com/articles/using-pull-requests[fork and pull review
