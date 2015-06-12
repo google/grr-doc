@@ -482,7 +482,7 @@ You'll need a copy of the GRR source:
 > git clone https://github.com/google/grr.git
 --------------------------------------------------------------------------------
 
-and link:https://www.vagrantup.com/[Vagrant] and VirtualBox installed.
+and the latest versions of link:https://www.vagrantup.com/[Vagrant] and VirtualBox installed.
 
 OS X and windows require some extra work, see here for instructions:
 
