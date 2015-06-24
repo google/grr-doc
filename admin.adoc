@@ -681,18 +681,19 @@ Deploying Drivers
 ~~~~~~~~~~~~~~~~~
 
 Drivers are currently used in memory analysis. By default we use drivers
-developed and released by the GRR team named "pmem". We currently have Apache
-Licensed, tested drivers for OSX, Linux and Windows.
+developed and released by the Rekall team named "pmem". We currently have Apache
+Licensed, tested drivers for OSX, Linux and Windows. GRR Does not currently 
+support loading drivers which are not designed to work with Rekall.
 
-The drivers are distributed with GRR but are also available from the Volatility
-project in binary form at http://code.google.com/p/volatility/downloads/list,
-the source is stored in the scudette branch at
-http://code.google.com/p/volatility/source/browse/#svn%2Fbranches%2Fscudette%2Ftools.
+The drivers are distributed with GRR but are also available from the Rekall
+project site in binary form at http://www.rekall-forensic.com/. (To extract 
+just the drivers you can just unzip them from the winpmem binary itself).
 
 Deploying a driver works much the same as deploying python code. We sign the
 file, encode it in a protobuf and upload it to a specific place in the GRR
-datastore. There is a shortcut to upload the existing memory drivers using
-config updater.
+datastore. There is a shortcut to upload the memory drivers shipped with GRR
+using config updater. This will place the drivers shipped with GRR from their 
+default locations into the expected location.
 
 [source,shell]
 ------------------------------------------------------------------------
@@ -706,14 +707,21 @@ db@host:$
 
 If this worked you should now see them under Manage Binaries in the Admin UI.
 
-If you need to add a new driver or add a custom install you can use the upload memory driver functionality:
+If you need to add a new driver or add a custom install you can use the 
+upload memory driver functionality:
 
 [source,shell]
 ------------------------------------------------------------------------
-db@host:~$ sudo grr_config_updater upload_memory_driver --file=/usr/share/grr/binaries/winpmem_32.sys --platform=windows
-Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
-Uploaded to aff4:/config/drivers/windows/memory/winpmem_32.sys
+db@host:~$ sudo grr_config_updater upload_memory_driver --file=/path/to/my_special_pmem.kext.tgz --platform=windows  --arch amd64 --dest aff4:/config/drivers/osx/memory/pmem
 ------------------------------------------------------------------------
+
+If you need to customize some property of the driver you can easily inject configuration parameters into the above command line (this _must_ be done before the `upload_memory_driver` command). For example, if you recompiled the driver to present a different device name on the client:
+
+[source,shell]
+------------------------------------------------------------------------
+db@host:~$ sudo grr_config_updater -pMemoryDriver.device_path=/dev/my_pmem_device upload_memory_driver --file=/path/to/my_special_pmem.kext.tgz --platform=windows  --arch amd64 --dest aff4:/config/drivers/osx/memory/pmem
+------------------------------------------------------------------------
+
 
 NOTE: The signing we discuss here is independent of Authenticode driver signing,
 which is also required by modern 64 bit Windows distributions.
