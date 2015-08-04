@@ -7,7 +7,7 @@ automated as possible.
 == Client Build VM ==
 
 First, install link:https://www.vagrantup.com/[Vagrant],
-link:https://packer.io/[Packer], and VirtualBox.  See
+link:https://github.com/mitchellh/packer/[Packer] (ensure you download and compile version 0.8.3 at min to avoid WinRM issues), and VirtualBox.  See
 link:http://ilostmynotes.blogspot.com/2015/04/vagrant-packer-and-boxcutter-ftw-create.html[here]
 for some background on these technologies. Then checkout boxcutter:
 
