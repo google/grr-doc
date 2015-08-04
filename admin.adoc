@@ -404,8 +404,8 @@ TBD. User contributions welcome.
 Using the wsgi hasn't been thoroughly tested. If you test, please send feedback
 to the dev list and we can try and fix things.
 
-Running the GRR HTTP Server Behind Apache
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running the GRR HTTP Server Behind Apache Reverse Proxy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Generate or otherwise obtain SSL certificates
 
