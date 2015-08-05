@@ -11,10 +11,10 @@ Presentations
 -------------
 link:https://drive.google.com/open?id=0B1wsLqFoT7i2RTVaR1o1eHJYcjA&authuser=0[Tactical use of GRR Artifacts, Fuse, Plaso and Timesketch] by D. Bilby link:https://www.youtube.com/watch?v=JciAp0uB7AY[Demo Video (youtube)]
 
-Open Source Network Security Monitoring Group @ UIUC Feb 2015: "Intro to GRR" link:https://www.youtube.com/watch?v=ZAXtCMspgY0[video] by G. Castle
+"link:https://drive.google.com/file/d/0B1wsLqFoT7i2NnI5dkdScHlrWVU/view?usp=sharing[Intro to GRR]" for the Open Source Network Security Monitoring Group @ UIUC Feb 2015. link:https://www.youtube.com/watch?v=ZAXtCMspgY0[Video] by G. Castle
 
-Blackhat 2014: "GRR: Find all the badness, collect all the things" link:https://drive.google.com/file/d/0B1wsLqFoT7i2Z2pxM0wycS1lcjg/edit?usp=sharing[slides] and link:http://www.youtube.com/watch?v=DudGrSv26NY[video] by G.
-Castle
+"link:https://drive.google.com/file/d/0B1wsLqFoT7i2Z2pxM0wycS1lcjg/edit?usp=sharing[GRR: Find all the badness, collect all the things]" @ Blackhat 2014 link:http://www.youtube.com/watch?v=DudGrSv26NY[Video] by G.
+Castle. Also presented link:https://youtu.be/eLehQ3QmdEA[a 20 min version of the same talk] for link:https://www.concise-courses.com/past/[Hacker Hotshots].
 
 link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Docs/GRR%20Rapid%20Response%20-%20OSFC%202012.pdf[OSDFC 2012 GRR Overview], by D. Bilby
 
@@ -25,6 +25,11 @@ DFRWS EU 2015 Workshop link:https://drive.google.com/file/d/0B1wsLqFoT7i2NjRCN1c
 
 OSDF 2013 link:https://drive.google.com/?usp=chrome_app#folders/0B1wsLqFoT7i2eU1jU0JldW9JUU0[workshop presentation] and link:osdf2013workshop.adoc[materials] by D. Bilby.
 
+Podcasts
+--------
+
+GRR Rapid Response on link:http://podcast.wh1t3rabbit.net/dtr-episode-98-grr-grr-rapid-response-0[Down the Security Rabbithole] Jun 2014 by G. Castle.
+
 Whitepapers
 -----------
 
@@ -33,6 +38,6 @@ link:https://drive.google.com/file/d/0B1wsLqFoT7i2U3M1X0k5aVFkXzQ/edit?usp=shari
 External Presentations
 ----------------------
 
-Presentations about GRR by people outside the core GRR team.
+These are presentations about GRR by people outside the core GRR team.
 
-BSidesSF 2015: "Human Hunting" by Sean Gillespie.  Covers how Yahoo is using GRR.  link:https://github.com/pidydx/slides/blob/master/HumanHunting.pdf[Slides] and link:https://www.youtube.com/watch?v=4qCvx3SnAm4[video].
+"link:https://github.com/pidydx/slides/blob/master/HumanHunting.pdf[Human Hunting]" @BSidesSF 2015 by Sean Gillespie. Covers how Yahoo is using GRR. link:https://www.youtube.com/watch?v=4qCvx3SnAm4[Video].
