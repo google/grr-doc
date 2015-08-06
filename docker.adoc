@@ -1,0 +1,56 @@
+GRR Docker Image
+================
+
+The GRR Docker image is
+link:https://registry.hub.docker.com/u/grrdocker/grr/[automatically built from
+the latest commit in the github] repository. It is currently intended for
+evaluation/testing use, but the plan is to support simple cloud deployment of a
+stable production image in the future.
+
+How to use the image
+--------------------
+
+----
+docker run \
+-e EXTERNAL_HOSTNAME="localhost" \
+-e ADMIN_PASSWORD="demo" \
+--ulimit nofile=1048576:1048576 \
+-p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
+grrdocker/grr grr
+----
+
+Once initialization finishes point your web browser to localhost:8000 and login
+with admin:demo. Follow the final part of the quickstart instructions to
+link:https://github.com/google/grr-doc/blob/master/quickstart.adoc#install-the-clients[download
+and install the clients].
+
+- EXTERNAL_HOSTNAME is the hostname you want GRR agents (clients) to poll back
+  to, “localhost” is only useful for testing.
+- ADMIN_PASSWORD is the password for the “admin” user in the webui.
+- ulimit makes sure the container doesn't run out of filehandles, which is
+  important for the sharded SQLite DB.
+- The container will listen on port 8000 for the admin web UI and port 8080 for
+  client polls
+
+If you would like the database and logs to persist longer than the life of the
+container you could use something like (this also adds -d to run it as a
+daemon):
+
+----
+mkdir ~/grr-docker
+docker run \
+--name sqlitedb -v ~/grr-docker/db:/var/grr-datastore \
+--name logs -v ~/grr-docker/logs:/var/log \
+-e EXTERNAL_HOSTNAME="localhost" \
+-e ADMIN_PASSWORD="demo" \
+--ulimit nofile=1048576:1048576 \
+-p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
+-d grrdocker/grr grr
+----
+
+Note that if you're running boot2docker on OS X there are a few bugs
+link:https://github.com/boot2docker/boot2docker/issues/824[with docker itself]
+that you will probably need to workaround. You'll likely have to set up port
+forwards for 8000 and 8080 as described
+link:https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md[here].
+
