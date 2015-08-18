@@ -407,9 +407,10 @@ to the dev list and we can try and fix things.
 Running the GRR HTTP Server Behind Apache Reverse Proxy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Generate or otherwise obtain SSL certificates
+Running apache as a reverse proxy in front of the GRR admin UI is a good way to provide SSL protection for the UI traffic and also integrate with corporate single sign on (if available), for authentication.
 
-Follow the instruction here to generate a self-signed certificate: https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-14-04
+Buy an SSL certificate, or generate a self-signed one if you're only testing.
+
 Place the public key into “/etc/ssl/certs/“ and ensure it’s world readable
 
 -----------------------------------------
@@ -467,7 +468,7 @@ Restart apache
 service apache2 restart
 -----------------------------------------
 
-* NOTE: This reverse proxy will only proxy the AdminUI. It will have no impact on the agent communications on port 8080. It is advised to restrict access to the AdminUI.
+* NOTE: This reverse proxy will only proxy the AdminUI. It will have no impact on the agent communications on port 8080. It is advised to restrict access to the AdminUI at the network level.
 
 Scheduling Flows with Cron
 --------------------------
