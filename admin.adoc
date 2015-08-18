@@ -404,6 +404,70 @@ TBD. User contributions welcome.
 Using the wsgi hasn't been thoroughly tested. If you test, please send feedback
 to the dev list and we can try and fix things.
 
+Running the GRR HTTP Server Behind Apache Reverse Proxy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Generate or otherwise obtain SSL certificates
+
+Follow the instruction here to generate a self-signed certificate: https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-14-04
+Place the public key into “/etc/ssl/certs/“ and ensure it’s world readable
+
+-----------------------------------------
+chmod 644 /etc/ssl/certs/grr_ssl_certificate_filename.crt
+-----------------------------------------
+
+Place the private key into “/etc/ssl/private” and ensure it is *NOT* world readable
+
+-----------------------------------------
+chmod 400 /etc/ssl/private/grr_ssl_certificate_filename.key
+-----------------------------------------
+
+Install apache2 and required modules
+
+-----------------------------------------
+apt-get install apache2
+a2enmod proxy
+a2enmod ssl
+a2enmod proxy_http
+-----------------------------------------
+
+Disable any default apache files currently enabled (probably 000-default.conf, but check for others that may interfere with GRR)
+
+-----------------------------------------
+a2dissite 000-default
+-----------------------------------------
+
+Redirect port 80 HTTP to 443 HTTPS
+
+Create the file "/etc/apache2/sites-available/redirect.conf" and copy the text below into it. 
+
+-----------------------------------------
+<VirtualHost *:80>
+    Redirect "/" "https://<your grr adminUI url here>"
+</VirtualHost>
+-----------------------------------------
+
+Reverse Proxy GRR AdminUI Traffic
+
+Create the file "/etc/apache2/sites-available/grr_reverse_proxy.conf" and copy the text below into it. 
+
+-----------------------------------------
+<VirtualHost *:443>
+SSLEngine On
+SSLCertificateFile /etc/ssl/certs/grr_ssl_certificate_filename.crt
+SSLCertificateKeyFile /etc/ssl/private/grr_ssl_certificate_filename.key
+ProxyPass / http://127.0.0.1:8000/
+ProxyPassReverse / http://127.0.0.1:8000/
+</VirtualHost>
+-----------------------------------------
+
+Restart apache
+
+-----------------------------------------
+service apache2 restart
+-----------------------------------------
+
+* NOTE: This reverse proxy will only proxy the AdminUI. It will have no impact on the agent communications on port 8080. It is advised to restrict access to the AdminUI.
 
 Scheduling Flows with Cron
 --------------------------
