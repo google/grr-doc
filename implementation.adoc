@@ -393,7 +393,7 @@ common pitfalls.
 
 . Deployment
  * If the flow is to be sent to the main codebase, put it in
- grr/lib/flows/general and add it to grr/lib/flows/general/__init__.py
+ grr/lib/flows/general and add it to grr/lib/flows/general/registry_init.py
  * Otherwise you can add them to grr/lib/local/ and the __init__.py there to
  keep your local code separate from the main codebase.
 
@@ -1261,7 +1261,7 @@ from this flows will be fed back into the End state.
 ==== Adding a new flow source file ====
 To add a new flow source file:
 1. Create the source file in lib/flows/general/, e.g. my_flow.py
-2. Add an import statement to lib/flows/general/__init__.py, e.g
+2. Add an import statement to lib/flows/general/registry_init.py, e.g
 [source,python]
 ------------------------------------------------------------------
 from grr.lib.flows.general import my_flow
