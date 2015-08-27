@@ -43,3 +43,5 @@ External Presentations
 These are presentations about GRR by people outside the core GRR team.
 
 "link:https://github.com/pidydx/slides/blob/master/HumanHunting.pdf[Human Hunting]" @BSidesSF 2015 by Sean Gillespie. Covers how Yahoo is using GRR. link:https://www.youtube.com/watch?v=4qCvx3SnAm4[Video].
+
+"link:http://kernsec.org/files/lss2015/GRR.pdf[GRR Rapid Response: Remote Live Forensics for Incident Response]" @ link:http://kernsec.org/wiki/index.php/Linux_Security_Summit_2015[Linux Security Summit] Aug 2015 by Sean Gillespie.
