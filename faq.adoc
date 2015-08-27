@@ -13,8 +13,7 @@ GRR started at Google as a 20% project and gained in popularity until it became
 fully-supported and open sourced. The primary motivation was that we felt the
 state of the art for incident response was going in the wrong direction, and
 wasn't going to meet our cross platform, scalability, obfuscation or flexibility
-goals for an incident response agent. A number of those things still hold true
-in 2014.
+goals for an incident response agent.
 
 Additionally, we believe that for things to progress in security, everyone has
 to up their game and improve their capabilities. We hope that by open sourcing
@@ -22,8 +21,7 @@ GRR, we can foster development of new ways of doing things and thinking about
 the problem, get it into the hands of real organizations at reasonable cost, and
 generally push the state of the art forward.
 
-As of late 2014, the project has gained momentum and we are beginning to get 
-significant code contributions from outside of the core dev team.
+We are getting significant code contributions from outside of Google, and have close relationships with a number companies running large-scale deployments.
 
 Why is the project called GRR?
 ------------------------------
@@ -36,16 +34,12 @@ which it is sometimes mistaken for.
 Is GRR production ready?
 ------------------------
 
-As of October 2013 there are a few medium-large (40K+ agents) cross-platform
-installations running successfully off the GRR codebase for more than a year.
-These are running off of an internal version of the codebase, maintained by the
-GRR development team (see below). There are also a number of smaller (<2k) open
-source installations.
+As of Aug 2015 GRR is running at large scale both inside and outside of Google. The largest opensource deployment we know of is roughly 30k machines, there's another company at around 15k, and quite a few around 2k.  Google's deployment is bigger than all of those put together, although there are some differences in the codebase (see below).
 
 Should I expect to be able to install and just start running GRR?
 -----------------------------------------------------------------
 
-Yes, for basic use cases (as of late 2013).
+Yes, for basic use cases.
 
 But if you want to do a large-scale enterprise deployment, it is probably best
 to think about GRR as a 80% written software project that you could invest in.
@@ -100,11 +94,8 @@ released publicly. The goal is to ensure that everything useful is released, but
 there are some things that don't make sense. Below are listed some of the key
 differences that may matter to you:
 
- - *Datastore/Storage*: The core development team’s datastore isn't Mongo; we
-   use a proprietary datastore that has different characteristics to Mongo. So
-   we've tested things at real scale, but on a different datastore backend. We
-   have abstracted things such that it "should" work, but be aware open source
-   has had less performance testing.
+ - *Datastore/Storage*: At Google we run GRR on a Bigtable datastore (see below for more detail), but we
+   have abstracted things such that using a different datastore is very simple. The SQLite and MySQLAdvanced datastores available to open source are actively used at real scale outside of Google.
  - *Security and privacy*: The open source version has minimal controls
    immediately available for user authentication, multi-party authorization,
    privacy controls, logging, auditing etc. This is because these things are
@@ -118,13 +109,21 @@ differences that may matter to you:
    analysis such as link:https://cloud.google.com/bigquery/what-is-bigquery[BigQuery] and link:http://www.elasticsearch.org/[Elasticsearch]. See the data analysis answer below for more detail.
  - *Machine handling and monitoring*: Much of the infrastructure for running and
    monitoring a scalable service is often built into the platform itself. As
-   such GRR hasn't invested a lot in built-in service or performance monitoring
-   at the moment. We expose a lot of statistics, but collecting them and
-   displaying them isn't part of things yet.  
-   
+   such GRR hasn't invested a lot in built-in service or performance monitoring. We expose a lot of statistics, but only display a small subset in the UI. We expect companies to have package deployment (SCCM/munki/casper/apt/yum etc.), config management (chef/puppet/salt etc.), and server monitoring (nagios/cacti/munin/zabbix/spiceworks etc.).
+
 Differences will be whittled away over time as the core GRR team runs open source
 GRR deployments themselves. That means you can expect most of these things to 
 become much less of an issue over time.
+
+I heard GRR was designed for Bigtable and now Google has a Cloud Bigtable service. Can I use it?
+------------------------------------------------------------------------------------------------
+
+Internally we use Bigtable, but the internal API is very different so the code cannot be used directly. The link:https://cloud.google.com/bigtable/docs/[Cloud Bigtable service] uses an extension of the HBase API. We’d like to write a GRR database connector that can use this service, but (as at Aug 2015) the Bigtable service is still in Beta and the python libraries to interact with it are still being developed, so it isn’t currently a high priority.
+
+Which cloud should I deploy in? GCE? EC2? Azure?
+------------------------------------------------
+
+Google Compute Engine (GCE) of course :) We’re working on making cloud deployment easier by dockerizing and building a click-to-deploy for GCE. Our focus will be primarily on making this work on GCE, but moving to a docker deployment with orchestration will simplify deployment on all clouds. The largest cloud deployments of GRR are currently on EC2, and we hope the community will be able to share configuration and HOWTOs for this and other cloud deployments.
 
 Where/how do you do your data analysis?
 ---------------------------------------
@@ -142,7 +141,7 @@ source, you can add the feature yourself if it matters.
 Who is working on GRR?
 ----------------------
 
-As of Q4 2013, GRR now has full time software engineers working on it as their
+GRR has around 5 full-time software engineers working on it as their
 day job, plus additional part time code contributors. The project has long term
 commitment.
 
@@ -151,7 +150,7 @@ Why aren't you developing directly on open source?
 
 Given we previously had limited code contribution from outside, it was hard to justify
 the extra effort of jumping out of our internal code review and submission processes.
-That has now changed, we are syncing far more regularly (often multiple times per week), and we are working on moving to do all commits on github (Dec 2014).
+That has now changed, we are syncing far more regularly (often multiple times per week), and we are working on code structure changes that will make it easier for us to develop externally.
 
 Why is GRR so complicated?
 --------------------------
@@ -160,11 +159,7 @@ GRR *is* complicated. We are talking about a distributed, asynchronous, cross
 platform, large scale system with a lot of moving parts. Building that is a hard
 and complicated engineering problem. This is not your average pet python project.
 
-We built the core GRR engine, and the engineers that work on it know it well,
-but as of Q4 2013, we haven't built the abstractions to make it easy for
-non-core engineers to add functionality. It is possible, people have done it,
-but its hard. We're working on improving this in Q4 2013 through better
-abstractions for normal tasks.
+Having said that, the most common action of just collecting something from machines and parsing what you get back has been made significantly easier with link:https://github.com/google/grr-doc/blob/master/user_manual.adoc#artifacts[the artifacts system]. This allows you to specify complex multi-operating system collection tasks with just a few lines of YAML, and collect any of the hundreds of pre-defined forensic artifacts with the click of a button.
 
 What are the commercial competitors to GRR?
 -------------------------------------------
