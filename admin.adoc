@@ -547,7 +547,7 @@ You'll need a copy of the GRR source:
 > git clone https://github.com/google/grr.git
 --------------------------------------------------------------------------------
 
-and the latest versions of link:https://www.vagrantup.com/[Vagrant] and VirtualBox installed. The Linux VM's provided by the project were built with an older version of VirtualBox. It is recommended that you install the plugin link:https://github.com/dotless-de/vagrant-vbguest[vagrant-vbguest] to update the guest additions to the current version your running on the build host.
+and the latest versions of link:https://www.vagrantup.com/[Vagrant] and VirtualBox installed. If you reboot the provided linux VM's and get the new kernel you'll need to update the VirtualBox guest additions. You can use link:https://github.com/dotless-de/vagrant-vbguest[vagrant-vbguest] to do this automatically, but you should download and verify the hash on the guest additions yourself (vagrant-vbguest downloads over HTTP and doesn't verify hash).
 
 OS X and windows require some extra work, see here for instructions:
 
