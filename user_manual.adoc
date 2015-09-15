@@ -353,7 +353,7 @@ GRR has the ability to import the NSRL. This function prepopulates the GRR datas
 3. Run "import_nsrl_hashes.py" with the appropriate configuration options
 
 ----
-~/grr/tools# python import_nsrl_hashes.py --config /etc/grr/grr-server.yaml --secondary_configs /etc/grr/server.local.yaml --filename /media/<path to expanded NSRL>/NSRLFile.txt
+~/grr/tools# python import_nsrl_hashes.py --config /etc/grr/grr-server.yaml --filename /media/<path to expanded NSRL>/NSRLFile.txt
 Imported 5000 hashes
 Imported 10000 hashes
 Imported 15000 hashes
