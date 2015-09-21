@@ -12,7 +12,7 @@ some useful features such as shared folders.
 
 Create a new
 link:http://ilostmynotes.blogspot.com/2015/02/building-os-x-vagrant-vmware-fusion-vm.html[vagrant-ready
-OS X VM in VMWare Fusion].  The essentials are:
+OS X VM in VMWare Fusion]. We use OS X 10.8 (Mountain Lion) as a base so we can install on systems at least that old, the build scripts are tested and work on that version.  The essentials are:
 
   * Commandline Tools for XCode
   * PackageMaker.app for building .pkg's
