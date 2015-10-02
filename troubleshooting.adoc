@@ -43,27 +43,6 @@ The libtsk3 library cannot be found in the ld cache. Check if the path to libtsk
 sudo ldconfig
 -------------------------------------------------------
 
-== MongoDB won't start ==
-
-Check the MongoDB log for any indication why it won't start. Default location:
--------------------------------------------------------
-/var/log/mongodb/mongodb.log
--------------------------------------------------------
-
-== Fixing out of disk with mongo ==
-
-This is hard on a bunch of ubuntu boxes because /etc/mongodb.conf variable dbpath is not honored in some cases. Simple fix is:
-
--------------------------------------------------------
-sudo service mongodb stop
-sudo mkdir /mnt/mongodb
-sudo chown -R mongodb /mnt/mongodb
-sudo mv /var/lib/mongodb/* /mnt/mongodb/
-sudo ln -s /mnt/mongodb /var/lib/mongodb
-sudo chown -R mongodb:nogroup /mnt/mongodb/
-sudo service mongodb start
--------------------------------------------------------
-
 == Cron Job view reports an error ==
 
 Delete and recreate all the cronjobs using GRR console:
