@@ -25,10 +25,4 @@ grr_enable_all
 grr_start_all
 ----
 
-To troubleshoot any of the service you can check the logs in /var/log/grr/ and/or run the failing GRR services in the foreground like this:
-
-----
-sudo /usr/local/bin/grr_server --start_worker --config=/etc/grr/grr-server.yaml --verbose
-----
-
-The UI server listens on 127.0.0.1:8080 by default.
+The UI server listens on 127.0.0.1:8080 by default. See the link:https://github.com/google/grr-doc/blob/master/troubleshooting.adoc[troubleshooting section] if you have problems running the services.
