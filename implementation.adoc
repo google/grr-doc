@@ -1464,7 +1464,6 @@ These include:
 * Jquery http://jquery.com/  (UI code extensively uses jquery)
 * M2Crypto http://chandlerproject.org/Projects/MeTooCrypto/  (provides python
  encryption libraries for comms and signing)
-* Mongo http://www.mongodb.org/  (datastore runs on mongo)
 * Protobuf https://github.com/google/protobuf  (messages and interfaces are
 defined as protobufs)
 * psutil https://github.com/giampaolo/psutil  (used for native process and network
