@@ -1,11 +1,10 @@
-= Installing from source =
+= Installing from source: Prebuilt dependencies =
 
 To build GRR from source you first need to make sure you have the necessary
-dependencies.  The easy way is to install them as packages using the
-link:quickstart.adoc[quickstart] script.  The hard way is to do it all from
-scratch using the link:serverfromscratch.adoc[server from scratch] instructions.
+dependencies.  The easy way to get them is to install them as packages using the
+link:quickstart.adoc[quickstart] script.
 
-Once you've done that, installing GRR is easy.
+Once you've done that, installing the latest GRR is easy.
 
 Get the source:
 -------------------------------------------------
@@ -22,87 +21,14 @@ sudo python setup.py install
 This will install GRR into e.g.
 /usr/local/lib/python2.7/dist-packages/grr-0.2-py2.7.egg/
 
-If you installed the GRR package using the quickstart script you
-shouldn't need to go through the below instructions to set up the init scripts
-etc.  Just restart:
+Then restart:
 
 ---------------------------------------------------
 source shell_helpers.sh
 grr_restart_all
 ---------------------------------------------------
 
-== Configuration ==
+== Installing from source: Dependencies from source ==
 
-Create the following directories
--------------------------------------------------------
-sudo mkdir /etc/grr/
-sudo mkdir /var/log/grr/
--------------------------------------------------------
-
-Copy the configuration there
--------------------------------------------------------
-sudo cp config/grr-server.yaml /etc/grr/
--------------------------------------------------------
-
-=== Start-up scripts ===
-
-Before doing the startup scripts you have a couple of decisions to make:
-
- - GRR comes with both upstart and init.d start-up scripts to handle common
-   server configurations. You need to decide which one you are going to use. 
- - GRR comes with two sets of init scripts. 
-  * grr-single-server, which is a single binary that starts all of the relevant
-    services. This is suitable for basic installations. 
-  * individual scripts for grr-worker, grr-ui, grr-enroller, grr-http-server.
-    These are used for more advanced installations where you might want to
-    distribute the services across multiple machines. 
-
-
-Both upstart and init.d scripts use a symbolic link to grr_server.py and default files
-
-Create the following directories
-------------------------------------------------------------------------------------------
-PACKAGE="/usr/local/lib/python2.7/dist-packages/grr-0.3.0_2-py2.7.egg";
-PREFIX="/usr/local";
-
-sudo mkdir -p ${PREFIX}/bin ${PREFIX}/sbin
-
-sudo ln -s ${PACKAGE}/grr/tools/console.py ${PREFIX}/bin/grr_console.py
-sudo ln -s ${PACKAGE}/grr/tools/config_updater.py ${PREFIX}/bin/grr_config_updater.py
-sudo ln -s ${PACKAGE}/grr/tools/grr_server.py ${PREFIX}/sbin/grr_server.py
-------------------------------------------------------------------------------------------
-
-Copy the default configuration files to the system locations:
--------------------------------------------------------
-sudo cp config/debian/default/grr-* /etc/default/
--------------------------------------------------------
-
-By the default the init.d script do not start the services change the following files to contain "START=yes"
--------------------------------------------------------
-/etc/default/grr-enroller
-/etc/default/grr-http-server
-/etc/default/grr-single-server
-/etc/default/grr-ui
-/etc/default/grr-worker
--------------------------------------------------------
-
-==== Init.d scripts ====
-Copy the init.d scripts to the system location:
--------------------------------------------------------
-sudo cp config/debian/initd/grr-* /etc/init.d/
-sudo chmod +x /etc/init.d/grr-*
--------------------------------------------------------
-
-==== Upstart scripts ====
-Copy the upstart scripts to the system location:
--------------------------------------------------------
-sudo cp config/debian/upstart/grr-* /etc/init/
--------------------------------------------------------
-
-=== Test certificate and keys ===
-GRR needs keys to operate, create them by following
-link:admin.adoc#key-management[the documentation].
-
-=== More ===
-See the link:admin.adoc[Administrator Documentation] for more configuration steps.
-
+The hard way is to do it all from
+scratch using the link:serverfromscratch.adoc[server from scratch] instructions.
