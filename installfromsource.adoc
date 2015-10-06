@@ -1,6 +1,6 @@
-= Installing from source: Prebuilt dependencies =
+= Installing from source =
 
-To build GRR from source you first need to make sure you have the necessary
+To install GRR from source you first need to make sure you have the necessary
 dependencies.  The easy way to get them is to install them as packages using the
 link:quickstart.adoc[quickstart] script like this:
 
