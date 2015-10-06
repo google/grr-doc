@@ -15,5 +15,5 @@ scratch using the link:serverfromscratch.adoc[server from scratch] instructions.
 
 Once you have the dependencies, install GRR itself and follow any further instructions from the script:
 -------------------------------------------------------
-sudo scripts/install_server_from_src.sh
+sudo bash scripts/install_server_from_src.sh
 -------------------------------------------------------
