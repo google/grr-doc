@@ -2,33 +2,18 @@
 
 To build GRR from source you first need to make sure you have the necessary
 dependencies.  The easy way to get them is to install them as packages using the
-link:quickstart.adoc[quickstart] script.
+link:quickstart.adoc[quickstart] script like this:
 
-Once you've done that, installing the latest GRR is easy.
-
-Get the source:
--------------------------------------------------
+----
 git clone https://github.com/google/grr.git
--------------------------------------------------
-
-Build and install:
--------------------------------------------------------
 cd grr
-python setup.py build
-sudo python setup.py install
--------------------------------------------------------
-
-This will install GRR into e.g.
-/usr/local/lib/python2.7/dist-packages/grr-0.2-py2.7.egg/
-
-Then restart:
-
----------------------------------------------------
-source shell_helpers.sh
-grr_restart_all
----------------------------------------------------
-
-== Installing from source: Dependencies from source ==
+sudo bash scripts/install_script_ubuntu.sh -dy
+----
 
 The hard way is to do it all from
 scratch using the link:serverfromscratch.adoc[server from scratch] instructions.
+
+Once you have the dependencies, install GRR itself and follow any further instructions from the script:
+-------------------------------------------------------
+sudo scripts/install_server_from_src.sh
+-------------------------------------------------------
