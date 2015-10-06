@@ -12,17 +12,12 @@ The quickstart script largely installs prebuilt debs from the link:launchpad.net
 
 Install the remaining server python requirements:
 -------------------------------
-pip install -r requirements.txt
+sudo pip install -r requirements.txt
 -------------------------------
 
-Set up the init scripts and copy configs link:https://github.com/google/grr/blob/master/config/debian/dpkg_server/rules[like the package does]. Then run initialize like link:https://github.com/google/grr/blob/master/scripts/install_script_ubuntu.sh#L201[the install script].
-
-To start GRR services:
-
+Then install GRR, and follow any further instructions from the script:
 ----
-source scripts/shell_helpers.sh
-grr_enable_all
-grr_start_all
+sudo bash scripts/install_server_from_src.sh
 ----
 
 The UI server listens on 127.0.0.1:8080 by default. See the link:https://github.com/google/grr-doc/blob/master/troubleshooting.adoc[troubleshooting section] if you have problems running the services.
