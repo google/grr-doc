@@ -48,6 +48,15 @@ This version bump was to keep in step with the client, which got a new version b
 
 == Client
 
+=== 3.0.0.7 to 3.0.7.1
+
+ - *INFO* 3.0.7.1 is the first version of GRR that will work on OS X El Capitan. The new link:https://derflounder.wordpress.com/2015/10/01/system-integrity-protection-adding-another-layer-to-apples-security-model/[OS X System Integrity Protection] meant we had to shift our install location from `/usr/lib/` to `/usr/local/lib`.
+ - *INFO* We changed our version numbering scheme for the client at this point to give us the ability to indicate multiple client versions that work with a server version. So 3.0.7.* clients will all work with server 0.3.0-7.
+
+=== 3.0.0.6 to 3.0.0.7
+
+ - *WARN* Linux and OS X clients prior to 3.0.0.7 were using `/etc/grr/client.local.yaml` as the local writeback location. For 3.0.0.7 this was changed to `/etc/%(Client.name).local.yaml` where the default is `/etc/grr.local.yaml`. If you wish to preserve the same client IDs you need to use platform management tools to copy the old config into the new location for all clients before you upgrade. If you don't do this the clients will just re-enrol and get new client IDs automatically.
+
 === 3.0.0.5 to 3.0.0.6
 
  - *INFO* 3.0.0.5 had a bug that broke memory collection, fixed in link:https://github.com/google/grr/commit/0615006a740a2802c4cf6c4b6a17e776e128dc06[this commit].  We also wrote a temporary server-side link:https://github.com/google/grr/commit/0615006a740a2802c4cf6c4b6a17e776e128dc06#diff-3a7572dd4343868d0929cbdca7a1620cR77[workaround], so upgrading isn't mandatory.  3.0.0.5 clients should still work fine.
