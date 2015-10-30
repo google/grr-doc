@@ -107,13 +107,8 @@ the Auditing section for a discussion on the FullAccessControlManager.
 Authentication to the Admin UI.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Given the sensitivity of the data that GRR ends up holding, it is important to
-protect access to it. The AdminUI by default uses basic authentication, based on
-the passwords within the user objects stored in the data store.  However, we
-support the idea of a Webauth Manager (AdminUI.webauth_manager config
-option). This allows for customization to use an SSO or SAML based
-authentication mechanism. However, while we try and make it easy to integrate,
-this kind of auth is not currently built into GRR.
+The AdminUI uses basic authentication by default, based on
+the passwords within the user objects stored in the data store, but we _don't expect you to use this in production_. There is so much diversity and customization in enterprise authentication shemes that there isn't a good way to provide a solution that works for a majority of users. But you probably already have internal webapps that use authentication, this is just one more. Most people have found the easiest approach is to sit Apache (or similar) in front of the GRR Admin UI as a reverse proxy and use an existing SSO plugin that already works for that platform. Alternatively, with more work you can handle auth inside GRR by writing a Webauth Manager (AdminUI.webauth_manager config option) that uses an SSO or SAML based authentication mechanism.
 
 
 Security Considerations
