@@ -205,3 +205,7 @@ of some of the commercial products, but we hope we can learn something off each
 other, we can all get better, and together we can all genuinely improve the
 security of the ecosystem we all exist in. We're happy to see others use GRR in
 their commercial consulting practices.
+
+Where is the logout button?
+---------------------------
+There isn't one. We ship with basic auth which link:http://stackoverflow.com/questions/233507/how-to-log-out-user-from-web-site-using-basic-authentication[doesn't really handle logout], you need to close the browser. This is OK for testing, but for production we expect you to sit a reverse proxy in front of the UI that handles auth, or write a webauth module for GRR. See the  link:https://github.com/google/grr-doc/blob/master/admin.adoc#authentication-to-the-admin-ui[Authentication to the AdminUI] section for more details.
