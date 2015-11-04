@@ -108,3 +108,73 @@ when using rekall, you're missing a profile (see the link:http://www.rekall-fore
 
 The simplest way to get this fixed is to add it into link:https://github.com/google/rekall-profiles/blob/gh-pages/v1.0/src/guids.txt[Rekall's list of GUIDs], which is of great benefit to the whole memory forensics community.  You can do this yourself via a pull request on link:https://github.com/google/rekall-profiles[rekall-profiles], or simply email the GUID to rekall-discuss@googlegroups.com.  Once it's in the public rekall server, the GRR server will download and use it automatically next time you run a rekall flow that requires that profile.  If your GRR server doesn't have internet access you'll need to run the link:https://github.com/google/grr/blob/master/lib/rekall_profile_server.py#L129[GetMissingProfiles function] from the GRR console on a machine that has internet access and can access the GRR database.
 
+== I don't see my clients ==
+
+Here are common client troubleshooting steps you can work through to diagnose client install and communications problems.
+
+*Check that the client got installed*
+
+You should have something like:
+
+ - ``C:\Windows\System32\GRR\3.0.7.1\GRR.exe`` on windows;
+ - ``/usr/lib/grr/grr_3.0.7.1_amd64/grrd`` on linux; and
+ - ``/usr/local/lib/grr_3.0.7.1_amd64/grrd`` on OSX
+ 
+with variations based on the GRR version and architecture you installed (32bit is i386). If you didn't get this far, then there is a problem with your installer binary.
+
+*Check the client is running*
+
+On linux and OS X you should see two processes, something like:
+----
+$ ps aux | grep grr
+root       957  0.0  0.0  11792   944 ?        Ss   01:12   0:00 /usr/sbin/grrd --config=/usr/lib/grr/grr_3.0.7.1_amd64/grrd.yaml
+root      1015  0.2  2.4 750532 93532 ?        Sl   01:12   0:01 /usr/sbin/grrd --config=/usr/lib/grr/grr_3.0.7.1_amd64/grrd.yaml
+----
+
+On windows you should see a ``GRR Monitor`` service and a ``GRR.exe`` process in taskmanager.
+
+If it isn't running check the install logs and other logs in the same directory:
+
+- Linux/OS X: ``/var/log/grr/grr_installer.txt``
+- Windows: ``C:\Windows\System32\LogFiles\GRR_installer.txt``
+
+and then try running it interactively as below.
+
+*Check the client machine can talk to the server*
+
+The URL here should be the server address and port you picked when you set up the server and listed in ``Client.control_urls`` in the client's config.
+----
+wget http://yourgrrserver.yourcompany.com:8080/server.pem
+# Check your config settings
+$ sudo cat /usr/lib/grr/grr_3.0.7.1_amd64/grrd.yaml | grep Client.control_urls
+Client.control_urls: http://yourgrrserver.yourcompany.com:8080/control
+----
+
+If you can't download that server.pem, the common causes are that your server isn't running or there are firewalls in the way.
+
+*Run the client in verbose mode*
+
+Linux: Stop the daemon version of the service and run it in verbose mode:
+----
+$ sudo service grr stop
+$ sudo /usr/sbin/grrd --config=/usr/lib/grr/grr_3.0.7.1_amd64/grrd.yaml --verbose
+----
+
+OS X: Unload the service and run it in verbose mode:
+----
+$ sudo launchctl unload /Library/LaunchDaemons/com.google.code.grr.plist
+$ sudo /usr/local/lib/grr_3.0.7.1_amd64/grrd --config=/usr/local/lib/grr_3.0.7.1_amd64/grrd.yaml --verbose
+----
+
+Windows: The normal installer isn't a terminal app, so you don't get any output if you run it interactively. 
+
+- Install the debug ``dbg_GRR_3.0.7.1_(amd64|i386).exe`` version to make it a terminal app.
+- Stop the ``GRR Monitor`` service in task manager
+
+Then run in a terminal as Administrator
+----
+cd C:\Windows\System32\GRR\3.0.7.1\
+GRR.exe --config=GRR.exe.yaml --verbose
+----
+
+If this is a new client you should see some 406's as it enrols, then sending message lines with sleeps in between.
