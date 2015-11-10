@@ -148,7 +148,10 @@ Run in AWS with c3.large instances in two autoscaling groups.
 - HTTP frontends and AdminUI: Each server has apache running a reverse proxy for the GRR AdminUI. At idle it uses just a t2.small, but whenever there is any tasking it scales up to 1-3 c3.large instances. Sits behind an AWS Elastic Load Balancer.
 - Datastore (MySQLAdvanced): AWS r3.4xlarge RDS server.  RDS instance is optimized for 2000 IOPS and we've provisioned 3000. 
 
+How do I handle multi-organisational deployments?
+-------------------------------------------------
 
+link:https://github.com/google/grr-doc/blob/master/admin.adoc#building-clients-with-custom-labels-multi-organization-deployments[Bake labels into clients at build time], and use a "Clients With Label" hunt rule to hunt specific groups of clients separately.
 
 Which cloud should I deploy in? GCE? EC2? Azure?
 ------------------------------------------------
