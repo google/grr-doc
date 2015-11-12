@@ -1260,6 +1260,7 @@ from this flows will be fed back into the End state.
 
 ==== Adding a new flow source file ====
 To add a new flow source file:
+
 1. Create the source file in lib/flows/general/, e.g. my_flow.py
 2. Add an import statement to lib/flows/general/registry_init.py, e.g
 [source,python]
@@ -1269,33 +1270,33 @@ from grr.lib.flows.general import my_flow
 
 ==== Writing a new flow ====
 1. Create the flow class:
-
++
 [source,python]
 ------------------------------------------------------------------
 class MyFlow(flow.GRRFlow):
   """List the Volume Shadow Copies on the client."""
 ------------------------------------------------------------------
-
++
 2. Define the category the flow is part of:
-
++
 [source,python]
 ------------------------------------------------------------------
   category = "/Filesystem/"
 ------------------------------------------------------------------
-
++
 3. Define the flow type information. The web-based UI will generate
 the necessary flow parameters input files based on the flow type
 information.
-
++
 [source,python]
 ------------------------------------------------------------------
 flow_typeinfo = type_info.TypeDescriptorSet(
   ...
 )
 ------------------------------------------------------------------
-
++
 4. Define the Start state handler.
-
++
 [source,python]
 ------------------------------------------------------------------
   @flow.StateHandler()
