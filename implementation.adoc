@@ -366,7 +366,7 @@ common pitfalls.
  * You nearly always want to write your flow in a way that can be chained or
  used in a hunt. Others may want to use your flow as part of theirs and don't
  want to reinvent the wheel.
- * You make this work by by calling SendReply() with a RDFValue. You can call it
+ * You make this work by calling SendReply() with a RDFValue. You can call it
  multiple times but you should call it with the same protobuf type each time.
  * The most common things to send with SendReply are a RDFURN or a StatEntry.
 
