@@ -12,6 +12,8 @@ D. Bilby, G. Caronni. Digital Investigation, 2011.
 Presentations
 -------------
 
+link:https://drive.google.com/open?id=0B1wsLqFoT7i2MEltRFp1Zzk1Rkk[GRR Meetup: API Edition] @ Nov 2015 GRR Meetup by G. Castle and M. Bushkov. Covers API basics and discusses where we are headed with API dev.
+
 link:https://drive.google.com/open?id=0B1wsLqFoT7i2S2ZoY1pOYm4ybDA[GRR Hunting Best Practices] @ Oct 2015 GRR Meetup by G. Castle.
 
 link:https://drive.google.com/open?id=0B1wsLqFoT7i2RTVaR1o1eHJYcjA&authuser=0[Tactical use of GRR Artifacts, Fuse, Plaso and Timesketch] by D. Bilby link:https://www.youtube.com/watch?v=JciAp0uB7AY[Demo Video (youtube)]
