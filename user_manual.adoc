@@ -366,6 +366,15 @@ Imported 25000 hashes
 The GRR GUI
 -----------
 
+GRR UI Modes
+~~~~~~~~~~~~
+
+GRR has a number of UI modes users can choose from by clicking on the cog in the top right. The TL;DR is you always want BASIC.
+
+ - **BASIC**: This mode should probably be called normal. You almost always want this. If you're new to GRR you definitely *only* want this.
+ - **ADVANCED**: This should probably be called developer. Lots of internal flows are exposed to help dev/test, experimental functionality is available, etc. Here be dragons.
+ - **DEBUG and "Canary mode"**: As a user you probably never want these. Even as a developer you'll only use them in very specific circumstances.
+
 Searching For A Client
 ~~~~~~~~~~~~~~~~~~~~~~
 In order to start interfacing with a client, we first need to search for it in
