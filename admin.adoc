@@ -11,7 +11,7 @@ Deploying the GRR server.
 -------------------------
 
 Get a GRR server installed and running in a few minutes with the
-link:quickstart.adoc[quickstart install].  With more effort you can also
+link:quickstart.adoc[quickstart install]. With more effort you can also
 link:installfromsource.adoc[install from source].
 
 Key Management
@@ -107,8 +107,17 @@ the Auditing section for a discussion on the FullAccessControlManager.
 Authentication to the Admin UI.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The AdminUI uses basic authentication by default, based on
-the passwords within the user objects stored in the data store, but we _don't expect you to use this in production_. There is so much diversity and customization in enterprise authentication shemes that there isn't a good way to provide a solution that works for a majority of users. But you probably already have internal webapps that use authentication, this is just one more. Most people have found the easiest approach is to sit Apache (or similar) in front of the GRR Admin UI as a reverse proxy and use an existing SSO plugin that already works for that platform. Alternatively, with more work you can handle auth inside GRR by writing a Webauth Manager (AdminUI.webauth_manager config option) that uses an SSO or SAML based authentication mechanism.
+The AdminUI uses basic authentication by default, based on the passwords within
+the user objects stored in the data store, but we _don't expect you to use this
+in production_. There is so much diversity and customization in enterprise
+authentication shemes that there isn't a good way to provide a solution that
+works for a majority of users. But you probably already have internal webapps
+that use authentication, this is just one more. Most people have found the
+easiest approach is to sit Apache (or similar) in front of the GRR Admin UI as
+a reverse proxy and use an existing SSO plugin that already works for that
+platform. Alternatively, with more work you can handle auth inside GRR by
+writing a Webauth Manager (AdminUI.webauth_manager config option) that uses an
+SSO or SAML based authentication mechanism.
 
 
 Security Considerations
@@ -630,7 +639,13 @@ look for `Client`, `Nanny` and `Logging` options.
 Deploying The Client
 --------------------
 
-For first-time deployment, GRR Clients need to be installed using existing package management systems for each platform.  For Windows the installer is a self-extracting executable which can be deployed using standard tools, such as SCCM, but some smaller networks use approaches that require an MSI.  In this case we suggest using one of the various third-party tools for creating .msi's from .exe's, detailed instructions can be found link:http://grr-response.blogspot.com/2014/12/wrapping-grr-installers-as-msi-file.html[here].
+For first-time deployment, GRR Clients need to be installed using existing 
+package management systems for each platform. For Windows the installer is a 
+self-extracting executable which can be deployed using standard tools, such as 
+SCCM, but some smaller networks use approaches that require an MSI. In this 
+case we suggest using one of the various third-party tools for creating .msi's 
+from .exe's, detailed instructions can be found 
+link:http://grr-response.blogspot.com/2014/12/wrapping-grr-installers-as-msi-file.html[here].
 
 Deploying Custom Drivers and Code.
 ----------------------------------
@@ -738,7 +753,7 @@ upload memory driver functionality:
 
 [source,shell]
 ------------------------------------------------------------------------
-db@host:~$ sudo grr_config_updater upload_memory_driver --file=/path/to/my_special_pmem.kext.tgz --platform=windows  --arch amd64 --dest aff4:/config/drivers/osx/memory/pmem
+db@host:~$ sudo grr_config_updater upload_memory_driver --file=/path/to/my_special_pmem.kext.tgz --platform=windows --arch amd64 --dest aff4:/config/drivers/osx/memory/pmem
 ------------------------------------------------------------------------
 
 If you need to customize some property of the driver you can easily inject configuration parameters into the above command line (this _must_ be done before the `upload_memory_driver` command). For example, if you recompiled the driver to present a different device name on the client:
@@ -753,6 +768,39 @@ NOTE: The signing we discuss here is independent of Authenticode driver signing,
 which is also required by modern 64 bit Windows distributions.
 
 Deploying this driver would normally be done using the LoadMemoryDriver flow.
+
+
+Building a Linux memory driver
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Determine the kernel version of the system the GRR client is running on e.g.
+----
+3.13.0-49-generic
+----
+
+Find a reprentative build machine e.g. Ubuntu and install the corresponding
+kernel headesr:
+----
+sudo apt-get install linux-headers-3.13.0-49-generic
+----
+
+Clone rekall and traverse into the linux driver source directory:
+----
+git clone https://github.com/google/rekall.git
+cd rekall/tools/linux
+----
+
+edit Makefile and set KVER to the kernel version
+----
+KVER ?= "3.13.0-49-generic
+----
+
+Build the pmem driver:
+----
+make pmem
+----
+
+Deploy pmem.ko as a driver.
 
 
 Deploying Executables.
@@ -902,7 +950,7 @@ Causes
 
 Notifiying Users of Updates or Issues via the GUI
 -------------------------------------------------
-GRR has the ability to display a notification similar to the yellow link:http://www.chromium.org/user-experience/infobars[Chrome Infobar].  This can be useful if you need to let users know about new functionality, updates, problems, downtime etc.  For now it requires console access to set a new notification.
+GRR has the ability to display a notification similar to the yellow link:http://www.chromium.org/user-experience/infobars[Chrome Infobar]. This can be useful if you need to let users know about new functionality, updates, problems, downtime etc. For now it requires console access to set a new notification.
 
 ----
 flow.GRRFlow.StartFlow(flow_name="SetGlobalNotification", type="WARNING", content="NOTE: This is a one-time warning. To hide this message click on X in the right corner of this panel.", link="http://company.com/moreinfo", token=rdfvalue.ACLToken(username="myuser"))
