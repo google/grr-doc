@@ -17,8 +17,7 @@ GRR Component Overview
 The following describes the components that make up the GRR system. Since GRR is
 designed to be scalable, each component can exist on its own machine in the data
 center. Alternatively, for smaller installations, each component can run as a
-separate server process, or even all components can run inside the same process
-in different threads.
+separate server process on the same machine.
 
 .GRR Component overview
 [caption="Figure 1: "]
