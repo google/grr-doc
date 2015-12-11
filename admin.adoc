@@ -332,25 +332,37 @@ Performance
 GRR is designed to scale linearly, but performance depends significantly on the datastore
 implementation, how it is being run, and the hardware it is running on.
 
-Deployment Performance Factors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Large Scale Deployment
+~~~~~~~~~~~~~~~~~~~~~~
 
-The key issue with performance generally relates to how the server is deployed.
+The link:implementation.adoc#grr-component-overview[GRR server components] should be distributed across multiple machines in any deployment where you expect to have more than a few hundred clients, or even smaller deployments if you plan on doing intensive hunting. The performance needs of the various components are discussed link:component-performance-needs[below], and some real-world example deployment configurations are link:faq.adoc#what-hardware-do-i-need-to-run-grr[described in the FAQ].
 
-- You will probably want to run more than one worker. In a large
+You should install the GRR package on all machines and use configuration management (chef, puppet etc.) to:
+
+ - Distribute the same grr-server.yaml to each machine
+ - Manipulate the /etc/default/grr-* files to enable the relevant services you want to run on each machine
+ - Create new init scripts for components that should have multiple instances on each machine. e.g. If you want to run 20 workers you'd set up a puppet template to create 19 extra /etc/init/grr-worker[1-19].conf files. This will get easier when we have a docker cloud deployment, which is naturally suited to standing up many copies of services.
+ 
+Component Performance Needs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- *Worker*: you will probably want to run more than one worker. In a large
   deployment where you are running numerous hunts it makes sense to run 20+
   workers. As long as the datastore scales, the more workers you have the faster
-  things get done. We previously had a config setting that forked worker processes off, but this turned out to play badly with datastore connection pools, the stats store, and monitoring ports so it was removed.  We're planning dockerization to make this easier, but for now you should create multiple workers using different init scripts.
-- Also, the frontend http server can be a significant bottleneck. By default we
+  things get done. We previously had a config setting that forked worker processes off, but this turned out to play badly with datastore connection pools, the stats store, and monitoring ports so it was removed.
+- *HTTP frontend*: The frontend http server can be a significant bottleneck. By default we
   ship with a simple http server, but this is single process, written in python
   which means it may have thread lock issues. To get better performance you will
   need to run the http server with the wsgi_server in the tools directory from
-  inside a faster web server such as Apache. See section below for how.
-- As well as having a better performing http server, if you are moving a lot of
+  inside a faster web server such as Apache. See section below for how. As well as having a better performing http server, if you are moving a lot of
   traffic you probably want to run multiple http servers. Again, assuming your
   datastore handles it, these should scale linearly.
-- The admin UI component is usually under light load, but you can run as many as you want for redundancy.
-- Foreman check frequency. By default the foreman_check_frequency in the client
+- *Web UI*: The admin UI component is usually under light load, but you can run as many as you want for redundancy.
+
+Performance-Critical Client Config Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- *Foreman check frequency*: By default the foreman_check_frequency in the client
   configuration is set to 1 hr. This variable controls how often a client
   checks if there are hunts scheduled for it. Increasing this number slows down how fast a hunt ramps up, which
   normalizes the load at the cost of making the hunt slower (this is useful in
@@ -961,3 +973,4 @@ To remove all notifications:
 ----
 aff4.FACTORY.Delete("aff4:/config/global_notifications")
 ----
+d
