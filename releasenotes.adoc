@@ -12,6 +12,7 @@ watch for when upgrading from one version to another.
 
 === 0.3.0-6 to 0.3.0-7
  - *INFO* We moved to using the open source binplist, rather than bundling it with GRR.  If you are getting "ImportError: cannot import name binplist", make sure you have installed the binplist package and deleted grr/parsers/binplist* to clean up any .pyc files that might have been created.
+ - *INFO* If you have troubles with the rekall efilter library failing to import, try deleting all of your rekall-related .pyc's and make sure you're installing the version in requirements.txt. See link:https://github.com/google/grr/issues/275[this bug] for full details.
 
 === 0.3.0-5 to 0.3.0-6
 
