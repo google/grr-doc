@@ -280,9 +280,14 @@ Using this allows for sensible access control, e.g. another user must authorize
 access before someone is given access to a machine, or an admin must authorize
 before a hunt is run.
 
-These capabilities are powerful but add significant complexity to deployment so
-they are not currently released  (Mar 2013). If you are interested in this
-functionality please just email the devs and we can release it.
+In order to enable full access control, add 
+--------------------------------------------------------------------------------
+AdminUI Context:
+  Datastore.security_manager: FullAccessControlManager
+--------------------------------------------------------------------------------
+
+to your configuration. Note that GRR will try to send approval emails so you
+also need to set up email domain / SMTP server / ...
 
 
 Enabling SSL on the AdminUI.
