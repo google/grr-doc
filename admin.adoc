@@ -41,6 +41,47 @@ Generating Django Secret key (used for xsrf protection etc)
 db@host:$
 --------------------------------------------------------------------
 
+To Encrypt and password the code & driver signing certificates
+
+1. Copy the keys (PrivateKeys.executable_signing_private_key & PrivateKeys.driver_signing_private_key) from the current GRR configuration file (whichever you’re using)
+ 
+ - /etc/grr/grr-server.yaml
+ - /etc/grr/server.local.yaml
+
+2. Save these two keys as new text files temporarily. You’ll need to convert the key text to the normal format by removing the leading whitespace and blank lines:
+
+ cat <original.exe.private.key.txt> | sed 's/^  //g' | sed '/^$/d’ > <clean.exe.private.key>
+ cat <original.driver.private.key.txt> | sed 's/^  //g' | sed '/^$/d’ > <clean.driver.private.key>
+
+3. Encrypt key & add password
+
+ openssl rsa -des3 -in <clean.exe.private.key.txt> -out <exe.private.secure.key>
+ openssl rsa -des3 -in <clean.driver.private.key.txt> -out <driver.private.secure.key>
+
+4. Securely wipe all temporary files with cleartext keys. 
+
+5. Replace the keys in the GRR config with the new encrypted keys (or store them offline) 
+
+--------------------------------------------------------------------------------
+ PrivateKeys.executable_signing_private_key: '-----BEGIN RSA PRIVATE KEY-----
+ 
+   Proc-Type: 4,ENCRYPTED
+  
+   DEK-Info: DES-EDE3-CBC,8EDA740783B7563C
+  
+  
+   <start key text after *two* blank lines…>
+  
+   <KEY...>
+  
+   -----END RSA PRIVATE KEY-----'
+--------------------------------------------------------------------------------
+
+NOTE: You *must* use “des3”. Other algorithms do not work.
+
+NOTE: There *must* be an extra line between the encrypted PEM header and the encoded key. The key is double-spaces and indented two spaces exactly like all other keys in configuration file. 
+
+
 User Management
 ---------------
 
