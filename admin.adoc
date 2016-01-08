@@ -50,8 +50,8 @@ To Encrypt and password the code & driver signing certificates
 
 2. Save these two keys as new text files temporarily. You’ll need to convert the key text to the normal format by removing the leading whitespace and blank lines:
 
- cat <original.exe.private.key.txt> | sed 's/^  //g' | sed '/^$/d’ > <clean.exe.private.key>
- cat <original.driver.private.key.txt> | sed 's/^  //g' | sed '/^$/d’ > <clean.driver.private.key>
+ cat <original.exe.private.key.txt> | sed 's/^  //g' | sed '/^$/d' > <clean.exe.private.key>
+ cat <original.driver.private.key.txt> | sed 's/^  //g' | sed '/^$/d' > <clean.driver.private.key>
 
 3. Encrypt key & add password
 
