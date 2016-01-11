@@ -98,3 +98,4 @@ sudo PYTHONPATH=. python ./run_tests.py --test=BuildConfigTests.testAllConfigs
  * Users.authentication: unused, user auth is now based on aff4:/users objects. Use config_updater to modify them.
  * Worker.task_limit: unused
  * Worker.worker_process_count: unused
+ * Cron.enabled_system_jobs (a whitelist) was replaced with Cron.disabled_system_jobs (a blacklist)
