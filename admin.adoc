@@ -77,7 +77,16 @@ To Encrypt and add a password to the code & driver signing certificates
    -----END RSA PRIVATE KEY-----'
 --------------------------------------------------------------------------------
 
-NOTE: There *must* be an extra line between the encrypted PEM header and the encoded key. The key is double-spaces and indented two spaced exactly like all other keys in configuration file. 
+NOTE: In the YAML encoding,there *must* be an extra line between the encrypted PEM header
+and the encoded key. The key is double-spaces and indented two spaced exactly like all other
+keys in configuration file. 
+
+Alternatively, you can also keep your new, protected keys in files on the server and load
+them in the configuration using the file filter like this:
+
+--------------------------------------------------------------------------------
+PrivateKeys.executable_signing_private_key: %(<path_to_keyfile>|file)
+--------------------------------------------------------------------------------
 
 
 User Management
