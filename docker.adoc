@@ -1,11 +1,13 @@
 GRR Docker Image
 ================
 
-The GRR Docker image is
-link:https://registry.hub.docker.com/u/grrdocker/grr/[automatically built from
-the latest commit in the github] repository. It is currently intended for
+The GRR Docker image is is currently intended for
 evaluation/testing use, but the plan is to support simple cloud deployment of a
 stable production image in the future.
+
+The instructions below get you a recent stable docker image. We build an image
+link:https://registry.hub.docker.com/u/grrdocker/grr/[automatically from
+the latest commit in the github] repository which is more up-to-date but isn't guaranteed to work. If you want bleeding edge you can use `grrdocker/grr:latest` in the commands below.
 
 How to use the image
 --------------------
@@ -16,7 +18,7 @@ docker run \
 -e ADMIN_PASSWORD="demo" \
 --ulimit nofile=1048576:1048576 \
 -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
-grrdocker/grr grr
+grrdocker/grr:v0.3.0-7-latest grr
 ----
 
 Once initialization finishes point your web browser to localhost:8000 and login
