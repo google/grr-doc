@@ -5,7 +5,7 @@ The GRR Docker image is is currently intended for
 evaluation/testing use, but the plan is to support simple cloud deployment of a
 stable production image in the future.
 
-The instructions below get you a recent stable docker image. We build an image
+The instructions below get you a recent stable docker image. We also build an image
 link:https://registry.hub.docker.com/u/grrdocker/grr/[automatically from
 the latest commit in the github] repository which is more up-to-date but isn't guaranteed to work. If you want bleeding edge you can use `grrdocker/grr:latest` in the commands below.
 
