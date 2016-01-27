@@ -2,7 +2,7 @@
 
 This document describes getting a server and clients up and running for the first time. You have two options: 
 
- 1. Run the link:https://github.com/google/grr-doc/blob/master/docker.adoc[docker image built off the latest repository commit]. This is the fastest way to get a basic install up and running for testing, and gets you all of the latest features. Takes ~2 mins to download the image and initialize the server.
+ 1. Run the link:https://github.com/google/grr-doc/blob/master/docker.adoc[docker image]. This is the fastest way to get a basic install up and running for testing. Takes ~2 mins to download the image and initialize the server.
  2. Follow these instructions for an automated install on an Ubuntu system. This is a better option for stability and customization. Takes ~20 mins to download and install dependencies, you are prompted for some important settings.
  
 == Requirements ==
