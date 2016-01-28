@@ -177,4 +177,22 @@ cd C:\Windows\System32\GRR\3.0.7.1\
 GRR.exe --config=GRR.exe.yaml --verbose
 ----
 
-If this is a new client you should see some 406's as it enrols, then sending message lines with sleeps in between.
+If this is a new client you should see some 406's as it enrols, then they stop and are replaced with sending message lines with increasing sleeps in between. The output should look similar to this:
+
+```
+Starting client aff4:/C.a2be2a27a8d69c61 
+aff4:/C.a2be2a27a8d69c61: Could not connect to server at http://somehost:port/, status 406
+Server PEM re-keyed.
+sending enrollment request
+aff4:/C.a2be2a27a8d69c61: Could not connect to server at http://somehost:port/, status 406
+Server PEM re-keyed.
+sending enrollment request
+aff4:/C.a2be2a27a8d69c61: Could not connect to server at http://somehost:port/, status 406
+Server PEM re-keyed.
+aff4:/C.a2be2a27a8d69c61: Sending 3(1499), Received 0 messages in 0.771058797836 sec. Sleeping for 0.34980125
+aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.370272874832 sec. Sleeping for 0.4022714375
+aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.333703994751 sec. Sleeping for 0.462612153125
+aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.345727920532 sec. Sleeping for 0.532003976094
+aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.346176147461 sec. Sleeping for 0.611804572508
+aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 8 messages in 0.348709106445 sec. Sleeping for 0.2
+```
