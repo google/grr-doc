@@ -196,3 +196,5 @@ aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.345727920532 
 aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.346176147461 sec. Sleeping for 0.611804572508
 aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 8 messages in 0.348709106445 sec. Sleeping for 0.2
 ```
+
+If enrolment isn't succeeding (406s never go away), make sure you're running a worker process and check logs in `/var/log/grr-worker.log`.
