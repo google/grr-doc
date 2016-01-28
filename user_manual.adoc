@@ -1236,7 +1236,7 @@ Granting approval
 ~~~~~~~~~~~~~~~~~
 To grant approval via the console run:
 ----------------------------------------
-ApprovalGrant(token=None)
+ApprovalGrant(token=token)
 ----------------------------------------
 
 Listing and searching clients
@@ -1278,14 +1278,7 @@ for client_id in file_object.readlines():
 Delete a client and all of its data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ----------------------------------------
-aff4.FACTORY.Delete(rdfvalue.ClientURN(client_id))
-----------------------------------------
-
-Rebuilding Indexes
-~~~~~~~~~~~~~~~~~~
-----------------------------------------
-maintenance_utils.RebuildLabelIndexes(token=None)
-maintenance_utils.RebuildClientIndexes(token=None)
+aff4.FACTORY.Delete(rdf_client.ClientURN(client_id))
 ----------------------------------------
 
 Read a specific version of a file
