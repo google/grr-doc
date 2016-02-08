@@ -129,7 +129,6 @@ HTTPDatastore + SQLite:
 
  - link:https://drive.google.com/a/google.com/file/d/0B1wsLqFoT7i2c3FHOHNjOFpmdjA/view[Our testing shows better performance], but MySQL is being used at real scale too (see "What hardware do I need to run GRR?" below).
  - You'll need to setup your own backup and recovery processses. This should be fairly simple since it's just a collection of sqlite files in a directory.
- - There's no transaction support.
  - Slave DBs don't need particularly powerful hardware, master should still be reasonably powerful.
  
 
