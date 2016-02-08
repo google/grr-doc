@@ -580,6 +580,8 @@ OS X and windows require some extra work, see here for instructions:
 - link:osxclient.adoc[Building the OS X client]
 - link:windowsclient.adoc[Building the Windows client]
 
+Also, if you want to build signed RPMs you need to link:linuxclient.adoc#setting-up-for-linux-rpm-signing[get set up for RPM signing].
+
 Once you have your vagrant VMs setup (only necessary for OS X and Windows, linux will download VMs automatically), you can build installers for all OSes just
 by running make. Note that this assumes you have your linux host
 link:windowsclient.adoc#setting-up-for-windows-exe-signing[setup to do windows signing]. If you're building for OS
