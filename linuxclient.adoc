@@ -1,0 +1,28 @@
+= Setting Up For Linux RPM Signing =
+
+Linux RPMs are signed following a similar process to windows. A template is
+built inside the vagrant VM and the host does the repacking and signing.
+
+To get set up for signing, first you need to create a gpg key that you will use
+for signing (link:https://alexcabal.com/creating-the-perfect-gpg-keypair/[here's
+a decent HOWTO]).
+
+Then make sure you have rpmsign and rpm utilities installed on your host system:
+
+----
+sudo apt-get install rpm
+----
+
+Tell GRR where your public key is:
+
+----
+sudo ln -s /path/to/mykey.pub /etc/alternatives/grr_rpm_signing_key
+----
+
+Set this config variable to whatever you used as your key name:
+
+----
+ClientBuilder.rpm_gpg_name: my key name
+----
+
+That's it, you can follow the normal build process.
