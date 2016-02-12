@@ -1057,7 +1057,7 @@ Exporting Data From GRR
 -----------------------
 Extracting bulk data from the GRR datastore using the UI is slow and cumbersome.
 It is possible to use the console to extract any data you wish, but we also
-provide a tool called file_exporter, and a FUSE layer.
+provide a tool called grr_export, and a FUSE layer.
 
 Exporting a Single File
 ~~~~~~~~~~~~~~~~~~~~~~~
