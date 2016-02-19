@@ -9,7 +9,7 @@ watch for when upgrading from one version to another.
 === 0.3.0-7 to 0.3.0-8 (unreleased)
 
  - *INFO* Strict context checking was added for config files in link:https://github.com/google/grr/commit/56ee26d41afc5809e52d432096de8dbf09564851[this commit], which exposed a number of minor config typo bugs. If you get InvalidContextError on upgrade, you need to update your config to fix up the typos. The link:https://github.com/google/grr/blob/master/config/contexts.py[config/contexts.py] file is the canonical reference for context names, and you should also diff your config against the link:https://github.com/google/grr/blob/master/config/grr-server.yaml[config/grr-server.yaml] in the repo to see if there are other changes you should incorporate.
- - *INFO* Config option Cron.enabled_system_jobs (a whitelist) was replaced with Cron.disabled_system_jobs (a blacklist) to make adding new cronjobs easier. If you customized that list at all you'll have to translate it to the new list.
+ - *WARN* Config option Cron.enabled_system_jobs (a whitelist) was replaced with Cron.disabled_system_jobs (a blacklist) to make adding new cronjobs easier. You will need to remove Cron.enabled_system_jobs and if you made customizations here, translate any jobs you want to remain disabled to the new list.
 
 === 0.3.0-6 to 0.3.0-7
  - *INFO* We moved to using the open source binplist, rather than bundling it with GRR.  If you are getting "ImportError: cannot import name binplist", make sure you have installed the binplist package and deleted grr/parsers/binplist* to clean up any .pyc files that might have been created.
@@ -98,4 +98,4 @@ sudo PYTHONPATH=. python ./run_tests.py --test=BuildConfigTests.testAllConfigs
  * Users.authentication: unused, user auth is now based on aff4:/users objects. Use config_updater to modify them.
  * Worker.task_limit: unused
  * Worker.worker_process_count: unused
- * Cron.enabled_system_jobs (a whitelist) was replaced with Cron.disabled_system_jobs (a blacklist)
+ * Cron.enabled_system_jobs (a whitelist) was replaced with Cron.disabled_system_jobs (a blacklist). Cron.enabled_system_jobs should be removed. Any custom jobs you want to stay disabled should be added to Cron.enabled_system_jobs.
