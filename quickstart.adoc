@@ -7,7 +7,7 @@ This document describes getting a server and clients up and running for the firs
  
 == Requirements ==
 
- * A linux box. At the moment the full install is thoroughly tested end to end on Ubuntu Server 14.04 64-bit. Note that we haven't moved to systemd yet so if link:https://github.com/google/grr/issues/338[*you're using Ubuntu 15.10 you will have to fix the startup scripts*]. See link:faq.adoc#what-operating-system-versions-does-the-server-support[here] for more details..
+ * A linux box. At the moment the full install is thoroughly tested end to end on Ubuntu Server 14.04 64-bit. Note that we haven't moved to systemd yet so if link:https://github.com/google/grr/issues/338[*you're using Ubuntu 15.10 you will have to fix the startup scripts*]. See link:faq.adoc#what-operating-system-versions-does-the-server-support[here] for more details.
  * Recommend > 1GB Ram and a modern CPU if you want to run everything on one box
    (note that free Amazon EC2 instances don't have enough RAM).
  * Some machines (or VMs) to talk to the server. OSX, Windows and Linux agents are
