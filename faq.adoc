@@ -103,10 +103,6 @@ differences that may matter to you:
    infrastructure in a large deployment. We open source the bits that make
    sense, and provide sensible hooks for others to use, but full implementations
    of these may require some integration work.
- - *Data analysis*: The current functionality of GRR is mostly focused around
-   data collection. But collecting data isn't all that useful, you need to be
-   able to analyze it. There are a number of public systems for doing this
-   analysis such as link:https://cloud.google.com/bigquery/what-is-bigquery[BigQuery] and link:http://www.elasticsearch.org/[Elasticsearch]. See the data analysis answer below for more detail.
  - *Machine handling and monitoring*: Much of the infrastructure for running and
    monitoring a scalable service is often built into the platform itself. As
    such GRR hasn't invested a lot in built-in service or performance monitoring. We expose a lot of statistics, but only display a small subset in the UI. We expect companies to have package deployment (SCCM/munki/casper/apt/yum etc.), config management (chef/puppet/salt etc.), and server monitoring (nagios/cacti/munin/zabbix/spiceworks etc.).
@@ -178,7 +174,7 @@ Google Compute Engine (GCE) of course :) We’re working on making cloud deploym
 Where/how do you do your data analysis?
 ---------------------------------------
 
-We mostly do this outside of GRR using an internal system similar to link:https://cloud.google.com/bigquery/what-is-bigquery[BigQuery].  GRR data is formatted for that system by implementing a hunt output plugin.  There’s a cronjob that outputs new results every 5 minutes, so there is very little delay between the server seeing a result and having it available for analysis externally.  We ship with CSV and email output plugins, but implementing plugins for BigQuery or Elasticsearch should be fairly simple.
+We mostly do this outside of GRR using an internal system very similar to link:https://cloud.google.com/bigquery/what-is-bigquery[BigQuery], and this powerful capability is link:http://grr-response.blogspot.com/2015/11/using-bigquery-to-analyze-data.html[now available to opensource users].  GRR data is formatted for BigQuery using a hunt output plugin.  There’s a cronjob that outputs new results every 5 minutes, so there is very little delay between the server seeing a result and having it available for analysis externally. As at March 2016 an opensource user is working on an ElasticSearch output plugin.
 
 When will feature X be ready?
 -----------------------------
