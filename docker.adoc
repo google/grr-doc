@@ -47,7 +47,7 @@ docker run \
 -e ADMIN_PASSWORD="demo" \
 --ulimit nofile=1048576:1048576 \
 -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
--d grrdocker/grr grr
+-d grrdocker/grr:v0.3.0-7-latest grr
 ----
 
 Note that if you're running boot2docker on OS X there are a few bugs
