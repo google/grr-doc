@@ -491,6 +491,13 @@ ProxyPassReverse / http://127.0.0.1:8000/
 </VirtualHost>
 -----------------------------------------
 
+Enable the new apache files
+
+-----------------------------------------
+a2ensite redirect.conf
+a2ensite grr_reverse_proxy.conf
+-----------------------------------------
+
 Restart apache
 
 -----------------------------------------
