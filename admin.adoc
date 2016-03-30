@@ -167,6 +167,25 @@ platform. Alternatively, with more work you can handle auth inside GRR by
 writing a Webauth Manager (AdminUI.webauth_manager config option) that uses an
 SSO or SAML based authentication mechanism.
 
+Email Configuration
+-------------------
+This section assumes you has already installed an MTA, such as link:http://www.postfix.org/[Postfix] or link:http://untroubled.org/nullmailer/[nullmailer].  After you have successfully tested your mail transfer agent, please proceed to the steps outlined below. 
+
+To configure GRR to send emails for reports or other purposes:
+
+Ensure email settings are correct by running back through the configuration script if needed (or by checking /etc/grr/server.local.yaml):
+
+-----------------------------
+grr_config_updater initialize
+-----------------------------
+
+Edit /etc/grr/server.local.yaml to include the following at the end of the file:
+
+----------------------------------
+Worker.smtp_server: <server:port>
+----------------------------------
+
+After configuration is complete, restart the GRR worker(s).  You can test this configuration by running a ClientListReport Flow (Start Global Flows > Reporting > RunReport).
 
 Security Considerations
 -----------------------
