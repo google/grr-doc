@@ -169,7 +169,7 @@ SSO or SAML based authentication mechanism.
 
 Email Configuration
 -------------------
-This section assumes you has already installed an MTA, such as link:http://www.postfix.org/[Postfix] or link:http://untroubled.org/nullmailer/[nullmailer].  After you have successfully tested your mail transfer agent, please proceed to the steps outlined below. 
+This section assumes you have already installed an MTA, such as link:http://www.postfix.org/[Postfix] or link:http://untroubled.org/nullmailer/[nullmailer].  After you have successfully tested your mail transfer agent, please proceed to the steps outlined below. 
 
 To configure GRR to send emails for reports or other purposes:
 
