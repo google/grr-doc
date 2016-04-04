@@ -57,9 +57,9 @@ This version bump was to keep in step with the client, which got a new version b
 
 == Client
 
-Note that we shifted our version string left to reduce confusion, see the link:admin.adoc#client-and-server-version-compatibility-and-numbering[documentation on GRR versions].
-
 === 3.0.7.1 to 3.1.0.0
+
+Note that we skipped some numbers to make versioning simpler and reduce confusion, see the link:admin.adoc#client-and-server-version-compatibility-and-numbering[documentation on GRR versions].
 
  - *WARN* Our previous debian package added the GRR service using both upstart and init.d runlevels. This caused some confusion on systems with ubuntu upstart systems. We detect and remove this problem automatically with the new version, but since it is a config file change you need to specify whether to install the new config or keep the old one, link:https://raphaelhertzog.com/2010/09/21/debian-conffile-configuration-file-managed-by-dpkg/[or you will get a config change prompt]. New is preferred. Something like `sudo apt-get -o Dpkg::Options::="--force-confnew" grr`.
 
