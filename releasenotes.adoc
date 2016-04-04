@@ -6,10 +6,13 @@ watch for when upgrading from one version to another.
 
 == Server
 
-=== 0.3.0-7 to 0.3.0-8 (unreleased)
+=== 0.3.0-7 to 3.1.0-1 (unreleased)
 
- - *INFO* Strict context checking was added for config files in link:https://github.com/google/grr/commit/56ee26d41afc5809e52d432096de8dbf09564851[this commit], which exposed a number of minor config typo bugs. If you get InvalidContextError on upgrade, you need to update your config to fix up the typos. The link:https://github.com/google/grr/blob/master/config/contexts.py[config/contexts.py] file is the canonical reference for context names, and you should also diff your config against the link:https://github.com/google/grr/blob/master/config/grr-server.yaml[config/grr-server.yaml] in the repo to see if there are other changes you should incorporate.
+Note that we shifted our version string left to reduce confusion, see the link:admin.adoc#client-and-server-version-compatibility-and-numbering[documentation on GRR versions].
+
  - *WARN* Config option Cron.enabled_system_jobs (a whitelist) was replaced with Cron.disabled_system_jobs (a blacklist) to make adding new cronjobs easier. You will need to remove Cron.enabled_system_jobs and if you made customizations here, translate any jobs you want to remain disabled to the new list.
+ - *WARN* We changed the format for the Knowledge Base protocol buffer to remove a duplication of the users component which was storing users information twice and complicating code. This means that all clients need a fresh interrogate run to populate the machine information. Until the machines run interrogate the `%%users.homedir%%` and similar expansions won't work.
+ - *INFO* Strict context checking was added for config files in link:https://github.com/google/grr/commit/56ee26d41afc5809e52d432096de8dbf09564851[this commit], which exposed a number of minor config typo bugs. If you get InvalidContextError on upgrade, you need to update your config to fix up the typos. The link:https://github.com/google/grr/blob/master/config/contexts.py[config/contexts.py] file is the canonical reference for context names, and you should also diff your config against the link:https://github.com/google/grr/blob/master/config/grr-server.yaml[config/grr-server.yaml] in the repo to see if there are other changes you should incorporate.
 
 === 0.3.0-6 to 0.3.0-7
  - *INFO* We moved to using the open source binplist, rather than bundling it with GRR.  If you are getting "ImportError: cannot import name binplist", make sure you have installed the binplist package and deleted grr/parsers/binplist* to clean up any .pyc files that might have been created.
@@ -53,6 +56,12 @@ This version bump was to keep in step with the client, which got a new version b
    continue to work.
 
 == Client
+
+Note that we shifted our version string left to reduce confusion, see the link:admin.adoc#client-and-server-version-compatibility-and-numbering[documentation on GRR versions].
+
+=== 3.0.7.1 to 3.1.0.0
+
+ - *WARN* Our previous debian package added the GRR service using both upstart and init.d runlevels. This caused some confusion on systems with ubuntu upstart systems. We detect and remove this problem automatically with the new version, but since it is a config file change you need to specify whether to install the new config or keep the old one, link:https://raphaelhertzog.com/2010/09/21/debian-conffile-configuration-file-managed-by-dpkg/[or you will get a config change prompt]. New is preferred. Something like `sudo apt-get -o Dpkg::Options::="--force-confnew" grr`.
 
 === 3.0.0.7 to 3.0.7.1
 
