@@ -21,6 +21,8 @@ We try hard to avoid breaking backwards compatibility for clients since upgradin
 
 Matching major/minor versions of client and server should work well together. i.e. Clients 3.1.0.0 and 3.1.6.2 should work well with servers 3.1.0.0 and 3.1.9.7 because they are all 3.1 series. We introduced this approach for the 3.1.0.0 release.
 
+For older servers and clients, matching the last digit provided similar guarantees. i.e. client 3.0.0.7 was released with server 0.3.0-7 and should work well together.
+
 Key Management
 --------------
 
