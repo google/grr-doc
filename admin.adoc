@@ -14,6 +14,13 @@ Get a GRR server installed and running in a few minutes with the
 link:quickstart.adoc[quickstart install]. With more effort you can also
 link:installfromsource.adoc[install from source].
 
+Client and Server Version Compatibility and Numbering
+-----------------------------------------------------
+
+We try hard to avoid breaking backwards compatibility for clients since upgrading can be painful, but occasionally we need to make changes that require a new client version to work. As a general rule you want to upgrade the server first, then upgrade the clients fairly soon after.
+
+Matching major/minor versions of client and server should work well together. i.e. Clients 3.1.0.0 and 3.1.6.2 should work well with servers 3.1.0.0 and 3.1.9.7 because they are all 3.1 series. We introduced this approach for the 3.1.0.0 release.
+
 Key Management
 --------------
 
