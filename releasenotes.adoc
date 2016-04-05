@@ -95,10 +95,12 @@ sudo PYTHONPATH=. python ./run_tests.py --test=BuildConfigTests.testAllConfigs
 
  * AdminUI.team_name: replaced by Email.signature
  * ClientBuilder.build_src_dir: unused, effectively duplicated ClientBuilder.source
+ * ClientBuilder.executables_path: ClientBuilder.executables_dir
  * Client.confg: unused.  Now built from Client.config_hive and Client.config_key
  * Client.config_file_name: unused
  * Client.location: replaced by Client.control_urls
  * Client.package_maker_organization: replaced by ClientBuilder.package_maker_organization
+ * Client.tempdir: replaced by Client.grr_tempdir and Client.tempdir_roots
  * Email.default_domain: essentially duplicated Logging.domain, use that instead.
  * Frontend.processes: unused
  * Nanny.nanny_binary: replaced by Nanny.binary
