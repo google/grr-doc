@@ -1,0 +1,71 @@
+= Installing from Pip =
+
+GRR is now available from link:https://pip.pypa.io/en/stable/installing/[pip].
+If you're looking for an install that sets up system daemons and everything
+ready for production, use the deb package via the
+link:quickstart.adoc[quickstart] instuctions. Use these instructions to set up a
+dev environment or upgrade a server to a newer version from github.
+
+The packages are:
+
+- Server:
+  link:https://pypi.python.org/pypi/grr-response-server[grr-response-server]
+- Client:
+  link:https://pypi.python.org/pypi/grr-response-templates[grr-response-client]
+- Client templates and components:
+  link:https://pypi.python.org/pypi/grr-response-templates[grr-response-templates]
+
+== Installing for dev ==
+
+Installing from pip is great for development because you can have
+multiple versions installed on the same machine without having them conflict
+with each other. When you use pip "--editable" mode your installed version will
+be linked to your src tree so you can git clone from github, install, edit, and
+have any changes reflected immediately in your installed server.
+
+On OS X and Windows we have pre-built wheels hosted on pypi, so you can just
+install like this (pre is required because we're still in pre-release):
+
+----
+virtualenv GRR_ENV
+source GRR_ENV/bin/activate
+pip install --pre --editable grr-response-server
+pip install --pre --editable grr-response-client
+----
+
+On linux, building and hosting wheels is more difficult, so you'll
+need these packages from ubuntu before the above will work:
+
+----
+sudo apt-get install libpng-dev \
+libjpeg8-dev \
+libfreetype6-dev \
+pkg-config \
+python-dev \
+python-pip \
+libssl-dev
+sudo pip install --upgrade pip
+sudo pip install virtualenv
+----
+
+Pip installs the server into the virutalenv so you need to tell GRR where
+the config is with --config when running any of the components.
+
+----
+grr_config_updater --config=GRR_ENV/lib/python2.7/site-packages/grr/config/grr-server.yaml initialize
+----
+
+== Installing GRR server from github source, i.e. tracking HEAD ==
+
+You may want to upgrade your GRR server to use a commit from github to grab a
+bugfix or a new feature that isn't in a release yet. First follow the quickstart
+link:quickstart.adoc[quickstart] instuctions to get the stable server version.
+
+Then grab the packages for linux listed above and:
+
+----
+git clone https://github.com/google/grr.git
+source /usr/share/grr-server/bin/activate
+cd grr/
+pip install .
+----
