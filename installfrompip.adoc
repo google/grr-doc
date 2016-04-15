@@ -15,7 +15,39 @@ The packages are:
 - Client templates and components:
   link:https://pypi.python.org/pypi/grr-response-templates[grr-response-templates]
 
-== Installing for dev ==
+To install the version released on pypi (the deb and
+rpm packaging stuff is only needed for the server to repack the client
+installers):
+
+----
+sudo apt-get install debhelper \
+dpkg-dev \
+libssl-dev \
+python-dev \
+python-pip \
+rpm
+
+sudo pip install --upgrade pip
+sudo pip install virtualenv
+
+virtualenv GRR_ENV
+source GRR_ENV/bin/activate
+pip install --pre grr-response-server
+
+# Then run initialize as normal
+grr_config_updater initialize
+----
+
+Installing the client for development is just as easy thanks to pre-built wheels
+hosted on pypi for OS X and Windows:
+
+----
+virtualenv GRR_ENV
+source GRR_ENV/bin/activate
+pip install --pre grr-response-client
+----
+
+== Installing GRR server for dev, i.e. tracking HEAD ==
 
 Installing from pip is great for development because you can have
 multiple versions installed on the same machine without having them conflict
@@ -23,49 +55,19 @@ with each other. When you use pip "--editable" mode your installed version will
 be linked to your src tree so you can git clone from github, install, edit, and
 have any changes reflected immediately in your installed server.
 
-On OS X and Windows we have pre-built wheels hosted on pypi, so you can just
-install like this (pre is required because we're still in pre-release):
-
-----
-virtualenv GRR_ENV
-source GRR_ENV/bin/activate
-pip install --pre --editable grr-response-server
-pip install --pre --editable grr-response-client
-----
-
-On linux, building and hosting wheels is more difficult, so you'll
-need these packages from ubuntu before the above will work:
-
-----
-sudo apt-get install libpng-dev \
-libjpeg8-dev \
-libfreetype6-dev \
-pkg-config \
-python-dev \
-python-pip \
-libssl-dev
-sudo pip install --upgrade pip
-sudo pip install virtualenv
-----
-
-Pip installs the server into the virutalenv so you need to tell GRR where
-the config is with --config when running any of the components.
-
-----
-grr_config_updater --config=GRR_ENV/lib/python2.7/site-packages/grr/config/grr-server.yaml initialize
-----
-
-== Installing GRR server from github source, i.e. tracking HEAD ==
-
-You may want to upgrade your GRR server to use a commit from github to grab a
-bugfix or a new feature that isn't in a release yet. First follow the quickstart
-link:quickstart.adoc[quickstart] instuctions to get the stable server version.
-
-Then grab the packages for linux listed above and:
+Even if you're not doing development you may want to upgrade your GRR server to
+use a commit from github to grab a bugfix or a new feature that isn't in a
+release yet. Once you have installed the deb you can then grab the packages for
+linux listed above and:
 
 ----
 git clone https://github.com/google/grr.git
-source /usr/share/grr-server/bin/activate
+virtualenv GRR_NEW
+source GRR_NEW/bin/activate
 cd grr/
-pip install .
+pip install --editable .
+pip install --editable grr/config/grr-response-server
+
+# Edit /etc/default/grr and set:
+# GRR_PREFIX=/path/to/GRR_NEW
 ----
