@@ -191,7 +191,15 @@ grr_config_updater initialize
 Edit /etc/grr/server.local.yaml to include the following at the end of the file:
 
 ----------------------------------
-Worker.smtp_server: <server:port>
+Worker.smtp_server: <server>
+Worker.smpt_port: <port>
+----------------------------------
+and, if needed,
+
+----------------------------------
+Worker.smtp_starttls: True
+Worker.smtp_user: <user>
+Worker.smtp_password: <password>
 ----------------------------------
 
 After configuration is complete, restart the GRR worker(s).  You can test this configuration by running a ClientListReport Flow (Start Global Flows > Reporting > RunReport).
