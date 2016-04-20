@@ -57,7 +57,7 @@ have any changes reflected immediately in your installed server.
 
 Even if you're not doing development you may want to upgrade your GRR server to
 use a commit from github to grab a bugfix or a new feature that isn't in a
-release yet. Once you have installed the deb you can then grab the packages for
+release yet. Once you have installed the deb (note it needs to be 3.1.0-rc2 or newer) you can then grab the packages for
 linux listed above and:
 
 ----
