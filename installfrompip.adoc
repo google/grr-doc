@@ -17,7 +17,7 @@ The packages are:
 
 To install the version released on pypi (the deb and
 rpm packaging stuff is only needed for the server to repack the client
-installers):
+installers). Note that you *must* upgrade pip and run in a virutalenv for the install to work:
 
 ----
 sudo apt-get install debhelper \
