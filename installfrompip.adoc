@@ -33,6 +33,7 @@ sudo pip install virtualenv
 virtualenv GRR_ENV
 source GRR_ENV/bin/activate
 pip install --pre grr-response-server
+pip install --pre grr-response-templates
 
 # Then run initialize as normal
 grr_config_updater initialize
@@ -67,6 +68,8 @@ source GRR_NEW/bin/activate
 cd grr/
 pip install --editable .
 pip install --editable grr/config/grr-response-server
+pip install --editable grr/config/grr-response-templates
+pip install --editable grr/config/grr-response-test
 
 # Edit /etc/default/grr and set:
 # GRR_PREFIX=/path/to/GRR_NEW
