@@ -79,7 +79,7 @@ vagrant box add windows_7_64.box --name windows_7_64
 vagrant destroy windows_7_64_base
 ----
 
-= Setting Up For Windows EXE Signing =
+== Setting Up For Windows EXE Signing ==
 
 To make automation easier we now sign the windows installer executable on linux
 using osslsigncode.  To set up for signing, install osslsigncode:

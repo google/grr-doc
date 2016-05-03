@@ -1272,7 +1272,7 @@ for client_id in file_object.readlines():
     client_id = client_id.strip()
     client_objects = SearchClients(client_id)
     for _, hostname, _, _ in client_objects:
-        print "{0:s}\t{1:s}".format(client_id, hostname)
+        print "\{0:s}\\t\{1:s}".format(client_id, hostname)
 --------------------------------------------------------------------------------
 
 Delete a client and all of its data
@@ -1286,7 +1286,8 @@ Read a specific version of a file
 ----------------------------------------------------------------------------------------
 fd = aff4.FACTORY.Open(path, token=token, age=aff4.ALL_TIMES)
 # list all the versions of the file
-[(x.value, x.age.value, str(x.age)) for x in fd.GetValuesForAttribute(fd.Schema.TYPE)]
+for x in fd.GetValuesForAttribute(fd.Schema.TYPE):
+    print (x.value, x.age.value, str(x.age))
 fd2 = aff4.FACTORY.Open(path, token=token, age=1335957983819287)
 ----------------------------------------------------------------------------------------
 
