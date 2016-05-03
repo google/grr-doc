@@ -992,6 +992,19 @@ that are good citizens (normally the dangerous ones) will call the Progress()
 function regularly. This function checks if limit has been exceeded and will
 exit.
 
+Building the Server Debian package
+----------------------------------
+
+These instructions are really only for GRR devs making a release. In most cases users will want to follow the link:https://github.com/google/grr-doc/blob/master/installfrompip.adoc#installing-grr-server-for-dev-ie-tracking-head[Installing GRR server for Dev] instructions if you have made server customizations, rather than rebuild the debian package.
+
+Build the package using docker as below. This first command builds the docker image, which includes the deb, and the second command starts a container and copies out the file.
+
+----
+docker build -t build_package -f docker/Dockerfile.build_server_deb .
+docker run --rm --entrypoint cat build_package \
+  /output/grr-server_3.1.0-2_amd64.deb > /tmp/grr-server_3.1.0-2_amd64.deb
+----
+
 
 Crashes
 -------
