@@ -1002,7 +1002,7 @@ Build the package using docker as below. This first command builds the docker im
 ----
 docker build -t build_package -f docker/Dockerfile.build_server_deb .
 docker run --rm --entrypoint cat build_package \
-  /output/grr-server_3.1.0-2_amd64.deb > /tmp/grr-server_3.1.0-2_amd64.deb
+  /usr/src/grr-server_3.1.0-2_amd64.deb > /tmp/grr-server_3.1.0-2_amd64.deb
 ----
 
 
