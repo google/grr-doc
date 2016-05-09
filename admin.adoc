@@ -473,7 +473,7 @@ Component Performance Needs
   inside a faster web server such as Apache. See section below for how. As well as having a better performing http server, if you are moving a lot of
   traffic you probably want to run multiple http servers. Again, assuming your
   datastore handles it, these should scale linearly.
-- *Web UI*: The admin UI component is usually under light load, but you can run as many as you want for redundancy.
+- *Web UI*: The admin UI component is usually under light load, but you can run as many as you want for redundancy. The more concurrent GRR users you have, the more instances you need. This is also the API server, so if you intend to use the API heavily run more.
 
 Performance-Critical Client Config Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
