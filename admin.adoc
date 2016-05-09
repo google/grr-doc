@@ -429,6 +429,33 @@ The link:implementation.adoc#grr-component-overview[GRR server components] shoul
 You should install the GRR package on all machines and use configuration management (chef, puppet etc.) to:
 
  - Distribute the same grr-server.yaml to each machine
+ - Control how many of each component to run on each machine (see next section for details)
+ 
+Running Multiple Copies of Components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+For 3.1.0 and later, use a link:http://askubuntu.com/questions/659267/how-do-i-override-or-configure-systemd-services[systemd drop-in override] to control how many copies of each component you run on each machine. This can initially be done using:
+ 
+----
+sudo systemctl edit grr-server
+----
+ 
+which creates "/etc/systemd/system/grr-server.service.d/override.conf". You'll want to turn this into a template file and control via puppet or similar. An example override that just runs 3 workers looks like:
+ 
+----
+[Service]
+ExecReload=
+ExecReload=/bin/systemctl --no-block reload grr-server@worker.service grr-server@worker2.service grr-server@worker3.service
+ExecStart=
+ExecStart=/bin/systemctl --no-block start grr-server@worker.service grr-server@worker2.service grr-server@worker3.service
+ExecStop=
+ExecStop=/bin/systemctl --no-block stop grr-server@worker.service grr-server@worker2.service grr-server@worker3.service
+----
+ 
+When starting multiple copies of the UI and the web frontend you also need to tell GRR which ports it should be using. So if you want 10 http frontends on a machine you would configure your systemd drop-in to start 10 copies and then set Frontend.port_max so that you have a range of 10 ports from Frontend.bind_port. You can then configure your load balancer to distribute across that port range. AdminUI.port_max works the same way for the UI.
+ 
+Prior to 3.1.0 the approach was to use config management tools to:
+ 
  - Manipulate the /etc/default/grr-* files to enable the relevant services you want to run on each machine
  - Create new init scripts for components that should have multiple instances on each machine. e.g. If you want to run 20 workers you'd set up a puppet template to create 19 extra /etc/init/grr-worker[1-19].conf files. This will get easier when we have a docker cloud deployment, which is naturally suited to standing up many copies of services.
  
