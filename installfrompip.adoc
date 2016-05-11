@@ -68,7 +68,7 @@ source GRR_NEW/bin/activate
 cd grr/
 pip install --editable .
 pip install --editable grr/config/grr-response-server
-pip install --editable -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
+pip install -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 pip install --editable grr/config/grr-response-test
 
 # Edit /etc/default/grr and set:
