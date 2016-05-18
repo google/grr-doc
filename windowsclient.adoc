@@ -4,80 +4,27 @@ Windows licensing means we can't just simply provide a build vm via vagrant as
 we've done for linux.  So there's more hoops to jump through here, but it's as
 automated as possible.
 
-== Client Build VM ==
+== Build Machine ==
 
-First, install link:https://www.vagrantup.com/[Vagrant],
-link:https://packer.io/[Packer] (ensure you download and compile version 0.8.3 at min to avoid WinRM issues), and VirtualBox.  See
-link:http://ilostmynotes.blogspot.com/2015/04/vagrant-packer-and-boxcutter-ftw-create.html[here]
-for some background on these technologies. Then checkout boxcutter:
+You need a Windows machine or VM. Then checkout the grr source and run this script, note that the 64bit python should go in `C:\Python27` and 32bit in `C:\Python27_32`:
 
 ----
-git clone https://github.com/boxcutter/windows.git boxcutter-windows
+vagrant/windows/install_for_build.bat
 ----
 
-and make a base windows VM (30 min). For these instructions we assume that you
-have access to the Windows 7 enterprise ISO (e.g. via MSDN subscription). If you
-don't, you can use 'virtualbox/eval-win7x64-enterprise' but you'll have to wait
-on SP1 to be installed, which will cost you a fair amount of time, and you'll
-need to go through windows activation.
+Now you need to make sdists from the GRR source (which requires a protobuf compiler) and get them to the windows build machines. We do this on linux with this script (note you'll need to use a different cloud storage bucket name):
 
 ----
-cd boxcutter-windows
-mkdir iso; mv ../Downloads/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso iso/
-make virtualbox/eval-win7x64-enterprise
+scripts/make_sdist_for_templates.sh
 ----
 
-Then tell vagrant it's there (1 min):
-----
-cd ~/grr/vagrant
-vagrant box add ~/boxcutter-windows/box/virtualbox/win7x64-enterprise-nocm-1.0.4.box --name windows_7_64_vanilla
-----
-
-Bring it up with (5 min, including chkdisk):
-----
-vagrant up windows_7_64_vanilla
-----
-
-You'll probably need to immediately reboot for updates.  You can decide whether
-you want to run windows update and get things up to date (it's going to download
-1GB+ of updates and take a few hours!). Either way, install all the big grr
-dependencies with this (30min):
+and then we download and build everything on windows with this:
 
 ----
-C:\grr\vagrant\windows\install_visual_studio.bat
+vagrant/windows/build_windows_templates.bat
 ----
 
-Once that finishes you have a base VM that won't need updating, and can be used
-to build from if dependencies change.  Run disk cleanup then shut it down and
-save it as it's own vagrant vm (45 min, it's now a 13G VM):
-
-----
-VBoxManage list vms
-vagrant package --base "<Windows vm name>" --output windows_7_64_base.box
-vagrant box add windows_7_64_base.box --name windows_7_64_base
-vagrant destroy windows_7_64_vanilla
-----
-
-Bring up the new one. Note that when dependencies change you'll only need to do
-these final steps again to get an updated environment:
-
-----
-vagrant up windows_7_64_base
-----
-
-Finish installing dependencies with (15 min):
-
-----
-C:\grr\vagrant\install_windows.bat
-----
-
-And save your final build VM with (45 min):
-----
-VBoxManage list vms
-vagrant package --base "<Windows vm name>" --output windows_7_64.box
-vagrant box add windows_7_64.box --name windows_7_64
-vagrant destroy windows_7_64_base
-----
+Download the built templates and components from cloud storage to your linux vm for repacking. Put them under `grr/executables/windows/templates`.
 
 == Setting Up For Windows EXE Signing ==
 
