@@ -682,6 +682,12 @@ Each client can have a label "baked in" at build time that allows it to be ident
 
 When you use the build scripts via "make" as above you will end up with a directory structure containing all the installers you specified. There's no limit to the number of differently labelled binaries you can build in this way.
 
+It is also possible to repack clients using a multi label configuration without building them from scratch. To do this, you have to use the grr_client_build command:
+
+grr_client_build --platform windows --arch amd64 buildanddeploy --templatedir ./grr-response-templates/templates
+
+This will only repack the existing client templates, not build them.
+
 If you are interested in delegating some GRR access to others by label, read and upvote link:https://github.com/google/grr/issues/295[this feature request].
 
 Client Configuration.
