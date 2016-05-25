@@ -684,7 +684,9 @@ When you use the build scripts via "make" as above you will end up with a direct
 
 It is also possible to repack clients using a multi label configuration without building them from scratch. To do this, you have to use the grr_client_build command:
 
+----
 grr_client_build --platform windows --arch amd64 buildanddeploy --templatedir ./grr-response-templates/templates
+----
 
 This will only repack the existing client templates, not build them.
 
