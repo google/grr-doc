@@ -678,7 +678,7 @@ make vmclean
 Building Clients With Custom Labels: Multi-Organization Deployments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Each client can have a label "baked in" at build time that allows it to be identified and hunted separately. This is especially useful when you want to deploy across a large number of separate organisations. You achieve this by filling out link:https://github.com/google/grr/blob/master/config/buildconfig.yaml[buildconfig.yaml] with the list of clients and labels you desire as described in the examples. 
+Each client can have a label "baked in" at build time that allows it to be identified and hunted separately. This is especially useful when you want to deploy across a large number of separate organisations. You achieve this by filling out link:https://github.com/google/grr/blob/master/install_data/etc/buildconfig.yaml[buildconfig.yaml] with the list of clients and labels you desire as described in the examples. 
 
 When you use the build scripts via "make" as above you will end up with a directory structure containing all the installers you specified. There's no limit to the number of differently labelled binaries you can build in this way.
 
