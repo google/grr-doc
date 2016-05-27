@@ -1039,6 +1039,7 @@ docker build -t build_package -f docker/Dockerfile.build_server_deb .
 docker run --rm -v ${PWD}:/output:rw -u $(id -u) build_package bash -c "cp -r /usr/src/grr-server* /output/"
 ----
 
+Note that we want to run this as a dockerhub build on every commit, but are link:https://github.com/docker/hub-feedback/issues/292[blocked by dockerhub's inability to separate context and Dockerfile].
 
 Crashes
 -------
