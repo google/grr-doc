@@ -23,6 +23,7 @@ installers). Note that you *must* upgrade pip and run in a virutalenv for the in
 sudo apt-get install debhelper \
 dpkg-dev \
 libssl-dev \
+prelink \
 python-dev \
 python-pip \
 rpm
