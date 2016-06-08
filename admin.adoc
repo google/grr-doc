@@ -353,12 +353,17 @@ Auditing.
 ~~~~~~~~~
 By default GRR currently only offers limited audit logs in the /var/log/
 directory. However, the system is designed to allow for deployment of extensive
-auditing capabilities through the Security Manager.
+auditing capabilities through the Security Manager and through the API router.
 
 The idea is that we have a gateway process, and the Admin UI and any console
 access is brokered through the gateway. The gateway is the only access to the
 datastore and it audits all access and can provide intelligent access control.
 This is implemented in the FullAccessControlManager.
+
+Admin UI API handlers, though, are relying on unrestricted access to the
+datastore, so effectively FullAccessControlManager is not used when HTTP
+API calls are handled. So it's also necessary to set API.DefaultRouter to
+an API router that will be doing necessary access checks.
 
 Using this allows for sensible access control, e.g. another user must authorize
 access before someone is given access to a machine, or an admin must authorize
@@ -368,6 +373,7 @@ In order to enable full access control, add
 --------------------------------------------------------------------------------
 AdminUI Context:
   Datastore.security_manager: FullAccessControlManager
+  API.DefaultRouter: ApiCallRouterWithApprovalChecksWithoutRobotAccess
 --------------------------------------------------------------------------------
 
 to your configuration. Note that GRR will try to send approval emails so you
