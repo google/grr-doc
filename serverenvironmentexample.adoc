@@ -115,13 +115,13 @@ Worker.smtp_password: <password>
 Email.approval_cc_address: <monitoring email>
 
 2. Add users who should be able to access the admin interface.
-* *Note* Users cannot change their password in the admin ui, they must change it
-* in the command line
+* *Note* Users cannot change their password in the admin ui, they must change
+ it in the command line
 * https://github.com/google/grr-doc/blob/master/admin.adoc#user-management[User
-* Management]
+ Management]
 3. Run `grr_config_updater repack_clients`
 * *Note* -If you decided to implement #3 in Configuring GRR on the Main Server
-* add `--secondary_configs <signing key file>` after `grr_config_updater`
+ add `--secondary_configs <signing key file>` after `grr_config_updater`
 4. Start services with `grr_server --component worker and grr_server --component
 ui`
 
