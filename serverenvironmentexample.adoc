@@ -13,10 +13,8 @@ Assumptions Made
 ----------------
 Below are the assumptions made to make use of this example.
 
-* GRR Servers will be running Ubuntu 16.04 LTS with all updates already
-* installed
-* There will be 3 servers in the configuration as outlined above. They will be
-* called Master Dataserver, HTTP Server, and Main Server
+* GRR Servers will be running Ubuntu 16.04 LTS with all updates already installed
+* There will be 3 servers in the configuration as outlined above. They will be called Master Dataserver, HTTP Server, and Main Server
 * Bleeding edge GRR is desired and will be installed via pip
 * The virtual environment will be called GRR_NEW
 * All networking has been properly set up
