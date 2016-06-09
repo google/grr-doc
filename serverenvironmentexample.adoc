@@ -57,8 +57,7 @@ Configuring GRR on the Main Server
 `Client.executable_signing_public_key` to a new file and change permissions
 based on your executable signing structure policy
 4. _Optional_ - Set up the Approval Process
-* Users listed in the approval process will be added later. However this
-* configuration must be pushed out to all servers, so it should be set up now.
+* Users listed in the approval process will be added later. However this configuration must be pushed out to all servers, so it should be set up now.
 * https://github.com/google/grr-doc/blob/master/admin.adoc#auditing[Auditing]
 
 Initial Configuration on HTTP Server
@@ -90,8 +89,8 @@ Dataserver.server_password: <server_password>
       to talk to the master dataserver.
 3. Start the dataserver service by running `grr_server --component
 dataserver_master`
-* It should start with no errors and not show any information. If you would like
-* to see more information add in `--verbose`
+* It should start with no errors and not show any information. If you would
+ like to see more information add in `--verbose`
 
 Finish the Configuration on the Main Server
 -------------------------------------------
