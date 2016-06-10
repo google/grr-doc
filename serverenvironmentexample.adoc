@@ -114,9 +114,8 @@ Worker.smtp_user: <username>
 Worker.smtp_password: <password>
 Email.approval_cc_address: <monitoring email>
 
-* *Note* `approval_cc_address` should be within the configured domain. This means if
-your email domain is configured to `localhost`, and you want the email to go to
-`alerts@localhost` you should put `Email.approval_cc_address: alerts`
+* *Note* `approval_cc_address` should only be the account name, your email
+ domain will be appended later.
 2. Add users who should be able to access the admin interface.
 * *Note* Users cannot change their password in the admin ui, they must change
  it in the command line
