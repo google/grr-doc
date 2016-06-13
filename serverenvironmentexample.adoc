@@ -5,7 +5,7 @@ GRR Server Environment Example Setup
 :icons:
 
 A GRR Server Environment can be whatever you make it. This example goes over the
-steps necessary to a three server environment: one to house the front end HTTP
+steps necessary to create a three server environment: one to house the front end HTTP
 service, one to house the master datastore, and one to house the admin ui and
 workers.
 
