@@ -21,6 +21,9 @@ Below are the assumptions made to make use of this example.
 
 Setting up the servers
 ----------------------
+The steps below are based off of
+https://github.com/google/grr-doc/blob/master/installfrompip.adoc[Install from
+Pip] documentation. If the below does not work, please refer back to there.
 1. `apt-get install debhelper dpkg-dev libssl-dev python-dev python-pip rpm git
 protobuf-compiler`
 2. `pip install --upgrade pip`
