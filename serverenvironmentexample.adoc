@@ -112,7 +112,7 @@ HTTPDatastore.password: <client_password>
 +
 [source,yaml]
 Worker.smtp_server: <smtp server>
-Worker.smtp_port: 587
+Worker.smtp_port: <smtp port>
 Worker.smtp_starttle: True
 Worker.smtp_user: <username>
 Worker.smtp_password: <password>
