@@ -118,7 +118,7 @@ Worker.smtp_user: <username>
 Worker.smtp_password: <password>
 Email.approval_cc_address: <monitoring email>
 
-* *Note* `approval_cc_address` should only be the account name, your email
+- *Note* `approval_cc_address` should only be the account name, your email
  domain will be appended later.
 * Private Key configuration 
 +
