@@ -131,10 +131,7 @@ PrivateKeys.executable_signing_private_key: "%(<path to key>|file)"
  it in the command line
 * https://github.com/google/grr-doc/blob/master/admin.adoc#user-management[User
  Management]
-3. Run `grr_config_updater repack_clients`
-* *Note* -If you decided to implement #3 in Configuring GRR on the Main Server
- add `--secondary_configs <signing key file>` after `grr_config_updater`
-4. Start services with `grr_server --component worker and grr_server --component
+3. Start services with `grr_server --component worker and grr_server --component
 ui`
 
 Finish the configuration on HTTP Server
