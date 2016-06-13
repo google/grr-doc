@@ -60,6 +60,7 @@ Configuring GRR on the Main Server
 3. _Optional_ - Edit `grr/install_data/etc/server.local.yaml` and move
 `PrivateKeys.executable_signing_private_key` key to a new file and change permissions
 based on your executable signing structure policy
+* When you move the key to a new file, remove all extra whitespace as well.
 4. _Optional_ - Set up the Approval Process
 * Users listed in the approval process will be added later. However this configuration must be pushed out to all servers, so it should be set up now.
 * https://github.com/google/grr-doc/blob/master/admin.adoc#auditing[Auditing]
