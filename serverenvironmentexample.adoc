@@ -58,7 +58,7 @@ Configuring GRR on the Main Server
 * Step 4: Installing template package: `n`
 * Step 5: - Completes on its own
 3. _Optional_ - Edit `grr/install_data/etc/server.local.yaml` and move
-`Client.executable_signing_public_key` to a new file and change permissions
+`PrivateKeys.executable_signing_private_key` key to a new file and change permissions
 based on your executable signing structure policy
 4. _Optional_ - Set up the Approval Process
 * Users listed in the approval process will be added later. However this configuration must be pushed out to all servers, so it should be set up now.
@@ -117,6 +117,11 @@ Worker.smtp_starttle: True
 Worker.smtp_user: <username>
 Worker.smtp_password: <password>
 Email.approval_cc_address: <monitoring email>
+
+* Private Key configuration 
++
+[source,yaml]
+PrivateKeys.executable_signing_private_key: "%(<path to key>|file)"
 
 * *Note* `approval_cc_address` should only be the account name, your email
  domain will be appended later.
