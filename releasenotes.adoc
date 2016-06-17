@@ -21,6 +21,7 @@ Note that we shifted our version string left to reduce confusion, see the link:a
  
 Upgrade procedure:
 
+ 1. Make backups of important data such as your configs and your database.
  1. Upgrade to xenial
  1. Clear out any old installations: `sudo rm -rf /usr/local/bin/grr_*; sudo rm -rf /usr/local/lib/python2.7/dist-packages/grr/`
  1. Install deb package
