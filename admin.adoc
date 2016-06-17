@@ -11,8 +11,7 @@ Deploying the GRR server.
 -------------------------
 
 Get a GRR server installed and running in a few minutes with the
-link:quickstart.adoc[quickstart install]. With more effort you can also
-link:installfromsource.adoc[install from source].
+link:quickstart.adoc[quickstart install]. If you're building a dev server take a look at the link:https://github.com/google/grr-doc/blob/master/installfrompip.adoc[pip install instructions].
 
 Client and Server Version Compatibility and Numbering
 -----------------------------------------------------
