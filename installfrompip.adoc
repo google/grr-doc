@@ -33,7 +33,8 @@ sudo pip install virtualenv
 
 virtualenv GRR_ENV
 source GRR_ENV/bin/activate
-pip install --pre grr-response-server
+pip install grr-response-core
+pip install grr-response-server
 pip install -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 
 # Then run initialize as normal
