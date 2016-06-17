@@ -6,7 +6,7 @@ watch for when upgrading from one version to another.
 
 == Server
 
-=== 0.3.0-7 to 3.1.0
+=== 0.3.0-7 to 3.1.0.2
 
 Note that we shifted our version string left to reduce confusion, see the link:admin.adoc#client-and-server-version-compatibility-and-numbering[documentation on GRR versions].
 
