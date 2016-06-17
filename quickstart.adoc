@@ -5,7 +5,7 @@ This document describes getting a server and clients up and running for the firs
  1. Run the link:https://github.com/google/grr-doc/blob/master/docker.adoc[docker image]. This is the fastest way to get a basic install up and running for testing. Takes ~2 mins to download the image and initialize the server.
  2. Follow these instructions for an automated install on an Ubuntu system. This is a better option for stability and customization. Takes ~20 mins to download and install dependencies, you are prompted for some important settings.
  
-If you're experience with GRR and want to set up a server for development take a look at the link:https://github.com/google/grr-doc/blob/master/installfrompip.adoc[pip install instructions].
+If you're experienced with GRR and want to set up a server for development take a look at the link:https://github.com/google/grr-doc/blob/master/installfrompip.adoc[pip install instructions].
 
 == Requirements ==
 
