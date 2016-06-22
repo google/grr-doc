@@ -116,9 +116,9 @@ Here are common client troubleshooting steps you can work through to diagnose cl
 
 You should have something like:
 
- - ``C:\Windows\System32\GRR\3.0.7.1\GRR.exe`` on windows;
- - ``/usr/lib/grr/grr_3.0.7.1_amd64/grrd`` on linux; and
- - ``/usr/local/lib/grr_3.0.7.1_amd64/grrd`` on OSX
+ - ``C:\Windows\System32\GRR\3.1.0.2\GRR.exe`` on windows;
+ - ``/usr/lib/grr/grr_3.1.0.2_amd64/grrd`` on linux; and
+ - ``/usr/local/lib/grr_3.1.0.2_amd64/grrd`` on OSX
  
 with variations based on the GRR version and architecture you installed (32bit is i386). If you didn't get this far, then there is a problem with your installer binary.
 
@@ -127,15 +127,15 @@ with variations based on the GRR version and architecture you installed (32bit i
 On linux and OS X you should see two processes, something like:
 ----
 $ ps aux | grep grr
-root       957  0.0  0.0  11792   944 ?        Ss   01:12   0:00 /usr/sbin/grrd --config=/usr/lib/grr/grr_3.0.7.1_amd64/grrd.yaml
-root      1015  0.2  2.4 750532 93532 ?        Sl   01:12   0:01 /usr/sbin/grrd --config=/usr/lib/grr/grr_3.0.7.1_amd64/grrd.yaml
+root       957  0.0  0.0  11792   944 ?        Ss   01:12   0:00 /usr/sbin/grrd --config=/usr/lib/grr/grr_3.1.0.2_amd64/grrd.yaml
+root      1015  0.2  2.4 750532 93532 ?        Sl   01:12   0:01 /usr/sbin/grrd --config=/usr/lib/grr/grr_3.1.0.2_amd64/grrd.yaml
 ----
 
 On windows you should see a ``GRR Monitor`` service and a ``GRR.exe`` process in taskmanager.
 
 If it isn't running check the install logs and other logs in the same directory:
 
-- Linux/OS X: ``/var/log/grr/grr_installer.txt``
+- Linux/OS X: ``/var/log/grr_installer.txt``
 - Windows: ``C:\Windows\System32\LogFiles\GRR_installer.txt``
 
 and then try running it interactively as below.
@@ -145,9 +145,9 @@ and then try running it interactively as below.
 The URL here should be the server address and port you picked when you set up the server and listed in ``Client.control_urls`` in the client's config.
 ----
 wget http://yourgrrserver.yourcompany.com:8080/server.pem
-# Check your config settings
-$ sudo cat /usr/lib/grr/grr_3.0.7.1_amd64/grrd.yaml | grep Client.control_urls
-Client.control_urls: http://yourgrrserver.yourcompany.com:8080/control
+# Check your config settings, note that clients earlier than 3.1.0.2 used Client.control_urls
+$ sudo cat /usr/lib/grr/grr_3.1.0.2_amd64/grrd.yaml | grep Client.server_urls
+Client.server_urls: http://yourgrrserver.yourcompany.com:8080/
 ----
 
 If you can't download that server.pem, the common causes are that your server isn't running or there are firewalls in the way.
@@ -157,23 +157,23 @@ If you can't download that server.pem, the common causes are that your server is
 Linux: Stop the daemon version of the service and run it in verbose mode:
 ----
 $ sudo service grr stop
-$ sudo /usr/sbin/grrd --config=/usr/lib/grr/grr_3.0.7.1_amd64/grrd.yaml --verbose
+$ sudo /usr/sbin/grrd --config=/usr/lib/grr/grr_3.1.0.2_amd64/grrd.yaml --verbose
 ----
 
 OS X: Unload the service and run it in verbose mode:
 ----
 $ sudo launchctl unload /Library/LaunchDaemons/com.google.code.grr.plist
-$ sudo /usr/local/lib/grr_3.0.7.1_amd64/grrd --config=/usr/local/lib/grr_3.0.7.1_amd64/grrd.yaml --verbose
+$ sudo /usr/local/lib/grr_3.1.0.2_amd64/grrd --config=/usr/local/lib/grr_3.1.0.2_amd64/grrd.yaml --verbose
 ----
 
 Windows: The normal installer isn't a terminal app, so you don't get any output if you run it interactively. 
 
-- Install the debug ``dbg_GRR_3.0.7.1_(amd64|i386).exe`` version to make it a terminal app.
+- Install the debug ``dbg_GRR_3.1.0.2_(amd64|i386).exe`` version to make it a terminal app.
 - Stop the ``GRR Monitor`` service in task manager
 
 Then run in a terminal as Administrator
 ----
-cd C:\Windows\System32\GRR\3.0.7.1\
+cd C:\Windows\System32\GRR\3.1.0.2\
 GRR.exe --config=GRR.exe.yaml --verbose
 ----
 
