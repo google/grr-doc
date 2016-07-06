@@ -141,7 +141,7 @@ We try to support a wide range of operating systems because we know it’s often
 *Windows*
 
  - Well tested on: 64bit Windows 7+ workstations, 64bit Win2k8+ servers.
- - Should probably work: 32bit versions of the above, Windows XP+ workstations.
+ - Should probably work: 32bit versions of the above, Windows Vista+ workstations.
 
 *OS X*
 
