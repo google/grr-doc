@@ -66,6 +66,12 @@ linux listed above and:
 git clone https://github.com/google/grr.git
 virtualenv GRR_NEW
 source GRR_NEW/bin/activate
+# This sets up NodeJS inside the virtualenv.
+# NodeJS is needed to compile AdminUI JS/CSS files.
+pip install nodeenv
+nodeenv -p
+deactivate; source GRR_NEW/bin/activate
+# This installs GRR.
 cd grr/
 pip install --editable .
 pip install --editable grr/config/grr-response-server
