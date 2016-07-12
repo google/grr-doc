@@ -69,8 +69,8 @@ source GRR_NEW/bin/activate
 # This sets up NodeJS inside the virtualenv.
 # NodeJS is needed to compile AdminUI JS/CSS files.
 pip install nodeenv
-nodeenv -p
-deactivate; source GRR_NEW/bin/activate
+nodeenv -p --prebuilt
+source GRR_NEW/bin/activate
 # This installs GRR.
 cd grr/
 pip install --editable .
