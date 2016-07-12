@@ -59,10 +59,20 @@ have any changes reflected immediately in your installed server.
 
 Even if you're not doing development you may want to upgrade your GRR server to
 use a commit from github to grab a bugfix or a new feature that isn't in a
-release yet. Once you have installed the deb (note it needs to be 3.1.0-rc2 or newer) you can then grab the packages for
-linux listed above and:
+release yet. Once you have installed the deb (note it needs to be 3.1.0-rc2 or newer):
 
 ----
+sudo apt-get install debhelper \
+dpkg-dev \
+libssl-dev \
+prelink \
+python-dev \
+python-pip \
+rpm
+
+sudo pip install --upgrade pip
+sudo pip install virtualenv
+
 git clone https://github.com/google/grr.git
 virtualenv GRR_NEW
 source GRR_NEW/bin/activate
