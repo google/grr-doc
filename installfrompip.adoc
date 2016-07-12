@@ -82,7 +82,7 @@ pip install --editable grr/config/grr-response-server
 pip install -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 pip install --editable grr/config/grr-response-test
 ----
-Then edit /etc/default/grr and set:
+Then edit /etc/default/grr-server and set:
 
 ----
 GRR_PREFIX=/path/to/GRR_NEW
