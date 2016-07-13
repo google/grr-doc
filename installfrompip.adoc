@@ -34,7 +34,7 @@ sudo pip install virtualenv
 virtualenv GRR_ENV
 source GRR_ENV/bin/activate
 pip install grr-response-server
-pip install -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
+pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 
 # Then run initialize as normal
 grr_config_updater initialize
@@ -85,7 +85,7 @@ source GRR_NEW/bin/activate
 cd grr/
 pip install --editable .
 pip install --editable grr/config/grr-response-server
-pip install -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
+pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 pip install --editable grr/config/grr-response-test
 ----
 Then edit /etc/default/grr-server and set:
