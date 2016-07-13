@@ -86,7 +86,7 @@ interface
 you would like to add it. Repeat for all dataserver slaves.
  -  Keep this interface up
 2. In a separate tab edit `install_data/etc/server.local.yaml`. Change the
-`Dataserver.server_list section` to add any dataserver slaves you want to add
+`Dataserver.server_list` section to add any dataserver slaves you want to add
 +
 [source,yaml]
 Dataserver.server_list:
