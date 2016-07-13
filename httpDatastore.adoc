@@ -1,0 +1,102 @@
+How to create an HTTP datastore environment
+===========================================
+Assumptions Made 
+----------------
+* GRR servers will be running on Ubuntu 16.04 LTS following
+https://github.com/google/grr-doc/blob/master/installfrompip.adoc#installing-grr-server-for-dev-ie-tracking-head[Install
+from Pip] documentation
+* A “main server” will be hosting all the other services in the infrastructure.
+Virtual Environment created is called “GRR_NEW”
+* It is desired to have every data server host through port tcp:7000 (this is not
+a necessity)
+* All services are down for this configuration change.
+* On every server you work with in this document, you activated your virtualenv
+and changed into grr/ 
+
+Set up the master dataserver
+----------------------------
+1. Copy the /install_data/etc/server.local.yaml file from your main server to your
+master dataserver
+2. Edit the server.local.yaml with either changing or adding the following:
++
+[source,yaml]
+Datastore.location: <path to datastore>
+Datastore.implementation: SQLiteDataStore
+Dataserver.server_list:
+  - http://<master dataserver ip>:7000
+  - http://<slave dataserver ip 1>:7000
+  - http://<slave dataserver ip 2>:7000
+Dataserver.client_credentials:
+  - <client_username>:<client_password>:rw
+Dataserver.server_username: <server_username>
+Dataserver.server_password: <server_password>
+
+3. Run `python grr/server/data_server/data_server.py
+--config=install_data/etc/grr-server.yaml --master` to start the service and
+verify it starts correctly. Keep this running
+
+Set up the slave dataservers
+----------------------------
+1. Copy install_data/etc/server.local.yaml from the main server to your slave
+dataserver
+2. Edit grr/install_data/etc/server.local.yaml. Change or add the following:
++
+[source,yaml]   
+Dataserver.server_list:
+  - <dataserver master ip>:7000
+Dataserver.server_username: <server_username>
+Dataserver.server_password: <server_password>
+Datastore.implementation: SqliteDataStore
+Datastore.location: <location>
+
+* Notes: 
+    - The server_username and server_password were configured in the setup of the
+master dataserver. 
+    - The configuration lines may not be in a sensible order, make sure to search for
+    them within the document to avoid duplicates. Dataserver.server_username and
+    Dataserver.server_password will need to be added in. The others will be modified
+3. Run the command qgrr_server --component dataserver_slave --verbose` to see the
+data server slave connect.
+4. Repeat for each slave dataserver you wish to create
+5. *On the master server* in the management interface, after adding and connecting
+all the data servers, run rebalance and confirm that you would like to reshard
+the database.
+
+Update the main server configuration
+------------------------------------
+1. Edit install_data/etc/server.local.yaml
++
+[source,yaml]
+Dataserver.server_list:
+  - http://<dataserver master ip>:7000
+  - http://<dataserver slave ip>:7000
+Datastore.implementation: HTTPDataStore
+HTTPDataStore.username: <client_username>
+HTTPDataStore.password: <client_password>
+
+
+Add more slave dataservers after initial setup
+----------------------------------------------
+Change configuration on the master dataserver
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Run the command `python grr/server/data_server/manager.py
+--config=install_data/etc/grr-server.yaml` to start the dataserver management
+interface
+ -  While in the interface, run `addserver <dataserver slave> 7000` and confirm that
+you would like to add it. Repeat for all dataserver slaves.
+ -  Keep this interface up
+2. In a separate tab edit install_data/etc/server.local.yaml. Change the
+`Dataserver.server_list section` to add any dataserver slaves you want to add
++
+[source,yaml]
+Dataserver.server_list:
+  - <dataserver master>:7000
+  - <dataserver slave 1>:7000
+  - <dataserver slave 2>:7000
+
+3. Run the command `python grr/server/data_server/data_server.py
+--config=install_data/etc/grr-server.yaml --master`
+  - Leave this command running, keep the screen somewhere you can monitor it.
+4. Set up the slave dataservers as you did above
+5. Update the main server configuration as you did above with the new
+dataserver slaves
