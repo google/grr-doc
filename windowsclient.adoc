@@ -4,7 +4,7 @@ Windows licensing means we can't just simply provide a build vm via vagrant as
 we've done for linux.  So there's more hoops to jump through here, but it's as
 automated as possible.
 
-== Build Machine ==
+== Building Templates ==
 
 You need a Windows machine or VM. Then checkout the grr source and run this script, note that the 64bit python should go in `C:\Python27` and 32bit in `C:\Python27_32`:
 
