@@ -634,18 +634,51 @@ After running the repack you should have binaries available in the UI under mana
 /usr/share/grr/executables/linux/installers/
 --------------------------------------------------------------------
 
+Repacking Clients: Signing installer binaries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also use the grr_client_build tool to repack individual templates and control more aspects of the repacking, such as signing. For signing to work you need to follow these instructions:
+
+ - link:linuxclient.adoc#setting-up-for-linux-rpm-signing[Setting up for RPM signing]
+ - link:windowsclient.adoc#setting-up-for-windows-exe-signing[Setting up for Windows EXE signing]
+
+Then add the --sign parameter to the repack command:
+
+```
+grr_client_build repack --template path/to/grr-response-templates/templates/grr_3.1.0.2_amd64.xar.zip --output_dir=/tmp/test --sign
+```
+
+To repack and sign multiple templates at once, see the next section.
+
+Repacking Clients With Custom Labels: Multi-Organization Deployments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each client can have a label "baked in" at build time that allows it to be identified and hunted separately. This is especially useful when you want to deploy across a large number of separate organisations. You achieve this by creating a config file that contains the unique configuration you want applied to the template. A minimal config that just applies a label would contain:
+
+----
+Client.labels: [mylabel]
+----
+
+and be written into repack_configs/mylabel.yaml.
+
+Then you can call repack_multiple to repack all templates (or whichever templates you choose) with this configuration and any others in the repack_configs directory. An installer will be built for each config:
+----
+grr_client_build repack_multiple --templates /path/to/grr-response-templates/templates/*.zip --repack_configs /path/to/repack_configs/*.yaml --output_dir=/grr_installers
+----
+
+To sign the installers (RPM and EXE), add --sign.
+
 Building the Client.
 ~~~~~~~~~~~~~~~~~~~~
-There's quite a number of dependencies to be satisfied to build the client but
-there's no need to do this for testing or small deployments, use
+There's no need to rebuild the client for testing or small deployments, use
 link:#repacking-the-client-with-a-new-configuration[repacking] instead.
 
-We have link:https://www.vagrantup.com/[vagrant] configs and provisioning
-scripts that install all the dependencies for you in a build VM for each OS.
-You'll need a copy of the GRR source:
+OS X and Linux clients are built on every commit using travis (after tests pass), and the results are stored on Google cloud storage. Windows templates are link:https://ci.appveyor.com/project/destijl/grr[built on appveyor and the results are downloadable via their website]. You can use these templates directly, but be aware you are trusting the travis and appveyor infrastructure to be secure.
+
+If you want to build your own templates because you have customised code, use the link:https://www.vagrantup.com/[vagrant] build system. You'll need a copy of the GRR source:
 
 --------------------------------------------------------------------------------
-> git clone https://github.com/google/grr.git
+git clone https://github.com/google/grr.git
 --------------------------------------------------------------------------------
 
 and the latest versions of link:https://www.vagrantup.com/[Vagrant] and VirtualBox installed. If you reboot the provided linux VM's and get the new kernel you'll need to update the VirtualBox guest additions. You can use link:https://github.com/dotless-de/vagrant-vbguest[vagrant-vbguest] to do this automatically, but you should download and verify the hash on the guest additions yourself (vagrant-vbguest downloads over HTTP and doesn't verify hash).
@@ -655,22 +688,10 @@ OS X and windows require some extra work, see here for instructions:
 - link:osxclient.adoc[Building the OS X client]
 - link:windowsclient.adoc[Building the Windows client]
 
-Also, if you want to build signed RPMs you need to link:linuxclient.adoc#setting-up-for-linux-rpm-signing[get set up for RPM signing].
-
-Once you have your vagrant VMs setup (only necessary for OS X and Windows, linux will download VMs automatically), you can build installers for all OSes just
-by running make. Note that this assumes you have your linux host
-link:windowsclient.adoc#setting-up-for-windows-exe-signing[setup to do windows signing]. If you're building for OS
-X as well, you'll run this once on linux and once on apple hardware.
-
-Note that if you've customized grr-server.yaml or buildconfig.yaml outside this repo you'll need to copy your customized files into the config/ directory.
+Once you have your vagrant VMs setup (only necessary for OS X, linux will download VMs automatically), you can build templates for all linux OSes just by running make. If you're building for OS X as well, you'll run this once on linux and once on apple hardware. Windows requires more work as described link:https://github.com/google/grr-doc/blob/master/windowsclient.adoc#building-templates[here].
 
 ----
 cd vagrant
-make
-----
-
-If you only want to make client templates (not installers) you can run:
-----
 make templates
 ----
 
@@ -680,22 +701,7 @@ use:
 make vmclean
 ----
 
-Building Clients With Custom Labels: Multi-Organization Deployments
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Each client can have a label "baked in" at build time that allows it to be identified and hunted separately. This is especially useful when you want to deploy across a large number of separate organisations. You achieve this by filling out link:https://github.com/google/grr/blob/master/install_data/etc/buildconfig.yaml[buildconfig.yaml] with the list of clients and labels you desire as described in the examples. 
-
-When you use the build scripts via "make" as above you will end up with a directory structure containing all the installers you specified. There's no limit to the number of differently labelled binaries you can build in this way.
-
-It is also possible to repack clients using a multi label configuration without building them from scratch. To do this, you have to use the grr_client_build command:
-
-----
-grr_client_build --platform windows --arch amd64 buildanddeploy --templatedir ./grr-response-templates/templates
-----
-
-This will only repack the existing client templates, not build them.
-
-If you are interested in delegating some GRR access to others by label, read and upvote link:https://github.com/google/grr/issues/295[this feature request].
+Once you have templates built you need to follow the repacking instructions above to turn them into installers.
 
 Client Configuration.
 ~~~~~~~~~~~~~~~~~~~~~
