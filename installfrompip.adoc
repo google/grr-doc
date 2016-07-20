@@ -64,8 +64,10 @@ release yet. Once you have installed the deb (note it needs to be 3.1.0-rc2 or n
 ----
 sudo apt-get install debhelper \
 dpkg-dev \
+libffi-dev \
 libssl-dev \
 prelink \
+protobuf-compiler \
 python-dev \
 python-pip \
 rpm
