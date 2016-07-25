@@ -62,15 +62,20 @@ use a commit from github to grab a bugfix or a new feature that isn't in a
 release yet. Once you have installed the deb (note it needs to be 3.1.0-rc2 or newer):
 
 ----
-sudo apt-get install debhelper \
-dpkg-dev \
-libffi-dev \
-libssl-dev \
-prelink \
-protobuf-compiler \
-python-dev \
-python-pip \
-rpm
+sudo apt-get install \
+  debhelper \
+  default-jre \
+  dpkg-dev \
+  git \
+  libffi-dev \
+  libssl-dev \
+  prelink \
+  protobuf-compiler \
+  python-dev \
+  python-pip \
+  rpm \
+  wget \
+  zip
 
 sudo pip install --upgrade pip
 sudo pip install virtualenv
