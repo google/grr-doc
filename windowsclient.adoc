@@ -6,25 +6,27 @@ automated as possible.
 
 == Building Templates ==
 
-You need a Windows machine or VM. Then checkout the grr source and run this script, note that the 64bit python should go in `C:\Python27` and 32bit in `C:\Python27_32`:
+First you need to make sdists from the GRR source (which requires a protobuf compiler) and get them to the windows build machine. We do this on linux with this script which uses google cloud storage to copy the files to the windows machine (note you'll need to use a different cloud storage bucket name):
 
 ----
-vagrant/windows/install_for_build.bat
+BUCKET=mybucketname scripts/make_sdist_for_templates.sh
 ----
 
-Now you need to make sdists from the GRR source (which requires a protobuf compiler) and get them to the windows build machines. We do this on linux with this script (note you'll need to use a different cloud storage bucket name):
+On your Windows/VM with git and the Google cloud SDK installed, run this as admin:
 
 ----
-scripts/make_sdist_for_templates.sh
+mkdir C:\grr_src
+git clone https://github.com/google/grr.git C:\grr_src
+C:\grr_src\vagrant\windows\install_for_build.bat
 ----
 
-and then we download and build everything on windows with this:
+Then as a regular user you can download the sdists and build the templates from that:
 
 ----
-vagrant/windows/build_windows_templates.bat
+C:\Python27-x64\python.exe C:\grr_src\vagrant\windows\build_windows_templates.py --grr_src=C:\grr_src --cloud_storage_sdist_bucket=mybucketname --cloud_storage_output_bucket=mybucketname
 ----
 
-Download the built templates and components from cloud storage to your linux vm for repacking. Put them under `grr/executables/windows/templates`.
+Download the built templates and components from cloud storage to your linux vm ready for repacking. Put them under `grr/executables/windows/templates`.
 
 == Setting Up For Windows EXE Signing ==
 
