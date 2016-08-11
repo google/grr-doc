@@ -1,6 +1,6 @@
 = Overview of the licenses used in GRR =
 
-Although GRR is licensed under the link:http://www.gnu.org/licenses/gpl-2.0.html[Apache License 2.0], binary builds of GRR include third party code that have been made available under various licenses.
+Although GRR is licensed under the link:http://www.apache.org/licenses/LICENSE-2.0[Apache License 2.0], binary builds of GRR include third party code that have been made available under various licenses.
 
 == Python ==
 Project site: http://www.python.org/
