@@ -23,7 +23,7 @@ Project site: http://timgolden.me.uk/python/wmi/index.html
 link:http://opensource.org/licenses/MIT[MIT license]
 
 == psutil ==
-Project site:  http://code.google.com/p/psutil/
+Project site:  https://github.com/giampaolo/psutil
 
 link:http://opensource.org/licenses/BSD-3-Clause[BSD 3-clause license]
 
@@ -41,26 +41,19 @@ The SleuthKit is mutli licensed
   * link:http://www.gnu.org/licenses/gpl-2.0.html[GNU General Public License 2]; applies to srch_strings which should not be included in a binary build of GRR.
 
 == Pytsk ==
-Project site: http://code.google.com/p/pytsk/
+Project site: https://github.com/py4n6/pytsk
 
-link:http://www.gnu.org/licenses/gpl-2.0.html[Apache License 2.0]
+link:http://www.apache.org/licenses/LICENSE-2.0[Apache License 2.0]
 
-== M2Crypto ==
-Project site: http://chandlerproject.org/Projects/MeTooCrypto
+== Cryptography.io ==
+Project site: https://cryptography.io/
+
+link:https://github.com/pyca/cryptography/blob/master/LICENSE[Either apache or BSD]
 
 == OpenSSL ==
 Project site: http://www.openssl.org/
 
 link:http://www.openssl.org/source/license.html[OpenSSL License and original SSLeay license]
-
-== Volatility ==
-*TODO*
-
-== Distorm ==
-*TODO*
-
-== Yara ==
-*TODO*
 
 == pytz ==
 Project site: http://pytz.sourceforge.net/
@@ -92,6 +85,6 @@ link:https://github.com/ivaynberg/select2/blob/master/LICENSE[Apache 2.0 or GPL2
 
 === rangyinputs ===
 
-Project site: https://code.google.com/p/rangyinputs/
+Project site: https://github.com/timdown/rangyinputs
 
 link:https://github.com/jquery/jquery-ui/blob/master/MIT-LICENSE.txt[MIT license]
