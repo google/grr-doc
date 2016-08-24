@@ -893,7 +893,7 @@ own 'ListDirectory' flow, giving it parameters and then you can check the
 run on your client.
 
 To start a new Flow simply click on the 'Start new flows' option on the left
-panel. The main panell will populate with the holy trinity of panels. The tree
+panel. The main panel will populate with the holy trinity of panels. The tree
 view shows all the Flows organized by category.
 
 Expand the 'FileSystem' category and select the 'ListDirectory' flow. The flow
