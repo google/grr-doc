@@ -1124,7 +1124,7 @@ Notifiying Users of Updates or Issues via the GUI
 GRR has the ability to display a notification similar to the yellow link:http://www.chromium.org/user-experience/infobars[Chrome Infobar]. This can be useful if you need to let users know about new functionality, updates, problems, downtime etc. For now it requires console access to set a new notification.
 
 ----
-flow.GRRFlow.StartFlow(flow_name="SetGlobalNotification", type="WARNING", content="NOTE: This is a one-time warning. To hide this message click on X in the right corner of this panel.", link="http://company.com/moreinfo", token=rdfvalue.ACLToken(username="myuser"))
+flow.GRRFlow.StartFlow(flow_name="SetGlobalNotification", type="WARNING", content="NOTE: This is a one-time warning. To hide this message click on X in the right corner of this panel.", link="http://company.com/moreinfo", token=access_control.ACLToken(username="myuser"))
 ----
 
 To remove all notifications:
