@@ -12,7 +12,7 @@ High-level overview
 
 To function, an <<agent,_agent_>> is deployed on systems that one might want to
 investigate. Once deployed, each system becomes a GRR <<client,_client_>> and
-they can start receiving <<_message_,messages>> from the frontend servers. Each
+they can start receiving <<message,_messages_>> from the frontend servers. Each
 message tells the client to run a specific <<client-action,_client action_>> and
 return the results. A client action is simply some well known code the agent
 knows how to execute (such as obtaining the list of files in a directory or
