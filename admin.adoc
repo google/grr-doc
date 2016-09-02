@@ -418,7 +418,7 @@ FullAccessControlManager.
 
 Managing the Datastore
 ~~~~~~~~~~~~~~~~~~~~~~
-GRR currently ships with a sharded SQLite datatbase that is used by default, and a MySQL Advanced datastore that may be a better choice if you have significant in-house MySQL experience and resources.
+GRR currently ships with a sharded SQLite database that is used by default, and a MySQL Advanced datastore that may be a better choice if you have significant in-house MySQL experience and resources.
 
 Performance
 -----------
