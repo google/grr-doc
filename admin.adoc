@@ -215,7 +215,7 @@ Communication Security.
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 GRR communication happens using signed and encrypted protobuf messages. We use
-1024 bit RSA keys to protect symmetric AES256 encryption. The security of the
+1024 bit RSA keys to protect symmetric AES128 encryption. The security of the
 system does not rely on SSL transport for communication security. This enables
 easy replacement of the comms protocol with non-http mechanisms such as UDP
 packets.
