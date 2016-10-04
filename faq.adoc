@@ -253,3 +253,14 @@ their commercial consulting practices.
 Where is the logout button?
 ---------------------------
 There isn't one. We ship with basic auth which link:http://stackoverflow.com/questions/233507/how-to-log-out-user-from-web-site-using-basic-authentication[doesn't really handle logout], you need to close the browser. This is OK for testing, but for production we expect you to sit a reverse proxy in front of the UI that handles auth, or write a webauth module for GRR. See the  link:https://github.com/google/grr-doc/blob/master/admin.adoc#authentication-to-the-admin-ui[Authentication to the AdminUI] section for more details.
+
+How do I change the timezone from UTC?
+--------------------------------------
+
+You can't. Technically it’s possible, but it’s a lot of work and we don’t see much benefit. You should run your GRR server in the UTC timezone.
+
+In the datastore GRR stores all timestamps as microseconds from epoch (UTC). To implement timezone customization we could store a user's local preference for timezone and daylight savings based on a location, and convert all the timestamps in the UI, but there is a lot of complexity involved.  We'd need to make sure each user gets the correct time and timezone displayed in all parts of the UI, handle the shifting winds of daylight savings correctly, provide clear input options on forms that accept timestamps, and make sure all the conversions were correct. All of that adds up to lots of potential to display or store an incorrect time, which is not what you want from a forensics tool.
+
+It’s common to have GRR users split across different timezones and a client fleet in many timezones. If we went to all of the effort above, all we have really achieved is fragmentation of each user's view of the system. Each user is still going to have to analyse and reason about events on clients in a different timezone to their own. But now we have made collaborative analysis harder: instead of being able to simply copy a timestamp out of the UI into a ticket or handoff timeline analysis notes to another shift in another timezone they will have to convert timestamps back into UTC manually for consistency.
+
+For forensic analysis and timeline building, UTC always makes the most sense. We have added a UTC clock to the top right hand corner of the UI to help reason about the timestamps you see.
