@@ -20,7 +20,8 @@ rpm packaging stuff is only needed for the server to repack the client
 installers). Note that you *must* upgrade pip and run in a virutalenv for the install to work:
 
 ----
-sudo apt-get install debhelper \
+sudo apt-get install -y \
+debhelper \
 dpkg-dev \
 libssl-dev \
 prelink \
@@ -62,7 +63,7 @@ use a commit from github to grab a bugfix or a new feature that isn't in a
 release yet. Once you have installed the deb (note it needs to be 3.1.0-rc2 or newer):
 
 ----
-sudo apt-get install \
+sudo apt-get install -y \
   debhelper \
   default-jre \
   dpkg-dev \
