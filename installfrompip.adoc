@@ -97,7 +97,7 @@ pip install --editable grr/config/grr-response-server
 pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 pip install --editable grr/config/grr-response-test
 ----
-Then edit /etc/default/grr-server and set:
+Then edit /grr/debian/grr-server.default and set:
 
 ----
 GRR_PREFIX=/path/to/GRR_NEW
