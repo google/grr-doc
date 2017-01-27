@@ -3,7 +3,7 @@ Publications
 
 link:https://storage.googleapis.com/docs.grr-response.com/scalable_datastore.pdf[A scalable file based data store for forensic analysis], by Flavio Cruz, Andreas Moser, Michael Cohen. DFRWS 2015 Europe.
 
-link:https://googledrive.com/host/0B9hc84IflFGbN2IwMTUyYTUtMTU0Mi00ZWQ3LWFhNDktM2IyMTg5MmY3OWI0/Hunting%20in%20the%20Enterprise:%20Forensic%20Triage%20and%20Incident%20Response[Hunting in the enterprise: Forensic triage and incident response], by Moser,
+link:https://storage.googleapis.com/docs.grr-response.com/MoserCohenHunting.pdf[Hunting in the enterprise: Forensic triage and incident response], by Moser,
 Andreas, and Michael I. Cohen. Digital Investigation, 2013.
 
 link:https://storage.googleapis.com/docs.grr-response.com/distributed_forensics.pdf[Distributed forensics and incident response in the enterprise], by M.I. Cohen,
