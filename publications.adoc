@@ -1,38 +1,38 @@
 Publications
 ------------
 
-link:https://drive.google.com/open?id=0B1wsLqFoT7i2c3FHOHNjOFpmdjA[A scalable file based data store for forensic analysis], by Flavio Cruz, Andreas Moser, Michael Cohen. DFRWS 2015 Europe.
+link:https://storage.googleapis.com/docs.grr-response.com/scalable_datastore.pdf[A scalable file based data store for forensic analysis], by Flavio Cruz, Andreas Moser, Michael Cohen. DFRWS 2015 Europe.
 
 link:https://googledrive.com/host/0B9hc84IflFGbN2IwMTUyYTUtMTU0Mi00ZWQ3LWFhNDktM2IyMTg5MmY3OWI0/Hunting%20in%20the%20Enterprise:%20Forensic%20Triage%20and%20Incident%20Response[Hunting in the enterprise: Forensic triage and incident response], by Moser,
 Andreas, and Michael I. Cohen. Digital Investigation, 2013.
 
-link:http://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/37237.pdf[Distributed forensics and incident response in the enterprise], by M.I. Cohen,
+link:https://storage.googleapis.com/docs.grr-response.com/distributed_forensics.pdf[Distributed forensics and incident response in the enterprise], by M.I. Cohen,
 D. Bilby, G. Caronni. Digital Investigation, 2011.
 
 Presentations
 -------------
 
-link:https://drive.google.com/open?id=0B1wsLqFoT7i2MEltRFp1Zzk1Rkk[GRR Meetup: API Edition] @ Nov 2015 GRR Meetup by G. Castle and M. Bushkov. Covers API basics and discusses where we are headed with API dev.
+link:https://storage.googleapis.com/docs.grr-response.com/GRR%20Meetup-%20API%20Edition%20Nov%202015.pdf[GRR Meetup: API Edition] @ Nov 2015 GRR Meetup by G. Castle and M. Bushkov. Covers API basics and discusses where we are headed with API dev.
 
-link:https://drive.google.com/open?id=0B1wsLqFoT7i2S2ZoY1pOYm4ybDA[GRR Hunting Best Practices] @ Oct 2015 GRR Meetup by G. Castle.
+link:https://storage.googleapis.com/docs.grr-response.com/GRR%20Hunting%20for%20meetup%20Oct%202015.pdf[GRR Hunting Best Practices] @ Oct 2015 GRR Meetup by G. Castle.
 
-link:https://drive.google.com/open?id=0B1wsLqFoT7i2RTVaR1o1eHJYcjA&authuser=0[Tactical use of GRR Artifacts, Fuse, Plaso and Timesketch] by D. Bilby link:https://www.youtube.com/watch?v=JciAp0uB7AY[Demo Video (youtube)]
+link:https://storage.googleapis.com/docs.grr-response.com/ACSC%202015-%20Defending%20the%20Gibson%20in%202015.pdf[Tactical use of GRR Artifacts, Fuse, Plaso and Timesketch] by D. Bilby link:https://www.youtube.com/watch?v=JciAp0uB7AY[Demo Video (youtube)]
 
-"link:https://drive.google.com/file/d/0B1wsLqFoT7i2NnI5dkdScHlrWVU/view?usp=sharing[Intro to GRR]" for the Open Source Network Security Monitoring Group @ UIUC Feb 2015. link:https://www.youtube.com/watch?v=ZAXtCMspgY0[Video] by G. Castle
+"link:https://storage.googleapis.com/docs.grr-response.com/OpenNSM_GRR_Presentation_Feb_2015.pdf[Intro to GRR]" for the Open Source Network Security Monitoring Group @ UIUC Feb 2015. link:https://www.youtube.com/watch?v=ZAXtCMspgY0[Video] by G. Castle
 
-"link:https://drive.google.com/file/d/0B1wsLqFoT7i2Z2pxM0wycS1lcjg/edit?usp=sharing[GRR: Find all the badness, collect all the things]" @ Blackhat 2014 link:http://www.youtube.com/watch?v=DudGrSv26NY[Video] by G.
+"link:https://storage.googleapis.com/docs.grr-response.com/GRR_Blackhat_2014_Greg_Castle.pdf[GRR: Find all the badness, collect all the things]" @ Blackhat 2014 link:http://www.youtube.com/watch?v=DudGrSv26NY[Video] by G.
 Castle. Also presented link:https://youtu.be/eLehQ3QmdEA[a 20 min version of the same talk] for link:https://www.concise-courses.com/past/[Hacker Hotshots].
 
-link:https://googledrive.com/host/0B1wsLqFoT7i2N3hveC1lSEpHUnM/Docs/GRR%20Rapid%20Response%20-%20OSFC%202012.pdf[OSDFC 2012 GRR Overview], by D. Bilby
+link:https://storage.googleapis.com/docs.grr-response.com/GRR%20Rapid%20Response%20-%20OSFC%202012.pdf[OSDFC 2012 GRR Overview], by D. Bilby
 
 Workshops
 ---------
 
-DFRWS US 2015 Workshop link:https://drive.google.com/open?id=0B1wsLqFoT7i2akRmeWlsZHF2ck0[slides] and link:https://github.com/destijl/grr-workshop-setup[scripts to setup your own workshop infrastructure] by G. Castle.
+DFRWS US 2015 Workshop link:https://storage.googleapis.com/docs.grr-response.com/GRR_Workshop_DFRWS_US_2015.pdf[slides] and link:https://github.com/destijl/grr-workshop-setup[scripts to setup your own workshop infrastructure] by G. Castle.
 
-DFRWS EU 2015 Workshop link:https://drive.google.com/file/d/0B1wsLqFoT7i2NjRCN1c3TXdwUUU/view?usp=sharing[workshop slides] by A. Moser
+DFRWS EU 2015 Workshop link:https://storage.googleapis.com/docs.grr-response.com/GRR%20DFRWS%20EU%20Workshop%202015%20Export.pdf[workshop slides] by A. Moser
 
-OSDF 2013 link:https://drive.google.com/?usp=chrome_app#folders/0B1wsLqFoT7i2eU1jU0JldW9JUU0[workshop presentation] and link:osdf2013workshop.adoc[materials] by D. Bilby.
+OSDF 2013 link:https://storage.googleapis.com/docs.grr-response.com/GRR%20OSDF%20Workshop%202013.pdf[workshop presentation] and link:osdf2013workshop.adoc[materials] by D. Bilby.
 
 Podcasts
 --------
@@ -42,7 +42,7 @@ GRR Rapid Response on link:http://podcast.wh1t3rabbit.net/dtr-episode-98-grr-grr
 Whitepapers
 -----------
 
-link:https://drive.google.com/file/d/0B1wsLqFoT7i2U3M1X0k5aVFkXzQ/edit?usp=sharing[GRR Forensic Artifacts White Paper], by G. Castle
+link:https://storage.googleapis.com/docs.grr-response.com/GRR_Artifacts_Whitepaper_Blackhat2014_Greg_Castle.pdf[GRR Forensic Artifacts White Paper], by G. Castle
 
 External Presentations
 ----------------------
