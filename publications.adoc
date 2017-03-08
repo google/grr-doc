@@ -12,6 +12,10 @@ D. Bilby, G. Caronni. Digital Investigation, 2011.
 Presentations
 -------------
 
+link:https://drive.google.com/file/d/0Bzniab0ILSg6RkdyUGZYOGtuX1U/view[GRR Meetup: GRR Users Meetup: Fleetspeak, API client, Go rewrite] @ Mar 2017 GRR Meetup by A. Moser, M. Bushkov, B. Galehouse, M. Lakomy. link:https://youtu.be/SIvf7-Lzp2M[Video].
+
+link:https://drive.google.com/file/d/0BzuOLwDAeI1IaGZnbHJWSUhHXzg/view?pageId=113082118196076170073[GRR Meetup: 3.1.0 Release] @ Apr 2016 GRR Meetup by G. Castle and M. Cohen. link:https://youtu.be/SIvf7-Lzp2M[Video].
+
 link:https://storage.googleapis.com/docs.grr-response.com/GRR%20Meetup-%20API%20Edition%20Nov%202015.pdf[GRR Meetup: API Edition] @ Nov 2015 GRR Meetup by G. Castle and M. Bushkov. Covers API basics and discusses where we are headed with API dev.
 
 link:https://storage.googleapis.com/docs.grr-response.com/GRR%20Hunting%20for%20meetup%20Oct%202015.pdf[GRR Hunting Best Practices] @ Oct 2015 GRR Meetup by G. Castle.
