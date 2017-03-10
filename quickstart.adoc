@@ -29,7 +29,7 @@ Once this completes successfully you should have a working server with an admin 
    
 == Install the Clients ==
 
-The pre-packaged clients should be visible under Manage Binaries -> executables -> Windows -> installers. Download the client you need.
+The pre-packaged clients should be visible in the web UI under Manage Binaries -> executables -> Windows -> installers. Download the client you need.
 
 Run the client on the target machine as administrator:
 
