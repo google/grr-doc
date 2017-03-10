@@ -68,7 +68,7 @@ To Encrypt and add a password to the code & driver signing certificates
 
 4. Securely wipe all temporary files with cleartext keys. 
 
-5. Replace the keys in the GRR config with the new encrypted keys (or store them offline) 
+5. Replace the keys in the GRR config with the new encrypted keys (or store them offline). Ensure the server is restarted to load the updated configuration.
 
 --------------------------------------------------------------------------------
  PrivateKeys.executable_signing_private_key: '-----BEGIN RSA PRIVATE KEY-----
