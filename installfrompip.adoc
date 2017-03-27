@@ -95,6 +95,7 @@ pip install --editable .
 pip install --editable grr/config/grr-response-client/
 pip install --editable grr/config/grr-response-server
 pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
+pip install --editable api_client/python
 pip install --editable grr/config/grr-response-test
 ----
 Then edit /etc/default/grr-server and set:
