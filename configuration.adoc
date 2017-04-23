@@ -186,7 +186,7 @@ The following is a non-exhaustive list of available contexts:
 - 'Arch:i386' and 'Arch:amd64' are set when running a 32 or 64 bit binary.
 - 'Installer Context' is defined when the windows installer is active
   (i.e. during installation)
-- 'Platform:Windwos', 'Platform:Linux', 'Platform:Darwin' are set when running
+- 'Platform:Windows', 'Platform:Linux', 'Platform:Darwin' are set when running
   under these platforms.
 
 
