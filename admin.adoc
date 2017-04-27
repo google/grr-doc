@@ -668,6 +668,11 @@ SomeLabel Context:
 
 and be written into /path/to/grr-server/install_data/etc/buildconfig.yaml.
 
+the context must also be configured in path/to/grr/config/build_contexts.py:
+----
+config_lib.CONFIG.DEFINE_context("SomeLabel Context")
+----
+
 Then you can call buildandrepack to repack all templates (or whichever templates you choose) with this configuration and any others in the buildconfig.yaml file. An installer will be built for each config:
 ----
 grr_client_build [--secondary_configs /etc/grr/server.local.yaml] buildandrepack --templates /path/to/grr-response-templates/templates/ 
