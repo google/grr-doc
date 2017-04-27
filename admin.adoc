@@ -645,7 +645,7 @@ You can also use the grr_client_build tool to repack individual templates and co
 Then add the --sign parameter to the repack command:
 
 ```
-grr_client_build repack --template path/to/grr-response-templates/templates/grr_3.1.0.2_amd64.xar.zip --output_dir=/tmp/test --sign
+grr_client_build [--secondary_configs /etc/grr/server.local.yaml] repack --template path/to/grr-response-templates/templates/grr_3.1.0.2_amd64.xar.zip --outputdir=/tmp/test --sign
 ```
 
 To repack and sign multiple templates at once, see the next section.
@@ -656,14 +656,21 @@ Repacking Clients With Custom Labels: Multi-Organization Deployments
 Each client can have a label "baked in" at build time that allows it to be identified and hunted separately. This is especially useful when you want to deploy across a large number of separate organisations. You achieve this by creating a config file that contains the unique configuration you want applied to the template. A minimal config that just applies a label would contain:
 
 ----
-Client.labels: [mylabel]
+ClientBuilder.BuildTargets:
+  - AllPlatforms Context
+  - SomeLabel Context
+
+[...]
+
+SomeLabel Context:
+  Client.labels: [mylabel]
 ----
 
-and be written into repack_configs/mylabel.yaml.
+and be written into /path/to/grr-server/install_data/etc/buildconfig.yaml.
 
-Then you can call repack_multiple to repack all templates (or whichever templates you choose) with this configuration and any others in the repack_configs directory. An installer will be built for each config:
+Then you can call buildandrepack to repack all templates (or whichever templates you choose) with this configuration and any others in the buildconfig.yaml file. An installer will be built for each config:
 ----
-grr_client_build repack_multiple --templates /path/to/grr-response-templates/templates/*.zip --repack_configs /path/to/repack_configs/*.yaml --output_dir=/grr_installers
+grr_client_build [--secondary_configs /etc/grr/server.local.yaml] buildandrepack --templates /path/to/grr-response-templates/templates/ 
 ----
 
 To sign the installers (RPM and EXE), add --sign.
