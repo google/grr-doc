@@ -18,7 +18,7 @@ docker run \
 -e ADMIN_PASSWORD="demo" \
 --ulimit nofile=1048576:1048576 \
 -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
-grrdocker/grr:v3.1.0.2-latest grr
+grrdocker/grr:latest grr
 ----
 
 Once initialization finishes point your web browser to localhost:8000 and login
@@ -47,7 +47,7 @@ docker run \
 -e ADMIN_PASSWORD="demo" \
 --ulimit nofile=1048576:1048576 \
 -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
--d grrdocker/grr:v0.3.0-7-latest grr
+-d grrdocker/grr:latest grr
 ----
 
 Note that if you're running boot2docker on OS X there are a few bugs
