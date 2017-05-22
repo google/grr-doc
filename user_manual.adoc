@@ -24,11 +24,11 @@ schedule remote calls to a client and has some additional logic to decide what
 to do based on the call results.
 
 This <<flow,_flow_>> is running on a client because a user initiated it. To do
-so, he probably used the web-based Graphical User Interface (GUI), which allows
-a GRR user to start flows for clients and review the results. Or he could also
+so, the user probably used the web-based Graphical User Interface (GUI), which allows
+a GRR user to start flows for clients and review the results or the user could also
 have used the text-based <<the-console,_console_>> to do the same.
 
-Any flow that can be run on a single machine can also be run as a Hunt. A hunt
+Any flow that can be run on a single machine can also be run as a "Hunt". A hunt
 allows running a flow on all, or any subset of machines talking to the GRR
 server.
 
