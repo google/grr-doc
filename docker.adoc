@@ -56,3 +56,15 @@ that you will probably need to workaround. You'll likely have to set up port
 forwards for 8000 and 8080 as described
 link:https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md[here].
 
+Running GRR binaries in the Docker container
+--------------------------------------------
+
+When using Docker, GRR gets installed into a virtualenv in `/usr/share/grr-server`. Thus, the easiest way to run any of the GRR binaries inside the Docker container is to activate the virtualenv:
+
+```
+source /usr/share/grr-server/bin/activate
+```
+
+After that, commands such as `grr_server`, `grr_config_updater`, `grr_console`, `grr_client`, etc become available on PATH.
+
+
