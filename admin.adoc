@@ -457,7 +457,8 @@ ExecStop=
 ExecStop=/bin/systemctl --no-block stop grr-server@worker.service grr-server@worker2.service grr-server@worker3.service
 ----
  
-When starting multiple copies of the UI and the web frontend you also need to tell GRR which ports it should be using. So if you want 10 http frontends on a machine you would configure your systemd drop-in to start 10 copies and then set Frontend.port_max so that you have a range of 10 ports from Frontend.bind_port. You can then configure your load balancer to distribute across that port range. AdminUI.port_max works the same way for the UI.
+When starting multiple copies of the UI and the web frontend you also need to tell GRR which ports it should be using. So if you want 10 http frontends on a machine you would configure your systemd drop-in to start 10 copies and then set Frontend.port_max so that you have a range of 10 ports from Frontend.bind_port. (I.E. set Frontend.bind_port to 8080 and Frontend.port_max to 8089) You can then configure your load balancer to distribute across that port range. AdminUI.port_max works the same way for the UI.
+
  
 Prior to 3.1.0 the approach was to use config management tools to:
  
