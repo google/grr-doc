@@ -969,7 +969,7 @@ To sign an exe for execution use the config updater script.
 
 [source,shell]
 ------------------------------------------------------------------------
-db@host:$ grr_config_updater upload_exe --file=/tmp/bazinga.exe -platform=windows
+db@host:$ grr_config_updater upload_exe --file=/tmp/bazinga.exe --platform=windows
 Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
 Uploaded successfully to /config/executables/windows/installers/bazinga.exe
 db@host:$
