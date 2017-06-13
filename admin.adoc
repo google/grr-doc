@@ -861,15 +861,12 @@ the following command line.
 grr_config_updater upload_python --file=myfile.py --platform=windows
 ------------------------------------------------------------------------
 
-At the end of this you should see something like:
-------------------------------------------------------------------------
-Uploaded successfully to aff4:/config/python_hacks/myfile.py
-------------------------------------------------------------------------
-
 The uploaded files live by convention in aff4:/config/python_hacks and are
 viewable in the Manage Binaries section of the Admin UI.
 
 The ExecutePythonHack Flow is provided for executing the file on a client.
+This is visible in the Admin UI under Administrative flows if Advanced
+Mode is enabled.
 
 NOTE: Specifying arguments to a PythonHack is possible as well through the
 py_args argument, this can be useful for making the hack more generic.
