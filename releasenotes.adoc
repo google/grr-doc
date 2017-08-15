@@ -7,8 +7,8 @@ watch for when upgrading from one version to another.
 == Server
 
 === 3.1.0.2 to 3.2.0.0 (Aug 15 2017)
-After the 3.2 release, we plan on releasing more frequently, since we have
-automated a large part of the release process.
+After 3.2.0.0, we plan on releasing more frequently, since we have automated a
+large part of the release process.
 
  - *WARN* Rekall is disabled by default. 'Rekall.enabled: True' line should be
    added to GRR configuration file in order for Rekall to work. There are known
@@ -22,10 +22,10 @@ automated a large part of the release process.
  - *WARN* Rekall flows are moved to 'DEBUG' category. They won’t be visible
    unless users enable 'Mode: DEBUG' in the settings menu (accessible via the
    settings button in top right corner of GRR AdminUI).
- - *WARN* A number of backwards-incompatible datastore schema changes were done.
-   The nature of these changes is such, that easy data migration between
+ - *WARN* A number of backwards-incompatible datastore schema changes were made.
+   The nature of these changes is such that easy data migration between
    releases is not possible. Data loss of flows and hunts is possible. Please
-   back up your current system in case this data is critical.
+   back up your current system if this data is critical.
  - *WARN* A number of deprecated configuration options were removed. If GRR
    fails to start after the upgrade, please check the server logs for
    'Unknown configuration option' messages.
@@ -37,7 +37,7 @@ automated a large part of the release process.
    flexible authorization.
  - *INFO* 'Download as' functionality added to flows and hunts. Supported
    formats are CSV, YAML and SQLite.
- - Build process for clients and server is significantly improved. Client
+ - *INFO* Build process for clients and server is significantly improved. Client
    templates for all supported platforms, as well as a release-ready server
    deb, get built on every github commit.
 
