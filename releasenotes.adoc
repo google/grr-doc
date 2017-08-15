@@ -6,6 +6,41 @@ watch for when upgrading from one version to another.
 
 == Server
 
+=== 3.1.0.2 to 3.2.0.0 (Aug 15 2017)
+After the 3.2 release, we plan on releasing more frequently, since we have
+automated a large part of the release process.
+
+ - *WARN* Rekall is disabled by default. 'Rekall.enabled: True' line should be
+   added to GRR configuration file in order for Rekall to work. There are known
+   stability issues in Rekall and winpmem driver. Disabling it by default makes
+   its 'in dev/experimental' status more explicit.
+ - *WARN* Components are deprecated. The GRR client is now monolithic, there’s
+   no need to upload or update components anymore.
+   NOTE: The new GRR server will only be able to run Rekall-based flows
+   (AnalyzeClientMemory, MemoryCollector) with the latest GRR client, since it
+   expects the client not to use components.
+ - *WARN* Rekall flows are moved to 'DEBUG' category. They won’t be visible
+   unless users enable 'Mode: DEBUG' in the settings menu (accessible via the
+   settings button in top right corner of GRR AdminUI).
+ - *WARN* A number of backwards-incompatible datastore schema changes were done.
+   The nature of these changes is such, that easy data migration between
+   releases is not possible. Data loss of flows and hunts is possible. Please
+   back up your current system in case this data is critical.
+ - *WARN* A number of deprecated configuration options were removed. If GRR
+   fails to start after the upgrade, please check the server logs for
+   'Unknown configuration option' messages.
+ - *WARN* Global Flows are no longer supported.
+ - *INFO* Bugfixes, additionals tests and code health work in all parts of the
+   system.
+ - *INFO* HTTP API now covers 100% of GRR functionality. Python API client
+   library significantly extended. API call routers implemented, allowing for
+   flexible authorization.
+ - *INFO* 'Download as' functionality added to flows and hunts. Supported
+   formats are CSV, YAML and SQLite.
+ - Build process for clients and server is significantly improved. Client
+   templates for all supported platforms, as well as a release-ready server
+   deb, get built on every github commit.
+
 === 0.3.0-7 to 3.1.0.2
 
 Note that we shifted our version string left to reduce confusion, see the link:admin.adoc#client-and-server-version-compatibility-and-numbering[documentation on GRR versions].
