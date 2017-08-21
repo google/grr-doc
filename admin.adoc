@@ -1039,22 +1039,6 @@ that are good citizens (normally the dangerous ones) will call the Progress()
 function regularly. This function checks if limit has been exceeded and will
 exit.
 
-Building the Server Debian package
-----------------------------------
-
-These instructions are really only for GRR devs making a release. In most cases users will want to follow the link:https://github.com/google/grr-doc/blob/master/installfrompip.adoc#installing-grr-server-for-dev-ie-tracking-head[Installing GRR server for Dev] instructions if you have made server customizations, rather than rebuild the debian package.
-
-Build the package using docker as below. This first command builds the docker image, which includes the deb, and the second command starts a container and copies out the package files into the current directory. 
-
-----
-docker build -t build_package -f docker/Dockerfile.build_server_deb .
-docker run --rm -v ${PWD}:/output:rw -u $(id -u) build_package bash -c "cp -r /usr/src/grr-server* /output/"
-----
-
-Note this uses dh_virtualenv and installs the released grr packages from pypi. To install a different version or test for release, build sdists for all the grr python packages and put them in a directory, then modify debian/rules as specified in the file to point to the local directory.
-
-We want to run this as a dockerhub build on every commit, but are link:https://github.com/docker/hub-feedback/issues/292[blocked by dockerhub's inability to separate context and Dockerfile]. We'd also need to build sdist's for all of the GRR packages.
-
 Crashes
 -------
 The client shouldn't ever crash... but it does because making software is hard.
