@@ -387,10 +387,13 @@ search clients based on:
 - *IP address:* "ip:10.10.10.10", also prefixes of bytes "ip:10.10". Note that IP address is only collected during interrogate, which by default is run once per week.
 - *User:* "user:john"
 - *Label:* "label:testmachines". Finds hosts with a particular GRR label.
+- *Time of Last Data Update:* Time ranges can be given using "start_date:" and "end_date:" prefixes. The data is interpreted as a human readable timestamp. Examples: start_date:2015, end_date:2018-01-01.
 
 All of these keywords also work without the type specifier, though with less precision. For example "johnsmith" is both a user name and a hostname name, it will match both.
 
 Furthermore there are additional keywords such as OS and OS version. So "Windows" will find all windows machines and "6.1.7601SP1" will match Windows 7 machines with SP1 installed, "6.1.7601" will match those without a service pack.
+
+*By default, the search index only considers clients that have checked in during the last six months.* To override this behavior, use an explicit start_time directive as specified above.
 
 
 Interpreting Client Search Results
