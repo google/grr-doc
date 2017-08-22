@@ -6,7 +6,7 @@ watch for when upgrading from one version to another.
 
 == Server
 
-=== 3.1.0.2 to 3.2.0.0 (Aug 15 2017)
+=== 3.1.0.2 to 3.2.0.0 (Aug 22 2017)
 After 3.2.0.0, we plan on releasing more frequently, since we have automated a
 large part of the release process.
 
