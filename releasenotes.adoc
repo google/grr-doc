@@ -6,10 +6,17 @@ watch for when upgrading from one version to another.
 
 == Server
 
-=== 3.1.0.2 to 3.2.0.0 (Aug 22 2017)
-After 3.2.0.0, we plan on releasing more frequently, since we have automated a
-large part of the release process.
+=== 3.1.0.2 to 3.2.0.1 (Sep 5 2017)
+Starting with 3.2.0.1, we plan on releasing more frequently, since we have automated a
+large part of the release process. The recommended way of installing this version of
+GRR is with the server debian package, which includes client templates for all supported
+platforms. PIP packages, and a Docker image for the release will be made available at
+a later date.
 
+ - *IMPORTANT* Before upgrading, make sure to back up your data store. This release
+   has changes that may be incompatible with older versions of the data store.
+   Also make copies of your configs - for reference, and in case you want to roll
+   back the upgrade.
  - *WARN* Rekall is disabled by default. 'Rekall.enabled: True' line should be
    added to GRR configuration file in order for Rekall to work. There are known
    stability issues in Rekall and winpmem driver. Disabling it by default makes
@@ -19,7 +26,7 @@ large part of the release process.
    NOTE: The new GRR server will only be able to run Rekall-based flows
    (AnalyzeClientMemory, MemoryCollector) with the latest GRR client, since it
    expects the client not to use components.
- - *WARN* Rekall flows are moved to 'DEBUG' category. They won’t be visible
+ - *WARN* Rekall flows have been moved to 'DEBUG' category. They won’t be visible
    unless users enable 'Mode: DEBUG' in the settings menu (accessible via the
    settings button in top right corner of GRR AdminUI).
  - *WARN* A number of backwards-incompatible datastore schema changes were made.
