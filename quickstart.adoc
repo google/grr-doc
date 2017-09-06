@@ -15,18 +15,20 @@ If you're experienced with GRR and want to set up a server for development take 
 
 == Install the Server ==
 
-Download and run the installation script e.g. using wget:
+Make sure the link:https://github.com/google/grr/blob/master/debian/control[pre-requisites]
+for the server deb are installed: `apt install -y debhelper dpkg-dev python-dev python-pip rpm zip`
+
+Find the latest stable release on link:https://github.com/google/grr/releases[github], then
+download and install it, e.g:
 
 ---------------------------------------------------------------------------------------
-wget https://raw.githubusercontent.com/google/grr/master/scripts/install_script_ubuntu.sh
-sudo bash install_script_ubuntu.sh
----------------------------------------------------------------------------------------
+wget https://storage.googleapis.com/releases.grr-response.com/grr-server_3.2.0-1_amd64.deb
 
-*Note that the installation script requires bash to run and does not work with
-plain sh.*
+dpkg -i grr-server_3.2.0-1_amd64.deb
+---------------------------------------------------------------------------------------
 
 Once this completes successfully you should have a working server with an admin interface on port 8000, open it in your browser. You should also have grr_console in your path to interact via console.
-   
+
 == Install the Clients ==
 
 The pre-packaged clients should be visible in the web UI under Manage Binaries -> executables -> Windows -> installers. Download the client you need.
