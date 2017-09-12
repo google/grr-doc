@@ -11,7 +11,7 @@ The packages are:
 - Server:
   link:https://pypi.python.org/pypi/grr-response-server[grr-response-server]
 - Client:
-  link:https://pypi.python.org/pypi/grr-response-templates[grr-response-client]
+  link:https://pypi.python.org/pypi/grr-response-client[grr-response-client]
 - Client templates and components:
   link:https://pypi.python.org/pypi/grr-response-templates[grr-response-templates]
 
