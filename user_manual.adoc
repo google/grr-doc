@@ -393,7 +393,7 @@ All of these keywords also work without the type specifier, though with less pre
 
 Furthermore there are additional keywords such as OS and OS version. So "Windows" will find all windows machines and "6.1.7601SP1" will match Windows 7 machines with SP1 installed, "6.1.7601" will match those without a service pack.
 
-*By default, the search index only considers clients that have checked in during the last six months.* To override this behavior, use an explicit start_time directive as specified above.
+*By default, the search index only considers clients that have checked in during the last six months.* To override this behavior, use an explicit "start_date:" directive as specified above.
 
 
 Interpreting Client Search Results
