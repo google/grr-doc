@@ -32,6 +32,8 @@ link:https://storage.googleapis.com/docs.grr-response.com/GRR%20Rapid%20Response
 Workshops
 ---------
 
+ICDF2C Prague 2017 Workshop  link:https://drive.google.com/file/d/0Bzniab0ILSg6dkZHd2ZXMDN4UGs/view?usp=sharing[slides] by M. Bushkov and B. Galehouse
+
 DFRWS US 2015 Workshop link:https://storage.googleapis.com/docs.grr-response.com/GRR_Workshop_DFRWS_US_2015.pdf[slides] and link:https://github.com/destijl/grr-workshop-setup[scripts to setup your own workshop infrastructure] by G. Castle.
 
 DFRWS EU 2015 Workshop link:https://storage.googleapis.com/docs.grr-response.com/GRR%20DFRWS%20EU%20Workshop%202015%20Export.pdf[workshop slides] by A. Moser
