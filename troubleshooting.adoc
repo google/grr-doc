@@ -48,7 +48,7 @@ sudo ldconfig
 Delete and recreate all the cronjobs using GRR console:
 -----------------------------------------------------------------------
 aff4.FACTORY.Delete("aff4:/cron", token=data_store.default_token)
-from grr.lib.aff4_objects import cronjobs
+from grr.server.aff4_objects import cronjobs
 cronjobs.ScheduleSystemCronFlows(token=data_store.default_token)
 -----------------------------------------------------------------------
 
@@ -109,7 +109,7 @@ when using rekall, you're missing a profile (see the link:http://www.rekall-fore
 The simplest way to get this fixed is to add it into link:https://github.com/google/rekall-profiles/blob/gh-pages/v1.0/src/guids.txt[Rekall's list of GUIDs], which is of great benefit to the whole memory forensics community.  You can do this yourself via a pull request on link:https://github.com/google/rekall-profiles[rekall-profiles], or simply email the GUID to rekall-discuss@googlegroups.com.  Once it's in the public rekall server, the GRR server will download and use it automatically next time you run a rekall flow that requires that profile.  If your GRR server doesn't have internet access you'll need to run the GetMissingProfiles function from the GRR console on a machine that has internet access and can access the GRR database, like this:
 
 ```
-from grr.lib import rekall_profile_server
+from grr.server import rekall_profile_server
 rekall_profile_server.GRRRekallProfileServer().GetMissingProfiles()
 ```
 
