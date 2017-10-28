@@ -1326,12 +1326,12 @@ The goals of the GRR artifacts implementation are:
     collect them immediately.
 
 GRR artifacts are defined in YAML, with a style guide
-link:https://github.com/ForensicArtifacts/artifacts/blob/master/docs/style_guide.adoc[available here].  We use a standard set of machine information collected from the host for variable interpolation.  This collection
-of data is called the Knowledge Base (see link:https://github.com/google/grr/blob/master/proto/knowledge_base.proto[proto/knowledge_base.proto])
+link:https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc[available here].  We use a standard set of machine information collected from the host for variable interpolation.  This collection
+of data is called the Knowledge Base (see link:https://github.com/google/grr/blob/master/grr/proto/knowledge_base.proto[proto/knowledge_base.proto])
 and is referenced with a %%variable%% syntax.
 
 The artifact defines where the data lives.  Once it is retrieved by GRR a
-link:https://github.com/google/grr/tree/master/parsers[parser] can optionally
+link:https://github.com/google/grr/tree/master/grr/parsers[parser] can optionally
 be applied to turn the collected information into a more useful format, such as
 parsing a browser history file to produce URLs.
 
@@ -1347,7 +1347,7 @@ correct paths to be downloaded for each OS.
 Defining New Artifacts
 ~~~~~~~~~~~~~~~~~~~~~~
 
-New artifacts should be added to the link:https://github.com/ForensicArtifacts/artifacts/tree/master/definitions[forensic artifacts repository].  The changes can be imported into grr by running *make* in the *grr/artifacts* directory.  This will delete the existing artifacts, checkout the latest version of the artifact repository, and add all of the yaml definitions into GRR's directory.  Running *python setup.py build* will have the same effect.  The new artifacts will be available once the server is restarted.
+New artifacts should be added to the link:https://github.com/ForensicArtifacts/artifacts/tree/master/data[forensic artifacts repository].  The changes can be imported into grr by running *make* in the *grr/artifacts* directory.  This will delete the existing artifacts, checkout the latest version of the artifact repository, and add all of the yaml definitions into GRR's directory.  Running *python setup.py build* will have the same effect.  The new artifacts will be available once the server is restarted.
 
 Artifacts can also be uploaded via the Artifact Manager gui and used immediately without the need for a restart.  When developing a new artifact you can use the *grr/artifacts/local* directory as a temporary home for testing (see next section).
 
