@@ -148,17 +148,6 @@ Labels: admin,user
 Password: set
 --------------------------------------------------------------------------------
 
-Security Managers.
-~~~~~~~~~~~~~~~~~~
-
-GRR supports the ideas of a Security Manager. The Security Manager
-(Datastore.security_manager config option) handles authorizing those users to
-resources based on a set of rules.
-
-The default Security Manager is the BasicAccessControlManager. This manager
-provides rudimentary Admin/Non-Admin functionality, but very little else. See
-the Auditing section for a discussion on the FullAccessControlManager.
-
 
 Authentication to the Admin UI.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -352,27 +341,18 @@ Auditing.
 ~~~~~~~~~
 By default GRR currently only offers limited audit logs in the /var/log/
 directory. However, the system is designed to allow for deployment of extensive
-auditing capabilities through the Security Manager and through the API router.
+auditing capabilities through the API router. 
 
-The idea is that we have a gateway process, and the Admin UI and any console
-access is brokered through the gateway. The gateway is the only access to the
-datastore and it audits all access and can provide intelligent access control.
-This is implemented in the FullAccessControlManager.
-
-Admin UI API handlers, though, are relying on unrestricted access to the
-datastore, so effectively FullAccessControlManager is not used when HTTP
-API calls are handled. So it's also necessary to set API.DefaultRouter to
-an API router that will be doing necessary access checks.
-
-Using this allows for sensible access control, e.g. another user must authorize
+Setting API.DefaultRouter configuration router to
+an API router that will be doing necessary access checks allows for sensible
+access control. I.e. another user must authorize
 access before someone is given access to a machine, or an admin must authorize
 before a hunt is run.
 
 In order to enable full access control, add 
 --------------------------------------------------------------------------------
 AdminUI Context:
-  Datastore.security_manager: FullAccessControlManager
-  API.DefaultRouter: ApiCallRouterWithApprovalChecksWithoutRobotAccess
+  API.DefaultRouter: ApiCallRouterWithApprovalChecks
 --------------------------------------------------------------------------------
 
 to your configuration. Note that GRR will try to send approval emails so you
