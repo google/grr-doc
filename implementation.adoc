@@ -1222,7 +1222,7 @@ class AnalyzeClientMemory(flow.GRRFlow):                   # <1>
 
   def __init__(self, plugins="pslist,dlllist,modules", driver_installer=None,
                profile=None, **kwargs):
-    super(AnalyseClientMemory, self).__init__(**kwargs)
+    super(AnalyzeClientMemory, self).__init__(**kwargs)
     self.plugins = plugins
     self.driver_installer = driver_installer
     self.profile = profile

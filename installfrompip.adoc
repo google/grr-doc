@@ -3,7 +3,7 @@
 GRR is now available from link:https://pip.pypa.io/en/stable/installing/[pip].
 If you're looking for an install that sets up system daemons and everything
 ready for production, use the deb package via the
-link:quickstart.adoc[quickstart] instuctions. Use these instructions to set up a
+link:quickstart.adoc[quickstart] instructions. Use these instructions to set up a
 dev environment or upgrade a server to a newer version from github.
 
 The packages are:
