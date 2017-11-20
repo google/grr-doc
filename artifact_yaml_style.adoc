@@ -1,4 +1,0 @@
-Artifact YAML Style Guide
-=========================
-
-This style guide is now maintained as link:https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc[part of the separate artifact repository].

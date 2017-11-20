@@ -1,0 +1,62 @@
+Windows licensing means we can’t just simply provide a build vm via
+vagrant as we’ve done for linux. So there’s more hoops to jump through
+here, but it’s as automated as possible.
+
+# Building Templates
+
+First you need to make sdists from the GRR source (which requires a
+protobuf compiler) and get them to the windows build machine. We do this
+on linux with this script which uses google cloud storage to copy the
+files to the windows machine (note you’ll need to use a different cloud
+storage bucket name):
+
+    BUCKET=mybucketname scripts/make_sdist_for_templates.sh
+
+On your Windows/VM with git and the Google cloud SDK installed, run this
+as admin:
+
+    mkdir C:\grr_src
+    git clone https://github.com/google/grr.git C:\grr_src
+    C:\grr_src\vagrant\windows\install_for_build.bat
+
+Then as a regular user you can download the sdists and build the
+templates from
+    that:
+
+    C:\Python27-x64\python.exe C:\grr_src\vagrant\windows\build_windows_templates.py --grr_src=C:\grr_src --cloud_storage_sdist_bucket=mybucketname --cloud_storage_output_bucket=mybucketname
+
+Download the built templates and components from cloud storage to your
+linux vm ready for repacking. Put them under
+`grr/executables/windows/templates`.
+
+# Setting Up For Windows EXE Signing
+
+To make automation easier we now sign the windows installer executable
+on linux using osslsigncode. To set up for signing, install
+osslsigncode:
+
+    sudo apt-get install libcurl4-openssl-dev
+    wget http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
+    tar zxvf osslsigncode-1.7.1.tar.gz
+    cd osslsigncode-1.7.1/
+    ./configure
+    make
+    sudo make install
+
+Get your signing key into the .pvk and .spc format, example commands
+below (will vary based on who you buy the signing cert from):
+
+    openssl pkcs12 -in authenticode.pfx -nocerts -nodes -out key.pem
+    openssl rsa -in key.pem -outform PVK -pvk-strong -out authenticode.pvk
+    openssl pkcs12 -in authenticode.pfx -nokeys -nodes -out cert.pem
+    cat Thawte_Primary_Root_CA_Cross.cer >> cert.pem
+    openssl crl2pkcs7 -nocrl -certfile cert.pem -outform DER -out authenticode.spc
+    shred -u key.pem
+
+Link to wherever your key lives. This allows you to keep it on removable
+media and have different people use different keys with the same grr
+config.
+
+    sudo ln -s /path/to/authenticode.pvk /etc/alternatives/grr_windows_signing_key
+    sudo ln -s /path/to/authenticode.spc /etc/alternatives/grr_windows_signing_cert
+
