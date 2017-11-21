@@ -112,7 +112,7 @@ versions](admin.md#client-and-server-version-compatibility-and-numbering).
   - **WARN** We [no longer support running the client on Windows
     XP](https://github.com/google/grr/issues/408), it’s difficult to
     make it work and we have no use for an XP client ourselves. See
-    [here](https://github.com/google/grr-doc/blob/markdown/faq.md#what-operating-system-versions-does-the-client-support)
+    [here](faq.md#what-operating-system-versions-does-the-client-support)
     for our OS support statement.
 
   - **INFO** Strict context checking was added for config files in [this

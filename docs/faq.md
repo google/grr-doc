@@ -284,7 +284,7 @@ Run in AWS with c3.large instances in two autoscaling groups.
 # How do I handle multi-organisational deployments?
 
 [Bake labels into clients at build
-time](https://github.com/google/grr-doc/blob/markdown/admin.md#building-clients-with-custom-labels-multi-organization-deployments),
+time](admin.md#building-clients-with-custom-labels-multi-organization-deployments),
 and use a "Clients With Label" hunt rule to hunt specific groups of
 clients separately.
 
@@ -343,7 +343,7 @@ is not your average pet python project.
 Having said that, the most common action of just collecting something
 from machines and parsing what you get back has been made significantly
 easier with [the artifacts
-system](https://github.com/google/grr-doc/blob/markdown/user_manual.md#artifacts).
+system](user_manual.md#artifacts).
 This allows you to specify complex multi-operating system collection
 tasks with just a few lines of YAML, and collect any of the hundreds of
 pre-defined forensic artifacts with the click of a button.
@@ -370,7 +370,7 @@ you need to close the browser. This is OK for testing, but for
 production we expect you to sit a reverse proxy in front of the UI that
 handles auth, or write a webauth module for GRR. See the [Authentication
 to the
-AdminUI](https://github.com/google/grr-doc/blob/markdown/admin.md#authentication-to-the-admin-ui)
+AdminUI](admin.md#authentication-to-the-admin-ui)
 section for more details.
 
 # How do I change the timezone from UTC?

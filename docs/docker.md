@@ -20,7 +20,7 @@ bleeding edge you can use `grrdocker/grr:latest` in the commands below.
 Once initialization finishes point your web browser to localhost:8000
 and login with admin:demo. Follow the final part of the quickstart
 instructions to [download and install the
-clients](https://github.com/google/grr-doc/blob/markdown/quickstart.md#install-the-clients).
+clients](quickstart.md#install-the-clients).
 
   - EXTERNAL\_HOSTNAME is the hostname you want GRR agents (clients) to
     poll back to, “localhost” is only useful for testing.

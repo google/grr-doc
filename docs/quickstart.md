@@ -2,7 +2,7 @@ This document describes getting a server and clients up and running for
 the first time. You have two options:
 
 1.  Run the [docker
-    image](https://github.com/google/grr-doc/blob/markdown/docker.md).
+    image](docker.md).
     This is the fastest way to get a basic install up and running for
     testing. Takes ~2 mins to download the image and initialize the
     server.
@@ -14,7 +14,7 @@ the first time. You have two options:
 
 If you’re experienced with GRR and want to set up a server for
 development take a look at the [pip install
-instructions](https://github.com/google/grr-doc/blob/markdown/installfrompip.md).
+instructions](installfrompip.md).
 
 # Requirements
 
@@ -76,5 +76,5 @@ Run the client on the target machine as administrator:
 After install, hit Enter in the search box in the top left corner of the
 UI to see all of your clients that have enrolled with the server. If you
 don’t see clients, follow the [troubleshooting
-steps](https://github.com/google/grr-doc/blob/markdown/troubleshooting.md#i-dont-see-my-clients).
+steps](troubleshooting.md#i-dont-see-my-clients).
 

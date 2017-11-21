@@ -7,7 +7,7 @@ to try it out.
 Get a GRR server installed and running in a few minutes with the
 [quickstart install](quickstart.md). If you’re building a dev server
 take a look at the [pip install
-instructions](https://github.com/google/grr-doc/blob/markdown/installfrompip.md).
+instructions](installfrompip.md).
 
 # Client and Server Version Compatibility and Numbering
 
@@ -745,7 +745,7 @@ will download VMs automatically), you can build templates for all linux
 OSes just by running make. If you’re building for OS X as well, you’ll
 run this once on linux and once on apple hardware. Windows requires more
 work as described
-[here](https://github.com/google/grr-doc/blob/markdown/windowsclient.md#building-templates).
+[here](windowsclient.md#building-templates).
 
     cd vagrant
     make templates
