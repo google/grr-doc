@@ -1,2 +1,87 @@
 site_name: GRR documentation
+repo_url: https://github.com/google/grr-doc
 theme: readthedocs
+site_description: 'GRR Rapid Response: remote live forensics for incident response'
+pages:
+- Home: 'index.md'
+- What is GRR?: 'what-is-grr.md'
+- Quickstart (have GRR running in 5 minutes): 'quickstart.md'
+- Installing GRR Server:
+  - Overview: 'installing-grr-server/overview.md'
+  - Securing access to GRR server (important!): 'installing-grr-server/securing-access.md'
+  - Installing from a release DEB (recommended): 'installing-grr-server/from-release-deb.md'
+  - Installing from a HEAD DEB: 'installing-grr-server/from-head-deb.md'
+  - Installing from released PIP packages: 'installing-grr-server/from-released-pip.md'
+  - Installing from source: 'installing-grr-server/from-source.md'
+  - Installing via GRR Docker image: 'installing-grr-server/via-docker.md'
+  - Troubleshooting ("GRR server doesn't seem to run"): 'installing-grr-server/troubleshooting.md'
+- Deploying GRR Clients:
+  - Overview: 'deploying-grr-clients/overview.md'
+  - How to check if a deployed client talks back to GRR server: 'deploying-grr-clients/how-to-check-if-client-talks-back.md'
+  - On Windows: 'deploying-grr-clients/on-windows.md'
+  - On Mac OS X: 'deploying-grr-clients/on-mac-os-x.md'
+  - On Linux: 'deploying-grr-clients/on-linux.md'
+  - Life of a GRR client (what happens after deployment): 'deploying-grr-clients/life-of-grr-client.md'
+  - Troubleshooting ("I don't see my clients"): 'deploying-grr-clients/troubleshooting.md'
+- Investigating with GRR:
+  - Overview: 'investigating-with-grr/overview.md'
+  - Client-Server communication: 'investigating-with-grr/client-server-communication.md'
+  - Security considerations: 'investigating-with-grr/security-considerations.md'
+  - Flows:
+    - What are Flows and how to use them: 'investigating-with-grr/flows/what-are-flows.md'
+    - Starting Flows: 'investigating-with-grr/flows/starting.md'
+    - Specifying file paths: 'investigating-with-grr/flows/specifying-file-paths.md'
+    - Specifying Windows Registry paths: 'investigating-with-grr/flows/specifying-windows-registry-paths.md'
+    - Monitoring Flow progress: 'investigating-with-grr/flows/monitoring-progress.md'
+    - Working with Flow results: 'ininvestigating-with-grr/flows/working-with-results.md'
+  - Virtual File System: 'investigating-with-grr/virtual-file-system.md'
+  - Hunts:
+    - What are "hunts" and how to use them: 'investigating-with-grr/hunts/what-are-hunts.md'
+    - Starting Hunts: 'investigating-with-grr/hunts/starting.md'
+    - Monitoring Hunt progress: 'investigating-with-grr/hunts/monitoring-progress.md'
+    - Working with Hunt results: 'investigating-with-grr/hunts/working-with-results.md'
+    - Troubleshooting ("Why is my hunt doing nothing?"): 'investigating-with-grr/hunts/troubleshooting.md'
+    - Hunting DOs and DONTs: 'investigating-with-grr/hunts/dos-and-donts.md'
+  - Artifacts:
+    - Collecting Artifacts: 'investigating-with-grr/artifacts/collecting.md'
+    - Defining Artifacts: 'investigating-with-grr/artifacts/defining.md'
+    - Private Artifacts: 'investigating-with-grr/artifacts/private.md'
+  - Exporting data from GRR: 'investigating-with-grr/exporting-data.md'
+  - Cron Jobs in GRR: 'investigating-with-grr/cron-jobs.md'
+  - Automation with GRR API: 'investigating-with-grr/automation-with-api.md'
+  - Glossary: 'investigating-with-grr/glossary.md'
+- Maintaining and tuning GRR deployment:
+  - Overview: 'maintaining-and-tuning/overview.md'
+  - Changing GRR server configuration:
+    - Configuration file organization: 'maintaining-and-tuning/configuration/file-organization.md'
+    - Configuration contexts: 'maintaining-and-tuning/configuration/contexts.md'
+    - Parameter Expansion: 'maintaining-and-tuning/configuration/parameter-expansion.md'
+    - Filtering: 'maintaining-and-tuning/configuration/filtering.md'
+  - Key management:
+    - Which keys are used in GRR and how: 'maintaining-and-tuning/key-management/which-keys-and-how.md'
+    - Rotating the keys: 'maintaining-and-tuning/key-management/rotating.md'
+  - User mangement:
+    - User authentication: 'maintaining-and-tuning/user-management/authentication.md'
+    - Running GRR UI behind Apache web server: 'maintaining-and-tuning/user-management/running-behind-apache.md'
+    - Limiting access to GRR UI/API with API routers: 'maintaining-and-tuning/user-management/limiting-access-with-routers.md'
+  - Email configuration: 'maintaining-and-tuning/email-configuration.md'
+  - Approval-based auditing system: 'maintaining-and-tuning/approval-based-auditing.md'
+  - Repacking GRR clients: 'maintaining-and-tuning/repacking-clients.md'
+  - Low-level maintenance with raw access console: 'maintaining-and-tuning/low-level-maintenance-with-console.md'
+  - Choosing GRR datastore: 'maintaining-and-tuning/choosing-datastore.md'
+  - Scaling GRR on a single server: 'maintaining-and-tuning/scaling-on-single-server.md'
+  - Building custom client templates: 'maintaining-and-tuning/building-custom-client-templates.md'
+- Developing GRR:
+  - Overview: 'developing-grr/overview.md'
+  - Setting up development environment: 'developing-grr/setting-up-dev-env.md'
+  - Running the tests: 'developing-grr/running-tests.md'
+  - Contributing code: 'developing-grr/contributing.md'
+  - Implementation details:
+    - GRR messages: 'developing-grr/implementation-details/grr-messages.md'
+    - AFF4 data model: 'developing-grr/implementation-details/aff4-data-model.md'
+    - Client Path Specification: 'developing-grr/implementation-details/client-path-spec.md'
+    - Foreman: 'developing-grr/implementation-details/foreman.md'
+    - Authorization and Auditing: 'developing-grr/implementation-details/authorizating-and-auditing.md'
+- F.A.Q: 'faq.md'
+
+
