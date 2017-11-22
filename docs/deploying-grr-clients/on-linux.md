@@ -1,6 +1,10 @@
 # On Linux
 
-On linux, the process depends on your environment, if you have a
+For Linux you will see a deb and rpms, install the appropriate one.
+For testing purposes you can run the client on the same machine as
+the server if you like.
+
+The process depends on your environment, if you have a
 mechanism such as puppet, then building as a Deb package and deploying
 that way makes the most sense. Alternatively you can deploy using ssh:
 
