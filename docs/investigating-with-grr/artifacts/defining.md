@@ -20,16 +20,14 @@ to produce URLs.
 New artifacts should be added to the [forensic artifacts repository]
 [artifact-repository].
 
-The changes can be imported into grr by running `make` in the `grr/artifacts`
+The changes can be imported into GRR by running `make` in the `grr/artifacts`
 directory. This will delete the existing artifacts, checkout the latest version
-of the artifact repository, and add all of the yaml definitions into GRR’s
+of the artifact repository and add all of the YAML definitions into GRR’s
 directory. Running `python setup.py build` will have the same effect. The new
 artifacts will be available once the server is restarted.
 
 Artifacts can also be uploaded via the Artifact Manager GUI and used immediately
-without the need for a restart. When developing a new artifact you can use the
-`grr/artifacts/local` directory as a temporary home for testing (see next
-section).
+without the need for a restart.
 
 ## Local definitions
 
@@ -47,7 +45,7 @@ running a rekall plugin. Such "artifacts" are called *flow templates* and since
 they are GRR-specific they remain in the GRR repository in the
 `grr/artifacts/flow_templates` directory.
 
-This is temporary working name. We intend to rework this functionality into a
+This is a temporary working name. We intend to rework this functionality into a
 more general, powerful and configurable way to call GRR from YAML.
 
 [artifact-repository]: https://github.com/ForensicArtifacts/artifacts
