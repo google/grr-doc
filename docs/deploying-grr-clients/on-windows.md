@@ -1,5 +1,13 @@
 # On Windows
 
+For Windows you will see a 32 and 64 bit installer. Run the
+installer as admin (it should load the UAC prompt if you are not
+admin). It should run silently and install the client to
+`c:\windows\system32\grr\%version%\`. It will also install a Windows
+Service, start it, and configure the registry keys to make it talk
+to the URL/server you specified during repack of the clients on the
+server.
+
 The Windows agents are special self extracting zipfiles. Just double
 click or otherwise execute the binary. If you are not an administrator
 it will prompt you for credentials. It should then install silently in
@@ -76,3 +84,23 @@ Anonymous share.
 
 The best way to verify whether the whole installation process has worked
 is to search for the client in the GUI.
+
+# Uninstalling GRR
+
+This is a quick manual on how to remove the GRR client completely from a machine.
+
+On Windows, GRR lives in
+
+%SystemRoot%\system32\grr\*
+
+The service can be stopped with
+
+sc stop "GRR Monitor"
+
+Or via the task manager.
+
+The GRR config lives in the registry, for a full cleanup, the path
+
+HKEY_LOCAL_MACHINE\Software\GRR
+
+should be deleted.
