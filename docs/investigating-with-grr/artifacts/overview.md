@@ -44,8 +44,8 @@ The goals of the GRR artifacts implementation are:
 GRR artifacts are defined in YAML, with a style guide [available here]
 [artifact-style]. We use a standard set of machine information collected
 from the host for variable interpolation. This collection of data is called the
-Knowledge Base (see [proto/knowledge\_base.proto][artifact-knowledebase] and is
-referenced with a `%%variable%%` syntax.
+[Knowledge Base][artifact-knowledgebase] and is referenced with a `%%variable%%`
+syntax.
 
 The artifact defines where the data lives. Once it is retrieved by GRR a
 [parser][artifact-parsers] can optionally be applied to turn the collected
