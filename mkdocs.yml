@@ -47,7 +47,6 @@ pages:
     - Collecting Artifacts: 'investigating-with-grr/artifacts/collecting.md'
     - Defining Artifacts: 'investigating-with-grr/artifacts/defining.md'
     - Private Artifacts: 'investigating-with-grr/artifacts/private.md'
-  - Exporting data from GRR: 'investigating-with-grr/exporting-data.md'
   - Cron Jobs in GRR: 'investigating-with-grr/cron-jobs.md'
   - Automation with GRR API: 'investigating-with-grr/automation-with-api.md'
   - Glossary: 'investigating-with-grr/glossary.md'
