@@ -94,6 +94,43 @@ and Windows EventLog logging using parameters `Logging.path`, and
 `Logging.engines`.
 
 
+# Proxies and Connectivity
+
+If an agent can’t connect to the server, there can be a number of
+reasons such as:
+
+  - Server Isn’t Listening
+    Confirm you can connect to the server and retrieve the server.pem
+    file. E.g.
+
+        wget http://server:8080/server.pem
+
+  - Proxy Required For Access
+    If the environment doesn’t allow direct connections GRR may need to
+    use a proxy. GRR currently doesn’t support Proxy Autoconfig or Proxy
+    Authentication. GRR will attempt to guess your proxy configuration,
+    or you can explicitly set proxies in the config file, e.g.
+
+        Client.proxy_servers: ["http://cache.example.com:3128/"]
+    On
+    Windows systems GRR will try a direct connection, and then search
+    for configured proxies in all users profiles on the system trying to
+    get a working connection. On Linux GRR should obey system proxy
+    settings, and it will also obey environment variables. e.g.
+
+        $ export http_proxy=http://cache.example.com:3128
+
+  - Outbound Firewall Blocking Connections
+    GRR doesn’t do anything to bypass egress firewalling by default.
+    However, if you have a restrictive policy you could add this as an
+    installer plugin.
+
+If you look at the running config, the first time the client
+successfully connects to the server a variable
+`Client.server_serial_number` will be written to the config. If that
+exists, the client successfully made a connection.
+
+
 # Crashes
 
 The client shouldn’t ever crash…​ but it does because making software is
