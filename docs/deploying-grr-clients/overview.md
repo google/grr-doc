@@ -28,6 +28,6 @@ steps](troubleshooting.md#i-dont-see-my-clients).
 
 A quick manual on how to remove the GRR client completely from a machine is included in the platform-specific docs:
 
-  - [Windows instructions](on-windows.md)
-  - [OSX instructions](on-mac-os-x.md)
-  - [Linux instructions](on-linux.md)
+  - [Windows instructions](on-windows.md#uninstalling-grr)
+  - [OSX instructions](on-mac-os-x.md#uninstalling-grr)
+  - [Linux instructions](on-linux.md#uninstalling-grr)
