@@ -53,7 +53,7 @@ Messages are encoded as GrrMessage protobufs:
 </tbody>
 </table>
 
-![Typical Message Request/Response Sequence.](images/messages.png
+![Typical Message Request/Response Sequence.](../../images/messages.png
 "fig:")
 
 Figure 2 illustrates a typical sequence of messages. Request 1 was sent
