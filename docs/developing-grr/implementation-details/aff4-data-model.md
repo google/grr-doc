@@ -50,7 +50,7 @@ class VFSGRRClient(aff4.AFF4Object):
     also updated.
 
 ![View of an AFF4 VFSGRRClient with some of its
-attributes.](images/aff4_attributes.jpg "fig:")
+attributes.](../../images/aff4_attributes.jpg "fig:")
 
 The figure above illustrates an AFF4 Object of type VFSGRRClient. It has
 a URN of "aff4:/C.880661da867cfebd". The figure also lists all the
