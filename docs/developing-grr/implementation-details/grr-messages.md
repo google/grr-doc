@@ -1,8 +1,5 @@
 # GRR Messages
 
-
-# GRR Messages
-
 On the wire, the client and server interchange messages. We term the
 messages sent from server to the client *requests*, while messages sent
 from the client to the server are *responses*. Requests sent to the
