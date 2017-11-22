@@ -59,13 +59,7 @@ Run the client on the target machine as administrator:
   - [OSX instructions](on-mac-os-x.md)
   - [Linux instructions](on-linux.md)
 
-If an install is successful, it should appear in the search UI within a
-few seconds.
-
-After install, hit Enter in the search box in the top left corner of the
-UI to see all of your clients that have enrolled with the server. If you
-don’t see clients, follow the [troubleshooting
-steps](troubleshooting.md).
+See [How to check if a deployed client talks back to the GRR server](how-to-check-if-client-talks-back.md).
 
 # Uninstalling GRR
 
