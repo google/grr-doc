@@ -21,13 +21,6 @@ To do so we’ll need to:
     clients are supported. Client and server can run on the same host for
     testing purposes.
 
-## Deploying at scale
-
-There shouldn’t be any special considerations for deploying GRR clients
-at scale. If the server can’t handle the load, the clients should
-happily back off and wait their turn. However, we recommend a staged
-rollout if possible.
-
 # Installing the Clients
 
 ## Downloading clients
@@ -37,15 +30,9 @@ to the server with working configurations, and should be available in
 the Admin UI.
 
 Look on the left for "Manage Binaries", the files should be in the
-executables directory, under installers. The download button is the down
-arrown in the toolbar.
+executables directory, under installers.
 
-The files are also accessible directly if you know the path via
-/download. This is useful if you want to retrieve the file using command
-line tools or a browser that isn’t supported (e.g.
-    IE6).
-
-    wget --user=admin --password=setecastronomy http://example.com:8000/download/windows/installers/grr-installer-3204.exe
+![Screenshot](../images/client-installers.png)
 
 If your server configuration has changed your clients will need to be
 repacked with an updated config. For details see the server documentation.
@@ -68,3 +55,28 @@ A quick manual on how to remove the GRR client completely from a machine is incl
   - [Windows instructions](on-windows.md#uninstalling-grr)
   - [OSX instructions](on-mac-os-x.md#uninstalling-grr)
   - [Linux instructions](on-linux.md#uninstalling-grr)
+
+# Notes
+
+## Deploying at scale
+
+There shouldn’t be any special considerations for deploying GRR clients
+at scale. If the server can’t handle the load, the clients should
+happily back off and wait their turn. However, we recommend a staged
+rollout if possible.
+
+## Client and Server Version Compatibility and Numbering
+
+We try hard to avoid breaking backwards compatibility for clients since
+upgrading can be painful, but occasionally we need to make changes that
+require a new client version to work. As a general rule you want to
+upgrade the server first, then upgrade the clients fairly soon after.
+
+Matching major/minor versions of client and server should work well
+together. i.e. Clients 3.1.0.0 and 3.1.6.2 should work well with servers
+3.1.0.0 and 3.1.9.7 because they are all 3.1 series. We introduced this
+approach for the 3.1.0.0 release.
+
+For older servers and clients, matching the last digit provided similar
+guarantees. i.e. client 3.0.0.7 was released with server 0.3.0-7 and
+should work well together.
