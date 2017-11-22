@@ -10,13 +10,13 @@ create a Hunt:
 2. Select a flow you want to run and fill out all parameters as you would do for a flow running on a single client.
 
 3. The second page of the Hunt Wizard lets you set hunt parameters. They are:
-- Hunt Description: A friendly name for this hunt to show in the UI.
-- Client Limit: A limit on the number of clients this hunt should run on. This can be changed later so it makes sense to start the hunt on a few clients first (we like 100) to see how it goes and only later remove the limit.
-- Crash Limit: If more clients than indicated in this parameter return an error, the hunt is automatically paused.
-- Expiry Time: Hunts are never really done since new clients might appear at any time and they should run the hunt too. This time indicates the lifetime of a hunt after which it is considered done.
-- Client Rate: Number of clients to schedule the hunt on per minute. The default of 20 we have found to be safe, avoiding overloading the server for intensive hunts with lots of message passing (e.g. multiple flows, lots of results). A value of 0 disables rate limiting and clients will be scheduled as fast as possible. Use this with care: light hunts you need to run quickly.
 
-- Some more advanced options are available behind the advanced link but they should not need adjustment in most cases.
+    - *Hunt Description* A friendly name for this hunt to show in the UI.
+    - *Client Limit* A limit on the number of clients this hunt should run on. This can be changed later so it makes sense to start the hunt on a few clients first (we like 100) to see how it goes and only later remove the limit.
+    - *Crash Limit* If more clients than indicated in this parameter return an error, the hunt is automatically paused.
+    - *Expiry Time* Hunts are never really done since new clients might appear at any time and they should run the hunt too. This time indicates the lifetime of a hunt after which it is considered done.
+    - *Client Rate* Number of clients to schedule the hunt on per minute. The default of 20 we have found to be safe, avoiding overloading the server for intensive hunts with lots of message passing (e.g. multiple flows, lots of results). A value of 0 disables rate limiting and clients will be scheduled as fast as possible. Use this with care: light hunts you need to run quickly.
+    - Some more advanced options are available behind the advanced link but they should not need adjustment in most cases.
 
 3.  Set any output plugins, such as receiving an email for each result.
 

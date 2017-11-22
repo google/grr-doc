@@ -12,8 +12,8 @@ The rule section of the New Hunt Wizard can be seen in the following image:
 
 GRR allows to specify more than one rule for hunts. By default, those rules are evaluated using a logical AND, meaning a client will only run the hunt if it satisfies all the conditions specified by every rule. This behavior can be changed with the dropdown on top, changing
 
-Match all (logical AND)
+- Match all (logical AND)
 
 to
 
-Match any (logical OR)
+- Match any (logical OR)

@@ -78,6 +78,7 @@ There’s a lot of information here. Some bits worth mentioning are:
 - *State Data* shows internal server side state of this flow. This information is mostly useful for debugging.
 
 The other tabs shown on the flow details view are
+
 - *Requests*. Show what pending requests this flow is waiting for while it's running. Mostly for debugging.
 - *Results*. The results returned by this flow. More information in [Working with Results](working-with-results.md).
 - *Log*. The log for this flow.
