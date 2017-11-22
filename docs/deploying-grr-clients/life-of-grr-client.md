@@ -1,22 +1,5 @@
 # Life of a GRR client (what happens after deployment)
 
-## Client and Server Version Compatibility and Numbering
-
-We try hard to avoid breaking backwards compatibility for clients since
-upgrading can be painful, but occasionally we need to make changes that
-require a new client version to work. As a general rule you want to
-upgrade the server first, then upgrade the clients fairly soon after.
-
-Matching major/minor versions of client and server should work well
-together. i.e. Clients 3.1.0.0 and 3.1.6.2 should work well with servers
-3.1.0.0 and 3.1.9.7 because they are all 3.1 series. We introduced this
-approach for the 3.1.0.0 release.
-
-For older servers and clients, matching the last digit provided similar
-guarantees. i.e. client 3.0.0.7 was released with server 0.3.0-7 and
-should work well together.
-
-
 ## Client Robustness Mechanisms
 
 We have a number of mechanisms built into the client to try and ensure
