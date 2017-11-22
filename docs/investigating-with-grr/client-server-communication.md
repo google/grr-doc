@@ -1,4 +1,4 @@
-# Client-Server communication
+# Client-Server Communication
 
 When a Flow needs to request information from a client, it queues up a message
 for the client. GRR clients poll the GRR server approximately every 10 minutes,
