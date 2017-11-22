@@ -24,8 +24,8 @@ sudo apt install chromium-driver
 If there is no `chromium-driver` available in your repositories you may try
 installing Chromium browser and then downloading latest `chromium-driver` binary
 from [the official website](https://sites.google.com/a/chromium.org/chromedriver/downloads).
-After downloading unpack it somewhere and add it to you `$PATH` (or just move it
-to `/usr/bin`).
+After downloading unpack it somewhere and add it to your `$PATH` or just move it
+to `/usr/bin`.
 
 ### Running the whole test suite
 
@@ -65,7 +65,7 @@ Or even just a single test method:
 pytest grr/server/aff4_objects/filestore_test.py::HashFileStoreTest::testListHashes
 ```
 
-### Ignoring the test cases
+### Ignoring test cases
 
 Some kind of tests are particularly slow to run. For example, all UI tests are
 based on running a real web browser instance and simulating its actions which is
@@ -104,7 +104,7 @@ will be halted and you will be dropped into the PDB shell.
 
 If you set breakpoints in your code manually using `pdb.set_trace()` you will
 notice a weird behaviour when running your tests. This is because pytest
-intercepts the standard input and output writes breaking the PDB shell. To deal
+intercepts the standard input and output writes, breaking the PDB shell. To deal
 with this behaviour simply run tests with `-s` flag - it will prevent pytest
 from doing that.
 
