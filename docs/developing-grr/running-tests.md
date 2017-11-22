@@ -100,7 +100,8 @@ If our tests are failing and we need to fix our code the
 [Python Debugger](https://docs.python.org/3/library/pdb.html) can come in handy.
 
 If you run pytest with `--pdb` flag then upon a failure the program execution
-will be halted and you will be dropped into the PDB shell.
+will be halted and you will be dropped into the PDB shell where you can
+investigate the problem in the environment it occurred.
 
 If you set breakpoints in your code manually using `pdb.set_trace()` you will
 notice a weird behaviour when running your tests. This is because pytest
