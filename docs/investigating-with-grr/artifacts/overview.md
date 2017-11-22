@@ -9,7 +9,8 @@ across systems.
 We have built a framework to describe forensic artifacts that allows them to be
 collected and customised quickly using GRR. This collection was initially
 contained inside the GRR repository, but we have now moved it out to [a separate
-repository](https://github.com/ForensicArtifacts/artifacts) to make access
+repository][artifact-repository]
+ to make access
 simple for other tools.
 
 # Goals
@@ -43,14 +44,17 @@ The goals of the GRR artifacts implementation are:
 # Database
 
 GRR artifacts are defined in YAML, with a style guide [available
-here](https://github.com/ForensicArtifacts/artifacts/blob/markdown/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
-We use a standard set of machine information collected from the host for
-variable interpolation. This collection of data is called the Knowledge
-Base (see
-[proto/knowledge\_base.proto](https://github.com/google/grr/blob/markdown/grr/proto/knowledge_base.proto))
-and is referenced with a %%variable%% syntax.
+here][artifact-style]. We use a standard set of machine information collected
+from the host for variable interpolation. This collection of data is called the
+Knowledge Base (see [proto/knowledge\_base.proto][artifact-knowledebase] and is
+referenced with a %%variable%% syntax.
 
 The artifact defines where the data lives. Once it is retrieved by GRR a
-[parser](https://github.com/google/grr/tree/master/grr/parsers) can optionally
-be applied to turn the collected information into a more useful format, such as
-parsing a browser history file to produce URLs.
+[parser][artifact-parsers] can optionally be applied to turn the collected
+information into a more useful format, such as parsing a browser history file
+to produce URLs.
+
+[artifact-repository]: https://github.com/ForensicArtifacts/artifacts
+[artifact-style]: https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc
+[artifact-knowledgebase]: https://github.com/google/grr/blob/master/grr/proto/knowledge_base.proto
+[artifact-parsers]: https://github.com/google/grr/tree/master/grr/parsers
