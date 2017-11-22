@@ -93,3 +93,23 @@ option to the test runner:
 ```bash
 pytest --benchmark
 ```
+
+### Debugging
+
+If our tests are failing and we need to fix our code the
+[Python Debugger](https://docs.python.org/3/library/pdb.html) can come in handy.
+
+If you run pytest with `--pdb` flag then upon a failure the program execution
+will be halted and you will be dropped into the PDB shell.
+
+If you set breakpoints in your code manually using `pdb.set_trace()` you will
+notice a weird behaviour when running your tests. This is because pytest
+intercepts the standard input and output writes breaking the PDB shell. To deal
+with this behaviour simply run tests with `-s` flag - it will prevent pytest
+from doing that.
+
+### More information
+
+The functionalities outlined in this guide are just a tip of the pytest
+capabilities. For more information consult pytest's man page, check
+`pytest --help` or visit the [pytest homepage](https://pytest.org).
