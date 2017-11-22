@@ -1,5 +1,3 @@
-# Collecting Artifacts
-
 Artifacts can be collected using the artifact collector flow. Multiple
 artifacts can be collected at once. Using artifacts in hunts is
 particularly powerful as an artifact like JavaCacheFiles can be

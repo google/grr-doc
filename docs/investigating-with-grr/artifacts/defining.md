@@ -1,5 +1,3 @@
-# Defining Artifacts
-
 New artifacts should be added to the [forensic artifacts
 repository](https://github.com/ForensicArtifacts/artifacts/tree/master/data).
 The changes can be imported into grr by running `make` in the `grr/artifacts`

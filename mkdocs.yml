@@ -45,8 +45,8 @@ pages:
     - Troubleshooting ("Why is my hunt doing nothing?"): 'investigating-with-grr/hunts/troubleshooting.md'
   - Artifacts:
     - Overview: 'investigating-with-grr/artifacts/overview.md'
-    - Collecting Artifacts: 'investigating-with-grr/artifacts/collecting.md'
-    - Defining Artifacts: 'investigating-with-grr/artifacts/defining.md'
+    - Collecting: 'investigating-with-grr/artifacts/collecting.md'
+    - Defining: 'investigating-with-grr/artifacts/defining.md'
   - Exporting data from GRR: 'investigating-with-grr/exporting-data.md'
   - Cron Jobs in GRR: 'investigating-with-grr/cron-jobs.md'
   - Automation with GRR API: 'investigating-with-grr/automation-with-api.md'

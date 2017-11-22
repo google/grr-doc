@@ -1,6 +1,3 @@
-Artifacts
-=========
-
 During a security investigation responders need to quickly retrieve common
 pieces of information that include items such as logs, configured services, cron
 jobs, patch state, user accounts, and much more. These pieces of information are
