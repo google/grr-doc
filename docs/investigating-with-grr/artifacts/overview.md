@@ -1,3 +1,5 @@
+# Outline
+
 During a security investigation responders need to quickly retrieve common
 pieces of information that include items such as logs, configured services, cron
 jobs, patch state, user accounts, and much more. These pieces of information are
@@ -9,6 +11,8 @@ collected and customised quickly using GRR. This collection was initially
 contained inside the GRR repository, but we have now moved it out to [a separate
 repository](https://github.com/ForensicArtifacts/artifacts) to make access
 simple for other tools.
+
+# Goals
 
 The goals of the GRR artifacts implementation are:
 
@@ -35,6 +39,8 @@ The goals of the GRR artifacts implementation are:
 
   - The ability to write new artifacts, upload them to GRR and be able to
     collect them immediately.
+
+# Database
 
 GRR artifacts are defined in YAML, with a style guide [available
 here](https://github.com/ForensicArtifacts/artifacts/blob/markdown/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
