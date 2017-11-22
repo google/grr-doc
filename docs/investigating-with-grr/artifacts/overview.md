@@ -39,20 +39,4 @@ The goals of the GRR artifacts implementation are:
   - The ability to write new artifacts, upload them to GRR and be able to
     collect them immediately.
 
-# Database
-
-GRR artifacts are defined in YAML, with a style guide [available here]
-[artifact-style]. We use a standard set of machine information collected
-from the host for variable interpolation. This collection of data is called the
-[Knowledge Base][artifact-knowledgebase] and is referenced with a `%%variable%%`
-syntax.
-
-The artifact defines where the data lives. Once it is retrieved by GRR a
-[parser][artifact-parsers] can optionally be applied to turn the collected
-information into a more useful format, such as parsing a browser history file
-to produce URLs.
-
 [artifact-repository]: https://github.com/ForensicArtifacts/artifacts
-[artifact-style]: https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc
-[artifact-knowledgebase]: https://github.com/google/grr/blob/master/grr/proto/knowledge_base.proto
-[artifact-parsers]: https://github.com/google/grr/tree/master/grr/parsers
