@@ -45,7 +45,7 @@ clients. For example, this makes it possible to check if any Windows machine in
 the fleet has a file with a particular name in a particular location.
 
 ## Artifacts
-An [Artifact](artifacts/defining.md) is a way to collect and name a group of
+An [Artifact](artifacts/overview.md) is a way to collect and name a group of
 files or other data that an analyst might want to collect as a unit. For
 example, an artifact might try to collect all the common linux persistence
 mechanisms.
