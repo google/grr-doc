@@ -38,6 +38,7 @@ pages:
   - Hunts:
     - What are "hunts" and how to use them: 'investigating-with-grr/hunts/what-are-hunts.md'
     - Starting Hunts: 'investigating-with-grr/hunts/starting.md'
+    - Hunt Rules: 'investigating-with-grr/hunts/rules.md'
     - Monitoring Hunt progress: 'investigating-with-grr/hunts/monitoring-progress.md'
     - Working with Hunt results: 'investigating-with-grr/hunts/working-with-results.md'
     - Troubleshooting ("Why is my hunt doing nothing?"): 'investigating-with-grr/hunts/troubleshooting.md'

@@ -20,7 +20,7 @@ create a Hunt:
 
 3.  Set any output plugins, such as receiving an email for each result.
 
-5.  Set Hunt Rules. Most commonly this is used to select a specific platform target, e.g. Windows.
+5.  Set Hunt Rules. Most commonly this is used to select a specific platform target, e.g. Windows. See the [Rules section](rules.md).
 
 6.  Click Run
 
