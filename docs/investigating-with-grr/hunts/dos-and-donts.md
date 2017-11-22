@@ -1,1 +1,0 @@
-# Hunting DOs and DONTs
