@@ -1,4 +1,4 @@
-# On Mac OS X
+# Client installation on Mac OS X
 
 For OSX you will see a pkg file, install the pkg. It will add a
 launchd item and start it.

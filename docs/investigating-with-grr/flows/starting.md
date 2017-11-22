@@ -47,3 +47,9 @@ launched flows* view to find it running or track it.
 > Not all flows might be available on every platform. When trying to run
 > a flow that’s not available in the given platform an error will show
 > up.
+
+### Available flows ###
+
+The easiest ways to see the current flows is to check in the AdminUI under StartFlow. These have useful documentation.
+
+Note that by default only BASIC flows are shown in the Admin UI. By clicking the settings (gear icon) in the top right, you can enable ADVANCED flows. With this set you will see many of the underlying flows which are sometimes useful, but require a deeper understanding of GRR.
