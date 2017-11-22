@@ -85,11 +85,13 @@ for unrecoverable errors. But because temporary disconnections are
 normal, an agent failing to talk to the server doesn’t actually count as
 a hard error.
 
-In the client you will likely want to set: Logging.verbose: True
+In the client you will likely want to set:
+
+    Logging.verbose: True
 
 And depending on your configuration, you can play with syslog, log file
-and Windows EventLog logging using parameters Logging.path, and
-Logging.engines.
+and Windows EventLog logging using parameters `Logging.path`, and
+`Logging.engines`.
 
 
 # Crashes
@@ -108,7 +110,7 @@ wasn’t doing anything or in a way where we could not tie it to the
 action.
 
 This data is also emailed to the email address configured in the config
-as Monitoring.alert\_email
+as `Monitoring.alert_email`
 
 ## Crash Types
 

@@ -11,10 +11,10 @@ This is a quick manual on how to remove the GRR client completely from a machine
 
 On OSX, pkg uninstall is not supported. The files to delete are:
 
-/usr/local/lib/grr/*
-/etc/grr.local.yaml
-/Library/LaunchDaemons/com.google.code.grr.plist
+    /usr/local/lib/grr/*
+    /etc/grr.local.yaml
+    /Library/LaunchDaemons/com.google.code.grr.plist
 
 The service can be stopped using
 
-sudo launchctl unload /Library/LaunchDaemons/com.google.corp.grr.plist
+    sudo launchctl unload /Library/LaunchDaemons/com.google.corp.grr.plist
