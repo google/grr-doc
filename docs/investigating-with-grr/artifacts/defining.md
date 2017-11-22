@@ -51,7 +51,7 @@ This is temporary working name. We intend to rework this functionality into a
 more general, powerful and configurable way to call GRR from YAML.
 
 [artifact-repository]: https://github.com/ForensicArtifacts/artifacts
-[artifact-definitions]: https://github.com/ForensicArtifacts/artifacts/tree/master/data
+[artifact-samples]: https://github.com/ForensicArtifacts/artifacts/tree/master/data
 [artifact-syntax]: https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc
 [artifact-knowledgebase]: https://github.com/google/grr/blob/master/grr/proto/knowledge_base.proto
 [artifact-parsers]: https://github.com/google/grr/tree/master/grr/parsers
