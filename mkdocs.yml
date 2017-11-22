@@ -39,10 +39,10 @@ pages:
     - What are "hunts" and how to use them: 'investigating-with-grr/hunts/what-are-hunts.md'
     - Starting Hunts: 'investigating-with-grr/hunts/starting.md'
     - Hunt Rules: 'investigating-with-grr/hunts/rules.md'
+    - Hunt Limits: 'investigating-with-grr/hunts/limits.md'
     - Hunt Controls: 'investigating-with-grr/hunts/controlling-hunts.md'
     - Working with Hunt results: 'investigating-with-grr/hunts/working-with-results.md'
     - Troubleshooting ("Why is my hunt doing nothing?"): 'investigating-with-grr/hunts/troubleshooting.md'
-    - Hunting DOs and DONTs: 'investigating-with-grr/hunts/dos-and-donts.md'
   - Artifacts:
     - Collecting Artifacts: 'investigating-with-grr/artifacts/collecting.md'
     - Defining Artifacts: 'investigating-with-grr/artifacts/defining.md'
