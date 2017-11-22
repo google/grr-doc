@@ -34,7 +34,6 @@ pages:
     - Literal and Regex Matching: 'investigating-with-grr/flows/literal-and-regex-matching.md'
     - Specifying Windows Registry paths: 'investigating-with-grr/flows/specifying-windows-registry-paths.md'
     - Working with Flow results: 'investigating-with-grr/flows/working-with-results.md'
-  - Virtual File System: 'investigating-with-grr/virtual-file-system.md'
   - Hunts:
     - What are "hunts" and how to use them: 'investigating-with-grr/hunts/what-are-hunts.md'
     - Starting Hunts: 'investigating-with-grr/hunts/starting.md'
@@ -43,11 +42,13 @@ pages:
     - Hunt Controls: 'investigating-with-grr/hunts/controlling-hunts.md'
     - Working with Hunt results: 'investigating-with-grr/hunts/working-with-results.md'
     - Troubleshooting ("Why is my hunt doing nothing?"): 'investigating-with-grr/hunts/troubleshooting.md'
+  - Virtual File System:
+      - Intro: 'investigating-with-grr/vfs/virtual-file-system.md'
+      - Navigating the VFS: 'investigating-with-grr/vfs/navigation.md'
   - Artifacts:
-    - Collecting Artifacts: 'investigating-with-grr/artifacts/collecting.md'
-    - Defining Artifacts: 'investigating-with-grr/artifacts/defining.md'
-    - Private Artifacts: 'investigating-with-grr/artifacts/private.md'
-  - Exporting data from GRR: 'investigating-with-grr/exporting-data.md'
+    - Overview: 'investigating-with-grr/artifacts/overview.md'
+    - Collecting: 'investigating-with-grr/artifacts/collecting.md'
+    - Defining: 'investigating-with-grr/artifacts/defining.md'
   - Cron Jobs in GRR: 'investigating-with-grr/cron-jobs.md'
   - Automation with GRR API: 'investigating-with-grr/automation-with-api.md'
   - Glossary: 'investigating-with-grr/glossary.md'
@@ -68,9 +69,9 @@ pages:
   - Email configuration: 'maintaining-and-tuning/email-configuration.md'
   - Approval-based auditing system: 'maintaining-and-tuning/approval-based-auditing.md'
   - Repacking GRR clients: 'maintaining-and-tuning/repacking-clients.md'
-  - Low-level maintenance with raw access console: 'maintaining-and-tuning/low-level-maintenance-with-console.md'
+  - Low-level maintenance with grr_console: 'maintaining-and-tuning/low-level-maintenance-with-console.md'
   - Choosing GRR datastore: 'maintaining-and-tuning/choosing-datastore.md'
-  - Scaling GRR on a single server: 'maintaining-and-tuning/scaling-on-single-server.md'
+  - Scaling GRR: 'maintaining-and-tuning/scaling.md'
   - Building custom client templates: 'maintaining-and-tuning/building-custom-client-templates.md'
 - Developing GRR:
   - Overview: 'developing-grr/overview.md'
@@ -84,5 +85,3 @@ pages:
     - Foreman: 'developing-grr/implementation-details/foreman.md'
     - Authorization and Auditing: 'developing-grr/implementation-details/authorizating-and-auditing.md'
 - F.A.Q: 'faq.md'
-
-

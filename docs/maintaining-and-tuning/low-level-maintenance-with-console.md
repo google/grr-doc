@@ -1,4 +1,4 @@
-# Low-level maintenance with raw access console
+# Low-level maintenance with grr_console
 
 GRR is shipped with a *grr_console* binary. This is effectively an IPython shell that gets initialized with a few basic GRR objects and offers you direct access to internal GRR classes.
 

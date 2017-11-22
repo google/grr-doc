@@ -16,7 +16,7 @@
     `Client.poll_max period` (10 minutes by default).
 
   - When you run a hunt you can specify a "Client Rate" as specified
-    above. If this is set low (but not 0), you can expect a slow hunt.
+    in [creating hunts](starting.md). If this is set low (but not 0), you can expect a slow hunt.
 
   - When running a hunt under high server load, clients seem appear
     complete in batches. This results in the completion graph appearing
