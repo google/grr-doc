@@ -23,9 +23,10 @@ Ubuntu-based distros simply run:
 sudo apt install virtualenv
 ```
 
-To create a virtual environment you just execute a `virtualenv $DIR` where
-`$DIR` is the directory where you want it to be placed. The rest of the manual
-will assume that the environment is created like this:
+To create a virtual environment you just execute the `virtualenv $DIR` command
+where `$DIR` is the directory where you want it to be placed. The rest of the
+manual will assume that the environment is created in `~/.virtualenv/GRR` like
+this:
 
 ```bash
 virtualenv ~/.virtualenv/GRR
@@ -44,7 +45,7 @@ pip install --upgrade pip
 ```
 
 For more information about creating and managing your virtual environments
-refer to the [`virtualenv`](https://virtualenv.pypa.io) documentation.
+refer to the [`virtualenv` documentation](https://virtualenv.pypa.io).
 
 ### Node.js environment
 
@@ -59,7 +60,7 @@ pip install nodeenv
 nodeenv -p --prebuilt
 ```
 
-Because the `nodeenv` command some things to our virtual environment, we need to
+Because the `nodeenv` command modifies our virtual environment, we also need to
 reinitialize it with:
 
 ```bash
@@ -80,7 +81,7 @@ pip install -e ./grr/config/grr-response-test
 ```
 
 The `-e` (or `--editable`) flag passed to `pip` makes sure that the packages
-are installed in a "development" mode - any changes you make in your working
+are installed in a "development" mode and any changes you make in your working
 directory are directly reflected in your virtual environment, no reinstalling
 is required.
 
