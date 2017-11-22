@@ -44,6 +44,7 @@ pages:
     - Troubleshooting ("Why is my hunt doing nothing?"): 'investigating-with-grr/hunts/troubleshooting.md'
   - Virtual File System:
       - Intro: 'investigating-with-grr/vfs/virtual-file-system.md'
+      - Navigating the VFS: 'investigating-with-grr/vfs/navigation.md'
   - Artifacts:
     - Overview: 'investigating-with-grr/artifacts/overview.md'
     - Collecting: 'investigating-with-grr/artifacts/collecting.md'
