@@ -8,10 +8,11 @@ GRR has a notion of *API call routers*. Every API request that GRR server handle
 2. API router is used to process the request.
 
 GRR has a few predefined API routers:
-- `DisabledApiCallRouter` - a router that will return an error for all possible requests.
-- `ApiCallRouterWithoutChecks` *(default)* - a router that performs no access checks and just gives blanket access to the system.
-- `ApiCallRouterWithApprovalChecks` - a router that enables GRR approvals-based workflow for better auditing. See [Approval-based auditing](../approval-based-auditing.md) for more details.
-- `ApiCallRobotRouter` - a router that provides limited access to the system that is suitable for automation. Normally used together with `ApiCallRouterWithApprovalChecks` so that scripts and robots can perform actions without getting approvals.
+
+- *DisabledApiCallRouter* - a router that will return an error for all possible requests.
+- *ApiCallRouterWithoutChecks* *(default)* - a router that performs no access checks and just gives blanket access to the system.
+- *ApiCallRouterWithApprovalChecks* - a router that enables GRR approvals-based workflow for better auditing. See [Approval-based auditing](../approval-based-auditing.md) for more details.
+- *ApiCallRobotRouter* - a router that provides limited access to the system that is suitable for automation. Normally used together with *ApiCallRouterWithApprovalChecks* so that scripts and robots can perform actions without getting approvals.
 
 ## Various configuration scenarios
 
