@@ -48,7 +48,6 @@ pages:
     - Collecting Artifacts: 'investigating-with-grr/artifacts/collecting.md'
     - Defining Artifacts: 'investigating-with-grr/artifacts/defining.md'
     - Private Artifacts: 'investigating-with-grr/artifacts/private.md'
-  - Exporting data from GRR: 'investigating-with-grr/exporting-data.md'
   - Cron Jobs in GRR: 'investigating-with-grr/cron-jobs.md'
   - Automation with GRR API: 'investigating-with-grr/automation-with-api.md'
   - Glossary: 'investigating-with-grr/glossary.md'
@@ -71,7 +70,7 @@ pages:
   - Repacking GRR clients: 'maintaining-and-tuning/repacking-clients.md'
   - Low-level maintenance with grr_console: 'maintaining-and-tuning/low-level-maintenance-with-console.md'
   - Choosing GRR datastore: 'maintaining-and-tuning/choosing-datastore.md'
-  - Scaling GRR on a single server: 'maintaining-and-tuning/scaling-on-single-server.md'
+  - Scaling GRR: 'maintaining-and-tuning/scaling.md'
   - Building custom client templates: 'maintaining-and-tuning/building-custom-client-templates.md'
 - Developing GRR:
   - Overview: 'developing-grr/overview.md'

@@ -1,1 +1,137 @@
 # Repacking GRR clients
+
+The client can be customized for deployment. There are two key ways of
+doing this:
+
+1.  Repack the released client with a new configuration.
+
+2.  Rebuild the client from scratch (advanced users, set aside a few
+    days the first time); see `Building custom client templates'.
+
+Doing a rebuild allows full reconfiguration, changing names and
+everything else. A repack on the other hand limits what you can change.
+Each approach is described below.
+
+## Repacking the Client with a New Configuration.
+
+Changing basic configuration parameters can be done by editing the
+server config file (/etc/grr/server.local.yaml) to override default
+values, and then using the config\_updater to repack the binaries. This
+allows for changing basic configuration parameters such as the URL the
+client reports back to.
+
+Once the config has been edited, you can repack all clients with the new
+config and upload them to the datastore using
+``` shell
+$ grr_config_updater repack_clients
+```
+
+Repacking works by taking the template zip files, injecting relevant
+configuration files, and renaming files inside the zip to match
+requested names. This template is then turned into something that can be
+deployed on the system by using the debian package builder on linux,
+creating a self extracting zip on Windows, or creating a DMG on OSX.
+
+After running the repack you should have binaries available in the UI
+under manage binaries → installers and also on the filesystem under `grr/executables`.
+
+## Repacking Clients: Signing installer binaries
+
+You can also use the grr\_client\_build tool to repack individual
+templates and control more aspects of the repacking, such as signing.
+For signing to work you need to follow these instructions:
+
+  - `Setting up for RPM
+    signing'
+
+  - `Setting up for Windows EXE
+    signing'
+
+Then add the --sign parameter to the repack
+    command:
+
+    grr_client_build repack --template path/to/grr-response-templates/templates/grr_3.1.0.2_amd64.xar.zip --output_dir=/tmp/test --sign
+
+To repack and sign multiple templates at once, see the next section.
+
+## Repacking Clients With Custom Labels: Multi-Organization Deployments
+
+Each client can have a label "baked in" at build time that allows it to
+be identified and hunted separately. This is especially useful when you
+want to deploy across a large number of separate organisations. You
+achieve this by creating a config file that contains the unique
+configuration you want applied to the template. A minimal config that
+just applies a label would contain:
+
+    Client.labels: [mylabel]
+
+and be written into repack\_configs/mylabel.yaml.
+
+Then you can call repack\_multiple to repack all templates (or whichever
+templates you choose) with this configuration and any others in the
+repack\_configs directory. An installer will be built for each
+    config:
+
+    grr_client_build repack_multiple --templates /path/to/grr-response-templates/templates/*.zip --repack_configs /path/to/repack_configs/*.yaml --output_dir=/grr_installers
+
+To sign the installers (RPM and EXE), add --sign.
+
+## Client Configuration.
+
+Configuration of the client is done during the packing/repacking of the
+client. The process looks like:
+
+1.  For the client we are packing, find the correct context and
+    platform, e.g. `Platform: Windows` `Client Context`
+
+2.  Extract the relevant configuration parameters for that context from
+    the server configuration file, and write them to a client specific
+    configuration file e.g. `GRR.exe.yaml`
+
+3.  Pack that configuration file into the binary to be deployed.
+
+When the client runs, it determines the configuration in the following
+manner based on `--config` and `--secondary_configs` arguments that are
+given to it:
+
+1.  Read the config file packed with the installer, default:
+    `c:\windows\system32\GRR\GRR.exe.yaml`
+
+2.  GRR.exe.yaml reads the Config.writeback value, default:
+    `reg://HKEY_LOCAL_MACHINE/Software/GRR` by default
+
+3.  Read in the values at that registry key and override any values from
+    the yaml file with those values.
+
+Most parameters are able to be modified by changing parameters and then
+restarting GRR. However, some configuration options, such as
+`Client.name` affect the name of the actual binary itself and therefore
+can only be changed with a repack on the server.
+
+Updating a configuration variable in the client can be done in multiple
+ways:
+
+1.  Change the configuration on the server, repack the clients and
+    redeploy/update them.
+
+2.  Edit the yaml configuration file on the machine running the client
+    and restart the client.
+
+3.  Update where Config.writeback points to with new values, e.g. by
+    editing the registry key.
+
+4.  Issue an UpdateConfig flow from the server (not visible in the UI),
+    to achieve 3.
+
+In practice, you should nearly always do 3 or 4.
+
+As an example, to reduce how often the client polls the server to every
+300 seconds, you can update the registry as per below, and then restart
+the service:
+
+``` shell
+C:\Windows\System32\>reg add HKLM\Software\GRR /v Client.poll_max /d 300
+
+The operation completed successfully.
+C:\Windows\System32\>
+```
