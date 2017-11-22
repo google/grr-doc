@@ -90,3 +90,71 @@ In the client you will likely want to set: Logging.verbose: True
 And depending on your configuration, you can play with syslog, log file
 and Windows EventLog logging using parameters Logging.path, and
 Logging.engines.
+
+
+# Crashes
+
+The client shouldn’t ever crash…​ but it does because making software is
+hard. There are a few ways in which this can happen, all of which we try
+and catch, record and make visible to allow for debugging. In the UI
+they are visible in two ways, in "Crashes" when a client is selected,
+and in "All Client Crashes". These have the same information but the
+client view only shows crashes for the specific client.
+
+Each crash should contain the reason for the crash, optionally it may
+contain the flow or action that caused the crash. In some cases this
+information is not available because the client may have crashed when it
+wasn’t doing anything or in a way where we could not tie it to the
+action.
+
+This data is also emailed to the email address configured in the config
+as Monitoring.alert\_email
+
+## Crash Types
+
+### Crashed while executing an action
+
+Often seen with an error "Client killed during transaction". This means
+that while handling a specific action, the client died, the nanny knows
+this because the client recorded the action it was about to take in the
+Transaction Log before starting it. When the client restarts it picks up
+this log and notifies the server of the crash.
+
+Causes
+
+  - Client segfaults, could happen in native code such as Sleuth Kit or
+    psutil.
+
+  - Hard reboot while the machine was running an action where the client
+    service didn’t have a chance to exit cleanly.
+
+### Unexpected child process exit\!
+
+This means the client exited, but the nanny didn’t kill it.
+
+Causes
+
+  - Uncaught exception in python, very unlikely due to the fact that we
+    catch Exception for all client actions.
+
+### Memory limit exceeded, exiting
+
+This means the client exited due to exceeding the soft memory limit.
+
+Causes
+
+  - Client hits the soft memory limit. Soft memory limit is when the
+    client knows it is using too much memory but will continue operation
+    until it finishes what it is doing.
+
+### Nanny Message - No heartbeat received
+
+This means that the Nanny killed the client because it didn’t receive a
+Heartbeat within the allocated time.
+
+Causes
+
+  - The client has hung, e.g. locked accessing network file
+
+  - The client is performing an action that is taking longer than it
+    should.
