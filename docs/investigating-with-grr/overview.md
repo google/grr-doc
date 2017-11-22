@@ -1,11 +1,13 @@
 
+# Overview
+
 Once set up and configured, the GRR administrative user interface is a web
 interface which allows the analyst to search for connected client (agent)
 machines, examine what data has been collected from the machines and issue
 requests to collect additional data.
 
-The GRR server also provides access to this functionality through a JSON api,
-with a client library to support scripting from python or go.
+The GRR server also provides access to this functionality through a JSON API.
+Client libraries to support scripting from python or go are provided.
 
 # Starting Points
 
@@ -47,7 +49,3 @@ An [Artifact](artifacts/defining.md) is a way to collect and name a group of
 files or other data that an analyst might want to collect as a unit. For
 example, an artifact might try to collect all the common linux persistence
 mechanisms.
-
-
-
-

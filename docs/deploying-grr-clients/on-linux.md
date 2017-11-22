@@ -18,20 +18,21 @@ have, or use ssh.
 
 This is a quick manual on how to remove the GRR client completely from a machine.
 
-On linux, grr is a debian package. Therefore, normal uninstall should work.
+On Linux the standard system packaging (deb, pkg) is used by default.
+Use the standard uninstall mechanisms for uninstalling.
 
-dpkg -r grr
+    dpkg -r grr
 
 This might leave some config files lying around, if a complete purge is necessary, the list of files to delete is:
 
-/usr/lib/grr/*
-/etc/grr.local.yaml
-/etc/init/grr.conf
+    /usr/lib/grr/*
+    /etc/grr.local.yaml
+    /etc/init/grr.conf
 
 On GRTE machines GRR is distributed as a .par file, the .par is
 
-/usr/sbin/grrd
+    /usr/sbin/grrd
 
 The GRR service can be stopped using
 
-sudo service grr stop
+    sudo service grr stop

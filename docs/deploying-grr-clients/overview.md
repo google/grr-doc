@@ -7,6 +7,13 @@ the first time.
     agents are supported. Client and server can run on the same host for
     testing purposes.
 
+## Deploying at scale
+
+There shouldn’t be any special considerations for deploying GRR clients
+at scale. If the server can’t handle the load, the clients should
+happily back off and wait their turn. However, we recommend a staged
+rollout if possible.
+
 # Install the Clients
 
 The pre-packaged clients should be visible in the GRR web UI (see the "Installing GRR Server" section of the docs for instructions on running the web UI) under Manage
@@ -22,7 +29,7 @@ Run the client on the target machine as administrator:
 After install, hit Enter in the search box in the top left corner of the
 UI to see all of your clients that have enrolled with the server. If you
 don’t see clients, follow the [troubleshooting
-steps](troubleshooting.md#i-dont-see-my-clients).
+steps](troubleshooting.md).
 
 # Uninstalling GRR
 

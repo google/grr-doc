@@ -36,8 +36,8 @@ requirements are met, just start a cmd.exe shell and type:
 
 > **Note**
 >
-> The NET USE command will ask for a password interactively, so it’s not
-> suited for using in scripts. You could Switch the *\** for the
+> The `NET USE` command will ask for a password interactively, so it’s not
+> suited for using in scripts. You could Switch the `*` for the
 > PASSWORD instead if you want to include it in a script.
 
 You’ll need to replace:
@@ -91,16 +91,16 @@ This is a quick manual on how to remove the GRR client completely from a machine
 
 On Windows, GRR lives in
 
-%SystemRoot%\system32\grr\*
+    %SystemRoot%\system32\grr\*
 
 The service can be stopped with
 
-sc stop "GRR Monitor"
+    sc stop "grr monitor"
 
 Or via the task manager.
 
 The GRR config lives in the registry, for a full cleanup, the path
 
-HKEY_LOCAL_MACHINE\Software\GRR
+    HKEY_LOCAL_MACHINE\Software\GRR
 
 should be deleted.
