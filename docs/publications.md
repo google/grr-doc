@@ -16,17 +16,17 @@ by M.I. Cohen, D. Bilby, G. Caronni. Digital Investigation, 2011.
 Presentations
 -------------
 
-[GRR Meetup: GRR Users Meetup: Fleetspeak, API client, Go rewrite](https://drive.google.com/file/d/0Bzniab0ILSg6RkdyUGZYOGtuX1U/view) @ Mar 2017 GRR Meetup by A. Moser, M. Bushkov, B. Galehouse, M. Lakomy. link:https://youtu.be/SIvf7-Lzp2M[Video].
+[GRR Meetup: GRR Users Meetup: Fleetspeak, API client, Go rewrite](https://drive.google.com/file/d/0Bzniab0ILSg6RkdyUGZYOGtuX1U/view) @ Mar 2017 GRR Meetup by A. Moser, M. Bushkov, B. Galehouse, M. Lakomy. [Video](https://youtu.be/SIvf7-Lzp2M).
 
-[GRR Meetup: 3.1.0 Release](https://drive.google.com/file/d/0BzuOLwDAeI1IaGZnbHJWSUhHXzg/view?pageId=113082118196076170073) @ Apr 2016 GRR Meetup by G. Castle and M. Cohen. link:https://youtu.be/SIvf7-Lzp2M[Video].
+[GRR Meetup: 3.1.0 Release](https://drive.google.com/file/d/0BzuOLwDAeI1IaGZnbHJWSUhHXzg/view?pageId=113082118196076170073) @ Apr 2016 GRR Meetup by G. Castle and M. Cohen. [Video](https://youtu.be/SIvf7-Lzp2M).
 
 [GRR Meetup: API Edition](https://storage.googleapis.com/docs.grr-response.com/GRR%20Meetup-%20API%20Edition%20Nov%202015.pdf) @ Nov 2015 GRR Meetup by G. Castle and M. Bushkov. Covers API basics and discusses where we are headed with API dev.
 
 [GRR Hunting Best Practices](https://storage.googleapis.com/docs.grr-response.com/GRR%20Hunting%20for%20meetup%20Oct%202015.pdf) @ Oct 2015 GRR Meetup by G. Castle.
 
-[Tactical use of GRR Artifacts, Fuse, Plaso and Timesketch](https://storage.googleapis.com/docs.grr-response.com/ACSC%202015-%20Defending%20the%20Gibson%20in%202015.pdf) by D. Bilby link:https://www.youtube.com/watch?v=JciAp0uB7AY[Demo Video (youtube)]
+[Tactical use of GRR Artifacts, Fuse, Plaso and Timesketch](https://storage.googleapis.com/docs.grr-response.com/ACSC%202015-%20Defending%20the%20Gibson%20in%202015.pdf) by D. Bilby [Demo Video (youtube)](https://www.youtube.com/watch?v=JciAp0uB7AY).
 
-"[Intro to GRR](https://storage.googleapis.com/docs.grr-response.com/OpenNSM_GRR_Presentation_Feb_2015.pdf)" for the Open Source Network Security Monitoring Group @ UIUC Feb 2015. link:https://www.youtube.com/watch?v=ZAXtCMspgY0[Video] by G. Castle
+"[Intro to GRR](https://storage.googleapis.com/docs.grr-response.com/OpenNSM_GRR_Presentation_Feb_2015.pdf)" for the Open Source Network Security Monitoring Group @ UIUC Feb 2015. [Video](https://www.youtube.com/watch?v=ZAXtCMspgY0) by G. Castle
 
 "[GRR: Find all the badness, collect all the
 things](https://storage.googleapis.com/docs.grr-response.com/GRR_Blackhat_2014_Greg_Castle.pdf)"
