@@ -4,7 +4,7 @@ the first time.
 # Requirements
 
   - A number of machines (or VMs) to talk to the server. OSX, Windows and Linux
-    agents are supported. Client and server can run on the same host for
+    clients are supported. Client and server can run on the same host for
     testing purposes.
 
 ## Deploying at scale
