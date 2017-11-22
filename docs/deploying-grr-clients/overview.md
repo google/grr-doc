@@ -30,15 +30,9 @@ to the server with working configurations, and should be available in
 the Admin UI.
 
 Look on the left for "Manage Binaries", the files should be in the
-executables directory, under installers. The download button is the down
-arrown in the toolbar.
+executables directory, under installers.
 
-The files are also accessible directly if you know the path via
-/download. This is useful if you want to retrieve the file using command
-line tools or a browser that isn’t supported (e.g.
-    IE6).
-
-    wget --user=admin --password=setecastronomy http://example.com:8000/download/windows/installers/grr-installer-3204.exe
+![Screenshot](../images/client-installers.png)
 
 If your server configuration has changed your clients will need to be
 repacked with an updated config. For details see the server documentation.

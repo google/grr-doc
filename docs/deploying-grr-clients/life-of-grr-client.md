@@ -1,5 +1,11 @@
 # Life of a GRR client (what happens after deployment)
 
+1. When a new client starts, it notices it doesn't have a public/private key pair.
+2. The client generates the keys. A hash of the public key becomes the client's ID. The ID is unique.
+3. The client enrolls with the GRR server.
+4. The server sees the client ID for the first time & interrogates the new client.
+
+# Notes
 ## Client Robustness Mechanisms
 
 We have a number of mechanisms built into the client to try and ensure
