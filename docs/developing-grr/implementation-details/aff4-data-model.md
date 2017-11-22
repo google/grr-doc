@@ -69,7 +69,7 @@ the entire object to have a new version when a versioned attribute
 changes.
 
 ![Example of multiple versions present at the same
-time.](images/pslist.jpg "fig:")
+time.](../../images/pslist.jpg "fig:")
 
 The Figure above shows a process listing performed on this client. The
 view we currently see shows the the process listing at one point in

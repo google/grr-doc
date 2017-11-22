@@ -4,22 +4,21 @@ This is the recommended way of installing the GRR server components. GRR server
 debs are built for Ubuntu Xenial. They may install on Debian or other Ubuntu
 versions, but compatibility is not guaranteed.
 
-First, make sure the
-[pre-requisites](https://github.com/google/grr/blob/master/debian/control)
-for the server deb are installed:
-
 ```bash
 sudo apt install -y debhelper dpkg-dev python-dev python-pip rpm zip
 ```
 
-Copy the Google Cloud Storage url of the latest release server deb from
-<https://github.com/google/grr/releases> then download and install it
-like below:
+To start, download the latest server deb from
+<https://github.com/google/grr/releases>, e.g:
 
 ```bash
 wget https://storage.googleapis.com/releases.grr-response.com/grr-server_3.2.0-1_amd64.deb
+```
 
-sudo dpkg -i grr-server_3.2.0-1_amd64.deb
+Install the server deb, along with its dependencies, like below:
+
+```
+sudo apt install -y ./grr-server_3.2.0-1_amd64.deb
 ```
 
 The installer will prompt for a few pieces of information to get things set up.
