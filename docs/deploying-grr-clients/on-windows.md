@@ -86,8 +86,17 @@ The best way to verify whether the whole installation process has worked
 is to search for the client in the GUI.
 
 # Uninstalling GRR
+On Windows the client does not have a standard uninstaller. It is
+designed to have minimal impact on the system and leave limited traces
+of itself such that it can be hidden reasonably easily. Thus it was
+designed to install silently without an uninstall.
 
-This is a quick manual on how to remove the GRR client completely from a machine.
+Disabling the service can be done with the Uninstall GRR flow, but this does
+not clean up after itself by default.
+
+Cleaning up the client is a matter of deleting the service and the
+install directory, then optionally removing the registry keys and
+install log if one was created.
 
 On Windows, GRR lives in
 
@@ -104,3 +113,11 @@ The GRR config lives in the registry, for a full cleanup, the path
     HKEY_LOCAL_MACHINE\Software\GRR
 
 should be deleted.
+
+Removing the GRR client completely from a machine:
+
+    sc stop "grr monitor"
+    sc delete "grr monitor"
+    reg delete HKLM\Software\GRR
+    rmdir /Q /S c:\windows\system32\grr
+    del /F c:\windows\system32\grr_installer.txt
