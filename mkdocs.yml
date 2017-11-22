@@ -33,7 +33,6 @@ pages:
     - Specifying File Paths: 'investigating-with-grr/flows/specifying-file-paths.md'
     - Literal and Regex Matching: 'investigating-with-grr/flows/literal-and-regex-matching.md'
     - Specifying Windows Registry paths: 'investigating-with-grr/flows/specifying-windows-registry-paths.md'
-    - Monitoring Flow progress: 'investigating-with-grr/flows/monitoring-progress.md'
     - Working with Flow results: 'investigating-with-grr/flows/working-with-results.md'
   - Virtual File System: 'investigating-with-grr/virtual-file-system.md'
   - Hunts:
