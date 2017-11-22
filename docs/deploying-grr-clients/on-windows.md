@@ -84,3 +84,23 @@ Anonymous share.
 
 The best way to verify whether the whole installation process has worked
 is to search for the client in the GUI.
+
+# Uninstalling GRR
+
+This is a quick manual on how to remove the GRR client completely from a machine.
+
+On Windows, GRR lives in
+
+%SystemRoot%\system32\grr\*
+
+The service can be stopped with
+
+sc stop "GRR Monitor"
+
+Or via the task manager.
+
+The GRR config lives in the registry, for a full cleanup, the path
+
+HKEY_LOCAL_MACHINE\Software\GRR
+
+should be deleted.

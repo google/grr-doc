@@ -23,3 +23,11 @@ After install, hit Enter in the search box in the top left corner of the
 UI to see all of your clients that have enrolled with the server. If you
 don’t see clients, follow the [troubleshooting
 steps](troubleshooting.md#i-dont-see-my-clients).
+
+# Uninstalling GRR
+
+A quick manual on how to remove the GRR client completely from a machine is included in the platform-specific docs:
+
+  - [Windows instructions](on-windows.md)
+  - [OSX instructions](on-mac-os-x.md)
+  - [Linux instructions](on-linux.md)
