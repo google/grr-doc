@@ -34,7 +34,6 @@ pages:
     - Literal and Regex Matching: 'investigating-with-grr/flows/literal-and-regex-matching.md'
     - Specifying Windows Registry paths: 'investigating-with-grr/flows/specifying-windows-registry-paths.md'
     - Working with Flow results: 'investigating-with-grr/flows/working-with-results.md'
-  - Virtual File System: 'investigating-with-grr/virtual-file-system.md'
   - Hunts:
     - What are "hunts" and how to use them: 'investigating-with-grr/hunts/what-are-hunts.md'
     - Starting Hunts: 'investigating-with-grr/hunts/starting.md'
@@ -43,6 +42,8 @@ pages:
     - Hunt Controls: 'investigating-with-grr/hunts/controlling-hunts.md'
     - Working with Hunt results: 'investigating-with-grr/hunts/working-with-results.md'
     - Troubleshooting ("Why is my hunt doing nothing?"): 'investigating-with-grr/hunts/troubleshooting.md'
+  - Virtual File System:
+      - Intro: 'investigating-with-grr/vfs/virtual-file-system.md'
   - Artifacts:
     - Collecting Artifacts: 'investigating-with-grr/artifacts/collecting.md'
     - Defining Artifacts: 'investigating-with-grr/artifacts/defining.md'
