@@ -95,7 +95,7 @@ On Windows, GRR lives in
 
 The service can be stopped with
 
-    sc stop "GRR Monitor"
+    sc stop "grr monitor"
 
 Or via the task manager.
 

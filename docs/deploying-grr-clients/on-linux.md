@@ -18,7 +18,8 @@ have, or use ssh.
 
 This is a quick manual on how to remove the GRR client completely from a machine.
 
-On linux, grr is a debian package. Therefore, normal uninstall should work.
+On Linux the standard system packaging (deb, pkg) is used by default.
+Use the standard uninstall mechanisms for uninstalling.
 
     dpkg -r grr
 

@@ -5,6 +5,8 @@ launchd item and start it.
 
 See [Linux instructions](on-linux.md). They apply also to OSX.
 
+On OSX you can also use the Uninstall GRR flow.
+
 # Uninstalling GRR
 
 This is a quick manual on how to remove the GRR client completely from a machine.
