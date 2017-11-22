@@ -1,6 +1,6 @@
 # Troubleshooting ("I don't see my clients")
 
-## Debugging the Agent Install
+## Debugging the client installation
 
 If the installer is failing to run, it should output a log file which
 will help you debug. The location of the logfile is configurable, but by
@@ -28,7 +28,7 @@ binaries. You can do this manually with a hex editor as well.
 
 ## Interactively Debugging the Client
 
-On each platform, the agent binary should support the following options:
+On each platform, the client binary should support the following options:
 --verbose:: This will set higher logging allowing you to see what is
 going on. --debug:: If set, and an unhandled error occurs in the client,
 the client will break into a pdb debugging shell.
@@ -37,14 +37,14 @@ the client will break into a pdb debugging shell.
     The GRR Monitor service is stopping.
     The GRR Monitor service was stopped successfully.
 
-    C:\Windows\system32>c:\windows\system32\grr\2.5.0.5\grr.exe --config grr.exe.yaml --verbose
+    C:\Windows\system32>c:\windows\system32\grr\3.2.0.4\grr.exe --config grr.exe.yaml --verbose
 
 ## Changing Logging For Debugging
 
 On all platforms, by default only hard errors are logged. A hard error
 is defined as anything level ERROR or above, which is generally reserved
 for unrecoverable errors. But because temporary disconnections are
-normal, an agent failing to talk to the server doesn’t actually count as
+normal, an client failing to talk to the server doesn’t actually count as
 a hard error.
 
 In the client you will likely want to set:
@@ -58,7 +58,7 @@ and Windows EventLog logging using parameters `Logging.path`, and
 
 # Proxies and Connectivity
 
-If an agent can’t connect to the server, there can be a number of
+If an client can’t connect to the server, there can be a number of
 reasons such as:
 
   - Server Isn’t Listening
