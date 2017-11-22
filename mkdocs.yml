@@ -68,7 +68,7 @@ pages:
   - Email configuration: 'maintaining-and-tuning/email-configuration.md'
   - Approval-based auditing system: 'maintaining-and-tuning/approval-based-auditing.md'
   - Repacking GRR clients: 'maintaining-and-tuning/repacking-clients.md'
-  - Low-level maintenance with raw access console: 'maintaining-and-tuning/low-level-maintenance-with-console.md'
+  - Low-level maintenance with grr_console: 'maintaining-and-tuning/low-level-maintenance-with-console.md'
   - Choosing GRR datastore: 'maintaining-and-tuning/choosing-datastore.md'
   - Scaling GRR on a single server: 'maintaining-and-tuning/scaling-on-single-server.md'
   - Building custom client templates: 'maintaining-and-tuning/building-custom-client-templates.md'
