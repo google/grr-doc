@@ -8,18 +8,18 @@ as follows:
 
 * Download the latest Google Cloud SDK tarball from <https://cloud.google.com/sdk/downloads>, e.g:
 
-    ```
-    wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-180.0.1-linux-x86_64.tar.gz
-    ```
+```bash
+wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-180.0.1-linux-x86_64.tar.gz
+```
 
 * Extract it to somewhere on your filesystem:
 
-    ```
-    tar zxf google-cloud-sdk-180.0.1-linux-x86_64.tar.gz "${HOME}"
-    ```
+```bash
+tar zxf google-cloud-sdk-180.0.1-linux-x86_64.tar.gz "${HOME}"
+```
 
 * Copy the server deb from its folder in GCS to your local machine:
 
-    ```
-    $HOME/google-cloud-sdk/bin/gsutil cp gs://autobuilds.grr-response.com/_latest_server_deb/*.deb .
-    ```
+```bash
+$HOME/google-cloud-sdk/bin/gsutil cp gs://autobuilds.grr-response.com/_latest_server_deb/*.deb .
+```
