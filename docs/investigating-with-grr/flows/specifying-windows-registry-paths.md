@@ -16,26 +16,33 @@ The Registry Finder flow uses the same path globbing
 and interpolation system as described in [Specifying File Paths](specifying-file-paths.md).
 Examples:
 
-    HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*
-    HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*
+```docker
+HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*
+```
 
 RegistryFinder will retrieve the values of any keys specified and report
 them in the registry data field. Default values will be retrieved and
 reported in registry data of the parent key. E.g. for this registry
 structure:
 
-    HKEY_LOCAL_MACHINE\Software\test:
-    (Default) = "defaultdata"
-    subkey = "subkeydata"
+```docker
+HKEY_LOCAL_MACHINE\Software\test:
+  (Default) = "defaultdata"
+  subkey = "subkeydata"
+```
 
 Collecting this:
 
-    HKEY_LOCAL_MACHINE\Software\test\*
+```docker
+HKEY_LOCAL_MACHINE\Software\test\*
+```
 
 Will give results like:
+```docker
+Path:           /HKEY_LOCAL_MACHINE/SOFTWARE/test
+Registry data:  defaultdata
 
-    Path:   /HKEY_LOCAL_MACHINE/SOFTWARE/test
-    Registry data:  defaultdata
-
-    Path:   /HKEY_LOCAL_MACHINE/SOFTWARE/test/subkey
-    Registry data:  subkeydata
+Path:           /HKEY_LOCAL_MACHINE/SOFTWARE/test/subkey
+Registry data:  subkeydata
+```

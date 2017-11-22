@@ -22,7 +22,7 @@ restart them after you have removed the client limit (see modify below).
 Stopping a hunt will prevent new clients from being scheduled and
 interrupt in-progress flows the next time they change state. This is a
 hard stop, so in-progress results will be lost, but results already
-reported are unaffected. Once a hunt is stopped, there is no way to restart it again.
+reported are unaffected. Once a hunt is stopped, there is no way to start it again.
 
 
 ### Modify a Hunt
