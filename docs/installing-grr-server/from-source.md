@@ -53,7 +53,7 @@ virtualenv $HOME/INSTALL
 travis/install.sh
 ```
 
-You can now be able to run GRR commands from inside the virtualenv, e.g:
+You should now be able to run GRR commands from inside the virtualenv, e.g:
 
 ```bash
 source $HOME/INSTALL/bin/activate
