@@ -10,12 +10,13 @@ To start, install the GRR server deb as described
 [here](installing-grr-server/from-release-deb.md).
 
 On successful installation, you should have an admin interface running on port
-8000 by default. Open the Admin UI in a browser and navigate to
-Manage Binaries -> Executables -> Windows -> Installers. Download the client
-you need and install it on the target machine (which can be the same as the
-one running the GRR server components).
+8000 by default. Open the Admin UI in a browser, navigate to
+Manage Binaries -> Executables
+(details [here](deploying-grr-clients/overview.md)) and download the installer
+you need.
 
-Next, run the client installer on the target machine as root:
+Next, run the client installer on the target machine (can be the same machine
+as the one running the GRR server components) as root:
 
 * For Windows you will see a 32 and 64 bit installer. Run the installer as
 admin (it should load the UAC prompt if you are not admin). It should run

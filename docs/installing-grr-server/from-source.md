@@ -1,6 +1,6 @@
 # Installing from source
 
-Here's how to install GRR for development:
+Here's how to install GRR for development (from github HEAD):
 
 First, install the prerequisites:
 
