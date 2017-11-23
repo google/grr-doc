@@ -4,10 +4,6 @@ This is the recommended way of installing the GRR server components. GRR server
 debs are built for Ubuntu Xenial. They may install on Debian or other Ubuntu
 versions, but compatibility is not guaranteed.
 
-```bash
-sudo apt install -y debhelper dpkg-dev python-dev python-pip rpm zip
-```
-
 To start, download the latest server deb from
 <https://github.com/google/grr/releases>, e.g:
 
