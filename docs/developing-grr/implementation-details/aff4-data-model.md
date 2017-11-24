@@ -49,6 +49,7 @@ class VFSGRRClient(aff4.AFF4Object):
     that whenever this attribute is updated, the corresponding index is
     also updated.
 
+Client with AFF4 attributes in the UI ([larger image](https://raw.githubusercontent.com/google/grr-doc/markdown-new/docs/images/client_view.png)):
 ![View of an AFF4 VFSGRRClient with some of its attributes.](../../images/client_view.png "Client View")
 
 The figure above illustrates an AFF4 Object of type VFSGRRClient. It has
