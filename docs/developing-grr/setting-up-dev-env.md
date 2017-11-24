@@ -1,9 +1,9 @@
-# Setting up development environment
+# Setting Up a Development Environment
 
 Navigate to the root GRR directory (or clone the repository if you have not done
 it yet):
 
-```bash
+```docker
 git clone https://github.com/google/grr
 cd grr/
 ```
@@ -84,6 +84,9 @@ The `-e` (or `--editable`) flag passed to `pip` makes sure that the packages
 are installed in a "development" mode and any changes you make in your working
 directory are directly reflected in your virtual environment, no reinstalling
 is required.
+
+**Note**: Some prerequisites might be necessary as described in
+[installing from released pip packages](../installing-grr-server/from-released-pip/).
 
 ### Testing
 
