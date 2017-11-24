@@ -18,7 +18,7 @@ In the file detail view, GRR always shows Stat information about the file:
 
 ![Stat Information](../../images/stat_info.png "Stat Information")
 
-Note that there is a version dropdown on top of this page and all data is timestamped. Whenever GRR collects information from a client machine, it just creates a new version of the stored object in the database. Old information is never overwritten. This is why it's always possible to go back in the GRR DB and look at previously collected data by simply selecting an earlier version.
+Note that there is a version dropdown on top of this page and all data is timestamped. Whenever GRR collects information from a client machine, it just creates a new version of the stored object in the database, old information is never overwritten. This is why it's always possible to go back in the GRR DB and look at previously collected data - both metadata and contents - by simply selecting an earlier version.
 
 Often, GRR knows about the file but has not collected any contents yet. In the download tab there is an option to collect the file from the client:
 
@@ -27,4 +27,22 @@ Often, GRR knows about the file but has not collected any contents yet. In the d
 Again, GRR will collect the file the correct way (OS or TSK) automatically. Once the file is available, the same download view will have options to download the file to the analysts machine. Basic text and hex views are also provided.
 
 ![Collected From Client](../../images/collected_from_client.png "Collected From Client")
- 
+
+![Hex View](../../images/hexview.png "Hex View")
+
+In the tree view, files with actual contents stored in GRR will have a small downloaded icon next to the size information. In this screenshot, bunzip2 is the only file with data collected:
+
+![Downloaded File](../../images/downloaded_file.png "Downloaded File")
+
+### Bulk Downloading of Files ###
+
+GRR offers the option to conviniently download all files collected from a client for offline analysis. The button
+
+![File Download Button](../../images/download.png "Download Button")
+
+can be used to
+
+- Download all files with data in the current directory and below or
+- Download all files with data ever collected from that client
+
+as a zip archive. The drop down choses between the two options.
