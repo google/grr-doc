@@ -49,32 +49,23 @@ class VFSGRRClient(aff4.AFF4Object):
     that whenever this attribute is updated, the corresponding index is
     also updated.
 
-![View of an AFF4 VFSGRRClient with some of its
-attributes.](../../images/aff4_attributes.jpg "fig:")
+![View of an AFF4 VFSGRRClient with some of its attributes.](../../images/client_view.png "Client View")
 
 The figure above illustrates an AFF4 Object of type VFSGRRClient. It has
-a URN of "aff4:/C.880661da867cfebd". The figure also lists all the
-attributes attached to this object. Notice how some attributes are
-listed under the heading *AFF4Object* (since they are defined at that
-level) and some are listed under *VFSGRRClient* since they are defined
-under the VFSGRRClient schema.
+a URN of "aff4:/C.2b59336a251c5113". The figure also lists all the
+attributes attached to this object.
 
-The figure also gives an *Age* for each attribute. This is the time when
+Every attribute also has an *age* indicating the time when
 the attribute was created. Since GRR deals with fluid, constantly
 changing systems, each fact about the system must be tagged with the
 point in time where that fact was known. For example, at a future time,
-the hostname may change. In that case we will have several versions for
+the hostname may change. In that case, we will have several versions for
 the HOSTNAME attribute, each correct for that point in time. We consider
 the entire object to have a new version when a versioned attribute
 changes.
 
-![Example of multiple versions present at the same
-time.](../../images/pslist.jpg "fig:")
+![Example of multiple versions present at the same time.](../../images/hostname_multiple_versions.png "View of multiple versions at the same time")
 
-The Figure above shows a process listing performed on this client. The
-view we currently see shows the the process listing at one point in
-time, but we can also see a UI offering to show us previous versions of
-the same object.
 
 AFF4 objects take care of their own serialization and unserialization
 and the data store technology is abstracted. Usually AFF4 objects are
