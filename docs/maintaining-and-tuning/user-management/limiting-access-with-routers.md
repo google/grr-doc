@@ -2,10 +2,10 @@
 
 GRR has a notion of *API call routers*. Every API request that GRR server handles is processed in a following fashion:
 
-1. A username of a user making the request is matched against rules in the router configuration file (as defined in `API.RouterACLConfigFile` config option).
+1. A username of a user making the request is matched against rules in the router configuration file (as defined in the `API.RouterACLConfigFile` config option).
     - If router configuration file is not set, a default router is used. Default router is specified in the `API.DefaultRouter` configuration option.
     - If one of the rules in the `API.RouterACLConfigFile` matches, then a router from the matching rule is used.
-2. API router is used to process the request.
+2. The API router is used to process the request.
 
 GRR has a few predefined API routers:
 
@@ -49,4 +49,4 @@ users:
   - "john"
 ```
 
-> NOTE: for example, you can set up user 'john' as a robot user, so that his credentials are used by scripts talking to GRR API.
+**NOTE**: for example, you can set up user 'john' as a robot user, so that his credentials are used by scripts talking to the GRR API.
