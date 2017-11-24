@@ -5,7 +5,9 @@ override](http://askubuntu.com/questions/659267/how-do-i-override-or-configure-s
 to control how many copies of each component you run on each machine.
 This can initially be done using:
 
-    sudo systemctl edit grr-server
+```docker
+sudo systemctl edit grr-server
+```
 
 which creates "/etc/systemd/system/grr-server.service.d/override.conf".
 You’ll want to turn this into a template file and control via puppet or
@@ -35,9 +37,8 @@ should be distributed across multiple machines in any deployment where
 you expect to have more than a few hundred clients, or even smaller
 deployments if you plan on doing intensive hunting. The performance
 needs of the various components are discussed
-[below](component-performance-needs), and some real-world example
-deployment configurations are [described in the
-FAQ](faq.md#what-hardware-do-i-need-to-run-grr).
+below, and some real-world example
+deployment configurations are [described in the FAQ](../faq.md).
 
 You should install the GRR package on all machines and use configuration
 management (chef, puppet etc.) to:
