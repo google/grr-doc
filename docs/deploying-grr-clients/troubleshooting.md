@@ -29,15 +29,24 @@ binaries. You can do this manually with a hex editor as well.
 ## Interactively Debugging the Client
 
 On each platform, the client binary should support the following options:
---verbose:: This will set higher logging allowing you to see what is
-going on. --debug:: If set, and an unhandled error occurs in the client,
+
+- --verbose: This will set higher logging allowing you to see what is
+going on.
+- --debug: If set, and an unhandled error occurs in the client,
 the client will break into a pdb debugging shell.
 
-    C:\Windows\system32>net stop "grr monitor"
-    The GRR Monitor service is stopping.
-    The GRR Monitor service was stopped successfully.
+```docker
+C:\Windows\system32>net stop "grr monitor"
+The GRR Monitor service is stopping.
+The GRR Monitor service was stopped successfully.
 
-    C:\Windows\system32>c:\windows\system32\grr\3.2.0.4\grr.exe --config grr.exe.yaml --verbose
+C:\Windows\system32>c:\windows\system32\grr\3.2.0.4\grr.exe --config grr.exe.yaml --verbose
+```
+
+**Note** that on Windows, the GRR client is running completely in the background
+so starting it from the console will not give you any output. For this reason, we
+always also build a dbg_GRR[...].exe client that is a console application and
+can be used for this kind of debugging.
 
 ## Changing Logging For Debugging
 
@@ -116,7 +125,7 @@ as `Monitoring.alert_email`
 ### Crashed while executing an action
 
 Often seen with an error "Client killed during transaction". This means
-that while handling a specific action, the client died, the nanny knows
+that while handling a specific action, the client died. The nanny knows
 this because the client recorded the action it was about to take in the
 Transaction Log before starting it. When the client restarts it picks up
 this log and notifies the server of the crash.

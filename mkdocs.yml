@@ -19,8 +19,8 @@ pages:
   - Overview: 'deploying-grr-clients/overview.md'
   - How to check if a deployed client talks back to GRR server: 'deploying-grr-clients/how-to-check-if-client-talks-back.md'
   - On Windows: 'deploying-grr-clients/on-windows.md'
-  - On Mac OS X: 'deploying-grr-clients/on-mac-os-x.md'
   - On Linux: 'deploying-grr-clients/on-linux.md'
+  - On Mac OS X: 'deploying-grr-clients/on-mac-os-x.md'
   - Life of a GRR client (what happens after deployment): 'deploying-grr-clients/life-of-grr-client.md'
   - Troubleshooting ("I don't see my clients"): 'deploying-grr-clients/troubleshooting.md'
 - Investigating with GRR:
