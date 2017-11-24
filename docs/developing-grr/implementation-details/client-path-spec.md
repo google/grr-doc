@@ -32,11 +32,6 @@ parameter:
     depends on being passed a raw file like object, which is interpreted
     as the raw device.
 
-  - pathtype: MEMORY  
-    Implemented by the grr.client.vfs\_handlers.memory module is a VFS
-    Handler implementing access to the system’s raw memory. This is used
-    by the volatility plugins for memory analysis.
-
 A pathspec is a list of components. Each component specifies a way to
 derive a new python file-like object from the previous file-like object.
 For example, image we have the following pathspec:
