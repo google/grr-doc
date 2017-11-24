@@ -4,7 +4,7 @@ The GRR configuration file format allows for expansion of configuration
 parameters inside other parameters. For example consider the following
 configuration file:
 
-``` yaml
+```docker
 Client.name: GRR
 
 Nanny.service_name: "%(Client.name)service.exe"
@@ -24,7 +24,7 @@ if we need to pass literal % escape sequences. Consider the
 Logging.format parameter which is actually a python format
 string:
 
-``` yaml
+```docker
 Logging.format: \%(levelname\)s \%(module\)s:\%(lineno\)s] \%(message\)s
 Logging.format: %{%(levelname)s %(module)s:%(lineno)s] %(message)s}
 ```

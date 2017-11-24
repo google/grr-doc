@@ -1,7 +1,7 @@
-# Configuration contexts
+# Configuration Contexts
 
 The next important concept to understand is that of configuration
-contexts. GRR consists of many components, which share more of their
+contexts. GRR consists of many components, which share most of their
 configuration. Often, however, we want to specify slight differences
 between each component. If we were to write a separate configuration
 file say for building each client version (Currently, 3 operating systems, and 2
@@ -50,7 +50,7 @@ Note that it is possible to have multiple contexts defined at the same
 time. So for example, GRR client running under windows will have the
 contexts, `Client Context` and `Platform:Windows`, while a GRR client
 running under Linux will have the context `Client Context` and
-*Platform:Linux*. When several possibilities can apply, the option which
+`Platform:Linux`. When several possibilities can apply, the option which
 matches the most context parameters will be selected. So in the above
 example, linux and osx clients will have a context like `Client Context`
 and will select `/var/log/grr/grr_client.log`. On the other hand, a
@@ -72,3 +72,5 @@ The following is a non-exhaustive list of available contexts:
 
   - *Platform:Windows*, *Platform:Linux*, *Platform:Darwin* are set when
     running GRR client under these platforms.
+
+The full list can be seen [here](https://github.com/google/grr/blob/master/grr/config/contexts.py).
