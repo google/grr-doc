@@ -1,10 +1,12 @@
-# Basics
+# Defining Artifacts
+
+## Basics
 
 GRR artifacts are defined in YAML. The main artifact repository is hosted on
 [GitHub][artifact-repository]. You can browse [existing artifact definitions]
 [artifact-samples] or read the exhaustive [syntax overview][artifact-syntax].
 
-# Knowledgebase
+## Knowledgebase
 
 We use a standard set of machine information collected from the host for
 variable interpolation. This collection of data is called the [*knowledgebase*]
@@ -15,7 +17,7 @@ The artifact defines where the data lives. Once it is retrieved by GRR a
 information into a more useful format, such as parsing a browser history file
 to produce URLs.
 
-# Uploading new definitions
+## Uploading new definitions
 
 New artifacts should be added to the [forensic artifacts repository]
 [artifact-repository].
@@ -29,7 +31,7 @@ artifacts will be available once the server is restarted.
 Artifacts can also be uploaded via the Artifact Manager GUI and used immediately
 without the need for a restart.
 
-## Local definitions
+### Local definitions
 
 Artifacts that are specific to your environment or need to remain private can be
 added to the `grr/artifacts/local` directory. This directory will remain
@@ -37,7 +39,7 @@ untouched when you update the main artifacts repository. You can also use this
 directory to test new artifacts before they are added to the main public
 repository.
 
-## Flow templates
+### Flow templates
 
 We currently support using the artifact format to call GRR-specific
 functionality, such as invoking a GRR client action, listing processes or

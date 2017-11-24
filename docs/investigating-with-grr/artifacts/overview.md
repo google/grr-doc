@@ -1,4 +1,6 @@
-# Outline
+# Artifacts
+
+## Outline
 
 During a security investigation responders need to quickly retrieve common
 pieces of information that include items such as logs, configured services, cron
@@ -11,7 +13,7 @@ collected and customised quickly using GRR. This collection was initially
 contained inside the GRR repository, but we have now moved it out to [a separate
 repository][artifact-repository] to make access simple for other tools.
 
-# Goals
+## Goals
 
 The goals of the GRR artifacts implementation are:
 

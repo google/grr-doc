@@ -1,3 +1,5 @@
+# Collecting Artifacts
+
 Artifacts can be collected using the artifact collector
 [flow](../flows/starting.md). Multiple artifacts can be collected at once.
 
