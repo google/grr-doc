@@ -86,3 +86,4 @@ pages:
     - Foreman: 'developing-grr/implementation-details/foreman.md'
     - Authorization and Auditing: 'developing-grr/implementation-details/authorizating-and-auditing.md'
 - F.A.Q: 'faq.md'
+- Publications: 'publications.md'
