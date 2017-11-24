@@ -25,4 +25,4 @@ Worker.smtp_user: <user>
 Worker.smtp_password: <password>
 ```
 
-After configuration is complete, restart the GRR worker(s). You can test this configuration by running *OnlineNotification" flow on any of the online clients (in "Administrative" category). This flow send an email to a given email address as soon as the client goes online. If the client is already online the email will be sent next time it checks in (normally - within 10 minutes).
+After configuration is complete, restart the GRR worker(s). You can test this configuration by running *OnlineNotification" flow on any of the online clients (in the "Administrative" category). This flow sends an email to a given email address as soon as the client goes online. If the client is already online, the email will be sent next time it checks in (normally within 10 minutes).
