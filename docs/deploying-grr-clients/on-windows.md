@@ -1,4 +1,4 @@
-# Client installation on Windows
+# Installing GRR clients on Windows
 
 For Windows you will see a 32 and 64 bit installer. Run the
 installer as admin (it should load the UAC prompt if you are not
@@ -13,8 +13,6 @@ click or otherwise execute the binary. If you are not an administrator
 it will prompt you for credentials. It should then install silently in
 the background, unless you enabled the verbose
 build.
-
-## Windows deployment
 
 The most straightforward way to deploy a GRR client to a Windows machine
 is to use
@@ -85,7 +83,7 @@ Anonymous share.
 The best way to verify whether the whole installation process has worked
 is to search for the client in the GUI.
 
-# Uninstalling GRR
+## Uninstalling on Windows
 On Windows the client does not have a standard uninstaller. It is
 designed to have minimal impact on the system and leave limited traces
 of itself such that it can be hidden reasonably easily. Thus it was

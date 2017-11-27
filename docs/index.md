@@ -24,5 +24,10 @@ GRR is open source (Apache License 2.0) and is developed on GitHub: [github.com/
 * GRR Developers mailing list: [grr-dev](https://groups.google.com/forum/#!forum/grr-dev)
 * Follow us [on twitter](https://twitter.com/grrresponse) for announcements of GRR user meetups. We use a [gitter chat room](https://gitter.im/google/grr) during meetups.
 
+## Table of contents
 
-
+* [What is GRR?](what-is-grr.md)
+* [Quickstart](quickstart.md)
+* [Installing GRR server](installing-grr-server/index.md)
+* [Deploying GRR clients](deploying-grr-clients/index.md)
+* [Developing GRR](developing-grr/index.md)

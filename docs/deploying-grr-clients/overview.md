@@ -1,7 +1,9 @@
+# Overview
+
 This document describes getting clients up and running for
 the first time.
 
-# Getting started
+## Getting started
 
 Once we’ve got the GRR server installed and running we’ll
 want to start deploying some clients.
@@ -15,15 +17,15 @@ To do so we’ll need to:
 
 3.  Perform the deployment and verify the results.
 
-# Requirements
+## Requirements
 
   - A number of machines (or VMs) to talk to the server. OSX, Windows and Linux
     clients are supported. Client and server can run on the same host for
     testing purposes.
 
-# Installing the Clients
+## Installing the Clients
 
-## Downloading clients
+### Downloading clients
 
 If your server install went successfully, the clients should have been uploaded
 to the server with working configurations, and should be available in
@@ -40,32 +42,24 @@ repacked with an updated config. For details see the server documentation.
 Installation steps differ significantly depending on the operating system so we split
 it into separate sections below.
 
-Run the client on the target machine as administrator:
-
-  - [Windows instructions](on-windows.md)
-  - [OSX instructions](on-mac-os-x.md)
-  - [Linux instructions](on-linux.md)
+Run the client on the target machine as administrator: [Windows instructions](on-windows.md),  [OSX instructions](on-mac-os-x.md), [Linux instructions](on-linux.md).
 
 See [How to check if a deployed client talks back to the GRR server](how-to-check-if-client-talks-back.md).
 
-# Uninstalling GRR
+## Uninstalling GRR
 
-A quick manual on how to remove the GRR client completely from a machine is included in the platform-specific docs:
+A quick manual on how to remove the GRR client completely from a machine is included in the platform-specific docs: [Windows instructions](on-windows.md#uninstalling-grr), [OSX instructions](on-mac-os-x.md#uninstalling-grr), [Linux instructions](on-linux.md#uninstalling-grr)
 
-  - [Windows instructions](on-windows.md#uninstalling-grr)
-  - [OSX instructions](on-mac-os-x.md#uninstalling-grr)
-  - [Linux instructions](on-linux.md#uninstalling-grr)
+## Notes
 
-# Notes
-
-## Deploying at scale
+### Deploying at scale
 
 There shouldn’t be any special considerations for deploying GRR clients
 at scale. If the server can’t handle the load, the clients should
 happily back off and wait their turn. However, we recommend a staged
 rollout if possible.
 
-## Client and Server Version Compatibility and Numbering
+### Client and Server Version Compatibility and Numbering
 
 We try hard to avoid breaking backwards compatibility for clients since
 upgrading can be painful, but occasionally we need to make changes that

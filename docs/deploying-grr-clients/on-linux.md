@@ -1,4 +1,4 @@
-# Client installation on Linux
+# Installing GRR clients on Linux
 
 For Linux you will see a deb and rpms, install the appropriate one.
 For testing purposes you can run the client on the same machine as
@@ -14,7 +14,7 @@ that way makes the most sense. Alternatively you can deploy using ssh:
 On MacOS X, the same process applies, use puppet or equivalent if you
 have, or use ssh.
 
-# Uninstalling GRR
+## Uninstalling on Linux
 
 This is a quick manual on how to remove the GRR client completely from a machine.
 

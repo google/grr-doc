@@ -56,7 +56,7 @@ and Windows EventLog logging using parameters `Logging.path`, and
 `Logging.engines`.
 
 
-# Proxies and Connectivity
+## Proxies and Connectivity
 
 If an client can’t connect to the server, there can be a number of
 reasons such as:
@@ -93,7 +93,7 @@ successfully connects to the server a variable
 exists, the client successfully made a connection.
 
 
-# Crashes
+## Crashes
 
 The client shouldn’t ever crash…​ but it does because making software is
 hard. There are a few ways in which this can happen, all of which we try
