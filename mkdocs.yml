@@ -25,7 +25,6 @@ pages:
   - Troubleshooting ("I don't see my clients"): 'deploying-grr-clients/troubleshooting.md'
 - Investigating with GRR:
   - Overview: 'investigating-with-grr/overview.md'
-  - Glossary: 'investigating-with-grr/glossary.md'
   - Client-Server communication: 'investigating-with-grr/client-server-communication.md'
   - Security considerations: 'investigating-with-grr/security-considerations.md'
   - Flows:
@@ -54,6 +53,7 @@ pages:
   - Cron Jobs in GRR: 'investigating-with-grr/cron-jobs.md'
   - Automation with GRR API: 'investigating-with-grr/automation-with-api.md'
   - Emergency Code and Binary Pushes: 'investigating-with-grr/pushing-code.md'
+  - Importing the NSRL: 'investigating-with-grr/importing-nsrl.md'
   - Glossary: 'investigating-with-grr/glossary.md'
 - Maintaining and tuning GRR deployment:
   - Overview: 'maintaining-and-tuning/overview.md'
