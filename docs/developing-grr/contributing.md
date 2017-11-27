@@ -25,6 +25,17 @@ we recommend these as good starting points:
 
   - Add a new parser to parse a new filetype, e.g. if you have a
     different Anti-virus or HIDS log you want to parse.
+    
+## Contributor License Agreement
+
+GRR is an opensource project released under the [Apache
+License](https://github.com/google/grr/blob/master/LICENSE) and you should feel
+free to use it in any way compatible with this.  However, in order to accept
+changes into the GRR mainline repository we must ask that keep a signed a
+[Google Contributor License Agreement](https://cla.developers.google.com/clas)
+on file.
+
+## Style
 
 The [Chromium](http://www.chromium.org/developers/contributing-code) and
 [Plaso](http://plaso.kiddaland.net/developer/style-guide) projects have
@@ -38,6 +49,8 @@ Guide](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html).
 Note that despite what the guide says, we use two-space indentation, and
 MixedCase instead of lower\_underscore for function names since this is
 the internal standard. Two-space indentation also applies to CSS.
+
+## Setup
 
 We use the github [fork and pull review
 process](https://help.github.com/articles/using-pull-requests) to review
