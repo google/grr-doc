@@ -22,6 +22,7 @@ pages:
   - On Linux: 'deploying-grr-clients/on-linux.md'
   - On Mac OS X: 'deploying-grr-clients/on-mac-os-x.md'
   - Life of a GRR client (what happens after deployment): 'deploying-grr-clients/life-of-grr-client.md'
+  - Client Protection: 'deploying-grr-clients/protection.md'
   - Troubleshooting ("I don't see my clients"): 'deploying-grr-clients/troubleshooting.md'
 - Investigating with GRR:
   - Overview: 'investigating-with-grr/overview.md'
