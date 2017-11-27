@@ -67,7 +67,7 @@ later date.
 
 Note that we shifted our version string left to reduce confusion, see
 the [documentation on GRR
-versions](admin.md#client-and-server-version-compatibility-and-numbering).
+versions](deploying-grr-clients/overview.md#client-and-server-version-compatibility-and-numbering).
 
   - **WARN** Quite a few config options have changed. We recommend
     moving any customizations you have into your server.local.yaml, and
@@ -234,7 +234,7 @@ since they get released at the same time.
 
 Note that we skipped some numbers to make versioning simpler and reduce
 confusion, see the [documentation on GRR
-versions](admin.md#client-and-server-version-compatibility-and-numbering).
+versions](deploying-grr-clients/overview.md#client-and-server-version-compatibility-and-numbering).
 
   - **WARN** We changed rekall to be a independently updatable component
     in the client, which is a backwards incompatible change. You must
