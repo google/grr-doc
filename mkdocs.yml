@@ -76,6 +76,7 @@ pages:
   - Choosing GRR datastore: 'maintaining-and-tuning/choosing-datastore.md'
   - Scaling GRR: 'maintaining-and-tuning/scaling.md'
   - Building custom client templates: 'maintaining-and-tuning/building-custom-client-templates.md'
+  - Troubleshooting: 'maintaining-and-tuning/troubleshooting.md'
 - Developing GRR:
   - Setting up development environment: 'developing-grr/setting-up-dev-env.md'
   - Running the tests: 'developing-grr/running-tests.md'
