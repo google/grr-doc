@@ -85,4 +85,5 @@ pages:
     - Client Path Specification: 'developing-grr/implementation-details/client-path-spec.md'
     - Foreman: 'developing-grr/implementation-details/foreman.md'
     - Authorization and Auditing: 'developing-grr/implementation-details/authorizating-and-auditing.md'
+- Release Notes: 'release-notes.md'
 - F.A.Q: 'faq.md'
