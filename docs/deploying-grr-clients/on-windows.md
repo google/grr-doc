@@ -28,15 +28,15 @@ Once you have both, you have to make sure you know the username and
 password of an Administrator user in the remote system. Once all these
 requirements are met, just start a cmd.exe shell and type:
 
-    cd C:\CLIENT_DIRECTORY\
-    net use \\MACHINE\IPC$ /USER:USERNAME *
-    psexec \\MACHINE -c -f -s client-version.exe
+```docker
+cd C:\CLIENT_DIRECTORY\
+net use \\MACHINE\IPC$ /USER:USERNAME *
+psexec \\MACHINE -c -f -s client-version.exe
+```
 
-> **Note**
->
-> The `NET USE` command will ask for a password interactively, so it’s not
-> suited for using in scripts. You could Switch the `*` for the
-> PASSWORD instead if you want to include it in a script.
+**Note**: The `NET USE` command will ask for a password interactively,
+so it’s not suited for using in scripts. You could Switch the `*` for
+the PASSWORD instead if you want to include it in a script.
 
 You’ll need to replace:
 
@@ -52,28 +52,32 @@ execute it. The installation doesn’t require user input.
 
 The expected output is something along these lines:
 
-    C:\> cd C:\CLIENT_DIRECTORY\
-    C:\> net use \\127.0.0.1\IPC$ /USER:admin *
-    Type the password for \\127.0.0.1\IPC$:
-    The command completed successfully
+```docker
+C:\> cd C:\CLIENT_DIRECTORY\
+C:\> net use \\127.0.0.1\IPC$ /USER:admin *
+Type the password for \\127.0.0.1\IPC$:
+The command completed successfully
 
-    C:\CLIENT_DIRECTORY> psexec \\127.0.0.1 -c -f -s client.exe
-    PsExec v1.98 - Execute processes remotely
-    Copyright (C) 2001-2010 Mark Russinovich
-    Sysinternals - www.sysinternals.com
+C:\CLIENT_DIRECTORY> psexec \\127.0.0.1 -c -f -s client.exe
+PsExec v1.98 - Execute processes remotely
+Copyright (C) 2001-2010 Mark Russinovich
+Sysinternals - www.sysinternals.com
 
-    The command completed successfully.
+The command completed successfully.
 
-    client.exe exited on 127.0.0.1 with error code 0.
+client.exe exited on 127.0.0.1 with error code 0.
 
-    C:\CLIENT_DIRECTORY>
+C:\CLIENT_DIRECTORY>
+```
 
 For even less footprint on installation you could host the client on a
 shared folder on the network and use this psexec command instead:
 
-    cd C:\CLIENT_DIRECTORY\
-    net use \\MACHINE\IPC$ /USER:USERNAME *
-    psexec \\MACHINE -s \\SHARE\FOLDER\client-version.exe
+```docker
+cd C:\CLIENT_DIRECTORY\
+net use \\MACHINE\IPC$ /USER:USERNAME *
+psexec \\MACHINE -s \\SHARE\FOLDER\client-version.exe
+```
 
 This requires the USERNAME on the remote MACHINE be able to log into
 SHARE and access the shared folder FOLDER. You can do this either by
@@ -98,24 +102,32 @@ install log if one was created.
 
 On Windows, GRR lives in
 
-    %SystemRoot%\system32\grr\*
+```docker
+%SystemRoot%\system32\grr\*
+```
 
 The service can be stopped with
 
-    sc stop "grr monitor"
+```docker
+sc stop "grr monitor"
+```
 
 Or via the task manager.
 
 The GRR config lives in the registry, for a full cleanup, the path
 
-    HKEY_LOCAL_MACHINE\Software\GRR
+```docker
+HKEY_LOCAL_MACHINE\Software\GRR
+```
 
 should be deleted.
 
 Removing the GRR client completely from a machine:
 
-    sc stop "grr monitor"
-    sc delete "grr monitor"
-    reg delete HKLM\Software\GRR
-    rmdir /Q /S c:\windows\system32\grr
-    del /F c:\windows\system32\grr_installer.txt
+```docker
+sc stop "grr monitor"
+sc delete "grr monitor"
+reg delete HKLM\Software\GRR
+rmdir /Q /S c:\windows\system32\grr
+del /F c:\windows\system32\grr_installer.txt
+```

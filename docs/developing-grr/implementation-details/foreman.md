@@ -1,7 +1,7 @@
 # Foreman
 
 The Foreman is a client scheduling service. At a regular intervals
-(defaults to every 50 minutes) the client will report in asking if there
+(defaults to every 30 minutes) the client will report in asking if there
 are Foreman actions for it. At the time of this check in, the Foreman
 will be queried to decide if there are any jobs that match the host, if
 there are, appropriate flows will be created for the client. This
@@ -11,7 +11,8 @@ of clients.
 The foreman maintains a list of rules, if the rule matches a client when
 it checks in, the specified flow will execute on the client. The rules
 work against AFF4 attributes allowing for things like "All XP Machines"
-or "All OSX machines installed after 01.01.2011".
+or "All OSX machines installed after 01.01.2011". For more information
+see the section about [hunt rules](../../../investigating-with-grr/hunts/rules/).
 
 The foreman check-in request is a special request made by the client
 that communicates with a Well Known Flow (W:Foreman). When the server

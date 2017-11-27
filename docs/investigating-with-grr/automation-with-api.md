@@ -1,4 +1,3 @@
-# Automation with GRR API
+# Automation using the GRR API
 
-GRR AdminUI server also serves as an API endpoint. *grr_api_client* library
-can be used for easy GRR automation. See [github.com/google/grr/tree/master/api_client/python](https://github.com/google/grr/tree/master/api_client/python) for more details.
+GRR AdminUI server also serves as an API endpoint. We provide the *grr_api_client* library which can be used for easy GRR automation. See the [API client documentation](https://github.com/google/grr/tree/master/api_client/python) for more details.

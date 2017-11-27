@@ -29,15 +29,24 @@ binaries. You can do this manually with a hex editor as well.
 ## Interactively Debugging the Client
 
 On each platform, the client binary should support the following options:
---verbose:: This will set higher logging allowing you to see what is
-going on. --debug:: If set, and an unhandled error occurs in the client,
+
+- --verbose: This will set higher logging allowing you to see what is
+going on.
+- --debug: If set, and an unhandled error occurs in the client,
 the client will break into a pdb debugging shell.
 
-    C:\Windows\system32>net stop "grr monitor"
-    The GRR Monitor service is stopping.
-    The GRR Monitor service was stopped successfully.
+```docker
+C:\Windows\system32>net stop "grr monitor"
+The GRR Monitor service is stopping.
+The GRR Monitor service was stopped successfully.
 
-    C:\Windows\system32>c:\windows\system32\grr\3.2.0.4\grr.exe --config grr.exe.yaml --verbose
+C:\Windows\system32>c:\windows\system32\grr\3.2.0.4\grr.exe --config grr.exe.yaml --verbose
+```
+
+**Note** that on Windows, the GRR client is running completely in the background
+so starting it from the console will not give you any output. For this reason, we
+always also build a dbg_GRR[...].exe client that is a console application and
+can be used for this kind of debugging.
 
 ## Changing Logging For Debugging
 
@@ -116,7 +125,7 @@ as `Monitoring.alert_email`
 ### Crashed while executing an action
 
 Often seen with an error "Client killed during transaction". This means
-that while handling a specific action, the client died, the nanny knows
+that while handling a specific action, the client died. The nanny knows
 this because the client recorded the action it was about to take in the
 Transaction Log before starting it. When the client restarts it picks up
 this log and notifies the server of the crash.
@@ -159,3 +168,106 @@ Causes
 
   - The client is performing an action that is taking longer than it
     should.
+
+# I don’t see my clients
+
+Here are common client troubleshooting steps you can work through to
+diagnose client install and communications problems.
+
+**Check that the client got installed**
+
+You should have something like:
+
+  - `C:\Windows\System32\GRR\3.1.0.2\GRR.exe` on windows;
+
+  - `/usr/lib/grr/grr_3.1.0.2_amd64/grrd` on linux; and
+
+  - `/usr/local/lib/grr_3.1.0.2_amd64/grrd` on OSX
+
+with variations based on the GRR version and architecture you installed
+(32bit is i386). If you didn’t get this far, then there is a problem
+with your installer binary.
+
+**Check the client is running**
+
+On linux and OS X you should see two processes, something like:
+
+    $ ps aux | grep grr
+    root       957  0.0  0.0  11792   944 ?        Ss   01:12   0:00 /usr/sbin/grrd --config=/usr/lib/grr/grr_3.1.0.2_amd64/grrd.yaml
+    root      1015  0.2  2.4 750532 93532 ?        Sl   01:12   0:01 /usr/sbin/grrd --config=/usr/lib/grr/grr_3.1.0.2_amd64/grrd.yaml
+
+On windows you should see a `GRR Monitor` service and a `GRR.exe`
+process in taskmanager.
+
+If it isn’t running check the install logs and other logs in the same
+directory:
+
+  - Linux/OS X: `/var/log/grr_installer.txt`
+
+  - Windows: `C:\Windows\System32\LogFiles\GRR_installer.txt`
+
+and then try running it interactively as below.
+
+**Check the client machine can talk to the server**
+
+The URL here should be the server address and port you picked when you
+set up the server and listed in `Client.control_urls` in the client’s
+config.
+
+    wget http://yourgrrserver.yourcompany.com:8080/server.pem
+    # Check your config settings, note that clients earlier than 3.1.0.2 used Client.control_urls
+    $ sudo cat /usr/lib/grr/grr_3.1.0.2_amd64/grrd.yaml | grep Client.server_urls
+    Client.server_urls: http://yourgrrserver.yourcompany.com:8080/
+
+If you can’t download that server.pem, the common causes are that your
+server isn’t running or there are firewalls in the way.
+
+**Run the client in verbose mode**
+
+Linux: Stop the daemon version of the service and run it in verbose
+mode:
+
+    $ sudo service grr stop
+    $ sudo /usr/sbin/grrd --config=/usr/lib/grr/grr_3.1.0.2_amd64/grrd.yaml --verbose
+
+OS X: Unload the service and run it in verbose
+    mode:
+
+    $ sudo launchctl unload /Library/LaunchDaemons/com.google.code.grr.plist
+    $ sudo /usr/local/lib/grr_3.1.0.2_amd64/grrd --config=/usr/local/lib/grr_3.1.0.2_amd64/grrd.yaml --verbose
+
+Windows: The normal installer isn’t a terminal app, so you don’t get any
+output if you run it interactively.
+
+  - Install the debug `dbg_GRR_3.1.0.2_(amd64|i386).exe` version to make
+    it a terminal app.
+
+  - Stop the `GRR Monitor` service in task manager
+
+Then run in a terminal as Administrator
+
+    cd C:\Windows\System32\GRR\3.1.0.2\
+    GRR.exe --config=GRR.exe.yaml --verbose
+
+If this is a new client you should see some 406’s as it enrols, then
+they stop and are replaced with sending message lines with increasing
+sleeps in between. The output should look similar to this:
+
+    Starting client aff4:/C.a2be2a27a8d69c61
+    aff4:/C.a2be2a27a8d69c61: Could not connect to server at http://somehost:port/, status 406
+    Server PEM re-keyed.
+    sending enrollment request
+    aff4:/C.a2be2a27a8d69c61: Could not connect to server at http://somehost:port/, status 406
+    Server PEM re-keyed.
+    sending enrollment request
+    aff4:/C.a2be2a27a8d69c61: Could not connect to server at http://somehost:port/, status 406
+    Server PEM re-keyed.
+    aff4:/C.a2be2a27a8d69c61: Sending 3(1499), Received 0 messages in 0.771058797836 sec. Sleeping for 0.34980125
+    aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.370272874832 sec. Sleeping for 0.4022714375
+    aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.333703994751 sec. Sleeping for 0.462612153125
+    aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.345727920532 sec. Sleeping for 0.532003976094
+    aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 0 messages in 0.346176147461 sec. Sleeping for 0.611804572508
+    aff4:/C.a2be2a27a8d69c61: Sending 0(634), Received 8 messages in 0.348709106445 sec. Sleeping for 0.2
+
+If enrolment isn’t succeeding (406s never go away), make sure you’re
+running a worker process and check logs in `/var/log/grr-worker.log`.

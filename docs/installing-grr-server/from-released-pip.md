@@ -1,6 +1,6 @@
 # Installing from released PIP packages
 
-If the client installers included in release server debs are not
+If the templates included in release server debs are not
 compatible with the platform you would like to run them on,
 you have the option of installing GRR from PIP on your target platform, then
 building your own installers.

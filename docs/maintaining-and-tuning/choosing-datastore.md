@@ -2,7 +2,7 @@
 
 When installing GRR, you can choose between *SQLiteDataStore* and *MySQLAdvancedDataStore*.
 
-> NOTE: Database choice is something that's normally done when GRR is installed. There's no documented way of migrating an existing deployment from one datastore to another.
+**NOTE**: Database choice is something that's normally done when GRR is installed. There's no documented way of migrating an existing deployment from one datastore to another.
 
 
 ## SQLiteDataStore *(for small/demo deployments only)*

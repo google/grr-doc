@@ -37,6 +37,20 @@ pytest
 
 This will automatically discover and execute all test cases.
 
+### Running tests in parallel
+
+To use pytest to run tests in parallel, install the pytest-xdist plugin
+
+```docker
+pip install pytest-xdist
+```
+
+and run
+
+```docker
+pytest -n <number of cores to use>
+```
+
 ### Running the tests selectively
 
 Running all the tests is reasonable when you want to test everything before
@@ -61,7 +75,7 @@ pytest grr/server/aff4_objects/filestore_test.py::HashFileStoreTest
 
 Or even just a single test method:
 
-```bash
+```docker
 pytest grr/server/aff4_objects/filestore_test.py::HashFileStoreTest::testListHashes
 ```
 

@@ -19,14 +19,16 @@ pages:
   - Overview: 'deploying-grr-clients/overview.md'
   - How to check if a deployed client talks back to GRR server: 'deploying-grr-clients/how-to-check-if-client-talks-back.md'
   - On Windows: 'deploying-grr-clients/on-windows.md'
-  - On Mac OS X: 'deploying-grr-clients/on-mac-os-x.md'
   - On Linux: 'deploying-grr-clients/on-linux.md'
+  - On Mac OS X: 'deploying-grr-clients/on-mac-os-x.md'
   - Life of a GRR client (what happens after deployment): 'deploying-grr-clients/life-of-grr-client.md'
+  - Client Protection: 'deploying-grr-clients/protection.md'
   - Troubleshooting ("I don't see my clients"): 'deploying-grr-clients/troubleshooting.md'
 - Investigating with GRR:
   - Overview: 'investigating-with-grr/overview.md'
   - Client-Server communication: 'investigating-with-grr/client-server-communication.md'
   - Security considerations: 'investigating-with-grr/security-considerations.md'
+  - Searching for a client: 'investigating-with-grr/searching-for-client.md'
   - Flows:
     - What are Flows and how to use them: 'investigating-with-grr/flows/what-are-flows.md'
     - Starting Flows: 'investigating-with-grr/flows/starting.md'
@@ -44,15 +46,18 @@ pages:
     - Troubleshooting ("Why is my hunt doing nothing?"): 'investigating-with-grr/hunts/troubleshooting.md'
   - Virtual File System:
       - Intro: 'investigating-with-grr/vfs/virtual-file-system.md'
+      - Navigating the VFS: 'investigating-with-grr/vfs/navigation.md'
+      - Timelines: 'investigating-with-grr/vfs/timelines.md'
   - Artifacts:
-    - Collecting Artifacts: 'investigating-with-grr/artifacts/collecting.md'
-    - Defining Artifacts: 'investigating-with-grr/artifacts/defining.md'
-    - Private Artifacts: 'investigating-with-grr/artifacts/private.md'
+    - Overview: 'investigating-with-grr/artifacts/overview.md'
+    - Collecting: 'investigating-with-grr/artifacts/collecting.md'
+    - Defining: 'investigating-with-grr/artifacts/defining.md'
   - Cron Jobs in GRR: 'investigating-with-grr/cron-jobs.md'
   - Automation with GRR API: 'investigating-with-grr/automation-with-api.md'
+  - Emergency Code and Binary Pushes: 'investigating-with-grr/pushing-code.md'
+  - Importing the NSRL: 'investigating-with-grr/importing-nsrl.md'
   - Glossary: 'investigating-with-grr/glossary.md'
 - Maintaining and tuning GRR deployment:
-  - Overview: 'maintaining-and-tuning/overview.md'
   - Changing GRR server configuration:
     - Configuration file organization: 'maintaining-and-tuning/configuration/file-organization.md'
     - Configuration contexts: 'maintaining-and-tuning/configuration/contexts.md'
@@ -66,14 +71,14 @@ pages:
     - Running GRR UI behind Apache web server: 'maintaining-and-tuning/user-management/running-behind-apache.md'
     - Limiting access to GRR UI/API with API routers: 'maintaining-and-tuning/user-management/limiting-access-with-routers.md'
   - Email configuration: 'maintaining-and-tuning/email-configuration.md'
-  - Approval-based auditing system: 'maintaining-and-tuning/approval-based-auditing.md'
+  - Approval-based access control: 'maintaining-and-tuning/approval-based-workflow.md'
   - Repacking GRR clients: 'maintaining-and-tuning/repacking-clients.md'
   - Low-level maintenance with grr_console: 'maintaining-and-tuning/low-level-maintenance-with-console.md'
   - Choosing GRR datastore: 'maintaining-and-tuning/choosing-datastore.md'
   - Scaling GRR: 'maintaining-and-tuning/scaling.md'
   - Building custom client templates: 'maintaining-and-tuning/building-custom-client-templates.md'
+  - Troubleshooting: 'maintaining-and-tuning/troubleshooting.md'
 - Developing GRR:
-  - Overview: 'developing-grr/overview.md'
   - Setting up development environment: 'developing-grr/setting-up-dev-env.md'
   - Running the tests: 'developing-grr/running-tests.md'
   - Contributing code: 'developing-grr/contributing.md'
@@ -83,6 +88,6 @@ pages:
     - Client Path Specification: 'developing-grr/implementation-details/client-path-spec.md'
     - Foreman: 'developing-grr/implementation-details/foreman.md'
     - Authorization and Auditing: 'developing-grr/implementation-details/authorizating-and-auditing.md'
+- Release Notes: 'release-notes.md'
 - F.A.Q: 'faq.md'
-
-
+- Publications: 'publications.md'

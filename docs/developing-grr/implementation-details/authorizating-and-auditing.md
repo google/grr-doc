@@ -2,7 +2,7 @@
 
 GRR contains support for a full authorization and audit API (even for
 console users) and is implemented in an abstraction called a Security
-Manager. This Security Manager shipped with GRR (September 2012) does
+Manager. This Security Manager shipped with GRR, does
 not make use of these APIs and is open by default. However, a deployment
 may build their own Security Manager which implements the authorization
 semantics they require.
