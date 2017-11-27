@@ -25,6 +25,7 @@ pages:
   - Troubleshooting ("I don't see my clients"): 'deploying-grr-clients/troubleshooting.md'
 - Investigating with GRR:
   - Overview: 'investigating-with-grr/overview.md'
+  - Glossary: 'investigating-with-grr/glossary.md'
   - Client-Server communication: 'investigating-with-grr/client-server-communication.md'
   - Security considerations: 'investigating-with-grr/security-considerations.md'
   - Flows:
@@ -75,7 +76,6 @@ pages:
   - Scaling GRR: 'maintaining-and-tuning/scaling.md'
   - Building custom client templates: 'maintaining-and-tuning/building-custom-client-templates.md'
 - Developing GRR:
-  - Overview: 'developing-grr/overview.md'
   - Setting up development environment: 'developing-grr/setting-up-dev-env.md'
   - Running the tests: 'developing-grr/running-tests.md'
   - Contributing code: 'developing-grr/contributing.md'
