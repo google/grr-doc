@@ -22,7 +22,7 @@ Approval-based workflow places certain restrictions on what users can do without
 1. Browsing client's Virtual File System.
 1. Inspecting client's flows.
 1. Starting new flows on a client.
-1. Starting a new hunt (**NOTE**: this is a special case - starting a hunt requires an approval from an [admin user](user_management/authentication.md)).
+1. Starting a new hunt (**NOTE**: this is a special case - starting a hunt requires an approval from an [admin user](user-management/authentication.md)).
 1. Downloading files collected by a hunt.
 1. Starting a new cron job.
 
