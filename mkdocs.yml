@@ -75,7 +75,6 @@ pages:
   - Scaling GRR: 'maintaining-and-tuning/scaling.md'
   - Building custom client templates: 'maintaining-and-tuning/building-custom-client-templates.md'
 - Developing GRR:
-  - Overview: 'developing-grr/overview.md'
   - Setting up development environment: 'developing-grr/setting-up-dev-env.md'
   - Running the tests: 'developing-grr/running-tests.md'
   - Contributing code: 'developing-grr/contributing.md'
