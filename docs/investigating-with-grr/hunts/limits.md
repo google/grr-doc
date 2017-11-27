@@ -9,18 +9,18 @@ As already outlined in the section about [creating hunts](starting.md), hunts mi
 
 We realize that sometimes unexpected problems can still arise and therefore GRR applies some limits to hunts.
 
-### Default Hunt Limits ###
+## Default Hunt Limits
 
 There are two sets of limits in place for hunts. GRR enforces both, limits on individual clients and limits on the average resource usage for the hunt.
 
-#### Individual Client Limits ####
+### Individual Client Limits
 
 Analoguous to what happens with flows, GRR enforces limits on the resource usage for each client participating in a hunt. Since the impact of a hunt is potentially much larger than for a single flow, the limits for hunts are lower than the flow limits. The current defaults are:
 
 - 600 cpu seconds per client
 - 100 MB of network traffic per client
 
-#### Limits on Average Resource Usage ####
+### Limits on Average Resource Usage
 
 Once a hunt has processed 1000 clients, the average resource usage is also checked and enforced by GRR. The defaults for those limits are:
 

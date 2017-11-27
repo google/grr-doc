@@ -1,6 +1,6 @@
-**Frequently Asked Questions**
+# Frequently Asked Questions
 
-# Who wrote GRR and Why?
+## Who wrote GRR and Why?
 
 GRR started at Google as a 20% project and gained in popularity until it
 became fully-supported and open sourced. The primary motivation was that
@@ -20,14 +20,14 @@ We are getting significant code contributions from outside of Google,
 and have close relationships with a number companies running large-scale
 deployments.
 
-# Why is the project called GRR?
+## Why is the project called GRR?
 
 When using other tools, we found ourselves making the sound "grrr" a
 lot, and it just kind of stuck. GRR is a recursive acronym, in the
 tradition of GNU and it stands for GRR Rapid Response. Not GRR Response
 Rig or Google Rapid Response which it is sometimes mistaken for.
 
-# Is GRR production ready?
+## Is GRR production ready?
 
 As of Aug 2015 GRR is running at large scale both inside and outside of
 Google. The largest opensource deployment we know of is roughly 30k
@@ -35,7 +35,7 @@ machines, there’s another company at around 15k, and quite a few around
 2k. Google’s deployment is bigger than all of those put together,
 although there are some differences in the codebase (see below).
 
-# Should I expect to be able to install and just start running GRR?
+## Should I expect to be able to install and just start running GRR?
 
 Yes, for basic use cases.
 
@@ -51,7 +51,7 @@ If you are selling GRR internally (or to yourself) as a free \<insert
 commercial IR product here\>, your expectations will be wrong, and you
 may get disillusioned.
 
-# Can the GRR team provide me with assistance in getting it setup?
+## Can the GRR team provide me with assistance in getting it setup?
 
 The core GRR team cares about the open source project, but in the end,
 our main goals are to build something that works for us. We don’t, and
@@ -73,7 +73,7 @@ reasonable in what and how you ask for assistance. We’re more likely to
 help if you’ve contributed documentation or code, or even filed good bug
 reports.
 
-# I’m interested in GRR but I, or my team need some more convincing. Can you help?
+## I’m interested in GRR but I, or my team need some more convincing. Can you help?
 
 The core GRR team has invested a lot in the project, we think its pretty
 awesome, so the team happy to talk, do phone calls, or chat with other
@@ -84,7 +84,7 @@ someone from the team, or someone who works on GRR at most leading
 forensics/IR type conferences around the
 world.
 
-# I’ve heard that there are secret internal versions of GRR that aren’t open sourced that may have additional capabilities. Is that true?
+## I’ve heard that there are secret internal versions of GRR that aren’t open sourced that may have additional capabilities. Is that true?
 
 GRR was always designed to be open sourced, but with any sufficiently
 complex "enterprise" product you expect to integrate it with other
@@ -123,7 +123,7 @@ Differences will be whittled away over time as the core GRR team runs
 open source GRR deployments themselves. That means you can expect most
 of these things to become much less of an issue over time.
 
-# Should I choose MySQL Advanced or the HTTPDatastore + SQLite?
+## Should I choose MySQL Advanced or the HTTPDatastore + SQLite?
 
 There are currently two supported datastore options, consider the
 following points when choosing which to use.
@@ -153,7 +153,7 @@ HTTPDatastore + SQLite:
     still be reasonably
 powerful.
 
-# I heard GRR was designed for Bigtable and now Google has a Cloud Bigtable service. Can I use it?
+## I heard GRR was designed for Bigtable and now Google has a Cloud Bigtable service. Can I use it?
 
 Internally we use Bigtable, but the internal API is very different so
 the code cannot be used directly. The [Cloud Bigtable
@@ -163,7 +163,7 @@ this service, but (as at Aug 2015) the Bigtable service is still in Beta
 and the python libraries to interact with it are still being developed,
 so it isn’t currently a high priority.
 
-# What operating system versions does the client support?
+## What operating system versions does the client support?
 
 We try to support a wide range of operating systems because we know it’s
 often the old forgotten machines that get owned and need GRR the most.
@@ -206,7 +206,7 @@ should work on old systems.
   - Should probably work: 32bit versions of the above, and essentially
     any system of similar vintage that can install a deb or rpm.
 
-# What operating system versions does the server support?
+## What operating system versions does the server support?
 
 As of 3.1.0.2 we only support 64bit Ubuntu Xenial, since we had to move
 to systemd and didn’t want the complexity of continuing support for
@@ -224,7 +224,7 @@ linux servers is not something rational people do, and there are many
 places you can get 64-bit virtual servers for ~free. We use the "amd64"
 notation, but this just means 64-bit, it runs fine on Intel.
 
-# What hardware do I need to run GRR?
+## What hardware do I need to run GRR?
 
 This is actually a pretty tough question to answer. It depends on the
 database you choose, the number of clients you have, and how intensively
@@ -281,14 +281,14 @@ Run in AWS with c3.large instances in two autoscaling groups.
   - Datastore (MySQLAdvanced): AWS r3.4xlarge RDS server. RDS instance
     is optimized for 2000 IOPS and we’ve provisioned 3000.
 
-# How do I handle multi-organisational deployments?
+## How do I handle multi-organisational deployments?
 
 [Bake labels into clients at build
 time](admin.md#building-clients-with-custom-labels-multi-organization-deployments),
 and use a "Clients With Label" hunt rule to hunt specific groups of
 clients separately.
 
-# Which cloud should I deploy in? GCE? EC2? Azure?
+## Which cloud should I deploy in? GCE? EC2? Azure?
 
 Google Compute Engine (GCE) of course :) We’re working on making cloud
 deployment easier by dockerizing and building a click-to-deploy for GCE.
@@ -298,7 +298,7 @@ clouds. The largest cloud deployments of GRR are currently on EC2, and
 we hope the community will be able to share configuration and HOWTOs for
 this and other cloud deployments.
 
-# Where/how do you do your data analysis?
+## Where/how do you do your data analysis?
 
 We mostly do this outside of GRR using an internal system very similar
 to [BigQuery](https://cloud.google.com/bigquery/what-is-bigquery), and
@@ -310,7 +310,7 @@ little delay between the server seeing a result and having it available
 for analysis externally. As at March 2016 an opensource user is working
 on an ElasticSearch output plugin.
 
-# When will feature X be ready?
+## When will feature X be ready?
 
 Generally our roadmap on the main project page matches what we are
 working on, but we reserve the right to miss those goals, work on
@@ -318,13 +318,13 @@ something entirely different, or sit around a fire singing kumbaya. Of
 course, given this is open source, you can add the feature yourself if
 it matters.
 
-# Who is working on GRR?
+## Who is working on GRR?
 
 GRR has around 5 full-time software engineers working on it as their day
 job, plus additional part time code contributors. The project has long
 term commitment.
 
-# Why aren’t you developing directly on open source?
+## Why aren’t you developing directly on open source?
 
 Given we previously had limited code contribution from outside, it was
 hard to justify the extra effort of jumping out of our internal code
@@ -333,7 +333,7 @@ far more regularly (often multiple times per week), and we are working
 on code structure changes that will make it easier for us to develop
 externally.
 
-# Why is GRR so complicated?
+## Why is GRR so complicated?
 
 GRR **is** complicated. We are talking about a distributed,
 asynchronous, cross platform, large scale system with a lot of moving
@@ -348,7 +348,7 @@ This allows you to specify complex multi-operating system collection
 tasks with just a few lines of YAML, and collect any of the hundreds of
 pre-defined forensic artifacts with the click of a button.
 
-# What are the commercial competitors to GRR?
+## What are the commercial competitors to GRR?
 
 Some people have compared GRR functionality to Mandiant’s MIR, Encase
 Enterprise, or F-Response. There is some crossover in functionality with
@@ -362,7 +362,7 @@ something off each other, we can all get better, and together we can all
 genuinely improve the security of the ecosystem we all exist in. We’re
 happy to see others use GRR in their commercial consulting practices.
 
-# Where is the logout button?
+## Where is the logout button?
 
 There isn’t one. We ship with basic auth which [doesn’t really handle
 logout](http://stackoverflow.com/questions/233507/how-to-log-out-user-from-web-site-using-basic-authentication),
@@ -373,7 +373,7 @@ to the
 AdminUI](admin.md#authentication-to-the-admin-ui)
 section for more details.
 
-# How do I change the timezone from UTC?
+## How do I change the timezone from UTC?
 
 You can’t. Technically it’s possible, but it’s a lot of work and we
 don’t see much benefit. You should run your GRR server in the UTC

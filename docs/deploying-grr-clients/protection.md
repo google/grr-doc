@@ -1,4 +1,4 @@
-# Agent Protection
+# GRR Client Protection
 
 The open source agent does not contain protection against being disabled
 by administrator/root on the machine. E.g. on Windows, if an attacker

@@ -100,14 +100,14 @@ To Encrypt and add a password to the code & driver signing certificates
   convert the key text to the normal format by removing the leading
   whitespace and blank lines:
 
-```docker
+``` bash
 cat <original.exe.private.key.txt> | sed 's/^  //g' | sed '/^$/d' > <clean.exe.private.key>
 cat <original.driver.private.key.txt> | sed 's/^  //g' | sed '/^$/d' > <clean.driver.private.key>
 ```
 
 - Encrypt key and add a password
 
-```docker
+``` bash
 openssl rsa -des3 -in <clean.exe.private.key.txt> -out <exe.private.secure.key>
 openssl rsa -des3 -in <clean.driver.private.key.txt> -out <driver.private.secure.key>
 ```
@@ -118,7 +118,7 @@ openssl rsa -des3 -in <clean.driver.private.key.txt> -out <driver.private.secure
   store them offline). Ensure the server is restarted to load the
   updated configuration.
 
-```docker
+``` text
  PrivateKeys.executable_signing_private_key: '-----BEGIN RSA PRIVATE KEY-----
 
    Proc-Type: 4,ENCRYPTED
@@ -139,6 +139,6 @@ Alternatively, you can also keep your new, protected keys in files on
 the server and load them in the configuration using the file filter like
 this:
 
-```docker
+``` text
     PrivateKeys.executable_signing_private_key: %(<path_to_keyfile>|file)
 ```

@@ -1,5 +1,6 @@
-Papers
-------------
+# Publications
+
+## Papers
 
 [A scalable file based data store for forensic
 analysis](https://storage.googleapis.com/docs.grr-response.com/scalable_datastore.pdf),
@@ -13,8 +14,7 @@ by Moser, Andreas, and Michael I. Cohen. Digital Investigation, 2013.
 enterprise](https://storage.googleapis.com/docs.grr-response.com/distributed_forensics.pdf),
 by M.I. Cohen, D. Bilby, G. Caronni. Digital Investigation, 2011.
 
-Presentations
--------------
+## Presentations
 
 [GRR Meetup: GRR Users Meetup: Fleetspeak, API client, Go rewrite](https://drive.google.com/file/d/0Bzniab0ILSg6RkdyUGZYOGtuX1U/view) @ Mar 2017 GRR Meetup by A. Moser, M. Bushkov, B. Galehouse, M. Lakomy. [Video](https://youtu.be/SIvf7-Lzp2M).
 
@@ -37,8 +37,7 @@ Hotshots](https://www.concise-courses.com/past/).
 
 [OSDFC 2012 GRR Overview](https://storage.googleapis.com/docs.grr-response.com/GRR%20Rapid%20Response%20-%20OSFC%202012.pdf), by D. Bilby
 
-Workshops
----------
+## Workshops
 
 ICDF2C Prague 2017 Workshop [slides](https://drive.google.com/file/d/0Bzniab0ILSg6dkZHd2ZXMDN4UGs/view?usp=sharing) by M. Bushkov and B. Galehouse
 
@@ -51,18 +50,15 @@ DFRWS EU 2015 Workshop [workshop slides](https://storage.googleapis.com/docs.grr
 
 OSDF 2013 [workshop presentation](https://storage.googleapis.com/docs.grr-response.com/GRR%20OSDF%20Workshop%202013.pdf) by D. Bilby.
 
-Podcasts
---------
+## Podcasts
 
 GRR Rapid Response on [Down the Security Rabbithole](http://podcast.wh1t3rabbit.net/dtr-episode-98-grr-grr-rapid-response-0) Jun 2014 by G. Castle.
 
-Whitepapers
------------
+## Whitepapers
 
 [GRR Forensic Artifacts White Paper](https://storage.googleapis.com/docs.grr-response.com/GRR_Artifacts_Whitepaper_Blackhat2014_Greg_Castle.pdf), by G. Castle
 
-External Presentations
-----------------------
+## External Presentations
 
 These are presentations about GRR by people outside the core GRR team.
 
