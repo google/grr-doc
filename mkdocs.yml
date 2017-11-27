@@ -28,6 +28,7 @@ pages:
   - Overview: 'investigating-with-grr/overview.md'
   - Client-Server communication: 'investigating-with-grr/client-server-communication.md'
   - Security considerations: 'investigating-with-grr/security-considerations.md'
+  - Searching for a client: 'investigating-with-grr/searching-for-client.md'
   - Flows:
     - What are Flows and how to use them: 'investigating-with-grr/flows/what-are-flows.md'
     - Starting Flows: 'investigating-with-grr/flows/starting.md'
