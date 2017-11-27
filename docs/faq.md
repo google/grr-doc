@@ -343,8 +343,9 @@ is not your average pet python project.
 Having said that, the most common action of just collecting something
 from machines and parsing what you get back has been made significantly
 easier with [the artifacts
-system](user_manual.md#artifacts).
-This allows you to specify complex multi-operating system collection
+system](investigating-with-grr/artifacts/overview.md).
+This allows you 
+to specify complex multi-operating system collection
 tasks with just a few lines of YAML, and collect any of the hundreds of
 pre-defined forensic artifacts with the click of a button.
 
@@ -366,11 +367,10 @@ happy to see others use GRR in their commercial consulting practices.
 
 There isn’t one. We ship with basic auth which [doesn’t really handle
 logout](http://stackoverflow.com/questions/233507/how-to-log-out-user-from-web-site-using-basic-authentication),
-you need to close the browser. This is OK for testing, but for
-production we expect you to sit a reverse proxy in front of the UI that
-handles auth, or write a webauth module for GRR. See the [Authentication
-to the
-AdminUI](admin.md#authentication-to-the-admin-ui)
+you need to close the browser. This is OK for testing, but for production we
+expect you to sit a reverse proxy in front of the UI that handles auth, or write
+a webauth module for GRR. See the [Authentication to the
+AdminUI](maintaining-and-tuning/user-management/authentication.md#authentication)
 section for more details.
 
 # How do I change the timezone from UTC?
