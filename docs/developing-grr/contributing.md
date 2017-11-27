@@ -26,12 +26,12 @@ we recommend these as good starting points:
   - Add a new parser to parse a new filetype, e.g. if you have a
     different Anti-virus or HIDS log you want to parse.
     
-## Contributor License Agreement
+## License Agreement
 
-GRR is an opensource project released under the [Apache
+GRR is an opensource project released under the [Apache 2.0
 License](https://github.com/google/grr/blob/master/LICENSE) and you should feel
 free to use it in any way compatible with this.  However, in order to accept
-changes into the GRR mainline repository we must ask that keep a signed a
+changes into the GRR mainline repository we must ask that you keep a signed
 [Google Contributor License Agreement](https://cla.developers.google.com/clas)
 on file.
 
