@@ -25,6 +25,7 @@ pages:
   - Troubleshooting ("I don't see my clients"): 'deploying-grr-clients/troubleshooting.md'
 - Investigating with GRR:
   - Overview: 'investigating-with-grr/overview.md'
+  - Glossary: 'investigating-with-grr/glossary.md'
   - Client-Server communication: 'investigating-with-grr/client-server-communication.md'
   - Security considerations: 'investigating-with-grr/security-considerations.md'
   - Flows:
