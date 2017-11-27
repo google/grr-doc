@@ -56,7 +56,6 @@ pages:
   - Importing the NSRL: 'investigating-with-grr/importing-nsrl.md'
   - Glossary: 'investigating-with-grr/glossary.md'
 - Maintaining and tuning GRR deployment:
-  - Overview: 'maintaining-and-tuning/overview.md'
   - Changing GRR server configuration:
     - Configuration file organization: 'maintaining-and-tuning/configuration/file-organization.md'
     - Configuration contexts: 'maintaining-and-tuning/configuration/contexts.md'
@@ -70,7 +69,7 @@ pages:
     - Running GRR UI behind Apache web server: 'maintaining-and-tuning/user-management/running-behind-apache.md'
     - Limiting access to GRR UI/API with API routers: 'maintaining-and-tuning/user-management/limiting-access-with-routers.md'
   - Email configuration: 'maintaining-and-tuning/email-configuration.md'
-  - Approval-based auditing system: 'maintaining-and-tuning/approval-based-auditing.md'
+  - Approval-based access control: 'maintaining-and-tuning/approval-based-workflow.md'
   - Repacking GRR clients: 'maintaining-and-tuning/repacking-clients.md'
   - Low-level maintenance with grr_console: 'maintaining-and-tuning/low-level-maintenance-with-console.md'
   - Choosing GRR datastore: 'maintaining-and-tuning/choosing-datastore.md'
