@@ -15,7 +15,9 @@ indicates it started the service although when I check with
 You can troubleshoot by running the services in the foreground, e.g. to
 run the HTTP Front-end server in the foreground:
 
-    sudo grr_server --start_http_server --verbose
+```docker
+sudo grr_server --start_http_server --verbose
+```
 
 # Any/some of the GRR services are not running correctly
 
@@ -24,7 +26,9 @@ Check if the logs contain an indication of what is going wrong.
 Troubleshoot by running the services in the foreground, e.g. to run the
 UI in the foreground:
 
-    sudo grr_server --verbose --start_ui
+```docker
+sudo grr_server --verbose --component frontend
+```
 
 # Cannot open libtsk3.so.3
 
@@ -35,53 +39,19 @@ The libtsk3 library cannot be found in the ld cache. Check if the path
 to libtsk3.so.3 is in /etc/ld.so.conf (or equivalent) and update the
 cache:
 
-    sudo ldconfig
+```docker
+sudo ldconfig
+```
 
 # Cron Job view reports an error
 
 Delete and recreate all the cronjobs using GRR console:
 
-    aff4.FACTORY.Delete("aff4:/cron", token=data_store.default_token)
-    from grr.server.aff4_objects import cronjobs
-    cronjobs.ScheduleSystemCronFlows(token=data_store.default_token)
-
-# Protobuf 2.5.0
-
-GRR only works with the Protobuf library v2.5.0 or newer. If your
-distribution comes with an older version, follow the instructions below:
-
-Remove any version of protobuf that is older than 2.5.0.
-
-Note that this will also remove a couple of dependencies:
-
-    sudo apt-get remove libprotobuf python-protobuf
-
-To build Protobuf from source, install the following packages on a
-Debian-based system:
-
-    sudo apt-get install build-essential uuid-dev zlib1g-dev python-dev
-
-Download protobuf version 2.5.0 or later from
-[protobuf](http://code.google.com/p/protobuf/)
-
-Extract the package:
-
-    tar xfv protobuf-2.5.0.tar.gz
-    cd protobuf-2.5.0
-
-Build and install libprotobuf:
-
-    ./configure --prefix=/usr/
-    make
-    sudo make install
-    sudo ldconfig
-
-Build and install the Python bindings:
-
-    cd python
-    python setup.py build
-    python setup.py test
-    sudo python setup.py install
+```docker
+aff4.FACTORY.Delete("aff4:/cron", token=data_store.default_token)
+from grr.server.aff4_objects import cronjobs
+cronjobs.ScheduleSystemCronFlows(token=data_store.default_token)
+```
 
 # Missing Rekall Profiles
 
@@ -107,5 +77,7 @@ profile. If your GRR server doesn’t have internet access you’ll need to
 run the GetMissingProfiles function from the GRR console on a machine
 that has internet access and can access the GRR database, like this:
 
-    from grr.server import rekall_profile_server
-    rekall_profile_server.GRRRekallProfileServer().GetMissingProfiles()
+```docker
+from grr.server import rekall_profile_server
+rekall_profile_server.GRRRekallProfileServer().GetMissingProfiles()
+```

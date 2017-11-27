@@ -84,15 +84,18 @@ storage bucket name):
 On your Windows/VM with git and the Google cloud SDK installed, run this
 as admin:
 
-    mkdir C:\grr_src
-    git clone https://github.com/google/grr.git C:\grr_src
-    C:\grr_src\vagrant\windows\install_for_build.bat
+```docker
+mkdir C:\grr_src
+git clone https://github.com/google/grr.git C:\grr_src
+C:\grr_src\vagrant\windows\install_for_build.bat
+```
 
 Then as a regular user you can download the sdists and build the
-templates from
-    that:
+templates from that:
 
-    C:\Python27-x64\python.exe C:\grr_src\vagrant\windows\build_windows_templates.py --grr_src=C:\grr_src --cloud_storage_sdist_bucket=mybucketname --cloud_storage_output_bucket=mybucketname
+```docker
+C:\Python27-x64\python.exe C:\grr_src\vagrant\windows\build_windows_templates.py --grr_src=C:\grr_src --cloud_storage_sdist_bucket=mybucketname --cloud_storage_output_bucket=mybucketname
+```
 
 Download the built templates and components from cloud storage to your
 linux vm ready for repacking. Put them under
