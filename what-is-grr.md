@@ -17,3 +17,25 @@ GRR was built to run at scale so that analysts are capable of effectively collec
 * Joe saw something weird, check his machine *(p.s. Joe is on holiday in Cambodia and on 3G)*
 * Forensically acquire 25 machines for analysis *(p.s. they're in 5 continents and none are Windows)*
 * Tell me if this machine is compromised *(while you're at it, check 100,000 of them - i.e. "hunt" across the fleet)*
+
+
+## GRR client features
+
+* Cross-platform support for Linux, OS X and Windows clients.
+* Live remote memory analysis using YARA library.
+* Powerful search and download capabilities for files and the Windows registry.
+* OS-level and raw file system access, using the SleuthKit (TSK).
+* Secure communication infrastructure designed for Internet deployment.
+* Detailed monitoring of client CPU, memory, IO usage and self-imposed limits.
+
+## GRR server features
+
+* Fully fledged response capabilities handling most incident response and
+   forensics tasks.
+* Enterprise hunting (searching across a fleet of machines) support.
+* Fast and simple collection of hundreds of digital forensic artifacts.
+* AngularJS Web UI and RESTful JSON API with client libraries in Python, PowerShell and Go.
+* Powerful data export features supporting variety of formats and output plugins.
+* Fully scalable back-end capable of handling large deployments.
+* Automated scheduling for recurring tasks.
+* Asynchronous design allowing future task scheduling for clients, designed to work with a large fleet of laptops.
