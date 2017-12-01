@@ -28,7 +28,7 @@ Next, upgrade pip and install virtualenv:
 sudo pip install --upgrade pip virtualenv
 ```
 
-Next, create a virtualenv and install the GRR server package:
+Next, create a virtualenv and install the GRR server and template packages:
 
 ```bash
 virtualenv GRR_ENV
@@ -36,6 +36,8 @@ virtualenv GRR_ENV
 source GRR_ENV/bin/activate
 
 pip install grr-response-server
+
+pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 ```
 
 During installation of `grr-response-server`, administrative commands e.g
