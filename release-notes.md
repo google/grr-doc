@@ -28,6 +28,8 @@ and will be removed before the next release.
 - Support for scanning and dumping process memory using Yara has been added.
 - The `SearchFileContent` flow has been deprecated, in favor of equivalent
 `FileFinder` functionality.
+- zip/tar.gz archives downloaded from GRR will no longer use
+symlinks to avoid duplication of files - this makes them easier to work with.
 
 ### 3.2.0.1 (Sep 5 2017)
 
