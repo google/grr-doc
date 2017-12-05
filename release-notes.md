@@ -1,12 +1,35 @@
 # Release notes
 
 Each release of GRR brings some significant changes as the project’s
-code is moving quickly. This section tries to identify the key changes
+code is moving quickly. This page tries to identify the key changes
 and issues to watch for when upgrading from one version to another.
+
+Note that since the 3.2.0.1 release, client and server releases are no
+longer done separately (server debs include client templates).
+
+Remember to back up your data-store and configs before upgrading GRR to a
+new version.
 
 ## Server
 
-### 3.1.0.2 to 3.2.0.1 (Sep 5 2017)
+### 3.2.1.1 (Dec 6 2017)
+
+- The `HTTPDatastore` has been removed from GRR.
+- GRR now supports MySQL out of the box (when installed from the server deb).
+- GRR's documentation has been revised and moved to
+<https://grr-doc.readthedocs.io>. The old asciidoc documentation (currently 
+hosted on github) will be deleted before the next release.
+- SSO support has been added to the Admin UI, with the
+`RemoteUserWebAuthManager`.
+- Auto-refresh functionality for flows and hunts has been added to the GRR UI.
+- Support for per-client-average limits for hunts has been added.
+- GRR now uses the pytest framework to run tests. `grr_run_tests` is deprecated,
+and will be removed before the next release.
+- Support for scanning and dumping process memory using Yara has been added.
+- The `SearchFileContent` flow has been deprecated, in favor of equivalent
+`FileFinder` functionality.
+
+### 3.2.0.1 (Sep 5 2017)
 
 Starting with 3.2.0.1, we plan on releasing more frequently, since we
 have automated a large part of the release process. The recommended way
