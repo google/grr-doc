@@ -15,7 +15,7 @@ wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk
 * Extract it to somewhere on your filesystem:
 
 ```bash
-tar zxf google-cloud-sdk-180.0.1-linux-x86_64.tar.gz "${HOME}"
+tar zxf google-cloud-sdk-180.0.1-linux-x86_64.tar.gz -C "${HOME}"
 ```
 
 * Copy the server deb from its folder in GCS to your local machine:
