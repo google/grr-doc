@@ -5,7 +5,7 @@ doing this:
 
 1.  Repack the released client with a new configuration.
 
-2.  Rebuild the client from scratch (advanced users); see [Building custom client templates](building-custom-client-templates/).
+2.  Rebuild the client from scratch (advanced users); see [Building custom client templates](building-custom-client-templates.md).
 
 Doing a rebuild allows full reconfiguration, changing names and
 everything else. A repack on the other hand limits what you can change.
