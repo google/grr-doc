@@ -14,6 +14,7 @@ in the commands below.
 
 ```bash
 docker run \
+  --name grr-server \
   -e EXTERNAL_HOSTNAME="localhost" \
   -e ADMIN_PASSWORD="demo" \
   --ulimit nofile=1048576:1048576 \
@@ -44,8 +45,8 @@ container you could use something like
 mkdir ~/grr-docker
 
 docker run \
-  --name sqlitedb -v ~/grr-docker/db:/var/grr-datastore \
-  --name logs -v ~/grr-docker/logs:/var/log \
+  --name grr-server -v ~/grr-docker/db:/var/grr-datastore \
+  -v ~/grr-docker/logs:/var/log \
   -e EXTERNAL_HOSTNAME="localhost" \
   -e ADMIN_PASSWORD="demo" \
   --ulimit nofile=1048576:1048576 \
