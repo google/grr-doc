@@ -52,12 +52,12 @@ from grr.server.aff4_objects import cronjobs
 cronjobs.ScheduleSystemCronFlows(token=data_store.default_token)
 -----------------------------------------------------------------------
 
-== Protobuf 2.5.0 ==
+== Protobuf 3.0.0 ==
 
-GRR only works with the Protobuf library v2.5.0 or newer. If your distribution
+GRR only works with the Protobuf library v3.0.0. If your distribution
 comes with an older version, follow the instructions below:
 
-Remove any version of protobuf that is older than 2.5.0.
+Remove any version of protobuf that is older than 3.0.0.
 
 Note that this will also remove a couple of dependencies:
 
@@ -72,12 +72,12 @@ system:
 sudo apt-get install build-essential uuid-dev zlib1g-dev python-dev
 --------------------------------------------------------------------
 
-Download protobuf version 2.5.0 or later from link:http://code.google.com/p/protobuf/[protobuf]
+Download protobuf version 3.0.0 or later from link:http://code.google.com/p/protobuf/[protobuf]
 
 Extract the package:
 -------------------------------------------------------
-tar xfv protobuf-2.5.0.tar.gz
-cd protobuf-2.5.0
+tar xfv protobuf-3.0.0.tar.gz
+cd protobuf-3.0.0
 -------------------------------------------------------
 
 Build and install libprotobuf:
