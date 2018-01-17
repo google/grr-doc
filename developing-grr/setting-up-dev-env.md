@@ -74,6 +74,7 @@ all components. Assuming that you are in the root GRR directory run the
 following commands:
 
 ```bash
+pip install -e ./grr/proto
 pip install -e .
 pip install -e ./grr/config/grr-response-server
 pip install -e ./grr/config/grr-response-client
