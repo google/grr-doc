@@ -848,6 +848,46 @@ The ExecutePythonHack Flow is provided for executing the file on a client.
 This is visible in the Admin UI under Administrative flows if Advanced
 Mode is enabled.
 
+Below is an example python wrapper for powershell scripts: 
+
+[source,shell]
+------------------------------------------------------------------------
+import subprocess, os, sys, platform, shlex, threading, time
+
+'''
+To base64 encode powershell script, paste in your commands (at the powershell prompt):
+   $command = { Powershell commands here }
+   $bytes = [System.Text.Encoding]::Unicode.GetBytes($command)
+   $encodedCommand = [Convert]::ToBase64String($bytes)
+   $command
+
+Take the output and append to the 'pshell' variable where indicated.
+'''
+
+
+ps = 'powershell -NoProfile -NonInteractive -ExecutionPolicy remotesigned -EncodedCommand <encoded command here>'
+
+
+class Waiter(threading.Thread):
+  active = True
+  duration = 1200
+
+  def run(self):
+    now = time.time()
+    while self.active and time.time() - now < self.duration:
+      time.sleep(1)
+
+waiter = Waiter()
+
+try:
+  waiter.start()
+  print subprocess.check_output(shlex.split(ps))
+
+finally:
+  waiter.active = False
+  waiter.join()
+------------------------------------------------------------------------
+
 NOTE: Specifying arguments to a PythonHack is possible as well through the
 py_args argument, this can be useful for making the hack more generic.
 
