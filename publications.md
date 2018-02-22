@@ -16,9 +16,9 @@ by M.I. Cohen, D. Bilby, G. Caronni. Digital Investigation, 2011.
 
 ## Presentations
 
-[GRR Meetup: GRR Users Meetup: Fleetspeak, API client, Go rewrite](https://drive.google.com/file/d/0Bzniab0ILSg6RkdyUGZYOGtuX1U/view) @ Mar 2017 GRR Meetup by A. Moser, M. Bushkov, B. Galehouse, M. Lakomy. [Video](https://youtu.be/SIvf7-Lzp2M).
+[GRR Meetup: GRR Users Meetup: Fleetspeak, API client, Go rewrite](https://storage.googleapis.com/docs.grr-response.com/GRR%20Meetup-%20Mar%202017.pdf) @ Mar 2017 GRR Meetup by A. Moser, M. Bushkov, B. Galehouse, M. Lakomy. [Video](https://youtu.be/SIvf7-Lzp2M).
 
-[GRR Meetup: 3.1.0 Release](https://drive.google.com/file/d/0BzuOLwDAeI1IaGZnbHJWSUhHXzg/view?pageId=113082118196076170073) @ Apr 2016 GRR Meetup by G. Castle and M. Cohen. [Video](https://youtu.be/SIvf7-Lzp2M).
+[GRR Meetup: 3.1.0 Release](https://storage.googleapis.com/docs.grr-response.com/GRR%20Meetup-%20Server-Client%20Release%20Apr%202016.pdf) @ Apr 2016 GRR Meetup by G. Castle and M. Cohen. [Video](https://youtu.be/SIvf7-Lzp2M).
 
 [GRR Meetup: API Edition](https://storage.googleapis.com/docs.grr-response.com/GRR%20Meetup-%20API%20Edition%20Nov%202015.pdf) @ Nov 2015 GRR Meetup by G. Castle and M. Bushkov. Covers API basics and discusses where we are headed with API dev.
 
@@ -39,7 +39,9 @@ Hotshots](https://www.concise-courses.com/past/).
 
 ## Workshops
 
-ICDF2C Prague 2017 Workshop [slides](https://drive.google.com/file/d/0Bzniab0ILSg6dkZHd2ZXMDN4UGs/view?usp=sharing) by M. Bushkov and B. Galehouse
+GRR Workshop at CERN, February 2018 [slides](https://storage.googleapis.com/docs.grr-response.com/GRR%20Workshop%20%40%20CERN%202018.pdf) by M. Bushkov, B. Galehouse, M. Lakomy, and A. Moser
+
+ICDF2C Prague 2017 Workshop [slides](https://storage.googleapis.com/docs.grr-response.com/GRR%20Workshop%20%40%20ICDF2C%20Prague%202017.pdf) by M. Bushkov and B. Galehouse
 
 DFRWS US 2015 Workshop
 [slides](https://storage.googleapis.com/docs.grr-response.com/GRR_Workshop_DFRWS_US_2015.pdf)
