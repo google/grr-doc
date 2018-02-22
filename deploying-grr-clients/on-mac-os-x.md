@@ -21,10 +21,6 @@ On OSX, pkg uninstall is not supported. The files to delete are:
 
 The service can be stopped using
 
-<<<<<<< HEAD
-    sudo launchctl unload /Library/LaunchDaemons/com.google.corp.grr.plist
-=======
 ```docker
 sudo launchctl unload /Library/LaunchDaemons/com.google.corp.grr.plist
 ```
->>>>>>> markdown-new
