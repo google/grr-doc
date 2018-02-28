@@ -1,0 +1,74 @@
+# Installing via GRR Docker image
+
+The GRR Docker image is is currently intended for evaluation/testing use, but
+the plan is to support simple cloud deployment of a stable production image in
+the future.
+
+The instructions below get you a recent stable docker image. We also build an
+[image](https://registry.hub.docker.com/u/grrdocker/grr/) automatically from the
+latest commit in the github repository which is more up-to-date but isn’t
+guaranteed to work. If you want bleeding edge you can use `grrdocker/grr:latest`
+in the commands below.
+
+## How to use the image
+
+```bash
+docker run \
+  --name grr-server \
+  -e EXTERNAL_HOSTNAME="localhost" \
+  -e ADMIN_PASSWORD="demo" \
+  --ulimit nofile=1048576:1048576 \
+  -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
+  grrdocker/grr:v3.2.0.1 grr
+```
+
+Once initialization finishes point your web browser to localhost:8000 and login
+with admin:demo. Follow the final part of the [quickstart](../quickstart.md)
+instructions to download and install the clients.
+
+EXTERNAL_HOSTNAME is the hostname you want GRR agents (clients) to poll back
+to, “localhost” is only useful for testing.
+
+ADMIN_PASSWORD is the password for the “admin” user in the webui.
+
+`ulimit` makes sure the container doesn’t run out of filehandles, which is
+important for the sharded SQLite DB.
+
+The container will listen on port 8000 for the admin web UI and port 8080 for
+client polls.
+
+If you would like the database and logs to persist longer than the life of the
+container you could use something like
+(this also adds -d to run it as a daemon):
+
+```bash
+mkdir ~/grr-docker
+
+docker run \
+  --name grr-server -v ~/grr-docker/db:/var/grr-datastore \
+  -v ~/grr-docker/logs:/var/log \
+  -e EXTERNAL_HOSTNAME="localhost" \
+  -e ADMIN_PASSWORD="demo" \
+  --ulimit nofile=1048576:1048576 \
+  -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
+  -d grrdocker/grr:v3.2.0.1 grr
+```
+
+Note that if you’re running boot2docker on OS X there are a few bugs with
+[docker itself](https://github.com/boot2docker/boot2docker/issues/824) that you
+will probably need to workaround. You’ll likely have to set up port forwards
+for 8000 and 8080 as described
+[here](https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md).
+
+## Running GRR binaries in the Docker container
+
+When using Docker, GRR gets installed into a virtualenv in
+`/usr/share/grr-server`. Thus, the easiest way to run any of the GRR binaries
+inside the Docker container is to activate the virtualenv:
+
+```bash
+source /usr/share/grr-server/bin/activate
+```
+
+After that, commands such as `grr_server`, `grr_config_updater`, `grr_console`,
+etc become available on PATH.
