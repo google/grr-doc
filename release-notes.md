@@ -20,7 +20,7 @@ documentation repository.
 `grr-response-proto`, which is now a dependency of `grr-response-core`.
 - User objects now get automatically created when using
 `RemoteUserWebAuthManager`
-(see [nginx-authentication](./maintaining-and-tuning/user-management/running-behind-nginx.md#step-four-make-nginx-responsible-for-the-authentication)).
+(see [Running GRR behind Nginx](maintaining-and-tuning/user-management/running-behind-nginx.md)).
 Users who log in for the first time no longer need to do anything special to
 make notifications work.
 - `grr-response-client`'s pip dependency for Rekall has been updated to
