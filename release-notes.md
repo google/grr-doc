@@ -12,6 +12,38 @@ new version.
 
 ## Server
 
+### 3.2.2.0 (Mar 12 2018)
+- As of this release, GRR's legacy asciidoc documentation (previously hosted on
+github) has been deleted. <https://grr-doc.readthedocs.io> is now GRR's only
+documentation repository.
+- GRR's protobufs have been refactored into their own pip package
+`grr-response-proto`, which is now a dependency of `grr-response-core`.
+- User objects now get automatically created when using
+`RemoteUserWebAuthManager`
+(see [nginx-authentication](maintaining-and-tuning/user-management/running-behind-nginx.md#step-four-make-nginx-responsible-for-the-authentication)).
+Users who log in for the first time no longer need to do anything special to
+make notifications work.
+- `grr-response-client`'s pip dependency for Rekall has been updated to
+version `1.7.2rc1`.
+- Functionality has been added to allow showing predefined warnings in the
+Admin UI when accessing clients with certain labels (`AdminUI.client_warnings`
+config option).
+- Scanning and dumping process memory with Yara has been made more
+resource-efficient, and now puts less strain on client machines.
+- A number of changes have been made to the GRR Api, some of which are not
+backwards compatible with Api client code expecting pre-3.2.2.0 responses
+and behavior:
+    - `hunt_pb2.ApiListHuntLogsResult` now uses `hunt_pb2.ApiHuntLog`, a new
+    proto, instead of `jobs_pb2.Flowlog`.
+    - `hunt_pb2.ApiListHuntErrorsResult` now uses `hunt_pb2.ApiHuntError`, a
+    new proto, instead of `jobs_pb2.HuntError`.
+    - `flow_pb2.ApiListFlowLogsResult` now uses `flow_pb2.ApiFlowLog`, a new
+    proto, instead of `jobs_pb2.Flowlog`.
+    - The default `age` attribute has been removed from Api responses.
+    - `cron_pb2.ApiCronJob` protos now have a `cron_job_id` field.
+    - `GetClientVersions` Api call (/api/clients/<client_id>/versions) no longer
+    includes metadata (last ping, last clock, last boot time, last crash time).
+
 ### 3.2.1.1 (Dec 6 2017)
 
 - The `HTTPDatastore` has been removed from GRR.
