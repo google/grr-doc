@@ -403,3 +403,9 @@ timestamps back into UTC manually for consistency.
 For forensic analysis and timeline building, UTC always makes the most
 sense. We have added a UTC clock to the top right hand corner of the UI
 to help reason about the timestamps you see.
+
+## Is there any relation between the [grr](https://pypi.python.org/pypi/grr) pip package and Google's GRR?
+
+No. The naming collision is just a coincidence, and you might actually
+run into [issues](https://github.com/google/grr/issues/572) if you install
+the two in the same Python environment.
