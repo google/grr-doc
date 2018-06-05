@@ -123,35 +123,12 @@ Differences will be whittled away over time as the core GRR team runs
 open source GRR deployments themselves. That means you can expect most
 of these things to become much less of an issue over time.
 
-## Should I choose MySQL Advanced or the HTTPDatastore + SQLite?
+## Should I choose MySQL Advanced or SQLite?
 
-There are currently two supported datastore options, consider the
-following points when choosing which to use.
-
-MySQL Advanced:
-
-  - You can buy support, and some organisations have considerable
-    in-house experience in making MySQL scale, setting up replication,
-    tweaking performance etc.
-
-  - Needs powerful hardware: CPU, RAM, fast disk.
-
-  - Backup, replication, recovery are standard processes.
-
-HTTPDatastore + SQLite:
-
-  - [Our testing shows better
-    performance](https://drive.google.com/a/google.com/file/d/0B1wsLqFoT7i2c3FHOHNjOFpmdjA/view),
-    but MySQL is being used at real scale too (see "What hardware do I
-    need to run GRR?" below).
-
-  - You’ll need to setup your own backup and recovery processses. This
-    should be fairly simple since it’s just a collection of sqlite files
-    in a directory.
-
-  - Slave DBs don’t need particularly powerful hardware, master should
-    still be reasonably
-powerful.
+There are currently two supported datastore options but in the future we will
+only support a relational database model that will run on MySQL. For now, SQLite
+might be a good option for small testing / demo environments by but keep in mind
+that at some point you will want to migrate to MySQL anyways.
 
 ## I heard GRR was designed for Bigtable and now Google has a Cloud Bigtable service. Can I use it?
 
