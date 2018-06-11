@@ -181,7 +181,7 @@ class ProcessLink(transforms.Transform):
     default_priority = 1000
 
     def find_replace(self, node):
-        if isinstance(node, nodes.reference):
+        if isinstance(node, nodes.reference) and "refuri" in node:
             r = node["refuri"]
             if r.endswith(".md"):
                 r = r[:-3] + ".html"

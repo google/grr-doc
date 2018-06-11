@@ -15,6 +15,15 @@ are not kept secure, anyone with MITM capability can intercept
 communications and take control of your clients. Additionally, if you
 lose these keys, you lose the ability to communicate with your clients.
 
+**Note**: The fact that the client uses a CA key to verify the server
+ensures only that the client doesn't accidentally connect to the wrong
+server and protects for example from privilege escalation attacks using
+a malicious GRR server. This feature does not stop clients that do not
+have the CA certificate from connecting to your server - it's for
+example possible to use a modified client that just doesn't do this
+check. Such clients would the be able to see for example IOCs that you
+send to all clients in a hunt.
+
 ## Code Signing and CA Keys.
 
 In addition to the CA and Server key pairs, GRR maintains a set of code
