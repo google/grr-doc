@@ -8,13 +8,13 @@ To start, download the latest server deb from
 <https://github.com/google/grr/releases>, e.g:
 
 ```bash
-wget https://storage.googleapis.com/releases.grr-response.com/grr-server_3.2.2-0_amd64.deb
+wget https://storage.googleapis.com/releases.grr-response.com/grr-server___GRR_DEB_VERSION___amd64.deb
 ```
 
 Install the server deb, along with its dependencies, like below:
 
 ```
-sudo apt install -y ./grr-server_3.2.2-0_amd64.deb
+sudo apt install -y ./grr-server___GRR_DEB_VERSION___amd64.deb
 ```
 
 The installer will prompt for a few pieces of information to get things set up.

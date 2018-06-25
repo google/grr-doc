@@ -40,7 +40,7 @@ C:\Windows\system32>net stop "grr monitor"
 The GRR Monitor service is stopping.
 The GRR Monitor service was stopped successfully.
 
-C:\Windows\system32>c:\windows\system32\grr\3.2.0.4\grr.exe --config grr.exe.yaml --verbose
+C:\Windows\system32>c:\windows\system32\grr\__GRR_VERSION__\grr.exe --config grr.exe.yaml --verbose
 ```
 
 **Note** that on Windows, the GRR client is running completely in the background

@@ -180,12 +180,24 @@ class ProcessLink(transforms.Transform):
 
     default_priority = 1000
 
+    text_replacements = {
+        "__GRR_VERSION__": "3.2.2.0",
+        "__GRR_DEB_VERSION__": "3.2.2-0"
+    }
+
     def find_replace(self, node):
         if isinstance(node, nodes.reference) and "refuri" in node:
             r = node["refuri"]
             if r.endswith(".md"):
                 r = r[:-3] + ".html"
                 node["refuri"] = r
+
+        if isinstance(node, nodes.Text):
+            for k, v in self.text_replacements.items():
+                if k in node.astext():
+                    repl = nodes.Text(node.replace(k, v))
+                    node.parent.replace(node, repl)
+
         return node
 
     def traverse(self, node):
