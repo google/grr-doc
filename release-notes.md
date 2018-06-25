@@ -12,6 +12,36 @@ new version.
 
 ## Server
 
+### 3.2.3.0 (Jun 25 2018)
+- We are planning to deprecate the SQLite datastore in favor of MySQL. Support
+for SQLite will likely get dropped in the coming few releases.
+- Significant progress has been made towards reimplementing GRR's database model
+to use a relational schema. We expect to launch the new model - replacing the
+old one - in the next few months. The new model will not have a SQLite
+implementation (which is why we are dropping SQLite).
+- UI improvements and bugfixes.
+- Previously, when building and repacking client templates, config options in
+the 'ClientBuilder' context would leak into client config files. This will no
+longer happen, starting from this release. Config files that define client
+options inside a 'ClientBuilder' context might need fixing.
+- Api Updates:
+    - `GetGrrBinary` API method now returns `ApiGrrBinary` object instead of a
+    binary stream. The old behavior is preserved in a newly introduced
+    `GetGrrBinaryBlob` method.
+    - Additional fields were added to `Api{Hunt,CronJob,Client}Approval` protos:
+    `requestor` and `email_message_id`.
+    - `ApiNotification.Type` enum has been changed: 0 now means
+    'UNSET' (previously it meant 'DISCOVERY', but 'DISCOVERY' type is now
+    deprecated).
+    - `ApiNotificationDiscoveryReference` has been renamed to
+    `ApiNotificationClientReference`.
+    - `ApiNotificationFileDownloadReference` has been deprecated.
+    - In `ApiNotificationCronReference` and
+    `ApiNotificationCronJobApprovalReference` protos, the `cron_job_urn` field
+    has been replaced with `cron_job_id`.
+    - In the `ApiNotificationHuntReference` proto, the `hunt_urn` field has
+    been replaced with `hunt_id`.
+
 ### 3.2.2.0 (Mar 12 2018)
 - As of this release, GRR's legacy asciidoc documentation (previously hosted on
 github) has been deleted. <https://grr-doc.readthedocs.io> is now GRR's only
