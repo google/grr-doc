@@ -12,6 +12,10 @@ new version.
 
 ## Server
 
+### 3.2.3.2 (Jun 28 2018)
+- This is an off-schedule release that fixes a client-repacking bug introduced
+in v3.2.3.0.
+
 ### 3.2.3.0 (Jun 25 2018)
 - We are planning to deprecate the SQLite datastore in favor of MySQL. Support
 for SQLite will likely get dropped in the coming few releases.
