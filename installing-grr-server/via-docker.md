@@ -17,9 +17,8 @@ docker run \
   --name grr-server \
   -e EXTERNAL_HOSTNAME="localhost" \
   -e ADMIN_PASSWORD="demo" \
-  --ulimit nofile=1048576:1048576 \
   -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
-  grrdocker/grr:v__GRR_VERSION__ grr
+  grrdocker/grr:v__GRR_VERSION__
 ```
 
 Once initialization finishes point your web browser to localhost:8000 and login
@@ -31,28 +30,49 @@ to, “localhost” is only useful for testing.
 
 ADMIN_PASSWORD is the password for the “admin” user in the webui.
 
-`ulimit` makes sure the container doesn’t run out of filehandles, which is
-important for the sharded SQLite DB.
-
 The container will listen on port 8000 for the admin web UI and port 8080 for
 client polls.
 
-If you would like the database and logs to persist longer than the life of the
-container you could use something like
-(this also adds -d to run it as a daemon):
+By default, GRR will be configured to connect to a MySQL instance that is
+already installed in the container. If you would like to connect to a MySQL
+instance running on the host instead (and have GRR's config's and data
+persist beyond the life of the container) here's how you would go about it:
 
-```bash
-mkdir ~/grr-docker
+1. Copy over the initial configs for the server installation from GRR's image
+to the host's filesystem:
+    ```bash
+    mkdir ~/grr-docker
 
-docker run \
-  --name grr-server -v ~/grr-docker/db:/var/grr-datastore \
-  -v ~/grr-docker/logs:/var/log \
-  -e EXTERNAL_HOSTNAME="localhost" \
-  -e ADMIN_PASSWORD="demo" \
-  --ulimit nofile=1048576:1048576 \
-  -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
-  -d grrdocker/grr:v__GRR_VERSION__ grr
-```
+    docker create --name grr-server grrdocker/grr:v__GRR_VERSION__
+
+    docker cp grr-server:/usr/share/grr-server/install_data/etc ~/grr-docker
+
+    docker rm grr-server
+    ```
+
+1. When started with [host networking](https://docs.docker.com/network/host/),
+the container should be able to communicate with the host's MySQL instance:
+
+    ```bash
+    docker run \
+      --network host \
+      -e EXTERNAL_HOSTNAME="localhost" \
+      -e ADMIN_PASSWORD="demo" \
+      -e DISABLE_INTERNAL_MYSQL=true \
+      -e GRR_MYSQL_HOSTNAME=127.0.0.1 \
+      -e GRR_MYSQL_PASSWORD="${ROOT_MYSQL_PASS}" \
+      -v ~/grr-docker/etc:/usr/share/grr-server/install_data/etc \
+       grrdocker/grr:v__GRR_VERSION__
+    ```
+
+   If host networking is not an option (e.g for non-Linux hosts), you need
+to configure the MySQL installation on the host to allow connections from
+Docker before starting the container.
+
+   Besides the environment variables given above, other
+MySQL-related variables that can be specified include
+`GRR_MYSQL_PORT` (default *0*), `GRR_MYSQL_DB` (default *grr*), and
+`GRR_MYSQL_USERNAME` (default *root*).
 
 Note that if you’re running boot2docker on OS X there are a few bugs with
 [docker itself](https://github.com/boot2docker/boot2docker/issues/824) that you
@@ -60,9 +80,15 @@ will probably need to workaround. You’ll likely have to set up port forwards
 for 8000 and 8080 as described
 [here](https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md).
 
-## Running GRR binaries in the Docker container
+## Interactive mode
 
-When using Docker, GRR gets installed into a virtualenv in
+GRR containers can be started interactively with:
+
+```bash
+docker run -it grrdocker/grr:v__GRR_VERSION__ /bin/bash
+```
+
+GRR gets installed into a virtualenv in
 `/usr/share/grr-server`. Thus, the easiest way to run any of the GRR binaries
 inside the Docker container is to activate the virtualenv:
 
@@ -71,4 +97,4 @@ source /usr/share/grr-server/bin/activate
 ```
 
 After that, commands such as `grr_server`, `grr_config_updater`, `grr_console`,
-etc become available on PATH.
+etc become available in the PATH.
