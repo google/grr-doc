@@ -14,11 +14,24 @@ community edition of MySQL from Ubuntu repositories:
     ```
 
     If you have never installed MySQL on the machine before, you will be
-    prompted for a password for the 'root' database user. Typically, you will
-    want to create a new database user for GRR afterwards and give that user
-    access an empty repository that the GRR server installation will use.
-    However, if you want, you may provide the credentials for the root
-    user to GRR instead.
+    prompted for a password for the 'root' database user. After installation
+    completes, you will typically want to create a new database
+    user for GRR and give that user access an empty database that
+    the GRR server installation will use:
+
+    ```bash
+    mysql -u root -p
+    ```
+
+    ```bash
+    mysql> CREATE USER 'grr'@'localhost' IDENTIFIED BY 'password';
+
+    mysql> CREATE DATABASE grr;
+
+    mysql> GRANT ALL ON grr.* TO 'grr'@'localhost';
+    ```
+    Creation of a new user is optional though since GRR can use the credentials
+    of the root user to connect to MySQL.
 
 2. Download the latest server deb from <https://github.com/google/grr/releases>:
 

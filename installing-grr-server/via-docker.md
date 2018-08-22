@@ -55,6 +55,7 @@ the container should be able to communicate with the host's MySQL instance:
 
     ```bash
     docker run \
+      --name grr-server \
       --network host \
       -e EXTERNAL_HOSTNAME="localhost" \
       -e ADMIN_PASSWORD="demo" \
