@@ -125,8 +125,8 @@ of these things to become much less of an issue over time.
 
 ## Why was support for SQLite dropped?
 
-We originally intended SQLite to be used as a casual, easy-setup datastore
-for testing/evaluating GRR. It doesn't really scale, and is hardly fit
+Our intent for SQLite was for it to be used as a casual, easy-setup datastore
+for testing/evaluating GRR. It doesn't scale well, and is not recommended
 for actual production use. When developing GRR's new relational database
 model, we decided it was not worth the engineering effort to build a
 SQLite implementation of the new model.
