@@ -121,15 +121,22 @@ If you want to repack GRR clients, you'll need a prebuilt GRR client templates p
 pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 ```
 
-## Step 8. Initialize GRR.
+## Step 8: Install MySQL
+
+The GRR server components need to connect to a running MySQL instance in order
+to run:
+
+```bash
+apt install -y mysql-server
+```
+
+## Step 9. Initialize GRR.
 
 To initialize the development GRR setup, just run:
 
 ```bash
 grr_config_updater initialize
 ```
-
-Choose SQLite as the datastore and feel free to leave all other options at their default values.
 
 ## Step 9. Run GRR components.
 

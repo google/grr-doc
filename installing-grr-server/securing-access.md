@@ -6,7 +6,7 @@ If you're running GRR for anything besides simple demo purposes, it's extremely 
 
 1. Anybody who has root access to your GRR server effectively becomes root on all systems running GRR client talking to your GRR server.
 
-1. Anybody who has direct write access to GRR datastore (no matter if it's SQLite or MySQL) effectively becomes root on all systems running GRR client talking to your GRR server.
+1. Anybody who has direct write access to GRR datastore effectively becomes root on all systems running GRR client talking to your GRR server.
 
 Consequently, it's important to secure your GRR infrastructure. Please follow a security checklist below.
 

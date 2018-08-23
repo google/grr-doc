@@ -97,9 +97,9 @@ you:
 
   - **Datastore/Storage**: At Google we run GRR on a Bigtable datastore
     (see below for more detail), but we have abstracted things such that
-    using a different datastore is very simple. The SQLite and
-    MySQLAdvanced datastores available to open source are actively used
-    at real scale outside of Google.
+    using a different datastore is very simple. The MySQLAdvanced datastore
+    is available to open source are actively used at real scale outside
+    of Google.
 
   - **Security and privacy**: The open source version has minimal
     controls immediately available for user authentication, multi-party
@@ -123,12 +123,13 @@ Differences will be whittled away over time as the core GRR team runs
 open source GRR deployments themselves. That means you can expect most
 of these things to become much less of an issue over time.
 
-## Should I choose MySQL Advanced or SQLite?
+## Why was support for SQLite dropped?
 
-There are currently two supported datastore options but in the future we will
-only support a relational database model that will run on MySQL. For now, SQLite
-might be a good option for small testing / demo environments by but keep in mind
-that at some point you will want to migrate to MySQL anyways.
+We originally intended SQLite to be used as a casual, easy-setup datastore
+for testing/evaluating GRR. It doesn't really scale, and is hardly fit
+for actual production use. When developing GRR's new relational database
+model, we decided it was not worth the engineering effort to build a
+SQLite implementation of the new model.
 
 ## I heard GRR was designed for Bigtable and now Google has a Cloud Bigtable service. Can I use it?
 
