@@ -128,8 +128,9 @@ of these things to become much less of an issue over time.
 Our intent for SQLite was for it to be used as a casual, easy-setup datastore
 for testing/evaluating GRR. It doesn't scale well, and is not recommended
 for actual production use. When developing GRR's new relational database
-model, we decided it was not worth the engineering effort to build a
-SQLite implementation of the new model.
+model, we decided that continuing to have support for SQLite was not worth
+the engineering effort it would take to build a SQLite implementation of
+the new model.
 
 ## I heard GRR was designed for Bigtable and now Google has a Cloud Bigtable service. Can I use it?
 
