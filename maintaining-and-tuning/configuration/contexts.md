@@ -73,4 +73,4 @@ The following is a non-exhaustive list of available contexts:
   - *Platform:Windows*, *Platform:Linux*, *Platform:Darwin* are set when
     running GRR client under these platforms.
 
-The full list can be seen [here](https://github.com/google/grr/blob/master/grr/config/contexts.py).
+The full list can be seen [here](https://github.com/google/grr/blob/master/grr/core/grr_response_core/config/contexts.py).
