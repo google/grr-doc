@@ -1,7 +1,7 @@
 # Installing GRR Server
 
 * [Overview](overview.md)
-* [Securing access to GRR server (important!)](securing-access.md)
+* [Securing access to GRR server (important)](securing-access.md)
 * [Installing from a release DEB (recommended)](from-release-deb.md)
 * [Installing from a HEAD DEB](from-head-deb.md)
 * [Installing from released PIP packages](from-released-pip.md)

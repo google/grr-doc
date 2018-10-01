@@ -35,7 +35,7 @@ virtualenv GRR_ENV
 
 source GRR_ENV/bin/activate
 
-pip install grr-response-server
+pip install grr-response-server grr-response-client
 
 pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 ```
