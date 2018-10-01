@@ -6,4 +6,5 @@
 * [Hunt Limits, DOs and DONTs](limits.md)
 * [Hunt Controls](controlling-hunts.md)
 * [Working with Hunt results](working-with-results.md)
+* [Rapid hunts](rapid-hunts.md)
 * [Troubleshooting ("Why is my hunt doing nothing?")](troubleshooting.md)
