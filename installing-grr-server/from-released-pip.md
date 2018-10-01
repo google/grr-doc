@@ -60,7 +60,12 @@ If you would like to experiment with the Admin UI or other server components,
 you can launch them from within the virtualenv as follows:
 
 ```bash
+# To run AdminUI.
 grr_server --component admin_ui --verbose
+# To run the worker.
+grr_server --component worker --verbose
+# To run the frontend.
+grr_server --component frontend --verbose
 ```
 
 Note that GRR requires Python 2.7+, so for platforms with older default Python
