@@ -42,9 +42,20 @@ pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-respon
 
 During installation of `grr-response-server`, administrative commands e.g
 `grr_console` and `grr_config_updater` will be added to the virtualenv. After
-installation, you will need to initialize the GRR configuration with
-`grr_config_updater initialize`. Once that is done, you can build a template
-for your platform with:
+installation, you will need to initialize the GRR configuration with:
+
+```bash
+grr_config_updater initialize
+``` 
+
+Once that is done, you can run the server with:
+
+```bash
+grr_server --component frontend --verbose
+grr_server --component worker --verbose
+```
+
+and build a template for your platform with:
 
 ```bash
 grr_client_build build --output mytemplates
