@@ -12,6 +12,49 @@ new version.
 
 ## Server
 
+### 3.2.4.5 (Dec 17 2018)
+- [IMPORTANT] This release is the last GRR release to work on a legacy
+  AFF4-based datastore. Next generation datastore will also work on top of MySQL
+  but will have a completely different schema, meaning that you’ll lose
+  historical data with the next GRR upgrade (unfortunately we can’t provide data
+  migration tools).
+- [IMPORTANT] This release is the last GRR release to still include deprecated
+  Rekall support. It will be removed completely with the next GRR release.
+- Dropped support for SQLite datastores. Current users with SQLite deployments
+  will have to migrate to MySQL when upgrading. Please note that GRR does not
+  offer any functionality for migrating data from SQLite databases to MySQL. The
+  setup process for MySQL datastores has been revamped, and is easier and more
+  intuitive now. Users will have the option of aborting installation if MySQL is
+  not installed on a target system, and GRR will now proactively and
+  transparently attempt to connect to a MySQL instance during initialization.
+- Improvements to the Python package structure.
+- A lot of Python 3-compatibility improvements.
+- Implementation of client-side artifact collector that tremendously improves
+  latency of artifact collection.
+- Tons of small (and not-so-small) bug fixes and code health improvements.
+
+#### API updates
+- Renamed the `task_eta` field of the `ApiClientActionRequest` object to
+  `leased_until`.
+- Got rid of `ListCronJobFlows` and `GetCronJobFlow` in favor of
+  `ListCronJobRuns` and `GetCronJobRun`. `ListCronJobRuns`/`GetCronJobRun`
+  return `ApiCronJobRun` protos instead of `ApiFlow` returned by deleted
+  `ListCronJobFlows`/`GetCronJobFlow`.
+- Changed `CreateCronJob` to accept newly introduced `ApiCreateCronJobArgs`
+  instead of an `ApiCronJob`. `ApiCreateCronJobArgs` only allows to create
+  hunt-based cron jobs.
+- All `ApiFlowRequest` responses do not fill the AFF4 specific
+  `request_state.request` field anymore. Similarly, the `task_id` and `payload`
+  fields in `ApiFlowRequest.responses` objects is not populated anymore starting
+  from this release.
+- Flow log results returned by `ApiListFlowLogsHandler` do not contain the name
+  of the flow the logs are for anymore.
+- The `ListPendingGlobalNotifications` and `DeletePendingGlobalNotification` API
+  methods have been deleted, since GRR no longer supports global notifications.
+  The corresponding protos `ApiListPendingGlobalNotificationsResult` and
+  `ApiDeletePendingGlobalNotificationArgs` have been deprecated.
+
+
 ### 3.2.3.2 (Jun 28 2018)
 - This is an off-schedule release that fixes a client-repacking bug introduced
 in v3.2.3.0.
