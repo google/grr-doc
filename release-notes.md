@@ -12,6 +12,12 @@ new version.
 
 ## Server
 
+### 3.2.4.6 (Dec 20 2018)
+This is just a small off-schedule release with some bugfixes.
+- Fixed a unicode bug that prevented Windows clients with non-latin usernames
+  from checking in.
+- Fixed a bug in the `grr_config_updater generate_keys` command.
+
 ### 3.2.4.5 (Dec 17 2018)
 - [IMPORTANT] This release is the last GRR release to work on a legacy
   AFF4-based datastore. Next generation datastore will also work on top of MySQL
