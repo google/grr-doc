@@ -102,10 +102,11 @@ following commands:
 
 ```bash
 pip install -e ./grr/proto
+pip install -e ./api_client/python
 pip install -e .
-pip install -e ./grr/config/grr-response-server
 pip install -e ./grr/client
-pip install -e ./grr/config/grr-response-test
+pip install -e ./grr/server/[mysqldatastore]
+pip install -e ./grr/test
 ```
 
 The `-e` (or `--editable`) flag passed to `pip` makes sure that the packages
