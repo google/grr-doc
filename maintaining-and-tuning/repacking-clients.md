@@ -43,8 +43,8 @@ For signing to work you need to follow these instructions:
 ### Setting up for RPM signing
 
 Linux RPMs are signed following a similar process to windows. A template
-is built inside the vagrant VM and the host does the repacking and
-signing.
+is built inside a docker container / Vagrant VM and the host does the
+repacking and signing.
 
 To get set up for signing, first you need to create a gpg key that you
 will use for signing ([here’s a decent
@@ -67,10 +67,6 @@ That’s it, you can follow the normal build process.
 
 ### Setting up for Windows EXE signing
 
-Windows licensing means we can’t just simply provide a build vm via
-vagrant as we’ve done for linux. So there’s more hoops to jump through
-here, but it’s as automated as possible.
-
 #### Building Templates
 
 First you need to make sdists from the GRR source (which requires a
@@ -84,17 +80,17 @@ storage bucket name):
 On your Windows/VM with git and the Google cloud SDK installed, run this
 as admin:
 
-```docker
+```powershell
 mkdir C:\grr_src
 git clone https://github.com/google/grr.git C:\grr_src
-C:\grr_src\vagrant\windows\install_for_build.bat
+C:\grr_src\appveyor\windows_templates\install_for_build.bat
 ```
 
 Then as a regular user you can download the sdists and build the
 templates from that:
 
-```docker
-C:\Python27-x64\python.exe C:\grr_src\vagrant\windows\build_windows_templates.py --grr_src=C:\grr_src --cloud_storage_sdist_bucket=mybucketname --cloud_storage_output_bucket=mybucketname
+```powershell
+C:\Python27-x64\python.exe C:\grr_src\appveyor\windows_templates\build_windows_templates.py --grr_src=C:\grr_src --cloud_storage_sdist_bucket=mybucketname --cloud_storage_output_bucket=mybucketname
 ```
 
 Download the built templates and components from cloud storage to your
