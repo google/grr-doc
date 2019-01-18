@@ -64,3 +64,73 @@ before being killed by nanny. However actions that are good citizens
 (normally the dangerous ones) will call the Progress() function
 regularly. This function checks if limit has been exceeded and will
 exit.
+
+## Advanced
+
+The GRR client uses HTTP to communicate with the server.
+
+The client connections are controlled via a number of config parameters:
+
+- Client.error_poll_min: Time to wait between retries in an ERROR state.
+
+- Client.server_urls: A list of URLs for the base control server.
+
+- Client.proxy_servers: A list of proxies to try to connect through.
+
+- Client.poll_max, Client.poll_min: Parameters for timing of SLOW POLL and FAST
+  POLL modes.
+
+The client goes through a state machine:
+
+1) In the INITIAL state, the client has no active server URL or active proxy and
+   it is therefore searching through the list of proxies and connection URLs for
+   one that works. The client will try each combination of proxy/URL in turn
+   without delay until a 200 or a 406 message is seen. If all possibilities are
+   exhausted, and a connection is not established, the client will switch to
+   SLOW POLL mode (and retry connection every Client.poll_max).
+
+2) In SLOW POLL mode the client will wait Client.poll_max between re-connection
+   attempts.
+
+3) If a server is detected, the client will communicate with it. If the server
+   returns a 406 error, the client will send an enrollment request. Enrollment
+   requests are only re-sent every 10 minutes (regardless of the frequency of
+   406 responses). Note that a 406 message is considered a valid connection and
+   the client will not search for URL/Proxy combinations as long as it keep
+   receiving 406 responses.
+
+4) During CONNECTED state, the client has a valid server certificate, receives
+   200 responses from the server and is able to send messages to the server. The
+   polling frequency in this state is determined by the polling mode requested
+   by the messages received or send. If any message from the server or from the
+   worker queue (to the server) has the require_fastpoll flag set, the client
+   switches into FAST POLL mode.
+
+5) When not in FAST POLL mode, the polling frequency is controlled by the
+   Timer() object. It is currently a geometrically decreasing function which
+   starts at the Client.poll_min and approaches the Client.poll_max setting.
+
+6) If a 500 error occurs in the CONNECTED state, the client will assume that the
+   server is temporarily down. The client will switch to the RETRY state and
+   retry sending the data with a fixed frequency determined by
+   Client.error_poll_min to the same URL/Proxy combination. The client will
+   retry for retry_error_limit times before exiting the
+   CONNECTED state and returning to the INITIAL state (i.e. the client will
+   start searching for a new URL/Proxy combination). If a retry is successful,
+   the client will return to its designated polling frequency.
+
+7) If there are connection_error_limit failures, the client will
+   exit. Hopefully the nanny will restart the client.
+
+Examples:
+
+1) Client starts up on a disconnected network: Client will try every URL/Proxy
+   combination once every Client.poll_max (default 10 minutes).
+
+2) Client connects successful but loses network connectivity. Client will re-try
+   retry_error_limit (10 times) every Client.error_poll_min (1 Min) to
+   resent the last message. If it does not succeed it starts searching for a new
+   URL/Proxy combination as in example 1.
+
+See [comms.py](https://github.com/google/grr/blob/master/grr/client/grr_response_client/comms.py)
+for the client implementation.
