@@ -15,9 +15,7 @@ Worker, and Admin UI will be launched on your local machine. Please refer to
 
 1. Install GRR, for example from [pip](../installing-grr-server/from-released-pip.html).
 
-1. Run the GRR components locally. Because the monitoring ports would clash, assign a custom port
-to each service. In a regular setup, where each component runs on a dedicated host, the custom ports
-are not needed. Execute each of the three commands in a separate terminal:
+1. Run the GRR components locally. Execute each of the three commands in a separate terminal:
 
     ```bash
     grr_server --component admin_ui -p Monitoring.http_port=44451
@@ -26,6 +24,11 @@ are not needed. Execute each of the three commands in a separate terminal:
     
     grr_server --component worker -p Monitoring.http_port=44453
     ```
+    
+    Note: Custom monitoring port assignment is only required because the ports would clash when
+    running multiple GRR components on one machine. Prometheus requires to know which type of
+    component listens on which ports. If you use `Monitoring.http_port_max`, make sure that only one
+    type of GRR components (e.g. only workers) listen on a given range of ports. 
 
 1. Open [http://localhost:44451/metrics](http://localhost:44451/metrics) in your browser. You should
 see a plain-text list of metrics.
