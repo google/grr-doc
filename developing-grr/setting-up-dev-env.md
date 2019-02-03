@@ -103,7 +103,7 @@ following commands:
 ```bash
 pip install -e ./grr/proto
 pip install -e ./api_client/python
-pip install -e .
+pip install -e ./grr/core
 pip install -e ./grr/client
 pip install -e ./grr/server/[mysqldatastore]
 pip install -e ./grr/test
