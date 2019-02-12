@@ -9,7 +9,7 @@ First, install the prerequisites:
 ```bash
 sudo apt install -y fakeroot debhelper libffi-dev libssl-dev python-dev \
   python-pip wget openjdk-8-jdk zip git devscripts dh-systemd dh-virtualenv \
-  libc6-i386 lib32z1 asciidoc
+  libc6-i386 lib32z1 asciidoc libmysqlclient-dev
 ```
 
 * Centos:
