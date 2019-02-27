@@ -32,7 +32,7 @@ On each platform, the client binary should support the following options:
 
 - --verbose: This will set higher logging allowing you to see what is
 going on.
-- --debug: If set, and an unhandled error occurs in the client,
+- --pdb_post_mortem: If set, and an unhandled error occurs in the client,
 the client will break into a pdb debugging shell.
 
 ```docker
