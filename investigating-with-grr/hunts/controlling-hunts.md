@@ -17,7 +17,7 @@ restart them after you have removed the client limit (see modify below).
 
 ### Stop a Hunt
 
-![stop button](../../images/icons/stop_button.png)
+![stop button](../../images/icons/stop.png)
 
 Stopping a hunt will prevent new clients from being scheduled and
 interrupt in-progress flows the next time they change state. This is a
