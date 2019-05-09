@@ -17,6 +17,7 @@ docker run \
   --name grr-server \
   -e EXTERNAL_HOSTNAME="localhost" \
   -e ADMIN_PASSWORD="demo" \
+  -v /var/lib/mysql \
   -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
   grrdocker/grr:v__GRR_VERSION__
 ```
