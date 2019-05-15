@@ -31,7 +31,7 @@ If your server install went successfully, the clients should have been uploaded
 to the server with working configurations, and should be available in
 the Admin UI.
 
-Look on the left for "Manage Binaries", the files should be in the
+Click on "Binaries" in the left menu. The files should be in the
 executables directory, under installers.
 
 ![Screenshot](../images/client-installers.png)

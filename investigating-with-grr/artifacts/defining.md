@@ -28,7 +28,7 @@ of the artifact repository and add all of the YAML definitions into GRR’s
 directory. Running `python setup.py build` will have the same effect. The new
 artifacts will be available once the server is restarted.
 
-Artifacts can also be uploaded via the Artifact Manager GUI and used immediately
+Artifacts can also be uploaded via the Artifacts GUI and used immediately
 without the need for a restart.
 
 ### Local definitions
