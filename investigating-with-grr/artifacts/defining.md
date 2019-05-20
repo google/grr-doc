@@ -42,10 +42,9 @@ repository.
 ### Flow templates
 
 We currently support using the artifact format to call GRR-specific
-functionality, such as invoking a GRR client action, listing processes or
-running a rekall plugin. Such "artifacts" are called *flow templates* and since
-they are GRR-specific they remain in the GRR repository in the
-`grr/artifacts/flow_templates` directory.
+functionality, such as invoking a GRR client action or listing processes. Such
+"artifacts" are called *flow templates* and since they are GRR-specific they
+remain in the GRR repository in the `grr/artifacts/flow_templates` directory.
 
 This is a temporary working name. We intend to rework this functionality into a
 more general, powerful and configurable way to call GRR from YAML.

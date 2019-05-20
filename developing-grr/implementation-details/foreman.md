@@ -10,13 +10,12 @@ of clients.
 
 The foreman maintains a list of rules, if the rule matches a client when
 it checks in, the specified flow will execute on the client. The rules
-work against AFF4 attributes allowing for things like "All XP Machines"
+work against client attributes allowing for things like "All XP Machines"
 or "All OSX machines installed after 01.01.2011". For more information
 see the section about [hunt rules](../../../investigating-with-grr/hunts/rules/).
 
-The foreman check-in request is a special request made by the client
-that communicates with a Well Known Flow (W:Foreman). When the server
-sees this request it does the following:
+The foreman check-in request is a special request made by the client. When the
+server sees this request it does the following:
 
 1.  Determines how long since this client did a Foreman check-in.
 

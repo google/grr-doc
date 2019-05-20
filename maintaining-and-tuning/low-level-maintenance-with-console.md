@@ -12,11 +12,9 @@ In cases when there's no proper tool or UI or API for performing a certain task,
 ### Delete a client from the database
 
 ```python
-In [1]: client = o("C.0a2d3036f8e0c4be")
-
-In [2]: print client.Get(client.Schema.HOSTNAME)
+In [1]: print data_store.REL_DB.ReadClientSnapshot(u"C.83558528f50f993e").knowledge_base.fqdn
 example.host.com
 
-In [3]: aff4.FACTORY.Delete("C.0a2d3036f8e0c4bf")
+In [2]: data_store.REL_DB.DeleteClient(self, u"C.83558528f50f993e")
 
 ```

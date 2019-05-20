@@ -21,12 +21,12 @@ The pathspec is just a collection of arguments which make sense to the
 specific VFS handler. The type of the handler is carried by the pathtype
 parameter:
 
-  - pathtype: OS  
+  - pathtype: OS
     Implemented by the grr.client.vfs\_handlers.file module is a VFS
     Handler for accessing files through the normal operating system
     APIs.
 
-  - pathtype: TSK  
+  - pathtype: TSK
     Implemented by the grr.client.vfs\_handlers.sleuthkit module is a
     VFS Handler for accessing files through the sleuthkit. This Handle
     depends on being passed a raw file like object, which is interpreted
@@ -123,12 +123,11 @@ constructions (e.g. pathtype: uuid) for all clients.
 
 ## Life of a client pathspec request
 
-How are the pathspecs sent to the client and how are they related to the
-aff4 system. The figure below illustrates a typical request - in this
-case to list a directory:
+The figure below illustrates a typical request to the client - in this case to
+list a directory:
 
 1.  A ListDirectory Flow is called with a pathspec of:
-    
+
         path: c:\docume~1\bob\
         pathtype: OS
 
@@ -137,28 +136,24 @@ case to list a directory:
 
 3.  Client calls VFSOpen(pathspec) which opens the file, and corrects
     the pathspec to:
-    
+
         path: c:\Documents and Settings\Bob\
         pathtype: OS
 
 4.  Client returns StatResponse for this directory with the corrected
     pathspec.
 
-5.  The client AFF4 object maps the pathspec to an AFF4 hierarchy in the
-    AFF4 space. The server flow converts from client pathspec to the
-    aff4 URN for this object using the PathspecToURN() API. In this case
-    a mapping is created for files read through the OS apis under
-    **/fs/os/**. Note that the AFF4 URN created contains the case
-    corrected - expanded pathspec:
-    
-        urn = GRRClient.PathspecToURN(pathspec)
-        urn = aff4:/C.12345/fs/os/c/Documents and Settings/Bob
+5.  The client response maps to a defined location in the server data store. In
+    this case a mapping is created for files read through the OS apis using the
+    OS path type. Note that the path to access the created files contains the
+    case corrected client paths:
+
+        /fs/os/c/Documents and Settings/Bob
 
 6.  The server now creates this object, and stores the corrected
-    pathspec as a STAT AFF4 attribute.
+    pathspec as an attribute.
 
-Client pathspec conversions can be expensive so the next time the server
-uses this AFF4 object for a client request, the server can simply return
-the client the corrected pathspec. The corrected pathspec has the
-LITERAL option enabled which prevents the client from applying any
-corrections.
+Client pathspec conversions can be expensive so the next time the server uses
+this object for a client request, the server can simply return the client the
+corrected pathspec. The corrected pathspec has the LITERAL option enabled which
+prevents the client from applying any corrections.
