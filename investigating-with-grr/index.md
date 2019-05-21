@@ -12,6 +12,5 @@
 * [Osquery](osquery.md)
 * [Automation with GRR API](automation-with-api.md)
 * [Emergency Code and Binary Pushes](pushing-code.md)
-* [Importing the NSRL](importing-nsrl.md)
 * [Glossary](glossary.md)
 
