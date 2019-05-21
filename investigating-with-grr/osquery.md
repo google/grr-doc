@@ -31,7 +31,7 @@ Note that it does not really matter whether you use `osqueryi` or `osqueryd`, bo
 Investigating
 -------------
 
-To run a query on the desired client, simply start a new flow under "Collectors > Osquery". The flow itself is very simple with "query" field being the important one. For example, to run a simple query that list all the processes, you can use the following:
+To run a query on the desired client, simply start a new flow under "Collectors > Osquery". The flow itself is very simple with "query" field being the important one. For example, to run a simple query that lists all the processes, you can use the following:
 
 ```
 SELECT * FROM processes;
