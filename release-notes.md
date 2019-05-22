@@ -12,6 +12,38 @@ new version.
 
 ## Server
 
+### 3.3.0.0 (May 22 2019)
+
+- [IMPORTANT] This is the first GRR release that works with the 
+  **new relational data model**. The legacy, AFF4-based data store is still available 
+  in this release but new GRR setups are encouraged to switch to the relational 
+  data store. Please see the [documentation](https://grr-doc.readthedocs.io/en/v3.3.0/maintaining-and-tuning/grr-datastore.html)
+  for details.
+- Rekall memory forensics support has been dropped from GRR. GRR still offers process
+  memory acquisition and process memory scanning using the Yara library.
+- This release contains basic osquery integration for clients that have osquery 
+  preinstalled.
+- Custom monitoring code was removed in favor of prometheus.io integration.
+- Tons of small (and not-so-small) bug fixes and code health improvements.
+- API updates
+    - *ListFlowOutputPluginsLogs*, *ListFlowOutputPluginErrors*, 
+      *ListHuntOutputPluginLogs* and *ListHuntOutputPluginErrors* API calls now always 
+      report *batch_index* and *batch_size* as 0 and no longer include *PluginDescriptor*
+      into the reply.
+    - *ListHuntCrashes* method no longer accepts the "filter" argument.
+    - *ListHunts* no longer fills the "total_count" attribute of *ApiListHuntsResult*.
+    - The *ApiHunt* protobuf no longer has an *expires* field. Instead, a *duration* 
+      field has been added which can be used to calculate the expiration date as 
+      *start_time + duration*. Note that if the hunt hasn't been started, it does not 
+      have a *start_time* and, in consequence, it does not have an expiry time either.
+    - The *ApiModifyHuntArgs* protobuf no longer has an *expires* field. Instead,
+      a *duration* field has been added.
+    - The artifact field of *ApiUploadArtifactArgs* no longer accepts an arbitrary
+      byte stream but only proper strings. Since this field is ought to be the artifact
+      description in the YAML format and YAML is required to be UTF-8 encoded, it makes
+      no sense to accept non-unicode objects.
+
+
 ### 3.2.4.6 (Dec 20 2018)
 This is just a small off-schedule release with some bugfixes.
 - Fixed a unicode bug that prevented Windows clients with non-latin usernames
