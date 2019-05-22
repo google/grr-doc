@@ -55,7 +55,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'GRR'
-copyright = u'2018, GRR team'
+copyright = u'2019, GRR team'
 author = u'GRR team'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -181,8 +181,8 @@ class ProcessLink(transforms.Transform):
     default_priority = 1000
 
     text_replacements = {
-        "__GRR_VERSION__": "3.2.4.6",
-        "__GRR_DEB_VERSION__": "3.2.4-6"
+        "__GRR_VERSION__": "3.3.0.0",
+        "__GRR_DEB_VERSION__": "3.3.0-0"
     }
 
     def find_replace(self, node):

@@ -27,6 +27,12 @@ The GRR client **is not a server component** but it comes bundled with GRR serve
 #### Datastore
 The data store acts both as a central storage component for data, and as a communication mechanism for all GRR server components.
 
+***Note on the AFF4 datastore deprecation***
+
+*Starting from the version ***3.3.0.0*** GRR uses a new datastore format by default - ***REL_DB***. REL_DB is backwards-incompatible with the now-deprecated AFF4 datastore format (even though they both use MySQL as a backend).*
+
+*Use of AFF4-based deployments is now discouraged. REL_DB is expected to be much more stable and performant. Please see [these docs](../maintaining-and-tuning/grr-datastore.md) if you're upgrading an older GRR version and would like to try out the new datastore.*
+
 #### Front End Servers
 The front end servers' main task is to decrypt POST requests from the client, un-bundle the contained messages and queue these on the data store. The front end also fetches any messages queued for the client and sends them to the client.
 
