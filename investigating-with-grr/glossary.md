@@ -2,9 +2,9 @@
 
 ## AFF4
 
-AFF4 is the data model used for storage in GRR, with some minor extensions. You
-can read about the usage in the [GRR paper][grr-paper] linked above and there is
-additional documentation on [Forensics Wiki][fw-aff4].
+AFF4 was the data model used for storage in GRR that has since been
+deprecated. You can read about the usage in the [GRR paper][grr-paper] linked
+above and there is additional documentation on [Forensics Wiki][fw-aff4].
 
 ## Agent
 
