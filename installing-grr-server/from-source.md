@@ -1,9 +1,3 @@
-***Note on the AFF4 datastore deprecation***
-
-*Starting from the version ***3.3.0.0*** GRR uses a new datastore format by default - ***REL_DB***. REL_DB is backwards-incompatible with the now-deprecated AFF4 datastore format (even though they both use MySQL as a backend).*
-
-*Use of AFF4-based deployments is now discouraged. REL_DB is expected to be much more stable and performant. Please see [these docs](../maintaining-and-tuning/grr-datastore.md) if you're upgrading an older GRR version and would like to try out the new datastore.*
-
 # Installing from source
 
 Here's how to install GRR for development (from github HEAD):
