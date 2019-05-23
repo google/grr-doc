@@ -32,7 +32,7 @@ deployed on the system by using the debian package builder on linux,
 creating a self extracting zip on Windows, or creating an installer package on OSX.
 
 After running the repack you should have binaries available in the UI
-under manage binaries → installers and also on the filesystem under `grr/executables`.
+under Binaries → installers and also on the filesystem under `grr/executables`.
 
 ## Repacking Clients: Signing installer binaries
 

@@ -55,7 +55,7 @@ grr_config_updater upload_python --file=myfile.py --platform=windows
 ```
 
 The uploaded files live by convention in python\_hacks\<platform> and are
-viewable in the Manage Binaries section of the Admin UI.
+viewable in the "Binaries" section of the Admin UI.
 
 The ExecutePythonHack Flow is provided for executing the file on a
 client. This is visible in the Admin UI under Administrative flows if
