@@ -11,7 +11,7 @@ To start, install the GRR server deb as described
 
 On successful installation, you should have an admin interface running on port
 8000 by default. Open the Admin UI in a browser, navigate to
-Manage Binaries -> Executables
+Binaries -> Executables
 (details [here](deploying-grr-clients/overview.md)) and download the installer
 you need.
 

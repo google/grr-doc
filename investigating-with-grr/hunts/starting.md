@@ -2,7 +2,7 @@
 
 ### Manual Hunt Creation ###
 
-You can create a new Hunt in the Hunt Manager section of the UI. To
+You can create a new Hunt in the Hunts section of the UI. To
 create a Hunt:
 
 1. Click the + button
