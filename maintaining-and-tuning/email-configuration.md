@@ -14,7 +14,7 @@ Edit ```/etc/grr/server.local.yaml``` to include the following at the end of the
 
 ``` yaml
 Worker.smtp_server: <server>
-Worker.smpt_port: <port>
+Worker.smtp_port: <port>
 ```
 
 and, if needed,

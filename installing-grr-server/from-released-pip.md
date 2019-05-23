@@ -1,9 +1,15 @@
+***Note on the AFF4 datastore deprecation***
+
+*Starting from the version ***3.3.0.0*** GRR uses a new datastore format by default - ***REL_DB***. REL_DB is backwards-incompatible with the now-deprecated AFF4 datastore format (even though they both use MySQL as a backend).*
+
+*Use of AFF4-based deployments is now discouraged. REL_DB is expected to be much more stable and performant. Please see [these docs](../maintaining-and-tuning/grr-datastore.md) if you're upgrading an older GRR version and would like to try out the new datastore.*
+
 # Installing from released PIP packages
 
 If the templates included in release server debs are not
 compatible with the platform you would like to run them on,
 you have the option of installing GRR from PIP on your target platform, then
-building your own installers.
+building your own.
 
 First, install the prerequisites:
 
@@ -28,23 +34,17 @@ Next, upgrade pip and install virtualenv:
 sudo pip install --upgrade pip virtualenv
 ```
 
-Next, create a virtualenv and install the GRR server and template packages:
+Next, create a virtualenv and install the GRR client-builder package:
 
 ```bash
 virtualenv GRR_ENV
 
 source GRR_ENV/bin/activate
 
-pip install grr-response-server grr-response-client
-
-pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
+pip install grr-response-client-builder
 ```
 
-During installation of `grr-response-server`, administrative commands e.g
-`grr_console` and `grr_config_updater` will be added to the virtualenv. After
-installation, you will need to initialize the GRR configuration with
-`grr_config_updater initialize`. Once that is done, you can build a template
-for your platform with:
+Once that is done, you can build a template for your platform with:
 
 ```bash
 grr_client_build build --output mytemplates
@@ -56,8 +56,10 @@ and repack it with:
 grr_client_build repack --template mytemplates/*.zip --output_dir mytemplates
 ```
 
-If you would like to experiment with the Admin UI or other server components,
-you can launch them from within the virtualenv as follows:
+If you would like to experiment with GRR's server components, you will need
+to first install the `grr-response-server` pip package. Administrative
+commands such as as `grr_server` and `grr_config_updater` will be added to
+the virtualenv. You can then launch the server components as follows:
 
 ```bash
 # To run AdminUI.
