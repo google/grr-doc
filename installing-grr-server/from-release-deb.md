@@ -30,14 +30,18 @@ community edition of MySQL from Ubuntu repositories:
     ```
 
     ```bash
+    mysql> SET GLOBAL max_allowed_packet=20971520;
+
     mysql> CREATE USER 'grr'@'localhost' IDENTIFIED BY 'password';
 
     mysql> CREATE DATABASE grr;
 
     mysql> GRANT ALL ON grr.* TO 'grr'@'localhost';
     ```
-    Creation of a new user is optional though since GRR can use the credentials
-    of the root user to connect to MySQL.
+    Please note: GRR is senstive to the MySQL's `max_allowed_packet` setting.
+    Make sure it's not lower than 20971520. Creation of a new user is optional
+    though since GRR can use the credentials of the root user to connect to
+    MySQL.
 
 2. Download the latest server deb from <https://github.com/google/grr/releases>:
 
