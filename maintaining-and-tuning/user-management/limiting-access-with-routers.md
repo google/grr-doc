@@ -50,3 +50,23 @@ users:
 ```
 
 **NOTE**: for example, you can set up user 'john' as a robot user, so that his credentials are used by scripts talking to the GRR API.
+
+
+Sample api_acls.yaml:
+
+```
+router: "ApiCallRobotRouter"
+users:
+   - "serviceAccount1"
+
+router: "ApiCallRouterWithApprovalChecks"
+users:
+  - "test"
+  - "test2"
+
+router: "ApiCallRouterWithoutChecks"
+users:
+  - "adminuser1"
+  - "adminuser2"
+
+```
