@@ -2,50 +2,57 @@
 
 ## Concept
 
-GRR has a concept of users of the system. The GUI supports authentication and this verfication of user identity is used in all auditing functions (so for example GRR can properly record which user accessed which client, and who executed flows on clients).
+GRR has a concept of users of the system. The GUI supports basic authentication and this verfication of user identity is used in all auditing functions (so for example GRR can properly record which user accessed which client, and who executed flows on clients). **There is no logout button. To change users you will need to invalidate your session**
 
-A GRR user may be marked as "admin". This is only important if the [approval-based workflow](../approval-based-auditing.md) is turned on, since only "admin" users can approve hunts.
+A GRR user wull be created as an admin by default. This is only important if the [approval-based workflow](../approval-based-auditing.md) is turned on, since only "admin" users can approve hunts. We are aware of a bug that all users are created with admin permissions, however, the approval system is the authority for access across GRR, when enabled.  
 
 To add the user joe as an admin:
 
-```docker   
+```   
 db@host:~$ sudo grr_config_updater add_user joe
 Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
 Please enter password for user 'joe':
 Updating user joe
 
 Username: joe
-Labels:
 Password: set
 ```
 
 To list all users:
 
-```docker
+```
 db@host:~$ sudo grr_config_updater show_user
 Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
 
 Username: test
-Labels:
-Password: set
-
-Username: admin
-Labels: admin
-Password: set
+Is Admin: True
 ```
 
-To update a user (useful for setting labels or for changing passwords):
+To update a user password:
 
-```docker
-db@host:~$ sudo grr_config_updater update_user joe --add_labels admin,user
+```
+db@host:~$ sudo grr_config_updater update_user joe --password
 Using configuration <ConfigFileParser filename="/etc/grr/grr-server.conf">
 Updating user joe
 
 Username: joe
-Labels: admin,user
-Password: set
+Is Admin: True
 ```
+Available commands are (--admin is currently not functional in v3.3.0.0):
 
+```
+usage: grr_config_updater update_user [-h] [--helpfull] [--password] [--admin]
+                                      username
+
+positional arguments:
+  username    Username to update.
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --helpfull  show full help message and exit
+  --password  Reset the password for this user (will prompt for password).
+  --admin     Make the user an admin, if they aren't already.
+```
 ## Authentication
 
 The AdminUI uses HTTP Basic Auth authentication by default, based on the passwords within
