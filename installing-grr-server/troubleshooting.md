@@ -3,6 +3,14 @@
 This page describes common issues encountered when installing the GRR
 server components.
 
+## OperationalError: Access denied; you need (at least one of) the SUPER privilege(s) for this operation
+
+MySQL server used by GRR has `max_allowed_packet` setting that's too low. It has to be at
+least 20971520. If the setting is lower, GRR tries to execute 
+`SET GLOBAL max_allowed_packet=20971520;` statement and fails if it doesn't have enough
+privileges. To mitigate the issue, change the MySQL server's `max_allowed_packet` setting
+(by executing the statement above by a user with enough privileges, for example).
+
 ## ImportError: cannot import name jobs_pb2 or similar
 
 If you see "ImportError: cannot import name jobs_pb2" or a similar error for any
