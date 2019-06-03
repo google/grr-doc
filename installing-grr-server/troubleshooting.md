@@ -62,3 +62,9 @@ Travis jobs for GRR's github repository use
 [this](https://github.com/google/grr/blob/master/travis/install_protobuf.sh)
 script to install protobuf. Older versions of protobuf may not be compatible
 with the GRR version you are trying to install.
+
+## System-wide Python packages
+To avoid version conflicts with the GRR server's Python environment (such
+as [this one](https://github.com/google/grr/issues/704)), we
+recommend using virtualenvs wherever possible on machines where GRR
+server components are to be installed.
