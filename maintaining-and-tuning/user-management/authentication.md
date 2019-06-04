@@ -2,7 +2,7 @@
 
 ## Concept
 
-GRR has a concept of users of the system. The GUI supports basic authentication and this verfication of user identity is used in all auditing functions (so for example GRR can properly record which user accessed which client, and who executed flows on clients). **There is no logout button. To change users you will need to invalidate your session**
+GRR has a concept of users of the system. The GUI supports basic authentication and this verfication of user identity is used in all auditing functions (so for example GRR can properly record which user accessed which client, and who executed flows on clients). **There is no logout button. To change users you will need to invalidate your session.**
 
 A GRR user wull be created as an admin by default. This is only important if the [approval-based workflow](../approval-based-auditing.md) is turned on, since only "admin" users can approve hunts. We are aware of a bug that all users are created with admin permissions, however, the approval system is the authority for access across GRR, when enabled.  
 
