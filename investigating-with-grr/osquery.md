@@ -28,6 +28,9 @@ Platform:Windows:
 
 Note that it does not really matter whether you use `osqueryi` or `osqueryd`, both should work just fine.
 
+*Make sure you repack/redeploy GRR clients after the Osquery.path configuration setting is updated.*
+
+
 Investigating
 -------------
 
