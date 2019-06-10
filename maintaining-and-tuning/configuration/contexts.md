@@ -17,26 +17,26 @@ the configuration system, the configuration system considers the
 currently running context and returns the appropriate value of the
 required parameter.
 
-For example, consider the parameter `Logging.path` which specifies the
+For example, consider the parameter `Logging.filename` which specifies the
 location of the log file. In a full GRR installation, we wish the GRR Admin
 UI to log to `/var/log/grr/adminui.log` while the frontend should log to
 `/var/log/grr/frontend.log`. We can therefore specify in the YAML config
 file:
 
 ``` yaml
-Logging.path: /var/log/grr/grr_server.log
+Logging.filename: /var/log/grr/grr_server.log
 
 AdminUI Context:
-  Logging.path: /var/log/grr/adminui.log
+  Logging.filename: /var/log/grr/adminui.log
 
 Frontend Context:
-  Logging.path: /var/log/grr/httpserver.log
+  Logging.filename: /var/log/grr/httpserver.log
 
 Client Context:
-  Logging.path: /var/log/grr/grr_client.log
+  Logging.filename: /var/log/grr/grr_client.log
 
   Platform:Windows:
-    Logging.path: c:\\windows\\system32\\grr.log
+    Logging.filename: c:\\windows\\system32\\grr.log
 ```
 
 When the *AdminUI* program starts up, it populates its context with
