@@ -12,6 +12,10 @@ new version.
 
 ## Server
 
+### 3.3.0.2 (June 28 2019)
+
+Just a small bug-fix release (e.g. problem with escaping path backslashes in MySQL backend).
+
 ### 3.3.0.0 (May 22 2019)
 
 - [IMPORTANT] This is the first GRR release that works with the 
