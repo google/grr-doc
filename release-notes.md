@@ -12,6 +12,12 @@ new version.
 
 ## Server
 
+### 3.3.0.3 (July 1 2019)
+
+Minor bug-fix release.
+
+- Resolved an issue with client labels removal [#716](https://github.com/google/grr/issues/716).
+
 ### 3.3.0.2 (June 28 2019)
 
 Just a small bug-fix release.
