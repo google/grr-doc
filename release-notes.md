@@ -12,6 +12,21 @@ new version.
 
 ## Server
 
+### 3.3.0.3 (July 1 2019)
+
+Minor bug-fix release.
+
+- Resolved an issue with client labels removal [#716](https://github.com/google/grr/issues/716).
+
+### 3.3.0.2 (June 28 2019)
+
+Just a small bug-fix release.
+
+- Resolved stability issues in the MySQL backend [#712](https://github.com/google/grr/issues/712).
+- Improved hostname handling [#713](https://github.com/google/grr/issues/713).
+- Resolved `BigQueryOutputPlugin` failures [#714](https://github.com/google/grr/issues/714).
+- Fixed issues with escaping path backslashes [#715](https://github.com/google/grr/issues/715).
+
 ### 3.3.0.0 (May 22 2019)
 
 - [IMPORTANT] This is the first GRR release that works with the 
