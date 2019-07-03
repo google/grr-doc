@@ -12,6 +12,12 @@ new version.
 
 ## Server
 
+### 3.3.0.4 (July 3 2019)
+
+Minor bug-fix release.
+
+- Resolved an issue with client approvals [#719](https://github.com/google/grr/issues/719).
+
 ### 3.3.0.3 (July 1 2019)
 
 Minor bug-fix release.
