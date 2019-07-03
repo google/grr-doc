@@ -16,7 +16,9 @@ new version.
 
 Minor bug-fix release.
 
-- Resolved an issue with client approvals [#719](https://github.com/google/grr/issues/719).
+- Resolved an issue with approvals [#719](https://github.com/google/grr/issues/719).
+- Resolved an issue with AdminUI failing when notification button was clicked, 
+  but no unread notifications were present.
 
 ### 3.3.0.3 (July 1 2019)
 
