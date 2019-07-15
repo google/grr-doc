@@ -15,6 +15,6 @@ In cases when there's no proper tool or UI or API for performing a certain task,
 In [1]: print data_store.REL_DB.ReadClientSnapshot(u"C.83558528f50f993e").knowledge_base.fqdn
 example.host.com
 
-In [2]: data_store.REL_DB.DeleteClient(self, u"C.83558528f50f993e")
+In [2]: data_store.REL_DB.DeleteClient(u"C.83558528f50f993e")
 
 ```
