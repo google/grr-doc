@@ -18,3 +18,14 @@ example.host.com
 In [2]: data_store.REL_DB.DeleteClient(u"C.83558528f50f993e")
 
 ```
+
+### Delete all signed binaries from the database
+
+```python
+In [1]: ids = data_store.REL_DB.ReadIDsForAllSignedBinaries()
+
+In [2]: for i in ids:
+   ...:     data_store.REL_DB.DeleteSignedBinaryReferences(i)
+   ...:     
+
+```
