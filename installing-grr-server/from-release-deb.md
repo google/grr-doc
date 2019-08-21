@@ -30,7 +30,7 @@ community edition of MySQL from Ubuntu repositories:
     ```
 
     ```bash
-    mysql> SET GLOBAL max_allowed_packet=20971520;
+    mysql> SET GLOBAL max_allowed_packet=41943040;
 
     mysql> CREATE USER 'grr'@'localhost' IDENTIFIED BY 'password';
 
