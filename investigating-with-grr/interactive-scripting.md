@@ -2,7 +2,7 @@
 
 GRR Colab is an alternative GRR API that allows you to work with GRR 
 interactively. It is represented as IPython extension and can be used with 
-IPython itself, Jupyter or Colaboratory. 
+[IPython][ipython] itself, [Jupyter][jupyter] or [Colaboratory][colab].
 
 ## Extension API
 
@@ -40,4 +40,7 @@ right after creating new Jupyter notebook or starting new IPython session.
 `%load_ext grr_colab.ipython_extension` command in you Jupyter notebook or 
 IPython terminal.
 
+[jupyter]: https://jupyter.org/
+[ipython]: https://ipython.org/
+[colab]: https://colab.research.google.com/
 [jupyter-notebook]: https://nbviewer.jupyter.org/github/google/grr/blob/master/colab/examples/demo.ipynb
