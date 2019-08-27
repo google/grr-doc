@@ -24,7 +24,6 @@ GRR is open source (Apache License 2.0) and is developed on GitHub: [github.com/
 * [Deploying GRR clients](deploying-grr-clients/index.md)
 * [Investigating with GRR](investigating-with-grr/index.md)
 * [Maintaining and tuning GRR deployment](maintaining-and-tuning/index.md)
-* [Interactive scripting](interactive-scripting.md)
 * [Developing GRR](developing-grr/index.md)
 * [Release Notes](release-notes.md)
 * [F.A.Q](faq.md)
