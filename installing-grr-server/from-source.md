@@ -42,15 +42,6 @@ git clone https://github.com/google/grr.git
 cd grr
 ```
 
-If protoc is already installed, make sure it is present in the PATH, or
-set the environment variable PROTOC to the full path of the protoc binary.
-
-If protoc is not installed, download it with:
-
-```bash
-travis/install_protobuf.sh linux
-```
-
 Finally, create a virtualenv at $HOME/INSTALL and install GRR in the virtualenv:
 
 ```bash
