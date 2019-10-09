@@ -12,6 +12,16 @@ new version.
 
 ## Server
 
+### 3.3.0.8 (October 9 2019)
+
+**NOTE: Last Python 2-based release: further releases are expected to be Python 3-only.**
+
+Minor bug-fix release. 
+
+- A number of REL_DB issues discovered since the last release fixed.
+- YARA scanning fixes and enhancements.
+- Using latest (in most cases) versions of dependencies (applies to both Python and JS).
+
 ### 3.3.0.4 (July 3 2019)
 
 Minor bug-fix release.
