@@ -34,9 +34,11 @@ ADMIN_PASSWORD is the password for the “admin” user in the webui.
 The container will listen on port 8000 for the admin web UI and port 8080 for
 client polls.
 
+### Advanced usage (non-ephemeral configs; external MySQL instance)
+
 By default, GRR will be configured to connect to a MySQL instance that is
 already installed in the container. If you would like to connect to a MySQL
-instance running on the host instead (and have GRR's config's and data
+instance running on the host instead (and have GRR's configs and data
 persist beyond the life of the container) here's how you would go about it:
 
 1. Copy over the initial configs for the server installation from GRR's image
@@ -78,7 +80,7 @@ MySQL-related variables that can be specified include
 
 Note that if you’re running boot2docker on OS X there are a few bugs with
 [docker itself](https://github.com/boot2docker/boot2docker/issues/824) that you
-will probably need to workaround. You’ll likely have to set up port forwards
+will probably need to work around. You’ll likely have to set up port forwards
 for 8000 and 8080 as described
 [here](https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md).
 
