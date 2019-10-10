@@ -82,6 +82,7 @@ will probably need to workaround. You’ll likely have to set up port forwards
 for 8000 and 8080 as described
 [here](https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md).
 
+
 ## Interactive mode
 
 GRR containers can be started interactively with:
@@ -100,3 +101,42 @@ source /usr/share/grr-server/bin/activate
 
 After that, commands such as `grr_server`, `grr_config_updater`, `grr_console`,
 etc become available in the PATH.
+
+## Building custom docker images (Advanced)
+
+You should only attempt this after reading GRR's
+[Dockerfile](https://github.com/google/grr/blob/master/Dockerfile) to understand
+how GRR's CI workflows build docker images.
+
+1. Check out GRR's source code:
+
+    ```bash
+    git clone https://github.com/google/grr
+    ```
+
+1. Make the changes you want to make to the Dockerfile, or related scripts.
+It is important to note that by default, GRR gets installed in the image from
+pre-built pip sdists hosted in Google Cloud Storage (so client or server code
+changes you make in your local repository will not be applied to the custom
+image).
+
+1. Identify the commit for which you would like to fetch pre-built client
+and server pip sdists. For HEAD, that would be the output of:
+
+    ```bash
+    git rev-parse HEAD
+    ```
+
+1. cd to the root of GRR's repository if not already there, then build your
+custom image with:
+
+    ```bash
+    docker build \
+      -t grrdocker/grr:custom \
+      --build-arg GCS_BUCKET=autobuilds.grr-response.com \
+      --build-arg GRR_COMMIT=${GRR_COMMIT_SHA} \
+      .
+    ```
+
+    The image above will be tagged `grrdocker/grr:custom`, but you are free to
+use whatever tag you like.
