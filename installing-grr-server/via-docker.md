@@ -106,9 +106,10 @@ etc become available in the PATH.
 
 ## Building custom docker images (Advanced)
 
-You should only attempt this after reading GRR's
-[Dockerfile](https://github.com/google/grr/blob/master/Dockerfile) to understand
-how GRR's CI workflows build docker images.
+It is advisable to read GRR's
+[Dockerfile](https://github.com/google/grr/blob/master/Dockerfile) in order to
+get an understanding of how GRR's CI workflows build docker images before
+attempting this.
 
 1. Check out GRR's source code:
 
