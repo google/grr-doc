@@ -8,8 +8,8 @@ archive of data that has been gathered from machines.
 
 ## Root Privileges
 
-The GRR client agent normally runs as root, and by design is capable of read any
-data on the system. Furthermore some flows can use quite a lot of resources on
+The GRR client agent normally runs as root, and by design is capable of reading any
+data on the system. Furthermore some flows can use significant resources on
 client (e.g. searching a large directory recursively) and in fact the GRR agent
 does have the ability to download and execute server provided code, though the
 code does need to be signed.
