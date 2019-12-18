@@ -12,6 +12,14 @@ new version.
 
 ## Server
 
+### 3.4.0.1 (December 18 2019)
+
+**This is a first fully Python 3-based release.**
+
+- GRR server debian package now has to be installed on Ubuntu 18.
+- UpdateClient flow fixed for Ubuntu clients (see https://github.com/google/grr/issues/720).
+- A number of bugfixes and minor enhancements for YARA memory scanning.
+
 ### 3.3.0.8 (October 9 2019)
 
 **NOTE: Last Python 2-based release: further releases are expected to be Python 3-only.**
