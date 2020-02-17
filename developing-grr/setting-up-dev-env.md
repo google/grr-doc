@@ -16,13 +16,13 @@ cd grr/
 
 Make sure that you have `virtualenv` installed. It should be available in
 repositories of all popular Linux distributions. For example, to install it on
-Ubuntu-based distros simply run:
+Ubuntu-based distros, run:
 
 ```bash
 sudo apt install virtualenv
 ```
 
-To create a virtual environment you just execute the `virtualenv $DIR` command
+To create a virtual environment you execute the `virtualenv $DIR` command
 where `$DIR` is the directory where you want it to be placed. The rest of the
 manual will assume that the environment is created in `~/.virtualenv/GRR` like
 this:
@@ -52,7 +52,7 @@ Because GRR offers a user interface component it also needs some JavaScript code
 to be built with Node.js. Fortunately, this can be done with `pip` inside our
 virtual environment so that your system remains uncluttered.
 
-To install Node.js simply do:
+To install Node.js, execute:
 
 ```bash
 pip install nodeenv
@@ -74,25 +74,7 @@ GRR depends on a few libraries that have to be installed on a system. Run this c
 sudo apt-get install libssl-dev python-dev python-pip wget openjdk-8-jdk zip dh-systemd libmysqlclient-dev
 ```
 
-## Step 5. Install Protocol Buffer compiler.
-
-GRR relies on [protocol buffers](https://developers.google.com/protocol-buffers/) heavily. You need to have a protocol buffer compiler installed on your system in order to build it.
-
-We have a script that checks out the right version of the Protobuf compiler into `${HOME}/protobuf`.
-
-To run it (from the checked out GRR folder):
-
-```bash
-./travis/install_protobuf.sh linux
-```
-
-You also need to set PROTOC environment variable to point to the compiler (you can also add this to .bashrc):
-
-```bash
-export PROTOC=${HOME}/protobuf/bin/protoc
-```
-
-## Step 6. Install GRR packages.
+## Step 5. Install GRR packages.
 
 GRR is split into multiple packages. For the development we recommend installing
 all components. Assuming that you are in the root GRR directory run the
@@ -102,10 +84,12 @@ following commands:
 
 ```bash
 pip install -e ./grr/proto
-pip install -e ./api_client/python
 pip install -e ./grr/core
 pip install -e ./grr/client
+pip install -e ./api_client/python
+pip install -e ./grr/client_builder
 pip install -e ./grr/server/[mysqldatastore]
+pip install -e ./colab
 pip install -e ./grr/test
 ```
 
@@ -133,7 +117,7 @@ apt install -y mysql-server
 
 ## Step 9. Initialize GRR.
 
-To initialize the development GRR setup, just run:
+To initialize the development GRR setup, run:
 
 ```bash
 grr_config_updater initialize
