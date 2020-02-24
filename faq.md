@@ -280,14 +280,9 @@ this and other cloud deployments.
 ## Where/how do you do your data analysis?
 
 We mostly do this outside of GRR using an internal system very similar
-to [BigQuery](https://cloud.google.com/bigquery/what-is-bigquery), and
-this powerful capability is [now available to opensource
-users](http://grr-response.blogspot.com/2015/11/using-bigquery-to-analyze-data.html).
-GRR data is formatted for BigQuery using a hunt output plugin. There’s a
-cronjob that outputs new results every 5 minutes, so there is very
-little delay between the server seeing a result and having it available
-for analysis externally. As at March 2016 an opensource user is working
-on an ElasticSearch output plugin.
+to [BigQuery](https://cloud.google.com/bigquery/what-is-bigquery). GRR supports
+[Output Plugins](investigating-with-grr/output-plugins.md) that send hunt results
+to other systems (e.g. BigQuery, Splunk) with minimal delay.
 
 ## When will feature X be ready?
 
