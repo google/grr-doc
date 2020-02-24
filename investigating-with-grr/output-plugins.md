@@ -29,7 +29,7 @@ flow.
 {
     "annotations": ["incident-123"],
     "client": {
-      "hostname": "maxvo.zrh.corp.google.com",
+      "hostname": "max.example.com",
       "os": "Linux",
       "usernames": "max",
       // ...
