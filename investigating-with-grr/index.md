@@ -12,6 +12,7 @@
 * [Osquery](osquery.md)
 * [Automation with GRR API](automation-with-api.md)
 * [Interactive scripting](interactive-scripting.md)
+* [Output Plugins](output-plugins.md)
 * [Emergency Code and Binary Pushes](pushing-code.md)
 * [Glossary](glossary.md)
 
