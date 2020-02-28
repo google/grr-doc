@@ -28,7 +28,7 @@ manual will assume that the environment is created in `~/.virtualenv/GRR` like
 this:
 
 ```bash
-virtualenv ~/.virtualenv/GRR
+virtualenv ~/.virtualenv/GRR --python=python3
 ```
 
 After creating the environment you have to activate it:
@@ -56,7 +56,7 @@ To install Node.js, execute:
 
 ```bash
 pip install nodeenv
-nodeenv -p --prebuilt
+nodeenv -p --prebuilt --node=12.11.1
 ```
 
 Because the `nodeenv` command modifies our virtual environment, we also need to
