@@ -1,8 +1,8 @@
 GRR and Fleetspeak setup
 ========================
 
-This guide is will walk you through the process of installing GRR from sources
-and making it communicate through Fleetspeak, rather than its old custom
+This guide will walk you through the process of installing GRR from sources and
+making it communicate through Fleetspeak, rather than its old custom
 communication protocol.
 
 At the end you should have a working single-machine setup with both the server
@@ -14,7 +14,7 @@ Installation
 
 ### System
 
-Because we are going to install everything from source, there are some
+Because we are going to install everything from sources, there are some
 dependencies required to be installed on your system first.
 
 Since GRR is written in Python, the fundamental requirement is to have it
@@ -25,15 +25,15 @@ distros it should be enough to install the `python3-dev` package:
 
 Moreover, both GRR and Fleetspeak use MySQL (or MariaDB) as its RDBMS, so make
 sure it is also installed. The package that GRR uses to communicate with MySQL
-depends on the MySQL client library, so you should setup it as well. On Debian
+depends on the MySQL client library, so you should set it up as well. On Debian
 distros it is `libmysqlclient-dev` or `libmariadbclient-dev`:
 
     $ sudo apt install libmysqlclient-dev
 
-Finally, GRR uses [Closure Compiler][closure] to process it JavaScript files.
-While installing it is handled for you in one of the build scripts, it requires
-a Java Runtime Environment to run. [OpenJDK][openjdk] should work just fine, so
-on Debian distros you it is enough to install it like:
+Finally, GRR uses [Closure Compiler][closure] to process its JavaScript files.
+While installing Closure Compiler is handled for you in one of the build
+scripts, it requires a Java Runtime Environment to run. [OpenJDK][openjdk]
+should work just fine, so on Debian distros it is enough to install it like:
 
     $ sudo apt install openjdk-13-jre
 
@@ -43,7 +43,8 @@ on Debian distros you it is enough to install it like:
 ### Fleetspeak
 
 Install [Fleetspeak][fleetspeak] and follow the [guide][fleetspeak-guide] to
-learn how to configure services and run the server and the client.
+learn how to configure services and run the Fleetspeak server and the Fleetspeak
+client.
 
 [fleetspeak]: https://github.com/google/fleetspeak
 [fleetspeak-guide]: https://github.com/google/fleetspeak/blob/master/docs/guide.md
@@ -52,8 +53,8 @@ learn how to configure services and run the server and the client.
 
 Use Git to clone the GRR repository to your workstation and enter into it:
 
-    git clone https://github.com/google/grr
-    cd grr/
+    $ git clone https://github.com/google/grr
+    $ cd grr/
 
 For the rest of the guide we will assume that the working directory is the root
 GRR folder, placed in your home folder (`/home/username/grr`), so remember to
@@ -64,9 +65,9 @@ environment:
 
     $ python3 -m venv venv
 
-Before proceeding to installing GRR packages itself, you also need to install
-`grpcio-tools` and `protobuf` packages (for compiling Protocol Buffers) files
-and `nodeenv` (for compiling JavaScript files):
+Before proceeding with installing GRR packages themselves, you also need to
+install `grpcio-tools` and `protobuf` packages (for compiling Protocol Buffers
+files) and `nodeenv` (for compiling JavaScript files):
 
 ```bash
 $ venv/bin/pip install grpcio-tools protobuf nodeenv
@@ -92,8 +93,8 @@ Configuration
 
 We need to create a GRR database along with an associated user. In this guide
 the database will be named `grr`, the user will be named `grr-user` and will
-identify using password `grr-password`. We also need to increase the max allowed
-packet size to 40 MiB.
+be identified by password `grr-password`. We also need to increase the max
+allowed packet size to 40 MiB.
 
 Fire up the MySQL console as an administrative user, e.g.:
 
@@ -169,7 +170,7 @@ config: {
 Running
 -------
 
-Start the Fleetspeak server and all the GRR components:
+Start the Fleetspeak server and all the GRR components in separate terminals:
 
     $ venv/bin/python -m grr_response_server.gui.admin_ui
 
@@ -186,5 +187,5 @@ browser, using appropriate client identifier, navigate to:
 You should see a page with details about your client. GRR should automatically
 schedule initial interrogation flow, which should complete within couple of
 minutes. You can also try some simpler flows, for example listing all processes
-(`ListProcess` in *Processes* category), to verify that everything works as
+(`ListProcesses` in *Processes* category), to verify that everything works as
 expected.
