@@ -138,7 +138,7 @@ a dedicated visualization software, e.g.
 
 To set up metric-based alerts, refer to
 [Prometheus Alerting](https://prometheus.io/docs/alerting/overview/) and
-[Grafana Alerting](http://docs.grafana.org/alerting/rules/).
+[Grafana Alerting](https://grafana.com/docs/grafana/latest/alerting/).
 
 Prometheus supports automatic
 [Service Discovery](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for
