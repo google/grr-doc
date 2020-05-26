@@ -134,7 +134,7 @@ rate(grr_client_crashes_total{job="grr_worker"}[5m])
 Although Prometheus can display basic charts using the
 [expression browser](https://prometheus.io/docs/visualization/browser/), we recommend the usage of
 a dedicated visualization software, e.g.
-[Grafana](https://prometheus.io/docs/visualization/grafana/). 
+[Grafana](https://prometheus.io/docs/visualization/grafana/). You can set up a quick configuration of Grafana to scrape the metrics from Prometheus by following [these instructions](#example-visualization-setup).
 
 To set up metric-based alerts, refer to
 [Prometheus Alerting](https://prometheus.io/docs/alerting/overview/) and
@@ -153,3 +153,25 @@ access to it can read aggregated metrics about your GRR installation. With these
 about the number of workers, flow activity, and service health can be derived. Make sure to limit
 access to the port, for example by employing a firewall. Furthermore, read
 [Prometheus Security](https://prometheus.io/docs/operating/security/).
+
+## Example visualization setup
+This example will walk you through setting up Grafana as a dedicated visualization software to parse, display, query and set up alerts for the metrics scraped by Prometheus. These instructions assume that GRR server and Prometheus are both up and running.
+
+1. [Install Grafana](https://grafana.com/docs/grafana/latest/installation/#install-grafana) as suggested to your operating system.
+
+2. After Grafana is installed, you may [start the Grafana server](https://grafana.com/docs/grafana/latest/installation/debian/#2-start-the-server) by executing in a terminal (assuming your operating system either Debian or Ubuntu and you installed the latest OSS release):
+```
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl status grafana-server
+```
+This will get the Grafana server up and running on `http://<host>:3000` (usually, `<host>=localhost`).
+
+3. Grafana is now set up and can be visited at `http://<host>:3000`. The username and password should be "admin"; please change it.
+If the Grafana UI doesn't show up, either the [installation of Grafana](https://grafana.com/docs/grafana/latest/installation/#install-grafana) or the [server run](https://grafana.com/docs/grafana/latest/installation/debian/#2-start-the-server) failed; make sure to check the official documentation.
+
+4. [Set up Prometheus as a data source](https://grafana.com/docs/grafana/latest/features/datasources/prometheus/#prometheus-data-source) for Grafana, so that Grafana can display the metrics from Prometheus. To do that, follow the guide [here](https://grafana.com/docs/grafana/latest/features/datasources/add-a-data-source/#add-a-data-source).
+
+5. Grafana is set up and ready to show metrics scraped by Prometheus. You can start by either [creating your own dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#create-a-dashboard) or [importing exisiting dashboards](https://grafana.com/docs/grafana/latest/reference/export_import/#importing-a-dashboard) into Grafana.
+
+6. You can now use the dashboards. The dashboards can give a general overview over the main components of the GRR server, which can be utilized by the user to monitor different metrics of each component. Examples for such metrics can be found in the [examples above](#example-queries). Additional metrics can be used by exploring `http://<host>:<port>/metrics` for each component of GRR server (change the port according to the GRR server component you want).
