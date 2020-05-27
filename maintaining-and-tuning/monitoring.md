@@ -154,10 +154,20 @@ about the number of workers, flow activity, and service health can be derived. M
 access to the port, for example by employing a firewall. Furthermore, read
 [Prometheus Security](https://prometheus.io/docs/operating/security/).
 
-## Example visualization setup
-This example will walk you through setting up Grafana as a dedicated visualization software to parse, display, query and set up alerts for the metrics scraped by Prometheus. These instructions assume that GRR server and Prometheus are both up and running.
+## Example visualization and alerting setup
+This example will walk you through setting up Grafana as a dedicated visualization software to parse, display and query metrics scraped from GRR server components by Prometheus. You will also be able to set up a simple alerting system using Grafana.
+These instructions assume that GRR server and Prometheus are both up and running.
 
-1. [Install Grafana](https://grafana.com/docs/grafana/latest/installation/#install-grafana) as suggested to your operating system.
+1. [Install Grafana](https://grafana.com/docs/grafana/latest/installation/debian/) by following the instructions:
+```
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y software-properties-common wget
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+
+sudo apt-get update
+sudo apt-get install grafana
+```
+This will install the latest OSS release.
 
 2. After Grafana is installed, you may [start the Grafana server](https://grafana.com/docs/grafana/latest/installation/debian/#2-start-the-server) by executing in a terminal (assuming your operating system either Debian or Ubuntu and you installed the latest OSS release):
 ```
@@ -165,13 +175,18 @@ sudo systemctl daemon-reload
 sudo systemctl start grafana-server
 sudo systemctl status grafana-server
 ```
-This will get the Grafana server up and running on `http://<host>:3000` (usually, `<host>=localhost`).
+This will get the Grafana server up and running on `http://localhost:3000`.
 
-3. Grafana is now set up and can be visited at `http://<host>:3000`. The username and password should be "admin"; please change it.
+3. Grafana is now set up and can be visited at `http://localhost:3000`. The username and password should be "admin"; please change it.
 If the Grafana UI doesn't show up, either the [installation of Grafana](https://grafana.com/docs/grafana/latest/installation/#install-grafana) or the [server run](https://grafana.com/docs/grafana/latest/installation/debian/#2-start-the-server) failed; make sure to check the official documentation.
 
 4. [Set up Prometheus as a data source](https://grafana.com/docs/grafana/latest/features/datasources/prometheus/#prometheus-data-source) for Grafana, so that Grafana can display the metrics from Prometheus. To do that, follow the guide [here](https://grafana.com/docs/grafana/latest/features/datasources/add-a-data-source/#add-a-data-source).
 
 5. Grafana is set up and ready to show metrics scraped by Prometheus. You can start by either [creating your own dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#create-a-dashboard) or [importing exisiting dashboards](https://grafana.com/docs/grafana/latest/reference/export_import/#importing-a-dashboard) into Grafana.
+You may choose to import sample GRR dashboards from the [Grafana folder in GRR repository](https://github.com/google/grr/monitoring/grafana) before creating your own. These dashboards contain some example graphs of metrics scraped by Prometheus, and also implement sample alerts. To do that, first download the dashboards from the repository, and then head over to `http://localhost:3000/dashboard/import`. There, you can click 'Upload .json file' and upload the dashboard you have downloaded from the repository. The dashboard is now imported; you can access it by going to `http://localhost:3000/dashboards` and clicking the dashboard's name, e.g "Frontends Dashboard".
+Each of the sample GRR dashboards correspond to a different component of GRR server, e.g the Frontends Dashboard shows aggregated metrics from all Frontends that are active in GRR server. Each of the dashboards contain several panels; each such [panel](https://grafana.com/docs/grafana/latest/panels/panels-overview/#panel-overview) consists of a graph that may contain one or more metrics queried from Prometheus, and possibly alerting rules.
 
-6. You can now use the dashboards. The dashboards can give a general overview over the main components of the GRR server, which can be utilized by the user to monitor different metrics of each component. Examples for such metrics can be found in the [examples above](#example-queries). Additional metrics can be used by exploring `http://<host>:<port>/metrics` for each component of GRR server (change the port according to the GRR server component you want).
+6. If you wish to use the alerts, you first need to define a [notification channel](https://grafana.com/docs/grafana/latest/alerting/notifications/#alert-notifications) for the alerts. This can be done by heading over to `http://localhost:3000/alerting/notification/new` and [following the form](https://grafana.com/docs/grafana/latest/alerting/notifications/#new-notification-channel-fields) to add a notification channel. Once a notification channel is set up, you will start receiving alerts from the existing dashboards, as those contain definitions for simple alerts. There are two alerting rules: in each dashboard, there is a panel that counts the number of active processes for the specific job. For example, in the Workers dashboards, there is a panel called "Active Processes" which shows the current number of active Workers processes. If the number of active workers is zero - an alert will be fired.
+if you wish to disable or remove an alert, go to the dashboard and the corresponding panel, and there you may remove the alerting rule.
+
+7. You can now use the dashboards. The dashboards can give a general overview over the main components of the GRR server, which can be utilized by the user to monitor different metrics of each component. Examples for such metrics can be found in the [examples above](#example-queries). Remember that the dashboards and alerts are flexible, and can be expanded or modified to adjust to your exact needs. Additional metrics can be used by exploring `http://<host>:<port>/metrics` for each component of GRR server (change the port according to the GRR server component you want), and if you wish to create your own [custom dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#create-a-dashboard), [panels](https://grafana.com/docs/grafana/latest/panels/add-a-panel/#add-a-panel) and [alerts](https://grafana.com/docs/grafana/latest/alerting/create-alerts/#create-alerts), make sure to go over the corresponding documentation in Grafana.
