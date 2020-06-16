@@ -7,7 +7,7 @@
 # Installing from a release server deb (recommended)
 
 This is the recommended way of installing the GRR server components. GRR server
-debs are built for Ubuntu Xenial. They may install on Debian or other Ubuntu
+debs are built for Ubuntu 18.04 Bionic. They may install on Debian or other Ubuntu
 versions, but compatibility is not guaranteed.
 
 1. MySQL is GRR's default database backend, and should be up and running
@@ -59,7 +59,7 @@ community edition of MySQL from Ubuntu repositories:
     After successful installation, the `grr-server` service should be running:
 
     ```bash
-    root@grruser-xenial:/home/grruser# systemctl status grr-server
+    root@grruser-bionic:/home/grruser# systemctl status grr-server
     ● grr-server.service - GRR Service
        Loaded: loaded (/lib/systemd/system/grr-server.service; enabled; vendor preset: enabled)
        Active: active (exited) since Wed 2017-11-22 10:16:39 UTC; 2min 51s ago
@@ -71,8 +71,8 @@ community edition of MySQL from Ubuntu repositories:
           CPU: 0
        CGroup: /system.slice/grr-server.service
 
-    Nov 22 10:16:39 grruser-xenial systemd[1]: Starting GRR Service...
-    Nov 22 10:16:39 grruser-xenial systemd[1]: Started GRR Service.
+    Nov 22 10:16:39 grruser-bionic systemd[1]: Starting GRR Service...
+    Nov 22 10:16:39 grruser-bionic systemd[1]: Started GRR Service.
     ```
 
     In addition, administrative commands for GRR, e.g `grr_console` and
