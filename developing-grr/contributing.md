@@ -45,7 +45,7 @@ you get too far into a feature or bug, it’s possible we’re writing
 something similar or have already fixed the bug.
 
 Code needs to conform to the [Google Python Style
-Guide](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html).
+Guide](http://google.github.io/styleguide/pyguide.html).
 Note that despite what the guide says, we use two-space indentation, and
 MixedCase instead of lower\_underscore for function names since this is
 the internal standard. Two-space indentation also applies to CSS.
