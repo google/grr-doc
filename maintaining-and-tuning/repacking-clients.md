@@ -40,7 +40,7 @@ You can also use the grr\_client\_build tool to repack individual
 templates and control more aspects of the repacking, such as signing.
 For signing to work you need to follow these instructions:
 
-### Setting up for RPM signing
+### Linux RPM signing
 
 Linux RPMs are signed following a similar process to windows. A template
 is built inside a docker container / Vagrant VM and the host does the
@@ -65,80 +65,99 @@ Set this config variable to whatever you used as your key name:
 
 That’s it, you can follow the normal build process.
 
-### Setting up for Windows EXE signing
+### Windows EXE signing
 
-#### Building Templates
+The easiest way to get a properly signed Windows GRR installer is to rebuild the client template and repack it on a dedicated Windows machine.
 
-First you need to make sdists from the GRR source (which requires a
-protobuf compiler) and get them to the windows build machine. We do this
-on linux with this script which uses google cloud storage to copy the
-files to the windows machine (note you’ll need to use a different cloud
-storage bucket name):
+To do that:
 
-    BUCKET=mybucketname scripts/make_sdist_for_templates.sh
+* Edit your `/etc/grr/server.local.yaml` by configuring Windows signing and verification commands:
+  ```
+  ClientBuilder.signtool_signing_cmd: |
+    C:\Program Files \(x86\)\Windows kits\10\App Certification Kit\signtool.exe sign /f Sample.CodeSigning.pfx
+  ClientBuilder.signtool_verification_cmd: |
+    C:\Program Files \(x86\)\Windows kits\10\App Certification Kit\signtool.exe verify /pa /all  
+  ```
+  
+   *Note:* these are sample commands using a sample certificate file. In your case commands might depend on your setup. Please consult the [Windows documentation](https://docs.microsoft.com/en-us/windows/win32/seccrypto/using-signtool-to-sign-a-file) for details about code signing.
+   
+* Install [Python 3.7](https://www.python.org/ftp/python/3.7.8/python-3.7.8-amd64.exe) on the Windows box.
+* Install Windows [SignTool](https://docs.microsoft.com/en-us/windows/win32/seccrypto/signtool). It's available as part of [Windows SDK](https://go.microsoft.com/fwlink/p/?linkid=2120843).
+* Copy your server configuration files to the Windows box:
+  * /etc/grr/server.local.yaml
+  * /usr/share/grr-server/install_data/etc/grr-server.yaml
+  
+  Make sure that server.local.yaml is transferred and stored securely - it contains sensitive keys.
+* In the console run:
+  ```
+  C:\Python37\python.exe -m venv temp_venv
+  .\temp_venv\Scripts\activate
+  pip install grr-response-client-builder
+  ```
+  
+  This will install the GRR client builder from PIP. Alternatively, you can checkout GRR from GitHub and build it from source (see our [Appveyor configuration](https://github.com/google/grr/blob/2c1e6fce9ea0db9285b5b909b72b0778c677b9a5/appveyor/windows_templates/appveyor.yml) as a starting point).
+  
+* To build the client template, run (while in the virtualenv):
 
-On your Windows/VM with git and the Google cloud SDK installed, run this
-as admin:
+  ```
+  grr_client_build --verbose build --output templates --config grr-server.yaml --secondary_config server.local.yaml
+  ```
+  
+* To sign the built template, run:
+  
+  ```
+  grr_client_build --verbose sign_template --template templates\GRR_3.4.0.1_amd64.exe.zip --output_file templates\GRR_3.4.0.1_amd64_signed.exe.zip --config grr-server.yaml --secondary_config server.local.yaml
+  ```
+  
+* To repack the signed template, run:
 
-```powershell
-mkdir C:\grr_src
-git clone https://github.com/google/grr.git C:\grr_src
-C:\grr_src\appveyor\windows_templates\install_for_build.bat
-```
+  ```
+  grr_client_build repack --template templates\GRR_3.4.0.1_amd64_signed.exe.zip --sign --signed_template --output_dir repacked --config grr-server.yaml --secondary_config server.local.yaml
+  ```
+  
+ * The resulting signed installer will be put into the `repacked` folder.
+ 
+ 
+### MacOS PKG signing
 
-Then as a regular user you can download the sdists and build the
-templates from that:
+The easiest way to get a properly signed MacOS GRR installer is to rebuild the client template and repack it on a dedicated MacOS machine.
 
-```powershell
-C:\Python27-x64\python.exe C:\grr_src\appveyor\windows_templates\build_windows_templates.py --grr_src=C:\grr_src --cloud_storage_sdist_bucket=mybucketname --cloud_storage_output_bucket=mybucketname
-```
+* Edit your `/etc/grr/server.local.yaml` to reference the certificate name and, optionally, the keychain:
+  ```
+  ClientBuilder.signing_cert_name: "My certificate name"
+  ```
+  
+  Optionally you can also specify a keychain file to use (if not specified, a default one of `%(HOME|env)/Library/Keychains/MacApplicationSigning.keychain` will be used):
+  ```
+  ClientBuilder.signing_keychain_file: "%(HOME|env)/Library/Keychains/My.keychain"
+  ```
 
-Download the built templates and components from cloud storage to your
-linux vm ready for repacking. Put them under
-`grr/executables/windows/templates`.
+* Copy your server configuration files to the MacOS box:
+  * /etc/grr/server.local.yaml
+  * /usr/share/grr-server/install_data/etc/grr-server.yaml
+  
+  Make sure that server.local.yaml is transferred and stored securely - it contains sensitive keys.
 
-#### Setting Up For Windows EXE Signing
-
-To make automation easier we now sign the windows installer executable
-on linux using osslsigncode. To set up for signing, install
-osslsigncode:
-
-    sudo apt-get install libcurl4-openssl-dev
-    wget http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
-    tar zxvf osslsigncode-1.7.1.tar.gz
-    cd osslsigncode-1.7.1/
-    ./configure
-    make
-    sudo make install
-
-Get your signing key into the .pvk and .spc format, example commands
-below (will vary based on who you buy the signing cert from):
-
-    openssl pkcs12 -in authenticode.pfx -nocerts -nodes -out key.pem
-    openssl rsa -in key.pem -outform PVK -pvk-strong -out authenticode.pvk
-    openssl pkcs12 -in authenticode.pfx -nokeys -nodes -out cert.pem
-    cat Thawte_Primary_Root_CA_Cross.cer >> cert.pem
-    openssl crl2pkcs7 -nocrl -certfile cert.pem -outform DER -out authenticode.spc
-    shred -u key.pem
-
-Link to wherever your key lives. This allows you to keep it on removable
-media and have different people use different keys with the same grr
-config.
-
-    sudo ln -s /path/to/authenticode.pvk /etc/alternatives/grr_windows_signing_key
-    sudo ln -s /path/to/authenticode.spc /etc/alternatives/grr_windows_signing_cert
-
-## Repacking Clients - Follow-up
-
-After doing the above, add the --sign parameter to the repack
-    command:
-
-```docker
-grr_client_build repack --template path/to/grr-response-templates/templates/grr_3.1.0.2_amd64.xar.zip --output_dir=/tmp/test --sign
-```
-
-To repack and sign multiple templates at once, see the next section.
-
+* Execute following commands:
+  ```
+  python3 -m venv temp_venv
+  source temp_venv/bin/activate
+  # you might need to run "xcode-select --install" in order for the next command to succeed
+  export MACOSX_DEPLOYMENT_TARGET=10.10
+  CFLAGS=-stdlib=libc++ pip install grr-response-client-builder
+  ```
+ 
+ * Build the client template (it will get signed along the way):
+   ```
+   grr_client_build --verbose build --output templates --config grr-server.yaml --secondary_config server.local.yaml
+   ```
+   
+ * Repack it (this command technically doesn't need MacOS to be executed, can be done on the GRR server side):
+   ```
+   grr_client_build --verbose repack --template templates/grr_3.4.0.1_amd64.xar.zip --output_dir repacked --config grr-server.yaml --secondary_config server.local.yaml
+   ```
+ * The resulting installer with all contents signed will be placed into the `repacked` folder. If you want the installer itself to be signed, use the productsign utility (see this [article](https://simplemdm.com/certificate-sign-macos-packages/), for example).
+ 
 ## Repacking Clients With Custom Labels: Multi-Organization Deployments
 
 Each client can have a label "baked in" at build time that allows it to
