@@ -1,6 +1,6 @@
 # Monitoring
-This page outlines how to set up monitoring for the GRR components. GRR keep tracks of many metrics
-which can be used to create charts about GRR's performance, health, and workload.
+This page outlines how to set up monitoring for the GRR components and for Fleetspeak. GRR and Fleetspeak keep tracks of many metrics
+which can be used to create charts about their performance, health, and workload.
 
 When `Monitoring.http_port` is configured, each GRR component exports metrics at 
 `http://<host>:<port>/metrics`. The export is human-readable plain-text and follows the 
@@ -10,10 +10,12 @@ When `Monitoring.http_port` is configured, each GRR component exports metrics at
 
 ## Example Setup
 This example will walk you through a basic Prometheus setup. For this example, the GRR Frontend,
-Worker, and Admin UI will be launched on your local machine. Please refer to
+Worker, and Admin UI will be launched on your local machine. You can also choose to monitor Fleetspeak, if you have a GRR + Fleetspeak setup; otherwise feel free to skip the relevant steps, which are marked as **FS**. Please refer to
 [Installing GRR Server](../installing-grr-server) for a real-world setup.
 
 1. Install GRR, for example from [pip](../installing-grr-server/from-released-pip.html).
+
+1. **FS:** Follow [the instructions](https://grr-doc.readthedocs.io/en/latest/fleetspeak.html#grr-and-fleetspeak-setup) to install Fleetspeak configured with GRR.
 
 1. Run the GRR components locally. Execute each of the three commands in a separate terminal:
 
@@ -29,6 +31,14 @@ Worker, and Admin UI will be launched on your local machine. Please refer to
     running multiple GRR components on one machine. Prometheus requires to know which type of
     component listens on which ports. If you use `Monitoring.http_port_max`, make sure that only one
     type of GRR components (e.g. only workers) listen on a given range of ports. 
+
+1. **FS:** Go to `~/.config/fleetspeak-server/components.textproto` and add the following to the end of the file:
+    ```bash
+    stats_config: <
+      address: "localhost:2112"
+    >
+    ```
+    This will insure that Fleetspeak will export its metric to Prometheus in [http://localhost:2112/metrics](http://localhost:2112/metrics).
 
 1. Open [http://localhost:44451/metrics](http://localhost:44451/metrics) in your browser. You should
 see a plain-text list of metrics.
@@ -56,13 +66,20 @@ the Prometheus folder.
         - targets: ['localhost:44453']
       ```
 
+1. **FS:** under `scrape_configs` also add the following:
+    ```yaml
+    - job_name: 'fleetspeak'
+      static_configs:
+      - targets: ['localhost:2112']
+    ```
+
 1. Start Prometheus, by running the following command from the Prometheus folder:
     ```bash
     ./prometheus --config.file=prometheus.yml
     ```
 
 1. Open [http://localhost:9090/targets](http://localhost:9090/targets) in your browser. After a
-couple seconds, you should see three targets (`grr_admin_ui`, `grr_frontend`, `grr_worker`), each
+couple seconds, you should see three (**FS:** four) targets (`grr_admin_ui`, `grr_frontend`, `grr_worker`), each
 having 1 instance up.
 
 1. Open the Expression Browser by clicking on Graph
