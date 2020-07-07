@@ -10,7 +10,7 @@ When `Monitoring.http_port` is configured, each GRR component exports metrics at
 
 ## Example Setup
 This example will walk you through a basic Prometheus setup. For this example, the GRR Frontend,
-Worker, and Admin UI will be launched on your local machine. You can also choose to monitor Fleetspeak, if you have a GRR + Fleetspeak setup; otherwise feel free to skip the relevant steps, which are marked as **FS**. Please refer to
+Worker, and Admin UI will be launched on your local machine. You can also choose to monitor Fleetspeak servers, if you have a GRR + Fleetspeak setup; otherwise feel free to skip the relevant steps, which are marked as **FS**. Please refer to
 [Installing GRR Server](../installing-grr-server) for a real-world setup.
 
 1. Install GRR, for example from [pip](../installing-grr-server/from-released-pip.html).
@@ -35,10 +35,10 @@ Worker, and Admin UI will be launched on your local machine. You can also choose
 1. **FS:** Go to `~/.config/fleetspeak-server/components.textproto` and add the following to the end of the file:
     ```bash
     stats_config: <
-      address: "localhost:2112"
+      address: "localhost:54451"
     >
     ```
-    This will insure that Fleetspeak will export its metrics to Prometheus in [http://localhost:2112/metrics](http://localhost:2112/metrics).
+    This will insure that Fleetspeak will export its metrics to Prometheus in [http://localhost:54451/metrics](http://localhost:54451/metrics).
 
 1. Open [http://localhost:44451/metrics](http://localhost:44451/metrics) in your browser. You should
 see a plain-text list of metrics.
@@ -70,7 +70,7 @@ the Prometheus folder.
     ```yaml
     - job_name: 'fleetspeak'
       static_configs:
-      - targets: ['localhost:2112']
+      - targets: ['localhost:54451']
     ```
 
 1. Start Prometheus, by running the following command from the Prometheus folder:
