@@ -21,7 +21,7 @@ Quarterly release for Q2 2020.
   - `CollectEfiHashes` and `DumpEfiImage` flows for macOS investigations.
 - New [SplunkOutputPlugin](https://grr-doc.readthedocs.io/en/latest/investigating-with-grr/output-plugins.html#splunk) to export Flow/Hunt results to Splunk.
 - New NTFS [virtual file system](https://grr-doc.readthedocs.io/en/latest/investigating-with-grr/vfs/virtual-file-system.html) handler for file system parsing using [libfsntfs](https://github.com/libyal/libfsntfs).
-- Support for [custom Email addresses](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/email-configuration.html#custom-email-address) for GRR users. [#555](https://github.com/google/grr/issues/555).
+- Support for [custom Email addresses](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/email-configuration.html#custom-email-addresses) for GRR users. [#555](https://github.com/google/grr/issues/555).
 - Support pre-filling the approval reason text field by appending `?reason=<pre-filled reason>` to GRR URLs.
 - API Changes:
   - All GRR Protocol Buffers messages now have proper package declarations.
