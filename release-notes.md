@@ -12,6 +12,24 @@ new version.
 
 ## Server
 
+### 3.4.2.0 (July 06 2020)
+
+Quarterly release for Q2 2020.
+
+- New flows:
+  - [`TimelineFlow`](https://grr-doc.readthedocs.io/en/latest/investigating-with-grr/vfs/timelines.html#timelineflow) for collecting a snapshot of an entire filesystem.
+  - `CollectEfiHashes` and `DumpEfiImage` flows for macOS investigations.
+- New [SplunkOutputPlugin](https://grr-doc.readthedocs.io/en/latest/investigating-with-grr/output-plugins.html#splunk) to export Flow/Hunt results to Splunk.
+- New NTFS [virtual file system](https://grr-doc.readthedocs.io/en/latest/investigating-with-grr/vfs/virtual-file-system.html) handler for file system parsing using [libfsntfs](https://github.com/libyal/libfsntfs).
+- Support for [custom Email addresses](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/email-configuration.html#custom-email-addresses) for GRR users. [#555](https://github.com/google/grr/issues/555).
+- Support pre-filling the approval reason text field by appending `?reason=<pre-filled reason>` to GRR URLs.
+- API Changes:
+  - All GRR Protocol Buffers messages now have proper package declarations.
+  - New method `GetVersion`.
+  - API shell now validates GRR server version and fails if the API client is too old. (This can be disabled using the `--no-check-version` flag.)
+- Experimental bundled [fleetspeak](https://github.com/google/fleetspeak) (next generation communication framework) on Debian server / clients. This can be enbled using `grr_config_updater`.
+- Bugfixes and various enhancements.
+
 ### 3.4.0.1 (December 18 2019)
 
 **This is a first fully Python 3-based release.**
