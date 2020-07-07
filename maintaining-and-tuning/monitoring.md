@@ -38,7 +38,7 @@ Worker, and Admin UI will be launched on your local machine. You can also choose
       address: "localhost:2112"
     >
     ```
-    This will insure that Fleetspeak will export its metric to Prometheus in [http://localhost:2112/metrics](http://localhost:2112/metrics).
+    This will insure that Fleetspeak will export its metrics to Prometheus in [http://localhost:2112/metrics](http://localhost:2112/metrics).
 
 1. Open [http://localhost:44451/metrics](http://localhost:44451/metrics) in your browser. You should
 see a plain-text list of metrics.
