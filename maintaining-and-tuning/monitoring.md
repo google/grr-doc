@@ -172,7 +172,7 @@ access to the port, for example by employing a firewall. Furthermore, read
 [Prometheus Security](https://prometheus.io/docs/operating/security/).
 
 ## Example visualization and alerting setup
-This example will walk you through setting up Grafana as a dedicated visualization software to parse, display and query metrics scraped from GRR server components by Prometheus. If Prometheus was configured to scrape Fleetspeak servers as well, all steps apply. You will also be able to set up a simple alerting system using Grafana.
+This example will walk you through setting up Grafana as a dedicated visualization software to parse, display and query metrics scraped from GRR server components by Prometheus. If you've followed the [example setup](#example-setup) before, then Prometheus is configured to scrape GRR (and Fleetspeak as well if you decided to do so). You will also be able to set up a simple alerting system using Grafana.
 These instructions assume that GRR server and Prometheus are both up and running (Fleetspeak server as well, if applicable).
 
 1. [Install Grafana](https://grafana.com/docs/grafana/latest/installation/debian/) by following the instructions:
