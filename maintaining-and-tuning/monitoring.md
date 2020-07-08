@@ -181,10 +181,12 @@ These instructions assume that GRR server and Prometheus are both up and running
     sudo apt-get install -y software-properties-common wget
     wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 
+    sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+
     sudo apt-get update
     sudo apt-get install grafana
     ```
-    
+
     This will install the latest OSS release.
 
 1. After Grafana is installed, you can [start the Grafana server](https://grafana.com/docs/grafana/latest/installation/debian/#2-start-the-server) by executing in a terminal (assuming your operating system either Debian or Ubuntu and you installed the latest OSS release):
