@@ -95,7 +95,7 @@ If you encounter any problems related to `mysqlclient` during the installation o
 Configuration
 -------------
 
-### MySQL (MariaDB)
+### MySQL / MariaDB
 
 We need to create a GRR database along with an associated user. In this guide
 the database will be named `grr`, the user will be named `grr-user` and will
