@@ -86,10 +86,16 @@ packages:
     (venv) $ pip install -e grr/server/[mysqldatastore]
     (venv) $ deactivate
 
+If you encounter any problems related to `mysqlclient` during the installation of `grr/server` when using MariaDB, then try the following:
+
+    (venv) $ pip install mysqlclient
+    (venv) $ pip install -e grr/server/
+    (venv) $ deactivate
+
 Configuration
 -------------
 
-### MySQL
+### MySQL / MariaDB
 
 We need to create a GRR database along with an associated user. In this guide
 the database will be named `grr`, the user will be named `grr-user` and will
@@ -182,7 +188,7 @@ Finally, start the Fleetspeak client. After a moment, it should successfully
 register with GRR and you should be able to see it in the GRR UI. In your web
 browser, using appropriate client identifier, navigate to:
 
-    http://localhost:8000/#/clients/C.6011f0429b71e52b/host-info
+    http://localhost:8000/#/clients/C.<your_fleetspeak_client_id>/host-info
 
 You should see a page with details about your client. GRR should automatically
 schedule initial interrogation flow, which should complete within couple of
