@@ -29,7 +29,7 @@ After configuration is complete, restart the GRR worker(s). You can test this co
 
 ## Custom Email addresses
 
-When GRR sends an Email to a GRR user, the destination Email address defaults to `<username>@<Logging.domain>`. Alternatively, GRR can use custom Email addresses. In this mode, GRR will store a separate Email address for each user in the data store. To enable this mode, set the following option in the GRR config:
+When GRR sends an Email to a GRR user, the destination Email address defaults to `<username>@<Logging.domain>`. Starting with version [3.4.2.0](https://grr-doc.readthedocs.io/en/latest/release-notes.html#july-06-2020), GRR can alternatively use custom Email addresses. In this mode, GRR will store a separate Email address for each user in the data store. To enable this mode, set the following option in the GRR config:
 
 
 ```yaml
