@@ -12,6 +12,25 @@ new version.
 
 ## Server
 
+### 3.4.2.3 (October 01 2020)
+
+Quarterly release for Q3 2020.
+
+- GRR API:
+  - [Reference documentation](https://storage.googleapis.com/autobuilds-grr-openapi/documentation/openapi_documentation.html) is now available.
+  - An [OpenAPI spec](https://storage.googleapis.com/autobuilds-grr-openapi/openapi_description/openapi_description.json) is now available.
+  - [Support](https://storage.googleapis.com/autobuilds-grr-openapi/documentation/openapi_documentation.html#operation/CreatePerClientFileCollectionHunt) for starting file collection hunts involving multiple explicitly specified hosts is now available.
+  - `ArtifactCollectorFlowArgs`, `ArtifactFilesDownloaderFlowArgs`:
+    - `use_tsk` is now deprecated in favor of `use_raw_filesystem_access`
+    - `use_tsk` will be kept for compatibility until 2021-04-01, existing users should migrate to `use use_raw_filesystem_access`
+- The `NTFS` [virtual file system](https://grr-doc.readthedocs.io/en/latest/investigating-with-grr/vfs/virtual-file-system.html) handler using [libfsntfs](https://github.com/libyal/libfsntfs) is now the default for raw filesystem access on Windows. The `TSK` handler is being deprecated.
+- Experimental bundled [fleetspeak](https://github.com/google/fleetspeak) (next generation communication framework) is now available on all platforms. This can be enabled using `grr_config_updater`.
+- Timeline collection flow now also collects the file creation timestamp on all platforms.
+- Flow and Hunt IDs now have a length of 16 hexadecimal digits.
+- A workaround for a [bug](https://bugs.python.org/issue41179) in `find_library` affecting macOS 11 has been added.
+- Bugfixes and various enhancements.
+
+
 ### 3.4.2.0 (July 06 2020)
 
 Quarterly release for Q2 2020.
