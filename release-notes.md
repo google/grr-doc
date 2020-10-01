@@ -22,7 +22,7 @@ Quarterly release for Q3 2020.
   - [Support](https://storage.googleapis.com/autobuilds-grr-openapi/documentation/openapi_documentation.html#operation/CreatePerClientFileCollectionHunt) for starting file collection hunts involving multiple explicitly specified hosts is now available.
   - `ArtifactCollectorFlowArgs`, `ArtifactFilesDownloaderFlowArgs`:
     - `use_tsk` is now deprecated in favor of `use_raw_filesystem_access`
-    - `use_tsk` will be kept for compatibility until 2021-04-01, existing users should migrate to `use use_raw_filesystem_access`
+    - `use_tsk` will be kept for compatibility until 2021-04-01, existing users should migrate to using `use_raw_filesystem_access`
 - The `NTFS` [virtual file system](https://grr-doc.readthedocs.io/en/latest/investigating-with-grr/vfs/virtual-file-system.html) handler using [libfsntfs](https://github.com/libyal/libfsntfs) is now the default for raw filesystem access on Windows. The `TSK` handler is being deprecated.
 - Experimental bundled [fleetspeak](https://github.com/google/fleetspeak) (next generation communication framework) is now available on all platforms. This can be enabled using `grr_config_updater`.
 - Timeline collection flow now also collects the file creation timestamp on all platforms.
