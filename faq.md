@@ -158,7 +158,9 @@ should work on old systems.
     servers.
 
   - Should probably work: 32bit versions of the above, Windows Vista+
-    workstations.
+    workstations. (We've stopped building and releasing 32bit versions
+    since release 3.4.0. It should be possible to build a client from source
+    though.)
 
 **OS X**
 
@@ -187,16 +189,8 @@ should work on old systems.
 
 ## What operating system versions does the server support?
 
-As of 3.1.0.2 we only support 64bit Ubuntu Xenial, since we had to move
-to systemd and didn’t want the complexity of continuing support for
-upstart and init.d. Older versions of Ubuntu are easy to install on, but
-you will at least need a newer version of the protobuf library than what
-comes with the OS, and you will need to copy upstart scripts from the
-previous GRR release and modify them to work with the new release.
 
-The server should probably work on most versions of linux that support
-systemd. Some users are running production installs on RHEL and CentOS,
-it just takes more effort to set up.
+We only support 64bit Ubuntu 18.04.
 
 We don’t provide a 32-bit server version since standing up new 32-bit
 linux servers is not something rational people do, and there are many

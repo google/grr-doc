@@ -184,9 +184,8 @@ You should have something like:
 
   - `/usr/local/lib/grr_3.1.0.2_amd64/grrd` on OSX
 
-with variations based on the GRR version and architecture you installed
-(32bit is i386). If you didn’t get this far, then there is a problem
-with your installer binary.
+with variations based on the GRR version and architecture you installed. If
+you didn’t get this far, then there is a problem with your installer binary.
 
 **Check the client is running**
 
@@ -239,7 +238,7 @@ OS X: Unload the service and run it in verbose
 Windows: The normal installer isn’t a terminal app, so you don’t get any
 output if you run it interactively.
 
-  - Install the debug `dbg_GRR_3.1.0.2_(amd64|i386).exe` version to make
+  - Install the debug `dbg_GRR_3.1.0.2_amd64.exe` version to make
     it a terminal app.
 
   - Stop the `GRR Monitor` service in task manager

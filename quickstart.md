@@ -18,7 +18,7 @@ you need.
 Next, run the client installer on the target machine (can be the same machine
 as the one running the GRR server components) as root:
 
-* For Windows you will see a 32 and 64 bit installer. Run the installer as
+* For Windows you will see a 64 bit installer. Run the installer as
 admin (it should load the UAC prompt if you are not admin). It should run
 silently and install the client to `c:\windows\system32\grr\%version%\`. It
 will also install a Windows Service, start it, and configure the registry keys
