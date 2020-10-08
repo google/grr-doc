@@ -74,6 +74,9 @@ GRR depends on a few libraries that have to be installed on a system. Run this c
 sudo apt-get install libssl-dev python-dev python-pip wget openjdk-8-jdk zip dh-systemd libmysqlclient-dev
 ```
 
+> In case some of the packages are not available, and you get an error such as `E: Package '<package-name>' has no installation candidate`, look at the error log lines above for suggested alternatives, and replace the missing packages in the original command.  
+> Example: in case you get `E: Package 'libmysqlclient-dev' has no installation candidate`, and a line above reads `Package libmysqlclient-dev is not available ... However the following packages replace it: ... libmariadb-dev` you should replace `libmysqlclient-dev` with `libmariadb-dev` in the original command.
+
 ## Step 5. Install GRR packages.
 
 GRR is split into multiple packages. For the development we recommend installing
