@@ -74,6 +74,8 @@ GRR depends on a few libraries that have to be installed on a system. Run this c
 sudo apt-get install libssl-dev python-dev python-pip wget openjdk-8-jdk zip dh-systemd libmysqlclient-dev
 ```
 
+> Depending on the distribution, the set of packages providing these functionalities can be a bit different—please, refer to your distribution package repository. Useful replacement suggestions are also often provided by package managers themselves.
+
 ## Step 5. Install GRR packages.
 
 GRR is split into multiple packages. For the development we recommend installing
@@ -98,7 +100,11 @@ are installed in a "development" mode and any changes you make in your working
 directory are directly reflected in your virtual environment, no reinstalling
 is required.
 
-## Step 7. Install prebuilt GRR client templates.
+> If running `pip install -e ./grr/server/[mysqldatastore]` results in the following error: `OSError: mysql_config not found`, it means that the MySQL/MariaDB installation from Step 4 was incorrect. Make sure you are using the correct package, for example `libmariadbclient-dev-compat` instead of `libmariadb-dev`.
+
+> If running `pip install -e ./grr/server/[mysqldatastore]` results in an error caused by `mysqlclient` such as `_mysql.c:1911:41: error: 'MYSQL' has no member named 'reconnect'`, try ommitting `[mysqldatastore]` and installing it manually with `pip install mysqlclient`.
+
+## Step 6. Install prebuilt GRR client templates.
 
 If you want to repack GRR clients, you'll need a prebuilt GRR client templates package with templates for Linux/Mac/Windows. This should be installed using the following command:
 
@@ -106,7 +112,7 @@ If you want to repack GRR clients, you'll need a prebuilt GRR client templates p
 pip install --no-cache-dir -f https://storage.googleapis.com/releases.grr-response.com/index.html grr-response-templates
 ```
 
-## Step 8: Install MySQL
+## Step 7: Install MySQL
 
 The GRR server components need to connect to a running MySQL instance in order
 to run:
@@ -115,7 +121,7 @@ to run:
 apt install -y mysql-server
 ```
 
-## Step 9. Initialize GRR.
+## Step 8. Initialize GRR.
 
 To initialize the development GRR setup, run:
 
