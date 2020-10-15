@@ -12,6 +12,14 @@ new version.
 
 ## Server
 
+### 3.4.2.4 (October 14 2020)
+
+Minor bug-fix release on top of v3.4.2.3.
+
+- `grr_config_updater`: Fixed a bug where the fleetspeak MySQL password setting
+  was not applied correctly. Fleetspeak was effectively always using an empty
+  MySQL password when connecting to the database.
+
 ### 3.4.2.3 (October 01 2020)
 
 Quarterly release for Q3 2020.
