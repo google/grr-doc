@@ -211,3 +211,17 @@ Each of the sample dashboards correspond to a different component of GRR server 
 If you want to disable or remove an alert, go to the dashboard and the corresponding panel, and there you can remove the alerting rule.
 
 1. You can now use the dashboards. The dashboards can give a general overview over the main components of the GRR server and Fleetspeak servers, which can be utilized by the user to monitor different metrics of each component. Examples for such metrics can be found in the [examples above](#example-queries). Remember that the dashboards and alerts are flexible, and can be expanded or modified to adjust to your exact needs. Additional metrics can be used by exploring `http://<host>:<port>/metrics` for each component of GRR server (change the port according to the GRR server component you want) and Fleetspeak servers, and if you'd like to create your own [custom dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#create-a-dashboard), [panels](https://grafana.com/docs/grafana/latest/panels/add-a-panel/#add-a-panel) and [alerts](https://grafana.com/docs/grafana/latest/alerting/create-alerts/#create-alerts), make sure to go over the corresponding documentation in Grafana.
+
+## Monitoring Client Load Stats
+
+In GRR Admin UI you are able to view statistics of an individual GRR client. To do this, enter the host information of the client, and on the menu, click Advanced and then Client Load Stats. This data is gathered from the GRR client itself.
+If you use Grafana dashboards to monitor other GRR server components, you may find it useful to use them to monitor individual clients. To achieve this, check out the following steps.
+
+* Note that this is only applicable to Fleetspeak-based GRR deployments, as the individual client data using these steps is gathered from the underlying Fleetspeak client, unlike the current GRR Admin UI.
+
+1. Follow the [example visualization and alerting setup](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/monitoring.html#example-visualization-and-alerting-setup), until at least step 3. At this point, you should have a running instance of Grafana server.
+
+1. Run GRRafana HTTP server by `grr_server --component grrafana`. Briefly, GRRafana serves Grafana stats data from GRR. For more details, check out [google/grr#832](https://github.com/google/grr/pull/832). It should run by default on port 5000.
+
+1. [Install JSON Datasource plugin](https://github.com/simPod/grafana-json-datasource#installation). The plugin will issue JSON requests from Grafana to GRRafana, and then display the queries' results.
+Make sure that the url is `http://<host>:5000`.
