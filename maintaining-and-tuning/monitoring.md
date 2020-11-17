@@ -227,6 +227,19 @@ If you use Grafana dashboards to monitor other GRR server components, or you jus
 Make sure that the url is `http://<host>:5000`, and for a more friendly name than 'JSON', feel free to rename the data source to 'grrafana'.
 
 1. Now that GRRafana is up and running, you can create [Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/#dashboard-overview) to query individual clients. To do that, create a new dashboard (clicking on '+' -> Dashboard), then click on Dashboard Settings on the top-right and add a new [variable](https://grafana.com/docs/grafana/latest/variables/#templates-and-variables). Name the new variable `ClientID` (must be precise in order for GRRafana to identify it) and specifiy its [type](https://grafana.com/docs/grafana/latest/variables/variable-types/#variables-types) as "Textbox".
-At this point, you should have an empty dashboard with an empty textbox named `ClientID` above your panels. Feel free to create new panels and playing around with all the individual statistics information you can get from your clients!
+At this point, you should have an empty dashboard with an empty textbox named `ClientID` above your panels. Feel free to create new panels and playing around with all the individual statistics information** you can get from your clients!
 
 1. Similarly to before, if you do not want to create your own Grafana monitoring dashboards for individual client monitoring, we got you. In the [sample dashboards in step 3](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/monitoring.html#example-visualization-and-alerting-setup), you can also find a sample dashboard called Client Load Stats for this exact purpose.
+
+** **Note:** not all the metrics gathered by Grafana are related to individual clients but rather are [aggregated clients statistics](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/monitoring.html#aggregated-clients-statistics).
+
+## Aggregated Clients Statistics
+
+In GRR Admin UI you are able to view aggregated statistics for multiple GRR clients, such as an OS breakdown, GRR version breakdown and so on. To see those statistics, on GRR Admin UI, under the 'Management' section on the menu, enter 'Statistics'. Similarly to [Client Load Stats](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/monitoring.html#monitoring-client-load-stats), you may choose to view this information using Grafana.
+
+To achieve this, follow these steps:
+
+1. Follow the steps in [Client Load Stats](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/monitoring.html#monitoring-client-load-stats) until at least step 3. At this point, you should have a Grafana instance up and running, the [JSON Datasource plugin](https://github.com/simPod/grafana-json-datasource) installed and configured, and the GRRafana HTTP server up and running.
+
+1. You can now fetch aggregated clients statistics, which are named on a similar convention to the metrics gathered in the current GRR Admin UI, such as "OS Release Breakdown - N Days Active" and so on.
+Note that we do not provide sample dashboards for these metrics as they are table-based and cannot be manipulated too much. Therefore, you can make a panel that consists of a single metric alone by just selecting it on the dropdown box named "Metric" while creating the new [Grafana panel](https://grafana.com/docs/grafana/latest/panels/panels-overview/#panel-overview).
