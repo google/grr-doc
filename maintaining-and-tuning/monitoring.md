@@ -89,89 +89,63 @@ might only see very few data points, very low values, or no data at all since GR
 real workload and has 0 connected clients in this example.
 
 
-## Example Queries
+### Example Queries
 To get you started, this page contains some example queries. These queries give you a good insight
 on GRRs health and workload.
 
-### QPS rate for the Frontend
+#### QPS rate for the Frontend
 ```
 rate(frontend_request_count_total{job="grr_frontend"}[1m])
 ```
 
-### Latency for requests to the Frontend
+#### Latency for requests to the Frontend
 ```
 rate(frontend_request_latency_sum{job="grr_frontend"}[5m]) /
 rate(frontend_request_latency_count{job="grr_frontend"}[5m])
 ```
 
-### Active Tasks running on the Frontend
+#### Active Tasks running on the Frontend
 ```
 frontend_active_count
 ```
 
-### Rate of successful flows on the Worker
+#### Rate of successful flows on the Worker
 ```
 rate(grr_flow_completed_count_total{job="grr_worker"}[5m])
 ```
 
-### Rate of failed flows on the Worker
+#### Rate of failed flows on the Worker
 ```
 rate(grr_flow_errors_total{job="grr_worker"}[5m])
 ```
 
-### Threadpool latency in the Worker
+#### Threadpool latency in the Worker
 ```
 rate(threadpool_working_time_sum{job="grr_worker"}[5m]) /
 rate(threadpool_working_time_count{job="grr_worker"}[5m])
 ```
 
-### Threadpool queueing time in Worker
+#### Threadpool queueing time in Worker
 ```
 rate(threadpool_queueing_time_sum{job="grr_worker"}[5m]) /
 rate(threadpool_queueing_time_count{job="grr_worker"}[5m])
 ```
 
-### Number of outstanding tasks in the Worker
+#### Number of outstanding tasks in the Worker
 ```
 threadpool_outstanding_tasks{job="grr_worker"}
 ```
 
-### Number of threads running on the Worker
+#### Number of threads running on the Worker
 ```
 threadpool_threads{job="grr_worker"}
 ```
 
-### Rate of client crashes reported to the Worker
+#### Rate of client crashes reported to the Worker
 ```	
 rate(grr_client_crashes_total{job="grr_worker"}[5m])
 ```
-
-
-## Real-World Setup
-Although Prometheus can display basic charts using the
-[expression browser](https://prometheus.io/docs/visualization/browser/), we recommend the usage of
-a dedicated visualization software, e.g.
-[Grafana](https://prometheus.io/docs/visualization/grafana/). You can set up a quick configuration of Grafana to scrape the metrics from Prometheus by following [these instructions](#example-visualization-setup).
-
-To set up metric-based alerts, refer to
-[Prometheus Alerting](https://prometheus.io/docs/alerting/overview/) and
-[Grafana Alerting](https://grafana.com/docs/grafana/latest/alerting/).
-
-Prometheus supports automatic
-[Service Discovery](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for
-many types of infrastructure. Depending on your hosting setup and size of your GRR installation,
-this can be an improvement over manually hardcoding hostnames in the Prometheus configuration.
-
-### Security Considerations
-A minimal HTTP service, based on [prometheus_client](https://github.com/prometheus/client_python/)
-is listening at `Monitoring.http_port` for each GRR component. This HTTP service exports read-only
-metrics under `/metrics` and `/varz` and does **not enforce any access control**. People with
-access to it can read aggregated metrics about your GRR installation. With these metrics, facts
-about the number of workers, flow activity, and service health can be derived. Make sure to limit
-access to the port, for example by employing a firewall. Furthermore, read
-[Prometheus Security](https://prometheus.io/docs/operating/security/).
-
-## Example visualization and alerting setup
+### Example visualization and alerting setup
 This example will walk you through setting up Grafana as a dedicated visualization software to parse, display and query metrics scraped from GRR server components by Prometheus. If you've followed the [example setup](#example-setup) before, then Prometheus is configured to scrape GRR (and Fleetspeak as well if you decided to do so). You will also be able to set up a simple alerting system using Grafana.
 These instructions assume that GRR server and Prometheus are both up and running (Fleetspeak server as well, if applicable).
 
@@ -211,6 +185,30 @@ Each of the sample dashboards correspond to a different component of GRR server 
 If you want to disable or remove an alert, go to the dashboard and the corresponding panel, and there you can remove the alerting rule.
 
 1. You can now use the dashboards. The dashboards can give a general overview over the main components of the GRR server and Fleetspeak servers, which can be utilized by the user to monitor different metrics of each component. Examples for such metrics can be found in the [examples above](#example-queries). Remember that the dashboards and alerts are flexible, and can be expanded or modified to adjust to your exact needs. Additional metrics can be used by exploring `http://<host>:<port>/metrics` for each component of GRR server (change the port according to the GRR server component you want) and Fleetspeak servers, and if you'd like to create your own [custom dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#create-a-dashboard), [panels](https://grafana.com/docs/grafana/latest/panels/add-a-panel/#add-a-panel) and [alerts](https://grafana.com/docs/grafana/latest/alerting/create-alerts/#create-alerts), make sure to go over the corresponding documentation in Grafana.
+
+## Real-World Setup
+Although Prometheus can display basic charts using the
+[expression browser](https://prometheus.io/docs/visualization/browser/), we recommend the usage of
+a dedicated visualization software, e.g.
+[Grafana](https://prometheus.io/docs/visualization/grafana/). You can set up a quick configuration of Grafana to scrape the metrics from Prometheus by following [these instructions](#example-visualization-setup).
+
+To set up metric-based alerts, refer to
+[Prometheus Alerting](https://prometheus.io/docs/alerting/overview/) and
+[Grafana Alerting](https://grafana.com/docs/grafana/latest/alerting/).
+
+Prometheus supports automatic
+[Service Discovery](https://prometheus.io/docs/prometheus/latest/configuration/configuration/) for
+many types of infrastructure. Depending on your hosting setup and size of your GRR installation,
+this can be an improvement over manually hardcoding hostnames in the Prometheus configuration.
+
+### Security Considerations
+A minimal HTTP service, based on [prometheus_client](https://github.com/prometheus/client_python/)
+is listening at `Monitoring.http_port` for each GRR component. This HTTP service exports read-only
+metrics under `/metrics` and `/varz` and does **not enforce any access control**. People with
+access to it can read aggregated metrics about your GRR installation. With these metrics, facts
+about the number of workers, flow activity, and service health can be derived. Make sure to limit
+access to the port, for example by employing a firewall. Furthermore, read
+[Prometheus Security](https://prometheus.io/docs/operating/security/).
 
 ## Monitoring Client Load Stats
 
