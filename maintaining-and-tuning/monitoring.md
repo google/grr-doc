@@ -215,13 +215,18 @@ If you want to disable or remove an alert, go to the dashboard and the correspon
 ## Monitoring Client Load Stats
 
 In GRR Admin UI you are able to view statistics of an individual GRR client. To do this, enter the host information of the client, and on the menu, click Advanced and then Client Load Stats. This data is gathered from the GRR client itself.
-If you use Grafana dashboards to monitor other GRR server components, you may find it useful to use them to monitor individual clients. To achieve this, check out the following steps.
+If you use Grafana dashboards to monitor other GRR server components, or you just want better graphs and UI, you may find it useful to use them to monitor individual clients as well. To achieve this, check out the following steps.
 
-* Note that this is only applicable to Fleetspeak-based GRR deployments, as the individual client data using these steps is gathered from the underlying Fleetspeak client, unlike the current GRR Admin UI.
+* Note that this is only applicable to Fleetspeak-based GRR deployments, as the individual client data using these steps is gathered from the underlying Fleetspeak client, unlike the current GRR Admin UI which gathers its client data from the GRR clients instead.
 
 1. Follow the [example visualization and alerting setup](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/monitoring.html#example-visualization-and-alerting-setup), until at least step 3. At this point, you should have a running instance of Grafana server.
 
-1. Run GRRafana HTTP server by `grr_server --component grrafana`. Briefly, GRRafana serves Grafana stats data from GRR. For more details, check out [google/grr#832](https://github.com/google/grr/pull/832). It should run by default on port 5000.
+1. Run GRRafana HTTP server by `grr_server --component grrafana`. Briefly, GRRafana serves Grafana clients' stats data from GRR, through the gRPC connection between GRR and Fleetspeak. For more details, check out [google/grr#832](https://github.com/google/grr/pull/832). It should run by default on port 5000.
 
 1. [Install JSON Datasource plugin](https://github.com/simPod/grafana-json-datasource#installation). The plugin will issue JSON requests from Grafana to GRRafana, and then display the queries' results.
-Make sure that the url is `http://<host>:5000`.
+Make sure that the url is `http://<host>:5000`, and for a more friendly name than 'JSON', feel free to rename the data source to 'grrafana'.
+
+1. Now that GRRafana is up and running, you can create [Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/#dashboard-overview) to query individual clients. To do that, create a new dashboard (clicking on '+' -> Dashboard), then click on Dashboard Settings on the top-right and add a new [variable](https://grafana.com/docs/grafana/latest/variables/#templates-and-variables). Name the new variable `ClientID` (must be precise in order for GRRafana to identify it) and specifiy its [type](https://grafana.com/docs/grafana/latest/variables/variable-types/#variables-types) as "Textbox".
+At this point, you should have an empty dashboard with an empty textbox named `ClientID` above your panels. Feel free to create new panels and playing around with all the individual statistics information you can get from your clients!
+
+1. Similarly to before, if you do not want to create your own Grafana monitoring dashboards for individual client monitoring, we got you. In the [sample dashboards in step 3](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/monitoring.html#example-visualization-and-alerting-setup), you can also find a sample dashboard called Client Load Stats for this exact purpose.
