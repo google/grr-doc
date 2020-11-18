@@ -322,25 +322,27 @@ until at least step 3. At this point, you should have a running
 instance of Grafana server.
 
 1. Run GRRafana HTTP server by `grr_server --component grrafana`.
-Briefly, GRRafana serves Grafana clients' stats data from GRR, through
-the gRPC connection between GRR and Fleetspeak. For more details, check
-out [google/grr#832](https://github.com/google/grr/pull/832). It should
+Briefly, this server is a component of GRR which serves Grafana clients'
+stats data from GRR, through the gRPC connection between GRR and
+Fleetspeak. For more details, check out
+[google/grr#832](https://github.com/google/grr/pull/832). It should
 run by default on port 5000.
 
 1. [Install JSON Datasource plugin](https://github.com/simPod/grafana-json-datasource#installation).
-The plugin will issue JSON requests from Grafana to GRRafana, and then
-display the queries' results. Make sure that the url is
+The plugin will issue JSON requests from Grafana to the HTTP server,
+and then display the queries' results. Make sure that the url is
 `http://<host>:5000`, and for a more friendly name than 'JSON', feel
 free to rename the data source to 'grrafana'.
 
-1. Now that GRRafana is up and running, you can create
+1. After the server is up and running, you can create
 [Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/#dashboard-overview)
 to query individual clients. To do that, create a new dashboard (clicking
 on '+' -> Dashboard), then click on Dashboard Settings on the top-right and
 add a new
 [variable](https://grafana.com/docs/grafana/latest/variables/#templates-and-variables).
-Name the new variable `ClientID` (must be precise in order for GRRafana to
-identify it) and specifiy its
+Name the new variable `ClientID` (this name must be precise, with
+correct capitalization as well, in order for it to be identified
+correctly) and specifiy its
 [type](https://grafana.com/docs/grafana/latest/variables/variable-types/#variables-types)
 as "Textbox". At this point, you should have an empty dashboard with an empty
 textbox named `ClientID` above your panels. Feel free to create new panels
@@ -371,7 +373,8 @@ To achieve this, follow these steps:
 until at least step 3. At this point, you should have a Grafana instance up
 and running, the
 [JSON Datasource plugin](https://github.com/simPod/grafana-json-datasource)
-installed and configured, and the GRRafana HTTP server up and running.
+installed and configured, and the GRRafana HTTP server (as discussed in
+[google/grr#832](https://github.com/google/grr/pull/832)) is up and running.
 
 1. You can now fetch aggregated clients statistics, which are named on a similar
 convention to the metrics gathered in the current GRR Admin UI, such as "OS
