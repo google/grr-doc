@@ -344,10 +344,12 @@ Name the new variable `ClientID` (this name must be precise, with
 correct capitalization as well, in order for it to be identified
 correctly) and specifiy its
 [type](https://grafana.com/docs/grafana/latest/variables/variable-types/#variables-types)
-as "Textbox". At this point, you should have an empty dashboard with an empty
-textbox named `ClientID` above your panels. Feel free to create new panels
-and playing around with all the individual statistics information** you can
-get from your clients!
+as "Constant" (and make sure to not hide the variable or the label,
+so that it's visible in the dashboard). At this point, you should
+have an empty dashboard with an empty textbox named `ClientID` above
+your panels. Feel free to create new panels and playing around with
+all the individual statistics information** you can get from your
+clients!
 
 1. Similarly to before, if you do not want to create your own Grafana monitoring
 dashboards for individual client monitoring, we got you. In the
