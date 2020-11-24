@@ -1,6 +1,6 @@
 # Monitoring
 This page outlines how to set up monitoring for the GRR components and
-for Fleetspeak. GRR and Fleetspeak keep tracks of many metrics which
+for Fleetspeak. GRR and Fleetspeak keep track of many metrics which
 can be used to create charts about their performance, health,
 and workload.
 
@@ -162,15 +162,45 @@ threadpool_threads{job="grr_worker"}
 ```	
 rate(grr_client_crashes_total{job="grr_worker"}[5m])
 ```
-### Example visualization and alerting setup
+
+## Real-World Setup
+Although Prometheus can display basic charts using the
+[expression browser](https://prometheus.io/docs/visualization/browser/),
+we recommend the usage of a dedicated visualization software, e.g.
+[Grafana](https://prometheus.io/docs/visualization/grafana/).
+You can set up a quick configuration of Grafana to scrape the
+metrics from Prometheus by following
+[these instructions](#example-visualization-setup).
+
+To set up metric-based alerts, refer to
+[Prometheus Alerting](https://prometheus.io/docs/alerting/overview/) and
+[Grafana Alerting](https://grafana.com/docs/grafana/latest/alerting/).
+
+Prometheus supports automatic
+[Service Discovery](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
+for many types of infrastructure. Depending on your hosting
+setup and size of your GRR installation, this can be an
+improvement over manually hardcoding hostnames in the Prometheus configuration.
+
+### Security Considerations
+A minimal HTTP service, based on
+[prometheus_client](https://github.com/prometheus/client_python/)
+is listening at `Monitoring.http_port` for each GRR component. This HTTP
+service exports read-only metrics under `/metrics` and `/varz` and does
+**not enforce any access control**. People with access to it can read
+aggregated metrics about your GRR installation. With these metrics, facts
+about the number of workers, flow activity, and service health can be
+derived. Make sure to limit access to the port, for example by employing
+a firewall. Furthermore, read [Prometheus Security](https://prometheus.io/docs/operating/security/).
+
+## Example visualization and alerting setup
 This example will walk you through setting up Grafana as a dedicated
 visualization software to parse, display and query metrics scraped from
 GRR server components by Prometheus. If you've followed the
 [example setup](#example-setup) before, then Prometheus is configured to scrape
-GRR (and Fleetspeak as well if you decided to do so). You will also be able to
+GRR (and Fleetspeak as well if you have a Fleetspeak-based deployment). You will also be able to
 set up a simple alerting system using Grafana. These instructions assume that
-GRR server and Prometheus are both up and running (Fleetspeak server as well,
-if applicable).
+GRR server and Prometheus are both up and running.
 
 1. [Install Grafana](https://grafana.com/docs/grafana/latest/installation/debian/)
 by following the instructions:
@@ -221,10 +251,13 @@ can start by either
 or [importing exisiting dashboards](https://grafana.com/docs/grafana/latest/reference/export_import/#importing-a-dashboard)
 into Grafana.
 You can choose to import sample dashboards from the
-[Grafana folder in GRR repository](https://github.com/google/grr/monitoring/grafana)
+[Grafana folder in GRR repository](https://github.com/google/grr/tree/master/monitoring/grafana)
 before creating your own. These dashboards contain some example graphs of
 metrics scraped by Prometheus, and also implement sample alerts. To do that,
-first download the dashboards from the repository, and then head over to
+first download the dashboards from the repository (download dashboards from
+[`fleetspeak_enabled_setup/dashboards_for_use`](https://github.com/google/grr/tree/master/monitoring/grafana/grr_grafanalib_dashboards/fleetspeak_enabled_setup/dashboards_for_use)
+or [`legacy_setup/dashboards_for_use`](https://github.com/google/grr/tree/master/monitoring/grafana/grr_grafanalib_dashboards/legacy_setup/dashboards_for_use),
+depending on your deployment), and then head over to
 `http://localhost:3000/dashboard/import`. There, you can click 'Upload
 .json file' and upload the dashboard you have downloaded from the repository.
 The dashboard is now imported; you can access it by going to
@@ -269,36 +302,6 @@ create your own
 [panels](https://grafana.com/docs/grafana/latest/panels/add-a-panel/#add-a-panel)
 and [alerts](https://grafana.com/docs/grafana/latest/alerting/create-alerts/#create-alerts),
 make sure to go over the corresponding documentation in Grafana.
-
-## Real-World Setup
-Although Prometheus can display basic charts using the
-[expression browser](https://prometheus.io/docs/visualization/browser/),
-we recommend the usage of a dedicated visualization software, e.g.
-[Grafana](https://prometheus.io/docs/visualization/grafana/).
-You can set up a quick configuration of Grafana to scrape the
-metrics from Prometheus by following
-[these instructions](#example-visualization-setup).
-
-To set up metric-based alerts, refer to
-[Prometheus Alerting](https://prometheus.io/docs/alerting/overview/) and
-[Grafana Alerting](https://grafana.com/docs/grafana/latest/alerting/).
-
-Prometheus supports automatic
-[Service Discovery](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
-for many types of infrastructure. Depending on your hosting
-setup and size of your GRR installation, this can be an
-improvement over manually hardcoding hostnames in the Prometheus configuration.
-
-### Security Considerations
-A minimal HTTP service, based on
-[prometheus_client](https://github.com/prometheus/client_python/)
-is listening at `Monitoring.http_port` for each GRR component. This HTTP
-service exports read-only metrics under `/metrics` and `/varz` and does
-**not enforce any access control**. People with access to it can read
-aggregated metrics about your GRR installation. With these metrics, facts
-about the number of workers, flow activity, and service health can be
-derived. Make sure to limit access to the port, for example by employing
-a firewall. Furthermore, read [Prometheus Security](https://prometheus.io/docs/operating/security/).
 
 ## Monitoring Client Load Stats
 
