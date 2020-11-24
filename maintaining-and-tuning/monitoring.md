@@ -276,7 +276,10 @@ and possibly alerting rules.
 for the alerts. This can be done by heading over to
 `http://localhost:3000/alerting/notification/new` and
 [following the form](https://grafana.com/docs/grafana/latest/alerting/notifications/#new-notification-channel-fields)
-to add a notification channel. Once a notification channel is set up,
+to add a notification channel. For reference, check out the following
+screenshot:
+![Form to add a notification channel](screenshots/add_notification_channel.png)
+Once a notification channel is set up,
 you will start receiving alerts from the existing dashboards, as those
 contain definitions for simple alerts. There are two sample alerting
 rules: in each dashboard, there is a panel that counts the number of
