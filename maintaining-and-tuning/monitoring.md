@@ -305,14 +305,9 @@ make sure to go over the corresponding documentation in Grafana.
 
 ## Monitoring Client Load Stats
 
-In GRR Admin UI you are able to view statistics of an individual GRR
-client. To do this, enter the host information of the client, and on
-the menu, click Advanced and then Client Load Stats. This data is
-gathered from the GRR client itself.
-If you use Grafana dashboards to monitor other GRR server components,
-or you just want better graphs and UI, you may find it useful to use
-them to monitor individual clients as well. To achieve this, check out
-the following steps.
+Using Grafana, you are able to view statistics of individual GRR
+clients and monitor them. To achieve this, check out the following
+steps.
 
 * Note that this is only applicable to Fleetspeak-based GRR deployments,
 as the individual client data using these steps is gathered from the
@@ -337,11 +332,19 @@ and then display the queries' results. Make sure that the url is
 `http://<host>:5000`, and for a more friendly name than 'JSON', feel
 free to rename the data source to 'grrafana'.
 
-1. After the server is up and running, you can create
+1. After the server is up and running, if you do not want to create your
+own Grafana monitoring dashboards for individual client monitoring, we got
+you. In the
+[sample dashboards in step 3](#example-visualization-and-alerting-setup), you
+can also find a sample dashboard called Client Load Stats for this exact
+purpose and import it as explained in
+[step 5 here](#example-visualization-and-alerting-setup).
+
+1. If you want, you can create
 [Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/#dashboard-overview)
-to query individual clients. To do that, create a new dashboard (clicking
-on '+' -> Dashboard), then click on Dashboard Settings on the top-right and
-add a new
+or extend the sample dashboards to query individual clients. To do that,
+create a new dashboard (clicking on '+' -> Dashboard), then click on
+Dashboard Settings on the top-right and add a new
 [variable](https://grafana.com/docs/grafana/latest/variables/#templates-and-variables).
 Name the new variable `ClientID` (this name must be precise, with
 correct capitalization as well, in order for it to be identified
@@ -353,15 +356,6 @@ have an empty dashboard with an empty textbox named `ClientID` above
 your panels. Feel free to create new panels and playing around with
 all the individual statistics information** you can get from your
 clients!
-
-1. Similarly to before, if you do not want to create your own Grafana monitoring
-dashboards for individual client monitoring, we got you. In the
-[sample dashboards in step 3](#example-visualization-and-alerting-setup), you
-can also find a sample dashboard called Client Load Stats for this exact
-purpose.
-
-** **Note:** not all the metrics gathered by Grafana are related to individual
-clients but rather are [aggregated clients statistics](#aggregated-clients-statistics).
 
 ## Aggregated Clients Statistics
 
