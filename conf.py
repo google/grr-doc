@@ -181,8 +181,8 @@ class ProcessLink(transforms.Transform):
     default_priority = 1000
 
     text_replacements = {
-        "__GRR_VERSION__": "3.4.2.3",
-        "__GRR_DEB_VERSION__": "3.4.2-3"
+        "__GRR_VERSION__": "3.4.2.4",
+        "__GRR_DEB_VERSION__": "3.4.2-4"
     }
 
     def find_replace(self, node):
