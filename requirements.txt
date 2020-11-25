@@ -10,7 +10,7 @@ Jinja2==2.10.1
 MarkupSafe==1.0
 mock==1.0.1
 packaging==17.1
-Pillow==3.3.2
+Pillow==7.1.0
 Pygments==2.2.0
 pyparsing==2.2.0
 pytz==2018.4
