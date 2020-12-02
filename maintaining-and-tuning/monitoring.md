@@ -192,7 +192,7 @@ a firewall. Furthermore, read [Prometheus Security](https://prometheus.io/docs/o
 This example will walk you through setting up Grafana as a dedicated
 visualization software to parse, display and query metrics scraped from
 GRR server components by Prometheus. If you've followed the
-[example setup](#example-setup) before, then Prometheus is configured to scrape
+[example setup](#prometheus-setup) before, then Prometheus is configured to scrape
 GRR (and Fleetspeak as well if you have a Fleetspeak-based deployment). You will also be able to
 set up a simple alerting system using Grafana. These instructions assume that
 GRR server and Prometheus are both up and running.
