@@ -7,17 +7,16 @@ and workload.
 When `Monitoring.http_port` is configured, each GRR component exports
 metrics at `http://<host>:<port>/metrics`. The export is human-readable
 plain-text and follows the [Open Metrics standard](https://openmetrics.io/).
-More importantly however, [Prometheus](https://prometheus.io) can parse the metrics.
+More importantly however, [Prometheus](https://prometheus.io) can parse the metrics,
+and [Grafana](https://grafana.com/) can plot the parsed data.
 
 
-## Example Setup
+## Prometheus Setup
 This example will walk you through a basic Prometheus setup.
 For this example, the GRR Frontend, Worker, and Admin UI will be
 launched on your local machine. You can also choose to monitor
 Fleetspeak servers, if you have a GRR + Fleetspeak setup; otherwise
 feel free to skip the relevant steps, which are marked as **FS**.
-Please refer to [Installing GRR Server](../installing-grr-server)
-for a real-world setup.
 
 1. Install GRR, for example from
 [pip](../installing-grr-server/from-released-pip.html).
@@ -105,10 +104,18 @@ of the example queries to query GRR metrics. Be aware that you might only
 see very few data points, very low values, or no data at all since GRR
 is not under any real workload and has 0 connected clients in this example.
 
+1. At this point, you can use Prometheus to display basic charts using the
+[expression browser](https://prometheus.io/docs/visualization/browser/).
+We recommend the usage of a dedicated visualization software, e.g.
+[Grafana](https://prometheus.io/docs/visualization/grafana/).
+You can set up a quick configuration of Grafana to scrape the
+metrics from Prometheus by
+[setting up Grafana](#grafana-setup).
+
 
 ### Example Queries
 To get you started, this page contains some example queries. These queries
-give you a good insight on GRRs health and workload.
+give you a good insight on GRR's health and workload.
 
 #### QPS rate for the Frontend
 ```
@@ -163,26 +170,14 @@ threadpool_threads{job="grr_worker"}
 rate(grr_client_crashes_total{job="grr_worker"}[5m])
 ```
 
-## Real-World Setup
-Although Prometheus can display basic charts using the
-[expression browser](https://prometheus.io/docs/visualization/browser/),
-we recommend the usage of a dedicated visualization software, e.g.
-[Grafana](https://prometheus.io/docs/visualization/grafana/).
-You can set up a quick configuration of Grafana to scrape the
-metrics from Prometheus by following
-[these instructions](#example-visualization-setup).
-
-To set up metric-based alerts, refer to
-[Prometheus Alerting](https://prometheus.io/docs/alerting/overview/) and
-[Grafana Alerting](https://grafana.com/docs/grafana/latest/alerting/).
-
+### Scaling Prometheus
 Prometheus supports automatic
 [Service Discovery](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
 for many types of infrastructure. Depending on your hosting
 setup and size of your GRR installation, this can be an
 improvement over manually hardcoding hostnames in the Prometheus configuration.
 
-### Security Considerations
+### Prometheus Security Considerations
 A minimal HTTP service, based on
 [prometheus_client](https://github.com/prometheus/client_python/)
 is listening at `Monitoring.http_port` for each GRR component. This HTTP
@@ -193,7 +188,7 @@ about the number of workers, flow activity, and service health can be
 derived. Make sure to limit access to the port, for example by employing
 a firewall. Furthermore, read [Prometheus Security](https://prometheus.io/docs/operating/security/).
 
-## Example visualization and alerting setup
+## Grafana Setup
 This example will walk you through setting up Grafana as a dedicated
 visualization software to parse, display and query metrics scraped from
 GRR server components by Prometheus. If you've followed the
@@ -238,12 +233,11 @@ failed; make sure to check the official documentation.
 
 1. [Set up Prometheus as a data source](https://grafana.com/docs/grafana/latest/features/datasources/prometheus/#prometheus-data-source)
 for Grafana, so that Grafana can display the metrics from Prometheus.
-To do that, follow the guide
-[here](https://grafana.com/docs/grafana/latest/features/datasources/add-a-data-source/#add-a-data-source)
-(in step 3 of the guide, we suggest naming the data source `grr-server` so
-that it will match the configuration file for the provided sample dashboards
-later on. If it is a Fleetspeak-enabled GRR deployment, add a second
-datasource named `fleetspeak`).
+To do that, follow the
+[these instructions](https://grafana.com/docs/grafana/latest/features/datasources/add-a-data-source/#add-a-data-source):
+Click on Configuration -> Data Sources in the Grafana server UI, then click
+on the "Add data source" button. From the list of "time series databases", choose
+Prometheus and in the Name field type `grr-server` (for Fleetspeak, type `fleetspeak`).
 
 1. Grafana is set up and ready to show metrics scraped by Prometheus. You
 can start by either
@@ -271,7 +265,25 @@ panels; each such
 consists of a graph that contain one or more metrics queried from Prometheus,
 and possibly alerting rules.
 
-1. If you want to use the alerts, you first need to define a
+1. You can now use the dashboards. The dashboards can give a general
+overview over the main components of the GRR server and Fleetspeak
+servers, which can be utilized by the user to monitor different metrics
+of each component. Examples for such metrics can be found in the
+[examples above](#example-queries).
+Remember that the dashboards and alerts are flexible, and can be
+expanded or modified to adjust to your exact needs. Additional metrics
+can be used by exploring `http://<host>:<port>/metrics` for each
+component of GRR server (change the port according to the GRR server
+component you want) and Fleetspeak servers, and if you'd like to
+create your own
+[custom dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#create-a-dashboard),
+[panels](https://grafana.com/docs/grafana/latest/panels/add-a-panel/#add-a-panel)
+and [alerts](https://grafana.com/docs/grafana/latest/alerting/create-alerts/#create-alerts),
+make sure to go over the corresponding documentation in Grafana.
+
+### Alerts
+
+If you want to use the alerts in Grafana, you first need to define a
 [notification channel](https://grafana.com/docs/grafana/latest/alerting/notifications/#alert-notifications)
 for the alerts. This can be done by heading over to
 `http://localhost:3000/alerting/notification/new` and
@@ -290,23 +302,7 @@ remove an alert, go to the dashboard and the corresponding panel,
 and there you can remove the alerting rule.
 ![Form to add a notification channel](screenshots/add_notification_channel.png)
 
-1. You can now use the dashboards. The dashboards can give a general
-overview over the main components of the GRR server and Fleetspeak
-servers, which can be utilized by the user to monitor different metrics
-of each component. Examples for such metrics can be found in the
-[examples above](#example-queries).
-Remember that the dashboards and alerts are flexible, and can be
-expanded or modified to adjust to your exact needs. Additional metrics
-can be used by exploring `http://<host>:<port>/metrics` for each
-component of GRR server (change the port according to the GRR server
-component you want) and Fleetspeak servers, and if you'd like to
-create your own
-[custom dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#create-a-dashboard),
-[panels](https://grafana.com/docs/grafana/latest/panels/add-a-panel/#add-a-panel)
-and [alerts](https://grafana.com/docs/grafana/latest/alerting/create-alerts/#create-alerts),
-make sure to go over the corresponding documentation in Grafana.
-
-## Monitoring Client Load Stats
+### Monitoring Client Load Stats
 
 Using Grafana, you are able to view statistics of individual GRR
 clients and monitor them. To achieve this, check out the following
@@ -317,8 +313,7 @@ as the individual client data using these steps is gathered from the
 underlying Fleetspeak client, unlike the current GRR Admin UI which
 gathers its client data from the GRR clients instead.
 
-1. Follow the
-[example visualization and alerting setup](#example-visualization-and-alerting-setup),
+1. [Set up Grafana](#grafana-setup),
 until at least step 3. At this point, you should have a running
 instance of Grafana server.
 
@@ -329,7 +324,8 @@ Fleetspeak. For more details, check out
 [google/grr#832](https://github.com/google/grr/pull/832). It should
 run by default on port 5000.
 
-1. [Install JSON Datasource plugin](https://github.com/simPod/grafana-json-datasource#installation).
+1. [Install JSON Datasource plugin](https://github.com/simPod/grafana-json-datasource#installation)
+by using the command: `grafana-cli plugins install simpod-json-datasource`.
 The plugin will issue JSON requests from Grafana to the HTTP server,
 and then display the queries' results. Make sure that the url is
 `http://<host>:5000`, and for a more friendly name than 'JSON', feel
@@ -338,10 +334,10 @@ free to rename the data source to 'grrafana'.
 1. After the server is up and running, if you do not want to create your
 own Grafana monitoring dashboards for individual client monitoring, we got
 you. In the
-[sample dashboards in step 3](#example-visualization-and-alerting-setup), you
+[sample dashboards in step 3](#grafana-setup), you
 can also find a sample dashboard called Client Load Stats for this exact
 purpose and import it as explained in
-[step 5 here](#example-visualization-and-alerting-setup).
+[step 5 here](#grafana-setup).
 
 1. If you want, you can create
 [Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/#dashboard-overview)
@@ -360,7 +356,7 @@ your panels. Feel free to create new panels and playing around with
 all the individual statistics information** you can get from your
 clients!
 
-## Aggregated Clients Statistics
+### Aggregated Clients Statistics
 
 In GRR Admin UI you are able to view aggregated statistics for multiple GRR
 clients, such as an OS breakdown, GRR version breakdown and so on. To see
