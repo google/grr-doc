@@ -237,16 +237,17 @@ To do that, follow the
 [these instructions](https://grafana.com/docs/grafana/latest/features/datasources/add-a-data-source/#add-a-data-source):
 Click on Configuration -> Data Sources in the Grafana server UI, then click
 on the "Add data source" button. From the list of "time series databases", choose
-Prometheus and in the Name field type `grr-server` (for Fleetspeak, type `fleetspeak`).
+Prometheus and in the Name field type `grr-server`.
 
 1. Grafana is set up and ready to show metrics scraped by Prometheus. You
 can start by either
 [creating your own dashboards](https://grafana.com/docs/grafana/latest/getting-started/getting-started/#create-a-dashboard)
 or [importing exisiting dashboards](https://grafana.com/docs/grafana/latest/reference/export_import/#importing-a-dashboard)
 into Grafana.
-You can choose to import sample dashboards from the
-[Grafana folder in GRR repository](https://github.com/google/grr/tree/master/monitoring/grafana)
-before creating your own. These dashboards contain some example graphs of
+The next step would be to import dashboards provided with GRR from the
+[Grafana folder in GRR repository](https://github.com/google/grr/tree/master/monitoring/grafana). 
+You can customize and expand them with additional graphs, if needed.
+These dashboards contain some example graphs of
 metrics scraped by Prometheus, and also implement sample alerts. To do that,
 first download the dashboards from the repository (download dashboards from
 [`fleetspeak_enabled_setup/dashboards_for_use`](https://github.com/google/grr/tree/master/monitoring/grafana/grr_grafanalib_dashboards/fleetspeak_enabled_setup/dashboards_for_use)
@@ -341,7 +342,8 @@ purpose and import it as explained in
 
 1. If you want, you can create
 [Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/#dashboard-overview)
-or extend the sample dashboards to query individual clients. To do that,
+or extend the [sample dashboards](https://github.com/google/grr/tree/master/monitoring/grafana/grr_grafanalib_dashboards/fleetspeak_enabled_setup/dashboards_for_use)
+to query individual clients. To do that,
 create a new dashboard (clicking on '+' -> Dashboard), then click on
 Dashboard Settings on the top-right and add a new
 [variable](https://grafana.com/docs/grafana/latest/variables/#templates-and-variables).
