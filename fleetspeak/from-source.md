@@ -1,4 +1,4 @@
-GRR and Fleetspeak setup
+Installing from source
 ========================
 
 This guide will walk you through the process of installing GRR from sources and

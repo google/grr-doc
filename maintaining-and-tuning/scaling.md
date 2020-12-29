@@ -48,6 +48,9 @@ management (chef, puppet etc.) to:
   - Control how many of each component to run on each machine (see next
     section for details)
 
+For scaling the fleetspeak communication framework, see [the instructions in
+the fleetspeak section](../fleetspeak/scaling.md).
+
 
 ## Component Performance Needs
 
