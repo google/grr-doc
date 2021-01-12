@@ -7,15 +7,17 @@ The following diagram shows a standard, distributed fleetspeak setup:
 
 The fleetspeak server setup consists of 2 components:
 
-  - **Server**: This component terminates the streaming HTTPS
+  - **Fleetspeak Server**: This component terminates the streaming HTTPS
     connections from the fleetspeak clients. Each fleetspeak client is
     connected to a particular server instance at a time.
-  - **Admin server**: This component provides an administrative GRPC interface
-    as well as an interface for the GRR server to send messages to clients.
+  - **Fleetspeak Admin Server**: This component provides an administrative GRPC
+    interface as well as an interface for the GRR server to send messages to
+    clients.
 
 Both components are included in the single binary `/usr/bin/fleetspeak-server`
 and can be enabled respectively in the config file
-`/etc/fleetspeak-server/server.components.config`.
+`/etc/fleetspeak-server/server.components.config`. The binary is automatically
+started by the systemd unit `fleetspeak-server`.
 
 In the legacy GRR protocol, clients would periodically poll the server for
 messages, leading to delays in message delivery. Fleetspeak on the other hand
@@ -34,7 +36,7 @@ To run a fleetspeak in a distributed setup:
     `/etc/fleetspeak-server/server.components.config` from a working
     installation, adapt them and distribute them to the target machines.
 
-## Running the server component
+## Running the Fleetspeak Server component
 
 To run a server component, keep the `https_config` section and remove the
 `admin_config` section in the file
@@ -85,7 +87,7 @@ Please enter your hostname e.g. grr.example.com [grr-server]: 1.2.3.4
 Fleetspeak public HTTPS port [4443]: 4443
 ```
 
-## Running the admin server component
+## Running the Fleetspeak Admin Server component
 
 To run the admin server component, keep the `admin_config` section and remove
 the `https_config` section in the file
