@@ -42,7 +42,7 @@ sense to have GRR execute arbitrary code as explained in the section
 
 As part of the GRR design, we decided that administrative control of the
 GRR server shouldn’t trivially lead to code execution on the clients. As
-such we embed a strict [whitelist of
+such we embed a strict [allowlist of
 commands](https://github.com/google/grr/search?q=IsExecutionWhitelisted)
 that can be executed on the client and we have a separate set of keys
 for code signing. For a binary to be run, the code has to be signed by

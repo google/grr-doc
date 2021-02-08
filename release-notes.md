@@ -348,8 +348,8 @@ versions](admin.md#client-and-server-version-compatibility-and-numbering).
     versions](https://github.com/google/grr/issues/379). You will need
     to use the new client templates that include a build.yaml file.
 
-  - **WARN** Config option Cron.enabled\_system\_jobs (a whitelist) was
-    replaced with Cron.disabled\_system\_jobs (a blacklist) to make
+  - **WARN** Config option Cron.enabled\_system\_jobs (a allowlist) was
+    replaced with Cron.disabled\_system\_jobs (a blocklist) to make
     adding new cronjobs easier. You will need to remove
     Cron.enabled\_system\_jobs and if you made customizations here,
     translate any jobs you want to remain disabled to the new list.
@@ -610,8 +610,8 @@ writeback
 
   - Worker.worker\_process\_count: unused
 
-  - Cron.enabled\_system\_jobs (a whitelist) was replaced with
-    Cron.disabled\_system\_jobs (a blacklist).
+  - Cron.enabled\_system\_jobs (a allowlist) was replaced with
+    Cron.disabled\_system\_jobs (a blocklist).
     Cron.enabled\_system\_jobs should be removed. Any custom jobs you
     want to stay disabled should be added to Cron.enabled\_system\_jobs.
 
