@@ -68,7 +68,7 @@ and on Linux:
 
 A full list of possible interpolation values can be found by typing %%
 in the gui. The canonical reference is the
-[proto/knowledge\_base.proto](https://github.com/google/grr/blob/master/grr/proto/knowledge_base.proto) file, which also contains docstrings for each type.
+[proto/knowledge\_base.proto](https://github.com/google/grr/blob/master/grr/proto/grr_response_proto/knowledge_base.proto) file, which also contains docstrings for each type.
 
 ## Path Globbing
 
@@ -110,6 +110,6 @@ performs the same search 10 levels deep:
 /root/**10.doc
 ```
 
-> **IMPORTANT** Note that the FileFinder transfers all data to the server and does the matching server side. This might lead to terrible performance when used with deep recursive directory searches. For a faster alternative that has the drawback of leaking the path you are searching for to the potentially compromised client, use the *ClientFileFinder* flow which does the matching right on the client.
-
-
+> **IMPORTANT:** Due to a [regression](https://github.com/google/grr/issues/915), the recursive glob `**` behaves differently in ClientFileFinder. This will be fixed in a future version.
+> 
+> **Note:** FileFinder transfers all data to the server and does the matching server side. This might lead to terrible performance when used with deep recursive directory searches. For a faster alternative that has the drawback of leaking the path you are searching for to the potentially compromised client, use the *ClientFileFinder* flow which does the matching right on the client.
