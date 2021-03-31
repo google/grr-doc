@@ -1,6 +1,6 @@
 # Setting Up a Development Environment
 
-> **NOTE:** This article describes setting up GRR development environment on Ubuntu 16 (Xenial) or Debian 9 (stretch). Most of the instructions below are applicable to other Linux distributions as well as to Mac OS X, although some details may differ from platform to platform.
+> **NOTE:** This article describes setting up GRR development environment on Ubuntu 18 (Xenial) or Debian 10 (buster). Most of the instructions below are applicable to other Linux distributions as well as to Mac OS X, although some details may differ from platform to platform.
 
 ## Step 1. Checkout GRR sources.
 
@@ -71,7 +71,7 @@ source ~/.virtualenv/GRR/bin/activate
 GRR depends on a few libraries that have to be installed on a system. Run this command to ensure you have them:
 
 ```bash
-sudo apt-get install libssl-dev python-dev python-pip wget openjdk-8-jdk zip dh-systemd libmysqlclient-dev
+sudo apt-get install libssl-dev python3-dev python-pip wget openjdk-8-jdk zip dh-systemd libmysqlclient-dev
 ```
 
 > Depending on the distribution, the set of packages providing these functionalities can be a bit different—please, refer to your distribution package repository. Useful replacement suggestions are also often provided by package managers themselves.
