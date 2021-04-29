@@ -67,3 +67,5 @@ These are presentations about GRR by people outside the core GRR team.
 "[Human Hunting](https://github.com/pidydx/slides/blob/master/HumanHunting.pdf)" @BSidesSF 2015 by Sean Gillespie. Covers how Yahoo is using GRR. [Video](https://www.youtube.com/watch?v=4qCvx3SnAm4).
 
 "[GRR Rapid Response: Remote Live Forensics for Incident Response](http://kernsec.org/files/lss2015/GRR.pdf)" @ [Linux Security Summit](http://kernsec.org/wiki/index.php/Linux_Security_Summit_2015) Aug 2015 by Sean Gillespie.
+
+"[Desafios forenses em fog computing, utilizando GRR](https://drive.google.com/file/d/1YoK-NJ-2wms-rU5wbYv2_8eXHi5976WP/view)"  Feb 2019 by M. Navarro
