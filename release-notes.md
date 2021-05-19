@@ -12,6 +12,26 @@ new version.
 
 ## Server
 
+### 3.4.3.1 (May 19 2021)
+
+Regular release for Q2 2021.
+
+- Prometheus/Grafana [support](https://grr-doc.readthedocs.io/en/latest/maintaining-and-tuning/monitoring.html).
+- New flow: "Collect large file" that uploads a given path to Google Cloud Storage using a given signed URL.
+- New output plugin: Elasticsearch (thanks micrictor@ for the [contribution](https://github.com/google/grr/pull/923)!)
+- Fleetspeak-enabled setups now use streaming connections by default (agents keep connections open, thus reducing latency from ~5 minutes to under 1 minute).
+- API changes:
+  - Introduced KillFleetspeak, RestartFleetspeakGrrService, DeleteFleetspeakPendingMessages, GetFleetspeakPendingMessages, GetFleetspeakPendingMessageCount API methods to provide Fleetspeak-specific capabilities for Fleetspeak-enabled clients.
+  - Introduced ListParsedFlowResults and ListFlowApplicableParsers API methods for on-demand artifacts parsing.
+- Bugfixes and various minor enhancements:
+  - Osquery doesn't report results if the client returns an empty dataset.
+  - Additional options can be specified when downloading timelines.
+  - Introduced Hunt.default_client_rate configuration option.
+  - Added Cron.interrogate_client_rate config option (defaults to 50).
+- Ongoing work on the UIv2: very early version of the next-gen UI can be checked via the `<admin ui address>/v2` URL.
+
+*Note: this is the last release where Fleetspeak is considered an experimental feature. Next release is going to use Fleetspeak as a default option (while still keeping the legacy communication protocol as a deprecated option).*
+
 ### 3.4.2.4 (October 14 2020)
 
 Minor bug-fix release on top of v3.4.2.3.
