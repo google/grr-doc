@@ -12,6 +12,16 @@ new version.
 
 ## Server
 
+### 3.4.5.1 (August 19 2021)
+
+Mid-quarter release for Q3 2021.
+
+ - Sandboxing in the GRR client: TSK, libfsntfs and YARA libraries are now run in a separate, unprivileged process. This uses an unprivileged user and network/IPC namespaces on Linux, an unprivileged user in combination with `sandbox_init` on macOS, and [AppContainer Isolation](https://docs.microsoft.com/en-us/windows/win32/secauthz/appcontainer-isolation) on Windows.
+ - Fleetspeak, the next generation communication framework, is now enabled by default. It's still possible to enable the deprecated, legacy communication framework via `grr_config_updater`.
+ - New MSI installer for Windows clients. The old, self-extracting ZIP exe is now deprecated.
+ - `ListNamedPipes`: New flow for named pipe collection on Windows.
+ - Ongoing progress on the UIv2: early version of the next generation UI can be checked via the `<admin ui address>/v2` URL.
+
 ### 3.4.3.1 (May 19 2021)
 
 Regular release for Q2 2021.

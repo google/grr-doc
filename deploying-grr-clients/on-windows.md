@@ -1,5 +1,20 @@
 # Installing GRR clients on Windows
 
+## MSI installer
+
+Since version 3.4.5.1, GRR provides a new MSI based installer for the client on
+Windows.
+
+The client can be installed either by double-clicking the installer or by using
+the
+[`msiexec`](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/msiexec)
+command.
+
+The client can be removed via the "Apps and features" setting in the control
+panel or by using `msiexec`.
+
+## Legacy self-extracting .exe installer
+
 For Windows you will see a 64 bit installer. Run the installer as admin (it
 should load the UAC prompt if you are not admin). It should run silently and
 install the client to `c:\windows\system32\grr\%version%\`. It will also
@@ -86,7 +101,7 @@ Anonymous share.
 The best way to verify whether the whole installation process has worked
 is to search for the client in the GUI.
 
-## Uninstalling on Windows
+### Uninstalling
 On Windows the client does not have a standard uninstaller. It is
 designed to have minimal impact on the system and leave limited traces
 of itself such that it can be hidden reasonably easily. Thus it was

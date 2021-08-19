@@ -2,23 +2,19 @@
 
 ## Communication Security.
 
-GRR communication happens using signed and encrypted protobuf messages.
-We use 2048 bit RSA keys to protect symmetric AES128 encryption. The
-security of the system does not rely on SSL transport for communication
-security. This enables easy replacement of the comms protocol with
-non-http mechanisms such as UDP packets.
+GRR uses fleetspeak for communication, which in turn uses TLS.
 
-The communications use a CA and server public key pair generated on
-server install. The CA public key is deployed to the client so that it
+The fleetspeak server uses a CA and server public key pair generated on
+server install. The CA certificate is deployed to the client so that it
 can ensure it is communicating with the correct server. If these keys
 are not kept secure, anyone with MITM capability can intercept
 communications and take control of your clients. Additionally, if you
 lose these keys, you lose the ability to communicate with your clients.
 
-**Note**: The fact that the client uses a CA key to verify the server
+**Note**: The fact that the client uses a CA certificate to verify the server
 ensures only that the client doesn't accidentally connect to the wrong
 server and protects for example from privilege escalation attacks using
-a malicious GRR server. This feature does not stop clients that do not
+a malicious fleetspeak server. This feature does not stop clients that do not
 have the CA certificate from connecting to your server - it's for
 example possible to use a modified client that just doesn't do this
 check. Such clients would the be able to see for example IOCs that you

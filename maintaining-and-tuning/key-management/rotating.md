@@ -2,7 +2,7 @@
 
 ## Rotating Client Keys ##
 
-The keys used by the clients to talk to the server do not have to be / cannot be rotated since the client id depends directly on the private key. Just removing the private key results in the client generating a new one but the client will also get a new client id.
+The keys used by the fleetspeak client to talk to the server do not have to be / cannot be rotated since the client id depends directly on the private key. Just removing the fleetspeak state file results in the client generating a new key pair but the client will also get a new client id.
 
 Client keys used for signing executables and drivers can be changed in the config as described in the [documentation about keys](which-keys-and-how.md) but
 

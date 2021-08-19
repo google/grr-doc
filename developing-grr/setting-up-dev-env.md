@@ -133,13 +133,15 @@ grr_config_updater initialize
 
 You can use one of the commands below to run specific GRR server components.
 
+Fleetspeak server: `fleetspeak_server`
+
 Admin UI: `grr_admin_ui`
 
 Frontend: `grr_frontend`
 
 Worker: `grr_worker`
 
-You can also run a local GRR client by executing `grr_client` command.
+You can also run a local GRR client by executing `fleetspeak_client` command.
 
 Adding `--verbose` flag to any of these commands would force GRR components to output debug information to stderr.
 
