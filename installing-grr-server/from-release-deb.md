@@ -37,6 +37,12 @@ community edition of MySQL from Ubuntu repositories:
     mysql> CREATE DATABASE grr;
 
     mysql> GRANT ALL ON grr.* TO 'grr'@'localhost';
+
+    mysql> CREATE USER 'fleetspeak'@'localhost' IDENTIFIED BY 'password';
+
+    mysql> CREATE DATABASE fleetspeak;
+
+    mysql> GRANT ALL ON fleetspeak.* TO 'fleetspeak'@'localhost';
     ```
     Please note: GRR is senstive to the MySQL's `max_allowed_packet` setting.
     Make sure it's not lower than 20971520. Creation of a new user is optional
@@ -56,7 +62,7 @@ community edition of MySQL from Ubuntu repositories:
     ```
 
     The installer will prompt for a few pieces of information to get things set up.
-    After successful installation, the `grr-server` service should be running:
+    After successful installation, the `grr-server` and `fleetspeak-server` services should be running:
 
     ```bash
     root@grruser-bionic:/home/grruser# systemctl status grr-server
@@ -73,6 +79,18 @@ community edition of MySQL from Ubuntu repositories:
 
     Nov 22 10:16:39 grruser-bionic systemd[1]: Starting GRR Service...
     Nov 22 10:16:39 grruser-bionic systemd[1]: Started GRR Service.
+
+		root@grruser-bionic:/home/grruser# systemctl status fleetspeak-server
+		● fleetspeak-server.service - Fleetspeak Server Service
+			 Loaded: loaded (/lib/systemd/system/fleetspeak-server.service; disabled; vendor preset: enabled)
+			 Active: active (running) since Thu 2021-08-12 18:35:13 UTC; 4s ago
+				 Docs: https://github.com/google/fleetspeak
+		 Main PID: 3555 (fleetspeak-serv)
+				Tasks: 7 (limit: 4666)
+			 CGroup: /system.slice/fleetspeak-server.service
+							 └─3555 /usr/bin/fleetspeak-server --services_config /etc/fleetspeak-server/server.services.config --components_config /etc/fleetspeak-server/server.components.config
+
+		Aug 12 18:35:13 grruser-bionic systemd[1]: Started Fleetspeak Server Service.
     ```
 
     In addition, administrative commands for GRR, e.g `grr_console` and

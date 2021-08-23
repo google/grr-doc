@@ -8,7 +8,7 @@ GRR consists of 2 parts: client and server.
 
 **GRR client** is deployed on systems that one might want to investigate. On every such system, once deployed, GRR client periodically polls GRR frontend servers for work. "Work" means running a specific action: downloading file, listing a directory, etc.
 
-**GRR server** infrastructure consists of several components (frontends, workers, UI servers) and provides web-based graphical user interface and an API endpoint that allows analysts to schedule actions on clients and view and process collected data.
+**GRR server** infrastructure consists of several components (frontends, workers, UI servers, fleetspeak) and provides web-based graphical user interface and an API endpoint that allows analysts to schedule actions on clients and view and process collected data.
 
 ## Remote forensics at scale
 

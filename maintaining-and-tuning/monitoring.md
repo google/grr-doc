@@ -15,20 +15,19 @@ and [Grafana](https://grafana.com/) can plot the parsed data.
 This example will walk you through a basic Prometheus setup.
 For this example, the GRR Frontend, Worker, and Admin UI will be
 launched on your local machine. You can also choose to monitor
-Fleetspeak servers, if you have a GRR + Fleetspeak setup; otherwise
-feel free to skip the relevant steps, which are marked as **FS**.
+Fleetspeak servers; otherwise feel free to skip the relevant steps, which are
+marked as **FS**.
 
 1. Install GRR, for example from
 [pip](../installing-grr-server/from-released-pip.html).
-
-1. **FS:** Follow
-[the instructions](../fleetspeak.html) to install Fleetspeak
-configured with GRR.
 
 1. Run the GRR components locally. Execute each of the
 three commands in a separate terminal:
 
     ```bash
+    # Fleetspeak monitoring is configured in a separate config file.
+    grr_server --component fleetspeak_server
+
     grr_server --component admin_ui -p Monitoring.http_port=44451
     
     grr_server --component frontend -p Monitoring.http_port=44452
@@ -41,10 +40,13 @@ three commands in a separate terminal:
     Prometheus requires to know which type of component listens on which
     ports. If you use `Monitoring.http_port_max`, make sure that only one
     type of GRR components (e.g. only workers) listen on a given
-    range of ports. 
+    range of ports.
 
-1. **FS:** Go to `~/.config/fleetspeak-server/components.textproto` and
-add the following to the end of the file:
+1. **FS:** Edit the file `server.components.config`. It is located in
+`/etc/fleetspeak-server` on a setup installed from a DEB and in the virtualenv,
+in `fleetspeak-server-bin/etc/fleetspeak-server` when running from a
+virtualenv.  Add the following to the end of the file:
+
     ```bash
     stats_config: <
       address: "localhost:54451"

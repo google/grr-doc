@@ -62,6 +62,8 @@ commands such as as `grr_server` and `grr_config_updater` will be added to
 the virtualenv. You can then launch the server components as follows:
 
 ```bash
+# To run fleetspeak server.
+grr_server --component fleetspeak_server --verbose
 # To run AdminUI.
 grr_server --component admin_ui --verbose
 # To run the worker.
@@ -70,6 +72,6 @@ grr_server --component worker --verbose
 grr_server --component frontend --verbose
 ```
 
-Note that GRR requires Python 2.7+, so for platforms with older default Python
+Note that GRR requires Python 3.6+, so for platforms with older default Python
 versions (e.g Centos 6), you need to build a newer version of Python from source
 and use that for creating the virtualenv.
