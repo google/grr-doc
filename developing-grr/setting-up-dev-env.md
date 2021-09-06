@@ -24,17 +24,17 @@ sudo apt install python3-venv
 
 To create a virtual environment you execute the `python3 venv $DIR` command
 where `$DIR` is the directory where you want it to be placed. The rest of the
-manual will assume that the environment is created in `~/GRR` like
+manual will assume that the environment is created in `~/grr_venv` like
 this:
 
 ```bash
-python3 -m venv ~/GRR
+python3 -m venv ~/grr_venv
 ```
 
 After creating the environment you have to activate it:
 
 ```bash
-source ~/GRR/bin/activate
+source ~/grr_venv/bin/activate
 ```
 
 It is also advised to make sure that we are running a recent version of `pip` and have latest versions of a few related packages:
@@ -63,7 +63,7 @@ Because the `nodeenv` command modifies our virtual environment, we also need to
 reinitialize it with:
 
 ```bash
-source ~/GRR/bin/activate
+source ~/grr_venv/bin/activate
 ```
 
 ## Step 4. Install GRR dependencies.
