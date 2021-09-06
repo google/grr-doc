@@ -14,27 +14,27 @@ cd grr/
 
 ## Step 2. Set up Virtual Python environment.
 
-Make sure that you have `virtualenv` installed. It should be available in
+Make sure that you have `venv` installed. It should be available in
 repositories of all popular Linux distributions. For example, to install it on
 Ubuntu-based distros, run:
 
 ```bash
-sudo apt install virtualenv
+sudo apt install python3-venv
 ```
 
-To create a virtual environment you execute the `virtualenv $DIR` command
+To create a virtual environment you execute the `python3 venv $DIR` command
 where `$DIR` is the directory where you want it to be placed. The rest of the
-manual will assume that the environment is created in `~/.virtualenv/GRR` like
+manual will assume that the environment is created in `~/grr_venv` like
 this:
 
 ```bash
-virtualenv ~/.virtualenv/GRR --python=python3
+python3 -m venv ~/grr_venv
 ```
 
 After creating the environment you have to activate it:
 
 ```bash
-source ~/.virtualenv/GRR/bin/activate
+source ~/grr_venv/bin/activate
 ```
 
 It is also advised to make sure that we are running a recent version of `pip` and have latest versions of a few related packages:
@@ -44,7 +44,7 @@ pip install --upgrade pip wheel setuptools six
 ```
 
 For more information about creating and managing your virtual environments
-refer to the [`virtualenv` documentation](https://virtualenv.pypa.io).
+refer to the [`venv` documentation](https://docs.python.org/3.9/library/venv.html).
 
 ## Step 3. Set up Node.js environment.
 
@@ -56,14 +56,14 @@ To install Node.js, execute:
 
 ```bash
 pip install nodeenv
-nodeenv -p --prebuilt --node=12.11.1
+nodeenv -p --prebuilt --node=12.14.1
 ```
 
 Because the `nodeenv` command modifies our virtual environment, we also need to
 reinitialize it with:
 
 ```bash
-source ~/.virtualenv/GRR/bin/activate
+source ~/grr_venv/bin/activate
 ```
 
 ## Step 4. Install GRR dependencies.
@@ -85,13 +85,13 @@ following commands:
 > **NOTE**: order of the commands is important. Running these commands in wrong order will lead to PIP  fetching prebuilt GRR packages from PyPi. In such case, editing code in checked out GRR repository won't have any effect.
 
 ```bash
-pip install -e ./grr/proto
-pip install -e ./grr/core
-pip install -e ./grr/client
-pip install -e ./api_client/python
-pip install -e ./grr/client_builder
-pip install -e ./grr/server/[mysqldatastore]
-pip install -e ./colab
+pip install -e ./grr/proto && \
+pip install -e ./grr/core && \
+pip install -e ./grr/client && \
+pip install -e ./api_client/python && \
+pip install -e ./grr/client_builder && \
+pip install -e ./grr/server/[mysqldatastore] && \
+pip install -e ./colab && \
 pip install -e ./grr/test
 ```
 
