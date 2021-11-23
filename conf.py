@@ -21,20 +21,11 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 
-# -- General configuration ------------------------------------------------
-
-# If your documentation needs a minimal Sphinx version, state it here.
-#
-# needs_sphinx = '1.0'
-
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.mathjax',
-    'recommonmark',
+    'myst_parser',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -75,141 +66,19 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-
-# -- Options for HTML output ----------------------------------------------
-
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
-
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-#
-# html_theme_options = {}
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = []
-
-# Custom sidebar templates, must be a dictionary that maps document names
-# to template names.
-#
-# This is required for the alabaster theme
-# refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
-# html_sidebars = {
-#     '**': [
-#         'relations.html',  # needs 'show_related': True theme option to display
-#         'searchbox.html',
-#     ]
-# }
-
-
-# -- Options for HTMLHelp output ------------------------------------------
+html_theme_options = {
+  # Toc options
+  'collapse_navigation': True,
+  'sticky_navigation': True,
+  'navigation_depth': 4,
+  'includehidden': True,
+  'titles_only': True,
+}
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'GRRdoc'
-
-
-# -- Options for LaTeX output ---------------------------------------------
-
-latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #
-    # 'papersize': 'letterpaper',
-
-    # The font size ('10pt', '11pt' or '12pt').
-    #
-    # 'pointsize': '10pt',
-
-    # Additional stuff for the LaTeX preamble.
-    #
-    # 'preamble': '',
-
-    # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htmaster_dobp',
-}
-
-# Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (master_doc, 'GRR.tex', u'GRR Documentation',
-     u'GRR team', 'manual'),
-]
-
-
-# -- Options for manual page output ---------------------------------------
-
-# One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'grr', u'GRR Documentation',
-     [author], 1)
-]
-
-# -- Options for Texinfo output -------------------------------------------
-
-# Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
-#  dir menu entry, description, category)
-texinfo_documents = [
-    (master_doc, 'GRR', u'GRR Documentation',
-     author, 'GRR', 'One line description of project.',
-     'Miscellaneous'),
-]
-
-# Configure sphinx to convert markdown links (recommonmark is broken at the
-# moment).
-from docutils import nodes, transforms
-
-class ProcessLink(transforms.Transform):
-
-    default_priority = 1000
-
-    text_replacements = {
-        "__GRR_VERSION__": "3.4.5.1",
-        "__GRR_DEB_VERSION__": "3.4.5-1"
-    }
-
-    def find_replace(self, node):
-        if isinstance(node, nodes.reference) and "refuri" in node:
-            r = node["refuri"]
-            if r.endswith(".md"):
-                r = r[:-3] + ".html"
-                node["refuri"] = r
-
-        if isinstance(node, nodes.Text):
-            for k, v in self.text_replacements.items():
-                if k in node.astext():
-                    repl = nodes.Text(node.replace(k, v))
-                    node.parent.replace(node, repl)
-
-        return node
-
-    def traverse(self, node):
-        """Traverse the document tree rooted at node.
-        node : docutil node
-            current root node to traverse
-        """
-        self.find_replace(node)
-
-        for c in node.children:
-            self.traverse(c)
-
-    def apply(self):
-        self.current_level = 0
-        self.traverse(self.document)
-
-from recommonmark.transform import AutoStructify
-
-def setup(app):
-    app.add_config_value('recommonmark_config', {
-        'enable_auto_toc_tree': True,
-        'auto_toc_tree_section': 'Table of contents',
-    }, True)
-    app.add_transform(AutoStructify)
-    app.add_transform(ProcessLink)
