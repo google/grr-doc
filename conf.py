@@ -82,3 +82,42 @@ html_theme_options = {
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'GRRdoc'
+
+
+# Configure sphinx to replace predefined version variables.
+from docutils import nodes, transforms
+
+class ProcessLink(transforms.Transform):
+
+    default_priority = 1000
+
+    text_replacements = {
+        "__GRR_VERSION__": "3.4.5.1",
+        "__GRR_DEB_VERSION__": "3.4.5-1"
+    }
+
+    def find_replace(self, node):
+        if isinstance(node, nodes.Text):
+            for k, v in self.text_replacements.items():
+                if k in node.astext():
+                    repl = nodes.Text(node.replace(k, v))
+                    node.parent.replace(node, repl)
+
+        return node
+
+    def traverse(self, node):
+        """Traverse the document tree rooted at node.
+        node : docutil node
+            current root node to traverse
+        """
+        self.find_replace(node)
+
+        for c in node.children:
+            self.traverse(c)
+
+    def apply(self):
+        self.current_level = 0
+        self.traverse(self.document)
+
+def setup(app):
+    app.add_transform(ProcessLink)
