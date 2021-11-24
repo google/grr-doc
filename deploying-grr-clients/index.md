@@ -1,6 +1,9 @@
 # Deploying GRR clients
 
 ```{toctree}
+---
+maxdepth: 1
+---
 Overview <overview.md>
 How to check if a deployed client talks back to GRR server <how-to-check-if-client-talks-back.md>
 On Windows <on-windows.md>

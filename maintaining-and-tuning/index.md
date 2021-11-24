@@ -1,6 +1,9 @@
 # Maintaining and tuning GRR deployment
 
 ```{toctree}
+---
+maxdepth: 1
+---
 Changing GRR server configuration <configuration/index.md>
 Key management <key-management/index.md>
 User management <user-management/index.md>

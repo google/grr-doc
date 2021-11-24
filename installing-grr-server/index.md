@@ -1,6 +1,9 @@
 # Installing GRR Server
 
 ```{toctree}
+---
+maxdepth: 1
+---
 Overview <overview.md>
 Securing access to GRR server (important) <securing-access.md>
 Installing from a release DEB (recommended) <from-release-deb.md>

@@ -1,6 +1,9 @@
 # Flows
 
 ```{toctree}
+---
+maxdepth: 1
+---
 What are Flows and how to use them <what-are-flows.md>
 Starting Flows <starting.md>
 Specifying File Paths <specifying-file-paths.md>

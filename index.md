@@ -19,6 +19,9 @@ GRR is open source (Apache License 2.0) and is developed on GitHub: [github.com/
 ## Table of contents
 
 ```{toctree}
+---
+maxdepth: 2
+---
 What is GRR? <what-is-grr.md>
 Quickstart <quickstart.md>
 Installing GRR server <installing-grr-server/index.md>

@@ -1,6 +1,9 @@
 # Hunts
 
 ```{toctree}
+---
+maxdepth: 1
+---
 What are "hunts" and how to use them <what-are-hunts.md>
 Starting Hunts <starting.md>
 Hunt Rules <rules.md>

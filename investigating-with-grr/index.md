@@ -1,6 +1,9 @@
 # Investigating with GRR
 
 ```{toctree}
+---
+maxdepth: 1
+---
 Overview <overview.md>
 Client-Server communication <client-server-communication.md>
 Security considerations <security-considerations.md>
