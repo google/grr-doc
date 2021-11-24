@@ -93,7 +93,8 @@ class ProcessLink(transforms.Transform):
 
     text_replacements = {
         "__GRR_VERSION__": "3.4.5.1",
-        "__GRR_DEB_VERSION__": "3.4.5-1"
+        "__GRR_DEB_VERSION__": "3.4.5-1",
+        "__FLEETSPEAK_PIP_VERSION__": "0.1.11"
     }
 
     def find_replace(self, node):
