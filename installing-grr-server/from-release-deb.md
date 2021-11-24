@@ -1,8 +1,8 @@
 # Installing from a release server deb (recommended)
 
 This is the recommended way of installing the GRR server components. GRR server
-debs are built for Ubuntu 18.04 Bionic. They may install on Debian or other Ubuntu
-versions, but compatibility is not guaranteed.
+debs are built for Ubuntu 18.04 Bionic (x86-64). They may install on Debian or other
+Ubuntu versions, but compatibility is not guaranteed.
 
 1. MySQL is GRR's default database backend, and should be up and running
 before installing GRR. The database framework can be run alongside GRR on the
@@ -15,7 +15,22 @@ community edition of MySQL from Ubuntu repositories:
 
     If you have never installed MySQL on the machine before, you will be
     prompted for a password for the 'root' database user. After installation
-    completes, you will typically want to create a new database
+    completes, you need to change the `max_allowed_packet` setting, otherwise
+    GRR will have issues writing large chunks of data to the database. Put
+    the following into `/etc/mysql/my.cnf`:
+    
+    ```
+    [mysqld]
+    max_allowed_packet=40M
+    ```
+    
+    Then restart the MySQL server:
+    
+    ```
+    service mysql restart
+    ```
+    
+    You will typically want to create a new database
     user for GRR and give that user access an empty database that
     the GRR server installation will use:
 
@@ -24,8 +39,6 @@ community edition of MySQL from Ubuntu repositories:
     ```
 
     ```bash
-    mysql> SET GLOBAL max_allowed_packet=41943040;
-
     mysql> CREATE USER 'grr'@'localhost' IDENTIFIED BY 'password';
 
     mysql> CREATE DATABASE grr;
