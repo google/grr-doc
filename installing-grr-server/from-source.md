@@ -77,7 +77,7 @@ fleetspeak-server-bin @ file:///home/foo/fleetspeak/dist/fleetspeak_server_bin-_
 
 ## Building GRR
 
-Next, you need to build GRR. Download the github repo and cd into its directory:
+Next, you need to build GRR. Download the GitHub repo and cd into its directory:
 
 ```bash
 git clone https://github.com/google/grr.git

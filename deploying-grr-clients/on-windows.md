@@ -66,7 +66,7 @@ execute it. The installation doesn’t require user input.
 
 The expected output is something along these lines:
 
-``docker
+```docker
 C:\> cd C:\CLIENT_DIRECTORY\
 C:\> net use \\127.0.0.1\IPC$ /USER:admin *
 Type the password for \\127.0.0.1\IPC$:
