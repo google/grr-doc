@@ -27,12 +27,6 @@ The GRR client **is not a server component** but it comes bundled with GRR serve
 #### GRR Datastore
 The data store acts both as a central storage component for data, and as a communication mechanism for all GRR server components.
 
-***Note on the AFF4 datastore deprecation***
-
-*Starting from the version ***3.3.0.0*** GRR uses a new datastore format by default - ***REL_DB***. REL_DB is backwards-incompatible with the now-deprecated AFF4 datastore format (even though they both use MySQL as a backend).*
-
-*Use of AFF4-based deployments is now discouraged. REL_DB is expected to be much more stable and performant. Please see [these docs](../maintaining-and-tuning/grr-datastore.md) if you're upgrading an older GRR version and would like to try out the new datastore.*
-
 #### Fleetspeak server
 
 This component terminates the streaming HTTPS connections from the fleetspeak clients and implements the communication protocol. It receives messages from clients and delivers queued messages to the clients.

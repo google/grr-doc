@@ -19,7 +19,7 @@ Fleetspeak servers; otherwise feel free to skip the relevant steps, which are
 marked as **FS**.
 
 1. Install GRR, for example from
-[pip](../installing-grr-server/from-released-pip.html).
+[pip](../installing-grr-server/from-released-pip.md).
 
 1. Run the GRR components locally. Execute each of the
 three commands in a separate terminal:

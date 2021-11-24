@@ -1,5 +1,10 @@
 # Artifacts
 
-* [Overview](overview.md)
-* [Collecting](collecting.md)
-* [Defining](defining.md)
+```{toctree}
+---
+maxdepth: 1
+---
+Overview <overview.md>
+Collecting <collecting.md>
+Defining <defining.md>
+```
