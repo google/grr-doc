@@ -12,6 +12,24 @@ new version.
 
 ## Server
 
+### 3.4.6.0 (May 30 2022)
+
+Regular release for Q2 2022.
+
+ - UIv2 “files and flows” Launch
+   - Search and collect files, browse collected files (former VFS)
+   - List directory processes and network connections
+   - Scan and dump memory
+   - Launch binary, execute python hacks
+   - Collect timeline, browser history and artifacts
+ - UIv2 Canary feature: create hunts from existing flows!
+ - New Feature: `Read low level` flow and client action. Use it to read raw data from disk.
+ - Small bug fixes and refactors.
+
+*Note: This will be the last release where GRR supports the Legacy Communication protocol. From the next release onwards, expect GRR to communicate only via [Fleetspeak](https://grr-doc.readthedocs.io/en/latest/fleetspeak/index.html) (more details to follow before the next release).*
+
+*Note: This will be the last release based on Python 3.6.*
+
 ### 3.4.5.1 (August 19 2021)
 
 Mid-quarter release for Q3 2021.
