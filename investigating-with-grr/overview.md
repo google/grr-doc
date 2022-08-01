@@ -17,7 +17,7 @@ are several places that they might start.
 ### Virtual File System
 
 The [virtual file system](vfs/virtual-file-system/) shows the files, directories,
-and registry entries which have already been collect from a client. It shows
+and registry entries which have already been collected from a client. It shows
 when the entry was collected, and provides some buttons to collect additional
 buttons of this sort.
 
