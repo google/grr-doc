@@ -114,7 +114,7 @@ It can also be combined with interpolation.
 
 The following statement:
 
-```docker
+```
 %%environ_systemdrive%%\**5\FOOBAR
 ```
 
