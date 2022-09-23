@@ -87,11 +87,11 @@ two.doc
 ```
 
 
-Recursive searching of a directory is performed with \*\*. The default
+Recursive searching of a directory is performed with `**`. The default
 search depth is 3 directories. So:
 
 ```docker
-/root/**.doc
+/root/**/*.doc
 ```
 
 Will match:
@@ -103,11 +103,27 @@ Will match:
 /root/1/2/3/another.doc
 ```
 
-More depth can be specified by adding a number to the \*\*, e.g. this
+More depth can be specified by adding a number to the `**`, e.g. this
 performs the same search 10 levels deep:
 
 ```docker
-/root/**10.doc
+/root/**10/*.doc
+```
+
+It can also be combined with interpolation.
+
+The following statement:
+
+```
+%%environ_systemdrive%%\**5\FOOBAR
+```
+
+Will match:
+
+```
+C:/1/FOOBAR
+C:/1/2/FOOBAR
+C:/1/2/3/FOOBAR
 ```
 
 > **IMPORTANT:** Due to a [regression](https://github.com/google/grr/issues/915), the recursive glob `**` behaves differently in ClientFileFinder. This will be fixed in a future version.
