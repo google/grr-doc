@@ -87,7 +87,7 @@ two.doc
 ```
 
 
-Recursive searching of a directory is performed with `\*\*`. The default
+Recursive searching of a directory is performed with `**`. The default
 search depth is 3 directories. So:
 
 ```docker
@@ -103,7 +103,7 @@ Will match:
 /root/1/2/3/another.doc
 ```
 
-More depth can be specified by adding a number to the \*\*, e.g. this
+More depth can be specified by adding a number to the `**, e.g. this
 performs the same search 10 levels deep:
 
 ```docker
