@@ -103,7 +103,7 @@ Will match:
 /root/1/2/3/another.doc
 ```
 
-More depth can be specified by adding a number to the `**, e.g. this
+More depth can be specified by adding a number to the `**`, e.g. this
 performs the same search 10 levels deep:
 
 ```docker
@@ -120,7 +120,7 @@ The following statement:
 
 Will match:
 
-```docker
+```
 C:/1/FOOBAR
 C:/1/2/FOOBAR
 C:/1/2/3/FOOBAR
