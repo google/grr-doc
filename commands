@@ -1,0 +1,424 @@
+GRR Command Reference
+
+
+grr_admin_ui          grr_console           grr_fuse
+grr_client            grr_end_to_end_tests  grr_server
+grr_config_updater    grr_export            grr_worker
+
+
+
+###grr_admin_ui --help###
+usage: grr_admin_ui [-h] [--verbose] [--debug] [--config CONFIG]
+                    [--secondary_configs SECONDARY_CONFIGS] [--config_help]
+                    [--context CONTEXT] [--plugins PLUGINS]
+                    [--disallow_missing_config_definitions] [-p PARAMETER]
+                    [--list_storage]
+
+GRR Rapid Response
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
+
+
+
+###grr_client --help###
+usage: grr_client [-h] [--verbose] [--debug] [--config CONFIG]
+                  [--secondary_configs SECONDARY_CONFIGS] [--config_help]
+                  [--context CONTEXT] [--plugins PLUGINS]
+                  [--disallow_missing_config_definitions] [-p PARAMETER]
+                  [--list_storage] [--install] [--break_on_start]
+                  [--debug_client_actions]
+
+GRR Rapid Response
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
+  --install             Specify this to install the client.
+  --break_on_start      If True break into a pdb shell immediately on startup.
+                        This can be used for debugging the client manually.
+  --debug_client_actions
+                        If True break into a pdb shell before executing any
+                        client action.
+
+
+
+###grr_config_updater --help###
+usage: grr_config_updater [-h] [--verbose] [--debug] [--config CONFIG]
+                          [--secondary_configs SECONDARY_CONFIGS]
+                          [--config_help] [--context CONTEXT]
+                          [--plugins PLUGINS]
+                          [--disallow_missing_config_definitions]
+                          [-p PARAMETER] [--list_storage]
+                          [--share_dir SHARE_DIR]
+                          
+
+{load_memory_drivers,generate_keys,repack_clients,initialize,set_var,update_user,add_user,delete_user,show_user,u
+
+pload_raw,upload_artifact,upload_python,upload_exe,upload_memory_driver}
+                          ...
+
+Set configuration parameters for the GRR Server. This script has numerous
+subcommands to perform various actions. When you are first setting up, you
+probably only care about 'initialize'.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
+  --share_dir SHARE_DIR
+                        Path to the directory containing grr data.
+
+subcommands:
+  valid subcommands
+
+  
+
+{load_memory_drivers,generate_keys,repack_clients,initialize,set_var,update_user,add_user,delete_user,show_user,u
+
+pload_raw,upload_artifact,upload_python,upload_exe,upload_memory_driver}
+    load_memory_drivers
+                        Load memory drivers from disk to database.
+    generate_keys       Generate crypto keys in the configuration.
+    repack_clients      Repack the clients binaries with the current
+                        configuration.
+    initialize          Run all the required steps to setup a new GRR install.
+    set_var             Set a config variable.
+    update_user         Update user settings.
+    add_user            Add a new user.
+    delete_user         Delete an user account.
+    show_user           Display user settings or list all users.
+    upload_raw          Upload a raw file to an aff4 path.
+    upload_artifact     Upload a raw json artifact file.
+    upload_python       Sign and upload a 'python hack' which can be used to
+                        execute code on a client.
+    upload_exe          Sign and upload an executable which can be used to
+                        execute code on a client.
+    upload_memory_driver
+                        Sign and upload a memory driver for a specific
+                        platform.
+
+
+
+###grr_console --help###
+usage: grr_console [-h] [--verbose] [--debug] [--config CONFIG]
+                   [--secondary_configs SECONDARY_CONFIGS] [--config_help]
+                   [--context CONTEXT] [--plugins PLUGINS]
+                   [--disallow_missing_config_definitions] [-p PARAMETER]
+                   [--list_storage] [--local_client] [--local_worker]
+                   [--client_ids CLIENT_IDS] [--hostnames HOSTNAMES]
+                   [--testnames TESTNAMES] [--client CLIENT] [--reason REASON]
+                   [--code_to_execute CODE_TO_EXECUTE]
+                   [--command_file COMMAND_FILE] [--exit_on_complete]
+
+GRR Rapid Response
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
+  --local_client        The target client(s) are running locally.
+  --local_worker        Run tests with a local worker.
+  --client_ids CLIENT_IDS
+                        List of client ids to test. If unset we use
+                        Test.end_to_end_client_ids from the config.
+  --hostnames HOSTNAMES
+                        List of client hostnames to test. If unset we use
+                        Test.end_to_end_client_hostnames from the config.
+  --testnames TESTNAMES
+                        List of test names to run. If unset we run all
+                        relevant tests.
+  --client CLIENT       Initialise the console with this client id (e.g.
+                        C.1234345).
+  --reason REASON       Create a default token with this access reason
+  --code_to_execute CODE_TO_EXECUTE
+                        If present, no console is started but the code given
+                        in the flag is run instead (comparable to the -c
+                        option of IPython).
+  --command_file COMMAND_FILE
+                        If present, no console is started but the code given
+                        in command file is supplied as input instead.
+  --exit_on_complete    If set to False and command_file or code_to_execute is
+                        set we keep the console alive after the code
+                        completes.
+
+
+###grr_end_to_end_tests --help###
+usage: grr_end_to_end_tests [-h] [--verbose] [--debug] [--config CONFIG]
+                            [--secondary_configs SECONDARY_CONFIGS]
+                            [--config_help] [--context CONTEXT]
+                            [--plugins PLUGINS]
+                            [--disallow_missing_config_definitions]
+                            [-p PARAMETER] [--list_storage] [--local_client]
+                            [--local_worker] [--client_ids CLIENT_IDS]
+                            [--hostnames HOSTNAMES] [--testnames TESTNAMES]
+
+GRR Rapid Response
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
+  --local_client        The target client(s) are running locally.
+  --local_worker        Run tests with a local worker.
+  --client_ids CLIENT_IDS
+                        List of client ids to test. If unset we use
+                        Test.end_to_end_client_ids from the config.
+  --hostnames HOSTNAMES
+                        List of client hostnames to test. If unset we use
+                        Test.end_to_end_client_hostnames from the config.
+  --testnames TESTNAMES
+                        List of test names to run. If unset we run all
+                        relevant tests.
+
+
+###grr_export --help###
+usage: grr_export [-h] [--verbose] [--debug] [--config CONFIG]
+                  [--secondary_configs SECONDARY_CONFIGS] [--config_help]
+                  [--context CONTEXT] [--plugins PLUGINS]
+                  [--disallow_missing_config_definitions] [-p PARAMETER]
+                  [--list_storage] [--username USERNAME] [--reason REASON]
+                  {collection,collection_files,file,hash_file_store} ...
+
+GRR Rapid Response
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
+  --username USERNAME   Username to use for export operations authorization.
+  --reason REASON       Reason to use for export operations authorization.
+
+Subcommands:
+  {collection,collection_files,file,hash_file_store}
+    collection          Exports RDFValueCollection from AFF4.
+    collection_files    Downloads files referenced from the
+                        RDFValueCollection.
+    file                Downloads files/directories from AFF4.
+    hash_file_store     Exports HashFileStore contents.
+
+
+
+###grr_fuse --help###
+usage: grr_fuse [-h] [--verbose] [--debug] [--config CONFIG]
+                [--secondary_configs SECONDARY_CONFIGS] [--config_help]
+                [--context CONTEXT] [--plugins PLUGINS]
+                [--disallow_missing_config_definitions] [-p PARAMETER]
+                [--list_storage] [--aff4path AFF4PATH]
+                [--mountpoint MOUNTPOINT] [--background] [--timeout TIMEOUT]
+                [--max_age_before_refresh MAX_AGE_BEFORE_REFRESH]
+                [--ignore_cache]
+                [--refresh_policy {if_older_than_max_age,always,never}]
+                [--force_sparse_image]
+                [--sparse_image_threshold SPARSE_IMAGE_THRESHOLD]
+                [--username USERNAME] [--reason REASON]
+
+GRR Rapid Response
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
+  --aff4path AFF4PATH   Path in AFF4 to use as the root of the filesystem.
+  --mountpoint MOUNTPOINT
+                        Path to point at which the system should be mounted.
+  --background          Whether or not to run the filesystem in the
+                        background, not viewing debug information.
+  --timeout TIMEOUT     How long to poll a flow for before giving up.
+  --max_age_before_refresh MAX_AGE_BEFORE_REFRESH
+                        Measured in seconds. Do a client-side update if it's
+                        been this long since we last did one.
+  --ignore_cache        Disables cache completely. Takes priority over
+                        refresh_policy.
+  --refresh_policy {if_older_than_max_age,always,never}
+                        How to refresh the cache. Options are: always (on
+                        every client-side access), never, or, by default,
+                        if_older_than_max_age (if last accessed > max_age
+                        seconds ago).
+  --force_sparse_image  Whether to convert existing files bigger than the size
+                        threshold to new, empty AFF4SparseImages.
+  --sparse_image_threshold SPARSE_IMAGE_THRESHOLD
+                        If a client side file that's not in the datastore yet
+                        is >= than this size, then store it as a sparse image.
+  --username USERNAME   Username to use for client authorization check.
+  --reason REASON       Reason to use for client authorization check. This
+                        needs to match the string in your approval request.
+
+
+
+###grr_server --help###
+usage: grr_server [-h] [--verbose] [--debug] [--config CONFIG]
+                  [--secondary_configs SECONDARY_CONFIGS] [--config_help]
+                  [--context CONTEXT] [--plugins PLUGINS]
+                  [--disallow_missing_config_definitions] [-p PARAMETER]
+                  [--list_storage] [--port PORT] [--path PATH] [--master]
+                  [--start_worker] [--start_http_server] [--start_ui]
+                  [--start_dataserver]
+
+GRR Rapid Response
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
+  --port PORT           Specify the data server port.
+  --path PATH           Specify the data store path.
+  --master              Mark this data server as the master.
+  --start_worker        Start the server as worker.
+  --start_http_server   Start the server as HTTP server.
+  --start_ui            Start the server as user interface.
+  --start_dataserver    Start the dataserver.
+
+
+
+###sudo grr_worker --help###
+usage: grr_worker [-h] [--verbose] [--debug] [--config CONFIG]
+                  [--secondary_configs SECONDARY_CONFIGS] [--config_help]
+                  [--context CONTEXT] [--plugins PLUGINS]
+                  [--disallow_missing_config_definitions] [-p PARAMETER]
+                  [--list_storage]
+
+GRR Rapid Response
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             Turn of verbose logging.
+  --debug               When an unhandled exception occurs break in the
+                        debugger.
+  --config CONFIG       Primary Configuration file to use.
+  --secondary_configs SECONDARY_CONFIGS
+                        Secondary configuration files to load (These override
+                        previous configuration files.).
+  --config_help         Print help about the configuration.
+  --context CONTEXT     Use these contexts for the config.
+  --plugins PLUGINS     Load these files as additional plugins.
+  --disallow_missing_config_definitions
+                        If true, we raise an error on undefined config
+                        options.
+  -p PARAMETER, --parameter PARAMETER
+                        Global override of config values. For example -p
+                        DataStore.implementation=MySQLDataStore
+  --list_storage        List all storage subsystems present.
