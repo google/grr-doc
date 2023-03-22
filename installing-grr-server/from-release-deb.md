@@ -1,7 +1,7 @@
 # Installing from a release server deb (recommended)
 
 This is the recommended way of installing the GRR server components. GRR server
-debs are built for Ubuntu 18.04 Bionic (x86-64). They may install on Debian or other
+debs are built for Ubuntu 22.04 Jammy (x86-64). They may install on Debian or other
 Ubuntu versions, but compatibility is not guaranteed.
 
 1. MySQL is GRR's default database backend, and should be up and running

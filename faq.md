@@ -190,7 +190,7 @@ should work on old systems.
 ## What operating system versions does the server support?
 
 
-We only support 64bit Ubuntu 18.04.
+We only support 64bit Ubuntu 22.04.
 
 We don’t provide a 32-bit server version since standing up new 32-bit
 linux servers is not something rational people do, and there are many
