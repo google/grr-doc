@@ -18,7 +18,7 @@ docker run \
   -e EXTERNAL_HOSTNAME=localhost \
   -e ADMIN_PASSWORD=demo \
   -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080 \
-  grrdocker/grr:v__GRR_VERSION__
+  ghcr.io/google/grr:v__GRR_VERSION__
 ```
 
 Once initialization finishes point your web browser to localhost:8000 and login
@@ -107,7 +107,7 @@ Here's an example:
       -e DISABLE_INTERNAL_MYSQL=true \
       -e GRR_MYSQL_HOSTNAME=127.0.0.1 \
       -e GRR_MYSQL_PASSWORD="${ROOT_MYSQL_PASS}" \
-       grrdocker/grr:v__GRR_VERSION__
+       ghcr.io/google/grr:v__GRR_VERSION__
     ```
 
 It is worth noting that `host` networking disables publishing of ports,
@@ -133,7 +133,7 @@ for 8000 and 8080 as described
 GRR containers can be started interactively with:
 
 ```bash
-docker run -it grrdocker/grr:v__GRR_VERSION__ /bin/bash
+docker run -it ghcr.io/google/grr:v__GRR_VERSION__ /bin/bash
 ```
 
 GRR gets installed into a virtualenv in
@@ -178,11 +178,11 @@ custom image with:
 
     ```bash
     docker build \
-      -t grrdocker/grr:custom \
+      -t ghcr.io/google/grr:custom \
       --build-arg GCS_BUCKET=autobuilds.grr-response.com \
       --build-arg GRR_COMMIT=${GRR_COMMIT_SHA} \
       .
     ```
 
-    The image above will be tagged `grrdocker/grr:custom`, but you are free to
+    The image above will be tagged `ghcr.io/google/grr:custom`, but you are free to
 use whatever tag you like.
