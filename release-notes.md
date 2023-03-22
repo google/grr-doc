@@ -12,6 +12,15 @@ new version.
 
 ## Server
 
+### 3.4.6.7 (March 22 2023)
+
+- **Server DEB package now targets Ubuntu 22.04 LTS.**
+- Agents are now Python 3.9-based (server deb package is Python 3.10-based).
+- MySQL-based datastore performance considerably improved.
+- UIv2 supports majority of flows and hunts.
+- Third-party dependencies updated.
+- A lot of minor bugfixes and improvements.
+
 ### 3.4.6.0 (May 30 2022)
 
 Regular release for Q2 2022.

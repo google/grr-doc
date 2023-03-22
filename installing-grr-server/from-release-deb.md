@@ -22,6 +22,7 @@ community edition of MySQL from Ubuntu repositories:
     ```
     [mysqld]
     max_allowed_packet=40M
+    log_bin_trust_function_creators=1
     ```
     
     Then restart the MySQL server:
