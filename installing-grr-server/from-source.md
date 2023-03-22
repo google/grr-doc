@@ -2,7 +2,7 @@
 
 Here's how to install GRR from source (from github HEAD). This method is useful when you intend to do some development or when you need to build GRR for an architecture not supported by the binary distribution (i.e. arm64 or PowerPC).
 
-For the instructions below, we assume that Ubuntu 18 is used.
+For the instructions below, we assume that Ubuntu 22 is used.
 
 ## Prerequisites
 
