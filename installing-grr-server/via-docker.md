@@ -7,8 +7,8 @@ the future.
 The instructions below get you a recent stable docker image. We also build an
 [image](https://registry.hub.docker.com/u/grrdocker/grr/) automatically from the
 latest commit in the github repository which is more up-to-date but isn’t
-guaranteed to work. If you want bleeding edge you can use `grrdocker/grr:latest`
-in the commands below.
+guaranteed to work. If you want bleeding edge you can use 
+`ghcr.io/google/grr:/grr:latest` in the commands below.
 
 ## How to use the image
 
