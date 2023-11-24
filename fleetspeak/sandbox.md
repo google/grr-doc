@@ -32,7 +32,7 @@ You will have to create a ```demo``` user first. The script will ask you for a p
 
 You can create the ```demo``` user by executing the command listed in the box below.
 ```
-docker exec -it grr-compose-grr-admin-1 /grr/venv/bin/grr_config_updater add_user demo
+docker exec -it sandbox-grr-admin-1 /grr/venv/bin/grr_config_updater add_user demo
 ```
 With the ```demo``` user in place you can now point your browser to the GRR UI: [http://localhost:8000](http://localhost:8000)
 
