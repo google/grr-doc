@@ -1,0 +1,9 @@
+client_certificate_header: "x-client-certificate"
+trusted_certs: "FRONTEND_CERTIFICATE"
+server: "fleetspeak-server:10000"
+client_label: ""
+filesystem_handler: <
+  configuration_directory: "/config/"
+  state_file: "/fleetspeak.state"
+>
+streaming: true
