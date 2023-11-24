@@ -17,7 +17,6 @@ It is important that you follow all the steps in the [setup instructions](#setup
 - [Install Git](#install-git)
 - [Clone the GRR Doc repository](#clone-the-grr-doc-repository)
 - [Create Configurations](#create-configurations)
-- [Build test app](#build-test-app)
 
 ## Run the GRR Fleetspeak sandbox demo
 ```
