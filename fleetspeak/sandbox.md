@@ -8,7 +8,8 @@ This sandbox uses [Docker Compose](https://docs.docker.com/compose/) to demonstr
 The sandbox also features the sample configurations that can be used to learn about Fleetspeak's frontend mode options and how to model your own configurations.  
 Fleetspeak offers several other frontend modes. You can find more information about them in the [Fleetspeak repository](https://github.com/daschwanden/fleetspeak/docs/sandboxes.md). 
 
-Before you begin you will need to install the sandbox environment.
+Before you begin you will need to setup the sandbox environment.
+It is important that you follow all the steps in the [setup instructions](#setup-instructions) section before running the sandbox.
 
 ## Setup the sandbox environment
 - [Install Docker](#install-docker)
@@ -28,7 +29,9 @@ The next runs will be a lot faster.
 
 ## Connect to the GRR UI
 Once the containers are up and running you can connect to the GRR UI.
-You will have to create a ```demo``` user first. The script will ask you for a password. We suggest you use ```demo``` for simplicity.
+You will have to create a ```demo``` user first. The script will ask you for a password. We suggest you use ```demo``` for simplicity.  
+
+You can create the ```demo``` user by executing the command listed in the box below.
 ```
 docker exec -it grr-compose-grr-admin-1 /grr/venv/bin/grr_config_updater add_user demo
 ```
@@ -58,7 +61,7 @@ The examples use [Docker compose configuration version 3.8](https://docs.docker.
 You will need to a fairly recent version of [Docker Compose](https://docs.docker.com/compose/).  
 
 ### Install Git
-The Fleetspeak project repository is managed using [Git](https://git-scm.com/).
+The GRR Doc repository is managed using [Git](https://git-scm.com/).
 
 You can [find instructions for installing Git on various operating systems here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).  
 
