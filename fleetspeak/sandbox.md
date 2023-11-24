@@ -1,4 +1,4 @@
-# Running GRR and Fleetspeak with Envoy in a Docker Compose sandbox
+# Running GRR and Fleetspeak with Envoy in Docker Compose
 
 The following diagram shows the high level architecture of the sandbox environment.
 
@@ -37,7 +37,7 @@ docker exec -it grr-compose-grr-admin-1 /grr/venv/bin/grr_config_updater add_use
 ```
 With the ```demo``` user in place you can now point your browser to the GRR UI: [http://localhost:8000](http://localhost:8000)
 
-## Stop the GRR Fleetspeak sanbox demo
+## Stop the GRR Fleetspeak sandbox demo
 ```
 docker compose down
 ```
