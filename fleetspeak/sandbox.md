@@ -4,9 +4,11 @@ The following diagram shows the high level architecture of the sandbox environme
 
 ![sandbox fleetspeak](../images/sandbox_fleetspeak.png)
 
-This sandbox uses [Docker Compose](https://docs.docker.com/compose/) to demonstrate how to run [GRR](https://github.com/google/grr) and [Fleetspeak](https://github.com/google/fleetspeak) with [Envoy](https://www.envoyproxy.io/) as one of several of Fleetspeak's frontend modes.  
+This sandbox uses [Docker Compose](https://docs.docker.com/compose/) to demonstrate how to run [GRR](https://github.com/google/grr) and [Fleetspeak](https://github.com/google/fleetspeak) with [Envoy](https://www.envoyproxy.io/) leveraging Fleetspeak in the HTTPS header frontend mode.  
+This frontend mode lends itself to showcase an example of Fleetspeak's more involved frontend modes.  
+Fleetspeak offers several other frontend modes to run GRR/Fleetspeak in varying contexts. You can find more information about them in the [Fleetspeak repository](https://github.com/google/fleetspeak/docs/sandboxes.md).   
+
 The sandbox also features the sample configurations that can be used to learn about Fleetspeak's frontend mode options and how to model your own configurations.  
-Fleetspeak offers several other frontend modes. You can find more information about them in the [Fleetspeak repository](https://github.com/daschwanden/fleetspeak/docs/sandboxes.md). 
 
 Before you begin you will need to setup the sandbox environment.
 It is important that you follow all the steps in the [setup instructions](#setup-instructions) section before running the sandbox.
