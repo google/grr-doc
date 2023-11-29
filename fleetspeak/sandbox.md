@@ -1,4 +1,4 @@
-# Running GRR and Fleetspeak with Envoy in Docker Compose
+# Running GRR and Fleetspeak with Envoy
 
 The following diagram shows the high level architecture of the sandbox environment.
 
@@ -19,31 +19,6 @@ It is important that you follow all the steps in the [setup instructions](#setup
 - [Install Git](#install-git)
 - [Clone the GRR Doc repository](#clone-the-grr-doc-repository)
 - [Create Configurations](#create-configurations)
-
-## Run the GRR Fleetspeak sandbox demo
-```
-docker compose up --build -d
-```
-When you run the sandbox for the first time Docker will have to build the containers before running them.
-This will take a couple of minutes so you might want to grab a cup of coffee now.  
-The next runs will be a lot faster.  
-
-## Connect to the GRR UI
-Once the containers are up and running you can connect to the GRR UI.
-You will have to create a ```demo``` user first. The script will ask you for a password. We suggest you use ```demo``` for simplicity.  
-
-You can create the ```demo``` user by executing the command listed in the box below.
-```
-docker exec -it sandbox-grr-admin-1 /grr/venv/bin/grr_config_updater add_user demo
-```
-With the ```demo``` user in place you can now point your browser to the GRR UI: [http://localhost:8000](http://localhost:8000)
-
-## Stop the GRR Fleetspeak sandbox demo
-```
-docker compose down
-```
-
-## Setup instructions
 
 ### Install docker
 Ensure that you have a recent versions of ```docker``` installed.
@@ -78,4 +53,27 @@ git clone https://github.com/google/grr-doc
 ```
 cd grr-doc/fleetspeak/sandbox
 ./createConfig.sh
+```
+
+## Run the GRR Fleetspeak sandbox demo
+```
+docker compose up --build -d
+```
+When you run the sandbox for the first time Docker will have to build the containers before running them.
+This will take a couple of minutes so you might want to grab a cup of coffee now.  
+The next runs will be a lot faster.  
+
+## Connect to the GRR UI
+Once the containers are up and running you can connect to the GRR UI.
+You will have to create a ```demo``` user first. The script will ask you for a password. We suggest you use ```demo``` for simplicity.  
+
+You can create the ```demo``` user by executing the command listed in the box below.
+```
+docker exec -it sandbox-grr-admin-1 /grr/venv/bin/grr_config_updater add_user demo
+```
+With the ```demo``` user in place you can now point your browser to the GRR UI: [http://localhost:8000](http://localhost:8000)
+
+## Stop the GRR Fleetspeak sandbox demo
+```
+docker compose down
 ```
