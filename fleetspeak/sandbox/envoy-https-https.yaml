@@ -32,10 +32,6 @@ static_resources:
                   cluster: fleetspeak-frontend
                   timeout: 0s
                   idle_timeout: 0s
-                request_headers_to_add:
-                  - header:
-                      key: x-client-cert-2
-                      value: "%DOWNSTREAM_PEER_CERT%"
           http_filters:
           - name: envoy.filters.http.lua
             typed_config:   
