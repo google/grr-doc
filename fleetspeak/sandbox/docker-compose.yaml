@@ -89,9 +89,11 @@ services:
     ports:
       - '9090:9090'
       - '8080:8080'
+      - '12000:12000'
     expose:
       - '9090'
       - '8080'
+      - '12000'
     healthcheck:
       test: ["CMD", "curl", "http://localhost:8080"]
       timeout: 5s
