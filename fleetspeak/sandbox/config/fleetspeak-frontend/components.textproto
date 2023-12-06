@@ -13,3 +13,5 @@ https_config: <
 health_check_config: <
   listen_address: "0.0.0.0:8080"
 >
+notification_listen_address: "0.0.0.0:12000"
+notification_public_address: "fleetspeak-frontend:12000"
