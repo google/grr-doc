@@ -25,9 +25,10 @@ cd ~/tmp/grr-doc
 virtualenv .
 source bin/activate
 
-pip install Sphinx sphinx-autobuild recommonmark sphinx_rtd_theme
-
 git clone https://github.com/google/grr-doc
+
+pip install -r grr-doc/requirements.txt
+
 sphinx-autobuild grr-doc out
 ```
 
