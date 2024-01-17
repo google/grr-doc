@@ -14,6 +14,7 @@ Virtual File System <vfs/index.md>
 Artifacts <artifacts/index.md>
 Cron Jobs in GRR <cron-jobs.md>
 Osquery <osquery.md>
+Collect Large File <collect-large-file.md>
 Automation with GRR API <automation-with-api.md>
 Interactive scripting <interactive-scripting.md>
 Output Plugins <output-plugins.md>
