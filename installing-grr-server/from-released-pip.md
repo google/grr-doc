@@ -10,13 +10,13 @@ First, install the prerequisites:
 * Ubuntu:
 
 ```bash
-apt install -y debhelper dpkg-dev python-dev python-pip rpm zip
+apt install -y debhelper dpkg-dev python3-dev python-pip rpm zip
 ```
 
 * Centos:
 
 ```bash
-yum install -y epel-release python-devel wget which libffi-devel \
+yum install -y epel-release python3-devel wget which libffi-devel \
   openssl-devel zip git gcc gcc-c++ redhat-rpm-config
 
 yum install -y python-pip
