@@ -1,8 +1,8 @@
 mysql_data_source_name: "fleetspeak-user:fleetspeak-password@tcp(mysql-fleetspeak:3306)/fleetspeak"
 https_config: <
   listen_address: "0.0.0.0:9090"
-  certificates: "FRONTEND_CERTIFICATE"
-  key: "FRONTEND_KEY"
+  certificates: "FLEETSPEAK_CERT"
+  key: "FLEETSPEAK_KEY"
   frontend_config: <
     https_header_checksum_config: <
       client_certificate_header: "x-client-certificate" 
