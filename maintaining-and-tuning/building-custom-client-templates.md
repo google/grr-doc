@@ -6,7 +6,7 @@ Note: templates have to be built on a target platform (i.e. if you need a
 Windows 10 GRR client template, you have to build on Windows 10).
 
 After
-[installing the GRR server components](../installing-grr-server/overview.md),
+[installing the GRR server components](../installing-and-running-grr/overview.md),
 you can build client templates with
 
 ```bash
@@ -16,7 +16,7 @@ grr_client_build build --output mytemplates
 If you can't install prebuilt Debian or PIP packages, you'd need to install
 GRR from source. You might choose to install the full server or just
 the packages needed to build the templates. Please see
-[Installing from source](../installing-grr-server/from-source.md) for details.
+[Installing from source](../installing-and-running-grr/from-source.md) for details.
 
 
 ## Repacking the templates

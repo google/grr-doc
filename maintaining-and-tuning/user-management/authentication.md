@@ -57,7 +57,7 @@ optional arguments:
 
 The AdminUI uses HTTP Basic Auth authentication by default, based on the passwords within
 the user objects stored in the data store, but we **don't expect you to use this
-in production** (see [Securing Access](../../installing-grr-server/securing-access.md) for more details).
+in production** (see [Securing Access](../../installing-and-running-grr/securing-access.md) for more details).
 
 There is so much diversity and customization in enterprise
 authentication schemes that there isn't a good way to provide a solution that

@@ -2,7 +2,7 @@
 
 The following diagram shows the high level architecture of the sandbox environment.
 
-![sandbox fleetspeak](../images/sandbox_fleetspeak.png)
+![sandbox fleetspeak](../../images/sandbox_fleetspeak.png)
 
 This sandbox uses [Docker Compose](https://docs.docker.com/compose/) to demonstrate how to run [GRR](https://github.com/google/grr) and [Fleetspeak](https://github.com/google/fleetspeak) with [Envoy](https://www.envoyproxy.io/) leveraging Fleetspeak in the HTTPS header frontend mode.  
 This frontend mode lends itself to showcase an example of Fleetspeak's more involved frontend modes.  
@@ -14,44 +14,21 @@ Before you begin you will need to setup the sandbox environment.
 It is important that you follow all the steps in the [setup instructions](#setup-instructions) section before running the sandbox.
 
 ## Setup the sandbox environment
-- [Install Docker](#install-docker)
-- [Install docker compose](#install-docker-compose)
-- [Install Git](#install-git)
+- [Follow the "Install * " instructions for GRR](../../installing-and-running-grr/via-docker-compose.md)
 - [Clone the GRR Doc repository](#clone-the-grr-doc-repository)
 - [Create Configurations](#create-configurations)
-
-### Install docker
-Ensure that you have a recent versions of ```docker``` installed.
-
-You will need a minimum version of ```19.03.0+```.
-
-Version ```20.10``` is well tested, and has the benefit of included ```compose```.
-
-The user account running the examples will need to have permission to use Docker on your system.
-
-Full instructions for installing Docker can be found on the [Docker website](https://docs.docker.com/get-docker/).  
-
-### Install docker compose
-The examples use [Docker compose configuration version 3.8](https://docs.docker.com/compose/compose-file/compose-versioning/#version-38).
-
-You will need to a fairly recent version of [Docker Compose](https://docs.docker.com/compose/).  
-
-### Install Git
-The GRR Doc repository is managed using [Git](https://git-scm.com/).
-
-You can [find instructions for installing Git on various operating systems here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).  
 
 ### Clone the GRR Doc repository
 If you have not cloned the GRR Doc repository already, clone it with:
 
 ```
-git clone https://github.com/google/grr-doc
+git clone https://github.com/google/grr
 ```
 
 ### Create configurations
 
 ```
-cd grr-doc/fleetspeak/sandbox
+cd grr-doc/installing-and-running-grr/advanced-usecases/sandbox
 ./createConfig.sh
 ```
 
