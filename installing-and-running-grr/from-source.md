@@ -1,6 +1,6 @@
 # Installing from source
 
-Here's how to install GRR from source (from github HEAD). This method is useful when you intend to do some development or when you need to build GRR for an architecture not supported by the binary distribution (i.e. arm64 or PowerPC).
+Here's how to install GRR from source (from github HEAD). This method is useful when you intend to do some development or when you cannot or don't want to run Docker or install from pip packages.
 
 For the instructions below, we assume that Ubuntu 22 is used.
 
@@ -18,62 +18,23 @@ sudo apt install -y fakeroot debhelper libffi-dev libssl-dev python3-dev \
 # have Go installed on your system, you can skip this part.
 # We use amd64 version here, you might need to download another Go
 # distribution matching your architecture (see https://go.dev/dl/).
-wget https://go.dev/dl/go1.17.3.linux-amd64.tar.gz
-sudo bash -c "rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.3.l
-inux-amd64.tar.gz"
+wget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+sudo bash -c "rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz"
 export PATH=$PATH:/usr/local/go/bin
 ```
 
 
-## Building Fleetpseak
+## Fleetpseak
 
-Fleetspeak is a communication middleware (effectively, a client and a server)
-used by GRR to communicate with endpoints. GRR is tightly integrated with
-Fleetspeak and expects Fleetspeak binaries to be present in
-`fleetspeak-server-bin` and `fleetspeak-client-bin` PIP packages.
+[Fleetspeak][fleetspeak] is a communication middleware (effectively, a client and a server)
+used by GRR to communicate with endpoints.
 
+Follow the [guide][fleetspeak-guide] on how to install, configure services and run the Fleetspeak server.
+
+[fleetspeak]: https://github.com/google/fleetspeak
+[fleetspeak-guide]: https://github.com/google/fleetspeak/blob/master/docs/guide.md
 Create and activate a Python virtualenv at $HOME/INSTALL:
 
-```bash
-python3 -m venv $HOME/INSTALL
-source $HOME/INSTALL/bin/activate
-pip install --upgrade pip setuptools wheel
-```
-
-Next, build `fleetspeak-server-bin` and `fleetspeak-client-bin` Python packages. 
-These packages are effectively Python PIP package wrappers around Fleetspeak
-binaries.
-
-```bash
-# Check out Fleetspeak.
-git clone https://github.com/google/fleetspeak.git
-# This is needed for Protobuf builds.
-pip install grpcio-tools
-
-cd fleetspeak/
-pip install -e fleetspeak_python/
-./fleetspeak/build.sh 
-./fleetspeak/build-pkgs.sh 
-
-python fleetspeak/server-wheel/setup.py bdist_wheel --package-root fleetspeak/server-pkg/debian/fleetspeak-server/ --version __FLEETSPEAK_PIP_VERSION__
-pip install dist/fleetspeak_server_bin-__FLEETSPEAK_PIP_VERSION__-py2.py3-none-linux_x86_64.whl
-
-python fleetspeak/client-wheel/setup.py bdist_wheel --package-root fleetspeak/client-pkg/debian/fleetspeak-client/ --version __FLEETSPEAK_PIP_VERSION__
-pip install dist/fleetspeak_client_bin-__FLEETSPEAK_PIP_VERSION__-py2.py3-none-linux_x86_64.whl
-
-cd ..
-```
-
-Now, when you do `pip freeze`, you should see `fleetspeak-server-bin` and `fleetspeak-client-bin` installed inside the virtualenv:
-
-```bash
-$ pip freeze
-...
-fleetspeak-client-bin @ file:///home/foo/fleetspeak/dist/fleetspeak_client_bin-__FLEETSPEAK_PIP_VERSION__-py2.py3-none-linux_x86_6
-4.whl
-fleetspeak-server-bin @ file:///home/foo/fleetspeak/dist/fleetspeak_server_bin-__FLEETSPEAK_PIP_VERSION__-py2.py3-none-linux_x86_64.whl
-...
-```
 
 ## Building GRR
 
@@ -92,7 +53,7 @@ Run the following script to install GRR into the virtualenv:
 ./travis/install.sh
 ```
 
-Please check [Installing from a release server deb](./from-release-deb.md) for
+Please check [Setting up your own MySQL database](installing-and-running-grr/via-docker-compose.html#setting-up-your-own-mysql-database) for
 instructions on how to configure MySQL server.
 
 You should now be able to run GRR commands from inside the virtualenv,
