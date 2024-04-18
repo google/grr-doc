@@ -6,8 +6,8 @@ openssl ecparam -list_curves
 
 # Generate key pair .pem files, which is linked in the GRR client and 
 # server configs (client.yaml, server.local.yaml).
-openssl ecparam -name prime256v1 -genkey -noout -out config/private-key.pem
-openssl ec -in config/private-key.pem -pubout -out config/public-key.pem
+openssl genrsa -out config/private-key.pem
+openssl rsa -in config/private-key.pem -pubout -out config/public-key.pem
 
 # Create a CA/trusted private key and cert for Fleetspeak.
 openssl ecparam -name prime256v1 -genkey -noout \
