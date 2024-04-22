@@ -2,7 +2,7 @@
 
 Depending on your use case, there are multiple ways of installing the
 GRR server components. Most users will want to
-[run GRR via the docker compose stack](via-docker-compose.md).
+[run GRR via the Docker Compose stack](via-docker-compose.md).
 
 Alternatively, GRR can be [installed from PIP](from-released-pip.md).
 

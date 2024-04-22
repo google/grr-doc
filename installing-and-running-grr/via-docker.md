@@ -1,10 +1,10 @@
 # Docker Images
-The recommended way to run the docker containers is running them in the
-provided [docker compose setup](<via-docker-compose.md>).
+The recommended way to run the Docker containers is running them in the
+provided [Docker Compose setup](<via-docker-compose.md>).
 
 ## GRR Docker Image
 
-The GRR docker image is available in the Github container registry of the GRR repository: [https://github.com/google/grr/pkgs/container/grr](https://github.com/google/grr/pkgs/container/grr).
+The GRR Docker image is available in the Github container registry of the GRR repository: [https://github.com/google/grr/pkgs/container/grr](https://github.com/google/grr/pkgs/container/grr).
 
 The image contains binaries for all GRR server components as well as the client templates.
 
@@ -15,13 +15,13 @@ Installers can be created for Linux, Windows and MacOS and are standalone binari
 
 #### Available Binaries
 Binaries to start the different GRR components, create new certificates, repack templates etc.
-are included in the GRR docker image.
-All available binaries are in the `$PATH` in the docker container and can also be found
+are included in the GRR Docker image.
+All available binaries are in the `$PATH` in the Docker container and can also be found
 inside the container in `/usr/share/grr-server/bin`.
 
 ### Fleetspeak Docker Image
 
-The Fleetspeak docker image is available in the Github container registry of the Fleetspeak repository: [https://github.com/google/fleetspeak/pkgs/container/fleetspeak](https://github.com/google/fleetspeak/pkgs/container/fleetspeak).
+The Fleetspeak Docker image is available in the Github container registry of the Fleetspeak repository: [https://github.com/google/fleetspeak/pkgs/container/fleetspeak](https://github.com/google/fleetspeak/pkgs/container/fleetspeak).
 
 
 ### Versioning (Fleetspeak and GRR)
@@ -29,7 +29,7 @@ Docker containers are tagged with the version number whenever a new GRR/Fleetspe
 Additionally, the`latest` tag is set to the image of the last released GRR version.
 It is recommended to use the `latest` image to stay up to date and have a stable image.
 
-There is also a new docker image built every time an update is pushed to the repository, these are tagged by their branch name.
+There is also a new Docker image built every time an update is pushed to the repository, these are tagged by their branch name.
 Several pushes might happen to the `master` branch between releases, which might not be stable versions,
 so it is only recommended to use the `master`-tag when a all changes from the tip-of-tree should be included
 and no stable version is required.
@@ -64,7 +64,7 @@ To persist the logs to the host a volume/folder can be mounted to the `Logging.p
 
 #### Connecting to a MySQL Instance Running on the Host Machine
 
-In the docker compose stack a MySQL instance is running in a different docker container running in the same network. 
+In the Docker Compose stack a MySQL instance is running in a different Docker container running in the same network. 
 
 To connect e.g. to an already configured MySQL instance on your host machine, you need to update the mounted config file with the connection information:
 
@@ -86,7 +86,7 @@ Docker before starting the container.
 
 ## Note
 Note that if you’re running boot2docker on OS X there are a few bugs with
-[docker itself](https://github.com/boot2docker/boot2docker/issues/824) that you
+[Docker itself](https://github.com/boot2docker/boot2docker/issues/824) that you
 will probably need to work around. You’ll likely have to set up port forwards
 for 8000 and 8080 as described
 [here](https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md).
@@ -99,11 +99,11 @@ GRR containers can be started interactively with:
 docker run -it ghcr.io/google/grr:v__GRR_VERSION__ /bin/bash
 ```
 
-## Building custom docker images (Advanced)
+## Building custom Docker images (Advanced)
 
 It is advisable to read GRR's
 [Dockerfile](https://github.com/google/grr/blob/master/Dockerfile) in order to
-get an understanding of how GRR's CI workflows build docker images before
+get an understanding of how GRR's CI workflows build Docker images before
 attempting this.
 
 1. Check out GRR's source code:

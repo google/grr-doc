@@ -1,18 +1,18 @@
 # Running GRR in a Docker Compose Stack (Recommended)
 
-Running GRR via docker compose will start every [GRR component](<overview.md>) in a separate Docker container. 
-All that is needed is install docker, docker compose and git, then get the code, generate certificates and start the stack.
+Running GRR via Docker Compose will start every [GRR component](<overview.md>) in a separate Docker container. 
+All that is needed is install Docker, Docker Compose and git, then get the code, generate certificates and start the stack.
 Follow the instructions below!
 
 
 ## Setup the environment
 - [Install Docker](#install-docker)
-- [Install docker compose](#install-docker-compose)
+- [Install Docker Compose](#install-docker-compose)
 - [Install Git](#install-git)
 - [Clone the GRR repository](#clone-the-grr-repository)
 - [Generate certificates and keys](#generate-certificates-and-keys)
 
-### Install docker
+### Install Docker
 Ensure that you have a recent version of ```docker``` installed. You will need a minimum version of ```19.03.0+```.
 
 Version ```20.10``` is well tested, and has the benefit of included ```compose```.
@@ -20,7 +20,7 @@ The user account running the examples will need to have permission to use Docker
 
 Full instructions for installing Docker can be found on the [Docker website](https://docs.docker.com/get-docker/).  
 
-### Install docker compose
+### Install Docker Compose
 The examples use [Docker compose configuration version 3.8](https://docs.docker.com/compose/compose-file/compose-versioning/#version-38).
 
 You will need to a fairly recent version of [Docker Compose](https://docs.docker.com/compose/).  
@@ -39,7 +39,7 @@ git clone https://github.com/google/grr
 
 ### Generate certificates and keys 
 
-Running the following script will generate a set of keys and certificates required for running the docker compose stack.
+Running the following script will generate a set of keys and certificates required for running the Docker Compose stack.
 This step is only needed on initial startup as the keys are persisted.
 
 ```
@@ -47,7 +47,7 @@ This step is only needed on initial startup as the keys are persisted.
 ```
 This script writes all necessary keys as `.pem` files to disk they can be found in the `docker_config_files`
 folder. The [GRR code signing keys](<../maintaining-and-tuning/key-management/which-keys-and-how.html#communication-security>)
-are read directly from the generated files when the docker compose stack is running.
+are read directly from the generated files when the Docker Compose stack is running.
 The [fleetspeak communication keys and certificates](<../maintaining-and-tuning/key-management/which-keys-and-how.html#communication-security>)
 however replace placeholders in the fleetspeak config files when executing this script.
 As a consequence running the script a second time will only replace the GRR code signing keys. 
@@ -71,7 +71,7 @@ When all services are started/healthy you can access the UI in your browser via 
 ```
 
 The port 8000 is forwarded from the compose stack, if this port is already used on your system,
-update the docker-compose file in the `ports` secion of the `grr-admin-ui` service.
+update the compose file in the `ports` secion of the `grr-admin-ui` service.
 
 Try searching for any client by searching for `.`, this should show one online client. 
 
@@ -124,7 +124,7 @@ The client templates need to be repacked into installer to be installed on a
 client. The repacking adds some configuration to the templates that is
 provided by the GRR server and needs to be available before startup.
 
-In the docker compose stack, the templates are
+In the Docker Compose stack, the templates are
 [repacked](https://github.com/google/grr/blob/master/docker_config_files/server/repack_clients.sh)
 using the [server config files](https://github.com/google/grr/blob/master/docker_config_files/server/grr.server.yaml)
 in the grr-admin-ui container on startup and stored in a mounted volume.
@@ -188,6 +188,6 @@ Make sure it's not lower than 20971520. Creation of a new user is optional
 though since GRR can use the credentials of the root user to connect to
 MySQL.
 
-The MysSQL database needs to be accessible from the docker compose stack.
+The MysSQL database needs to be accessible from the Docker Compose stack.
 Then adjust the config files in the `docker_config_files/` directory to be able to connect to your database.
-And remove the database from the docker compose stack.
+And remove the database from the Docker Compose stack.

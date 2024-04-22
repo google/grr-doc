@@ -8,7 +8,7 @@ the instructions given [here](installing-and-running-grr/via-docker.md). It take
 all components and have a full demo setup running follow the instructions
 [here](installing-and-running-grr/via-docker-compose.md)
 
-On successful start of the docker compose stack, you should have an admin
-interface running on port 8000 by default. One docker container runs the
+On successful start of the Docker Compose stack, you should have an admin
+interface running on port 8000 by default. One Docker container runs the
 GRR client which can already be used.
 
