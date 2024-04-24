@@ -3,7 +3,7 @@ trusted_certs: "TRUSTED_FLEETSPEAK_CERT"
 server: "fleetspeak-server:10000"
 client_label: ""
 filesystem_handler: <
-  configuration_directory:"/config/grr-client/"
-  state_file:"/fleetspeak.state"
+  configuration_directory: "/config/grr-client/"
+  state_file: "/fleetspeak.state"
 >
 streaming: true
