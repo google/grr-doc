@@ -43,7 +43,7 @@ For signing to work you need to follow these instructions:
 ### Linux RPM signing
 
 Linux RPMs are signed following a similar process to windows. A template
-is built inside a docker container / Vagrant VM and the host does the
+is built inside a Docker container / Vagrant VM and the host does the
 repacking and signing.
 
 To get set up for signing, first you need to create a gpg key that you

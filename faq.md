@@ -266,7 +266,7 @@ clients separately.
 Google Compute Engine (GCE) of course :) We’re working on making cloud
 deployment easier by dockerizing and building a click-to-deploy for GCE.
 Our focus will be primarily on making this work on GCE, but moving to a
-docker deployment with orchestration will simplify deployment on all
+Docker deployment with orchestration will simplify deployment on all
 clouds. The largest cloud deployments of GRR are currently on EC2, and
 we hope the community will be able to share configuration and HOWTOs for
 this and other cloud deployments.

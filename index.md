@@ -24,7 +24,7 @@ maxdepth: 2
 ---
 What is GRR? <what-is-grr.md>
 Quickstart <quickstart.md>
-Installing GRR server <installing-grr-server/index.md>
+Installing and Running GRR <installing-and-running-grr/index.md>
 Deploying GRR clients <deploying-grr-clients/index.md>
 Investigating with GRR <investigating-with-grr/index.md>
 Maintaining and tuning GRR deployment <maintaining-and-tuning/index.md>

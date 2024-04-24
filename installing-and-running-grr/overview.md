@@ -2,8 +2,7 @@
 
 Depending on your use case, there are multiple ways of installing the
 GRR server components. Most users will want to
-[install a release deb](from-release-deb.md). The server deb includes
-client templates that can be downloaded from GRR's Admin UI after installation.
+[run GRR via the Docker Compose stack](via-docker-compose.md).
 
 Alternatively, GRR can be [installed from PIP](from-released-pip.md).
 
@@ -13,6 +12,8 @@ your own server/client installers.
 
 
 ## GRR components
+
+![grr_components](../images/grr_components.png)
 
 GRR consists of a client and a few server components.
 

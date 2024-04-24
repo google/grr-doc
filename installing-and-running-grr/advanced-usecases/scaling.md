@@ -4,7 +4,7 @@ The following diagram shows a standard, distributed fleetspeak setup:
 
 <!-- https://docs.google.com/drawings/d/1BwQhwu5phznyvYd3ydUu7lIPX-NVutmTny77-jkp8u0/edit -->
 
-![distributed fleetspeak](../images/distributed_fleetspeak.png)
+![distributed fleetspeak](../../images/distributed_fleetspeak.png)
 
 The fleetspeak server setup consists of 2 components:
 
