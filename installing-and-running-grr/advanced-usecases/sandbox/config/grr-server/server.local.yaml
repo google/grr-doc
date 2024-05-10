@@ -1,16 +1,30 @@
     Database.implementation: MysqlDB
     Blobstore.implementation: DbBlobStore
+
+    API.DefaultRouter: ApiCallRouterWithoutChecks
+
+    Server.initialized: true
+    Server.fleetspeak_enabled: true
+    Server.fleetspeak_server: fleetspeak-admin:9091
+    FleetspeakFrontend Context:
+      Server.fleetspeak_message_listen_address: 0.0.0.0:11111
+
     Mysql.host: mysql-grr
     Mysql.port: 3306
-    Mysql.database_name: grr
     Mysql.database: grr
-    Mysql.database_username: grr-user
     Mysql.username: grr-user
-    Client.server_urls:
-    - http://localhost:8080/
+    Mysql.password: grr-password
+    Mysql.database_name: grr
+    Mysql.database_username: grr-user
+    Mysql.database_password: grr-password
+    Mysql.flow_processing_threads_max: 20
+  
     AdminUI.url: http://localhost:8000
     AdminUI.bind: 0.0.0.0
     AdminUI.headless: true
+    AdminUI.use_precompiled_js: true
+    AdminUI.csrf_secret_key: random_passphrase_123____PLEASE_REPLACE___
+
     Logging.domain: localhost
     Logging.verbose: true
     Logging.engines: file,stderr
@@ -18,25 +32,12 @@
     Logging.filename: /grr/grr-server.log
     Monitoring.alert_email: grr-monitoring@localhost
     Monitoring.emergency_access_email: grr-emergency@localhost
-    Mysql.database_password: grr-password
-    Mysql.password: grr-password
-    Mysql.flow_processing_threads_max: 20
 
-    Frontend.certificate: |
-FRONTEND_CERTIFICATE
+    Client.executable_signing_public_key: |
+      %(/config/public-key.pem|file)
 
-    AdminUI.csrf_secret_key: O$YTx01F2BuxgT4DoVSI hJVuhWOxyuuxJhg#lg96ARF_fWLabzN5kjAy0UBcI9GDrUPo1v
-      b7PyF3vj4pqRrc8oegeJ8XgIyI5X
-    Server.fleetspeak_enabled: true
-    Client.fleetspeak_enabled: true
-    ClientBuilder.fleetspeak_bundled: true
-    Target:Linux:
-      ClientBuilder.fleetspeak_client_config: /grr/venv/fleetspeak-server-bin/etc/fleetspeak-server/linux_client.config
-    Target:Windows:
-      ClientBuilder.fleetspeak_client_config: /grr/venv/fleetspeak-server-bin/etc/fleetspeak-server/windows_client.config
-    Target:Darwin:
-      ClientBuilder.fleetspeak_client_config: /grr/venv/fleetspeak-server-bin/etc/fleetspeak-server/darwin_client.config
-    Server.fleetspeak_server: fleetspeak-admin:9091
-    FleetspeakFrontend Context:
-      Server.fleetspeak_message_listen_address: 0.0.0.0:11111
-    Server.initialized: true
+    PrivateKeys.executable_signing_private_key: |
+      %(/config/private-key.pem|file)
+
+
+

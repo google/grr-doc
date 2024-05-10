@@ -13,8 +13,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     && apt-get -qq update -y \
     && apt-get -qq install --no-install-recommends -y curl
 COPY --chmod=777 "$ENVOY_CONFIG" /etc/envoy.yaml
-COPY --chmod=644 cert.pem /etc/cert.pem
-COPY --chmod=644 key.pem /etc/key.pem
+COPY --chmod=644 fleetspeak-cert.pem /etc/cert.pem
+COPY --chmod=644 fleetspeak-key.pem /etc/key.pem
 CMD ["/usr/local/bin/envoy", "-c", "/etc/envoy.yaml"]
 
 FROM envoy-base as envoy-admin

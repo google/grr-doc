@@ -1,17 +1,5 @@
 services:
 
-  fleetspeak:
-    image: fleetspeak
-    build:
-      context: .
-      dockerfile: ./containers/fleetspeak/Dockerfile
-
-  grr:
-    image: grr
-    build:
-      context: .
-      dockerfile: ./containers/grr/server/Dockerfile
-
   mysql-fleetspeak:
     image: mysql:8.2
     restart: always
@@ -60,14 +48,19 @@ services:
     - "10000:10000"
 
   fleetspeak-admin:
-    build:
-      context: .
-      dockerfile: ./containers/fleetspeak/Dockerfile
+    image: ghcr.io/google/fleetspeak:latest
     hostname: fleetspeak-admin
     depends_on:
       mysql-fleetspeak:
         condition: service_healthy
-    entrypoint: ["/app/bin/server", "-components_config", "/config/fleetspeak-admin/components.textproto", "-services_config", "/config/fleetspeak-admin/services.textproto", "-alsologtostderr"]
+    entrypoint: [
+      "server",
+      "-components_config",
+      "/config/fleetspeak-admin/components.textproto",
+      "-services_config",
+      "/config/fleetspeak-admin/services.textproto",
+      "-alsologtostderr"
+    ]
     volumes:
       - "./config:/config"
     ports:
@@ -76,14 +69,19 @@ services:
       - '9091'
 
   fleetspeak-frontend:
-    build:
-      context: .
-      dockerfile: ./containers/fleetspeak/Dockerfile
+    image: ghcr.io/google/fleetspeak:latest
     hostname: fleetspeak-frontend
     depends_on:
       mysql-fleetspeak:
         condition: service_healthy
-    entrypoint: ["/app/bin/server", "-components_config", "/config/fleetspeak-frontend/components.textproto", "-services_config", "/config/fleetspeak-frontend/services.textproto", "-alsologtostderr"]
+    entrypoint: [
+      "server",
+      "-components_config",
+      "/config/fleetspeak-frontend/components.textproto",
+      "-services_config",
+      "/config/fleetspeak-frontend/services.textproto",
+      "-alsologtostderr"
+    ]
     volumes:
       - "./config:/config"
     ports:
@@ -100,64 +98,72 @@ services:
       retries: 10
 
   grr-client:
-    build:
-      context: .
-      dockerfile: ./containers/grr/client/Dockerfile
+    image: ghcr.io/google/grr:latest
     hostname: grr-client
     depends_on:
+      front-envoy:
+        condition:
+          service_started
       fleetspeak-frontend:
         condition:
           service_healthy
-      fleetspeak:
-        condition:
-          service_started
-      grr:
-        condition:
-          service_started
-    entrypoint: ["fleetspeak-client", "-config" , "/config/config.textproto", "-alsologtostderr"]
+    entrypoint: [
+      "/bin/bash",
+      "-c",
+      "grr_client_build repack_multiple --templates /client_templates/*/*.zip --repack_configs /config/grr-client/client.yaml --output_dir /installers && dpkg -i /installers/client/*.deb && fleetspeak-client -config /config/grr-client/config.textproto"
+      ]
     volumes:
-      - "./config/grr-client:/config"
-  
+      - "./config/:/config/"
+
   grr-admin:
-    build:
-      context: .
-      dockerfile: ./containers/grr/server/Dockerfile
+    image: ghcr.io/google/grr:latest
     hostname: grr-admin
     depends_on:
       mysql-grr:
         condition: service_healthy
-    entrypoint: ["/grr/venv/bin/python", "-m", "grr_response_server.gui.admin_ui", "--logtostderr"]
+    command:
+      - -component
+      - admin_ui
+      - -config
+      - /config/grr-server/server.local.yaml
+      - --verbose
     volumes:
-      - "${PWD}/config/grr-server/server.local.yaml:/grr/grr/core/install_data/etc/server.local.yaml"
+      - "${PWD}/config/:/config/"
     ports:
       - '8000:8000'
     expose:
       - '8000'
 
   grr-frontend:
-    build:
-      context: .
-      dockerfile: ./containers/grr/server/Dockerfile
+    image: ghcr.io/google/grr:latest
     hostname: grr-frontend
     depends_on:
       mysql-grr:
         condition: service_healthy
-    entrypoint: ["/grr/venv/bin/python", "-m", "grr_response_server.bin.fleetspeak_frontend", "--logtostderr"]
+    command:
+      - -component
+      - frontend
+      - -config
+      - /configs/server.local.yaml
+      - --verbose
     volumes:
-      - "${PWD}/config/grr-server/server.local.yaml:/grr/grr/core/install_data/etc/server.local.yaml"
+      - "${PWD}/config/grr-server/:/configs/"
     ports:
       - '11111:11111'
     expose:
       - '11111'
 
   grr-worker:
-    build:
-      context: .
-      dockerfile: ./containers/grr/server/Dockerfile
+    image: ghcr.io/google/grr:latest
     hostname: grr-worker
     depends_on:
       mysql-grr:
         condition: service_healthy
-    entrypoint: ["/grr/venv/bin/python", "-m", "grr_response_server.bin.worker", "--logtostderr"]
+    command:
+      - -component
+      - worker
+      - -config
+      - /configs/server.local.yaml
+      - --verbose
     volumes:
-      - "${PWD}/config/grr-server/server.local.yaml:/grr/grr/core/install_data/etc/server.local.yaml"
+      - "${PWD}/config/grr-server/:/configs/"

@@ -1,6 +1,16 @@
 Client.fleetspeak_enabled: true
+ClientBuilder.fleetspeak_bundled: true
 Client.foreman_check_frequency: 30
+
 Logging.verbose: true
 Logging.engines: file,stderr
 Logging.path: /
 Logging.filename: /grr-client.log
+
+Client.executable_signing_public_key: "%(/config/public-key.pem|file)"
+Target:Linux:
+  ClientBuilder.fleetspeak_client_config: /config/grr-client/config.textproto
+Target:Windows:
+  ClientBuilder.fleetspeak_client_config: /config/grr-client/config.textproto
+Target:Darwin:
+  ClientBuilder.fleetspeak_client_config: /config/grr-client/config.textproto
