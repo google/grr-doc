@@ -18,6 +18,29 @@ Binaries to start the different GRR components, create new certificates, repack 
 are included in the GRR Docker image.
 All available binaries are in the `$PATH` in the Docker container and can also be found
 inside the container in `/usr/share/grr-server/bin`.
+Most binaries require a [configuration file](#configuration-files), which can be set with the
+`-config / --config` command line argument. Also see examples in [How to use the image](#how-to-use-the-image).
+
+##### Configuration files
+
+GRR uses [GrrConfigManager](https://github.com/google/grr/blob/v3.4.7.2/grr/core/grr_response_core/lib/config_lib.py#L445)
+which is based on [configparser](https://docs.python.org/3/library/configparser.html) to configure GRR components and binaries.
+A basic configuration for [server](https://github.com/google/grr/blob/v3.4.7.4-release/docker_config_files/server/grr.server.yaml),
+[client](https://github.com/google/grr/blob/v3.4.7.4-release/docker_config_files/client/grr.client.yaml) and
+[e2e testing](https://github.com/google/grr/blob/v3.4.7.4-release/docker_config_files/testing/grr.testing.yaml) are provided.
+They can be mounted in the container:
+```bash
+$ docker run -it \
+    --entrypoint /bin/bash \  # open a shell
+    -v $(pwd)/docker_config_files:/configs \  # mount the docker_config_files folder to /configs
+    ghcr.io/google/grr:latest
+```
+Additional configuration options can be added, i.e. additional options for the server configuration can be found
+[here](https://github.com/google/grr/blob/v3.4.7.4-release/grr/core/grr_response_core/config/server.py) for the
+server or [here](https://github.com/google/grr/blob/v3.4.7.4-release/grr/core/grr_response_core/config/client.py)
+for the client.
+(We are working on a better documentation for the available config options.)
+
 
 ### Fleetspeak Docker Image
 
