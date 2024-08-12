@@ -42,8 +42,10 @@ cd /home/user/src/grr-doc/
 git pull
 echo "-----------------"
 echo "Starting claat..."
-cd /home/user/src/grr/codelabs
-claat serve &
+cd /home/user/src/grr-doc/developing-grr/codelabs
+claat export how-to-add-a-client-action.md
+claat export how-to-add-a-flow.md
+claat serve -addr 0.0.0.0:9090 &
 echo "-----------------"
 cd "$BASE" || exit
 echo "demo installation done"
