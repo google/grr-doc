@@ -29,8 +29,16 @@ echo "Synchronising repos..."
 if [ ! -f /home/user/src/grr/README.md ]; then
   cp -R /var/src /home/user/src
   chown -R user:user /home/user/src
+  git config --global --add safe.directory /home/user/src/grr
+  git config --global --add safe.directory /home/user/src/grr-doc
 fi
+echo "-----------------"
+echo "Pulling grr..."
 cd /home/user/src/grr/
+git pull
+echo "-----------------"
+echo "Pulling grr-doc..."
+cd /home/user/src/grr-doc/
 git pull
 echo "-----------------"
 echo "Starting claat..."

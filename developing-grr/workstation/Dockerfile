@@ -22,7 +22,9 @@ RUN wget https://github.com/googlecodelabs/tools/releases/download/v2.2.6/claat-
 RUN mkdir -p /var/src && \
     cd /var/src && \
     git clone https://github.com/google/grr.git && \
-    git config --global --add safe.directory /var/src/grr
+    git config --global --add safe.directory /var/src/grr && \
+    git clone https://github.com/google/grr-doc.git && \
+    git config --global --add safe.directory /var/src/grr-doc
 
 COPY ./workstation_startup_d/011_mount_filestore.sh /etc/workstation-startup.d/
 RUN chmod +x /etc/workstation-startup.d/011_mount_filestore.sh
