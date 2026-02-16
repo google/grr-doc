@@ -16,7 +16,7 @@ grrapi.Client("C.ABCDEF0123456789").Flow("0123456789ABCDEF").Get().DecryptLargeF
 
 or the [command line API shell](https://github.com/google/grr/tree/master/api_client/python#using-command-line-api-shell):
 ```bash
-gsutil cat gs://bucket/encrypted_file | \
+gcloud storage cat gs://bucket/encrypted_file | \
 grr_api_shell --basic_auth_username "user" --basic_auth_password "pwd" \
     --exec_code 'grrapi.Client("C.1234567890ABCDEF").Flow("F:BB628B23").Get().DecryptLargeFile()' \
     http://localhost:1234 > decrypted_file
