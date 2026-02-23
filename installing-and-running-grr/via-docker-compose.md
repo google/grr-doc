@@ -1,5 +1,10 @@
 # Running GRR in a Docker Compose Stack (Recommended)
 
+- [Setup the ennviroment](#setup-the-environment)
+- [Run the GRR Docker Compose Stack](#run-the-grr-docker-compose-stack)
+- [Repacking Client Installers](#repacking-client-installers)
+- [Setting up your own MySQL database](#setting-up-your-own-mysql-database)
+
 Running GRR via Docker Compose will start every [GRR component](<overview.md>) in a separate Docker container. 
 All that is needed is install Docker, Docker Compose and git, then get the code, generate certificates and start the stack.
 Follow the instructions below!
@@ -90,6 +95,28 @@ The stack uses mounted volumes to persist state , to also delete these run:
 docker compose down --volumes
 ```
 
+### Configuring the stack
+
+See [configuration files](<../via-docker#configuration-files>) for general information.
+In the GRR Docker Compose Stack the default configuration with a minimal set of
+configuration options are mounted at `/configs/(server|client|testing)`, see the
+`compose.yaml` file for reference.
+
+After updating the configuration restart the components to apply the changes.
+
+To run any GRR binary that requires a configuration, e.g. the `grr_config_updater`
+binary, the config file need to be passed via a command line option.
+
+For example to show available users you can run:
+```bash
+# Start the stack.
+$ docker compose up --wait
+# Connect to the GRR admin ui container.
+$ docker exec -it grr-admin-ui /bin/bash
+# Run GRR config updater inside the container, set the `--config` option.
+$ root@admin-ui:/usr/src/grr# grr_config_updater --config /configs/server/grr.server.yaml show_user
+```
+
 ### Debugging
 
 - You can access the **logs** via:
@@ -118,11 +145,12 @@ docker compose down --volumes
   Username, password and DB name for the mysql database can also be found in
    `docker_config_files/mysql/.env`.
 
+
 ## Repacking Client Installers
 
-The client templates need to be repacked into installer to be installed on a
+The client templates need to be repacked into installers to be installed on a
 client. The repacking adds some configuration to the templates that is
-provided by the GRR server and needs to be available before startup.
+provided by the GRR server.
 
 In the Docker Compose stack, the templates are
 [repacked](https://github.com/google/grr/blob/master/docker_config_files/server/repack_clients.sh)
