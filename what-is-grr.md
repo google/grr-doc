@@ -21,7 +21,7 @@ GRR was built to run at scale so that analysts are capable of effectively collec
 
 ## GRR client features
 
-* Cross-platform support for Linux, OS X and Windows clients.
+* Cross-platform support for Linux, macOS and Windows clients.
 * Live remote memory analysis using YARA library.
 * Powerful search and download capabilities for files and the Windows registry.
 * OS-level and raw file system access, using the SleuthKit (TSK).
